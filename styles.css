@@ -1,19 +1,59 @@
 body {
-    font-family: ;
+    font-family: 'Times New Roman', serif;
 }
 
-h1 {
-    font-family: ;
+h1, h2, h3, h4, h5, h6, .title {
+    font-family: 'Cinzel Decorative', cursive, 'Times New Roman';
 }
 
 .logo {
     margin: auto;
     padding: 20px 20px;
-    width: 25%;
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 
-/* .img {
+.name {
+    font-weight: 700 ;
+}
+
+.citation{
+    padding: 20px 20px ;    
+}
+
+.img {
     width: 100%;
-} */
+}
+
+footer {
+    margin-top: 2rem;
+}
+
+.footer {
+    display : flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-top: solid 1px lightgrey;
+}
+
+footer > p {
+    text-align: center;
+    border-top: solid 1px lightgrey;
+}
+
+footer > a:hover {
+    text-decoration: none;
+    text-shadow: 4px 4px 10px black;
+} 
+
+@media screen and (max-width: 375px) {
+    
+    footer  {
+        font-size : 9px;
+    }
+
+    .citation {
+        font-size : 9px;
+    }
+}
