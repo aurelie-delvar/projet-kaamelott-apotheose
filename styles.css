@@ -1,0 +1,19 @@
+body {
+    font-family: ;
+}
+
+h1 {
+    font-family: ;
+}
+
+.logo {
+    margin: auto;
+    padding: 20px 20px;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+/* .img {
+    width: 100%;
+} */
