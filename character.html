@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaamel'O'tt</title>
+
+    <!-- link bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    
+    <!-- link font titres  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant:wght@400;500;700&display=swap" rel="stylesheet">
+
+
+    <!-- link css  -->
+    <link href="styles.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+    <!-- header -->
+    <header>
+
+        <div class="logo">
+        <a href="#"><img class="img" src="./img/logo.png"></a>
+        </div>
+
+        <nav class="navbar navbar-expand-xxl bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand title" href="#"> Kaamel'O'tt </a>
+
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="./img/icone.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    User-a-nom-tres-long
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Connexion</a></li>
+                    <li><a class="dropdown-item" href="#">Déconnexion</a></li>
+                    <li><a class="dropdown-item" href="#">Profil</a></li>
+                  </ul>
+                </li>
+              </ul>
+
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="characters.html">Personnages</a>
+                  </li>
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Citations
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Liste générale</a></li>
+                      <li><a class="dropdown-item" href="#">Par livre</a></li>
+                      <li><a class="dropdown-item" href="#">Par saison</a></li>
+                    </ul>
+                  </li>
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Saisons
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Livre I</a></li>
+                      <li><a class="dropdown-item" href="#">Livre II</a></li>
+                      <li><a class="dropdown-item" href="#">Livre III</a></li>
+                      <li><a class="dropdown-item" href="#">Livre IV</a></li>
+                      <li><a class="dropdown-item" href="#">Livre V</a></li>
+                      <li><a class="dropdown-item" href="#">Livre VI</a></li>
+                      <li><a class="dropdown-item" href="#">Premier volet</a></li>
+                    </ul>
+                  </li>
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Quizz
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Quizz 1</a></li>
+                      <li><a class="dropdown-item" href="#">Quizz 2</a></li>
+                    </ul>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Favoris</a>
+                  </li>
+                </ul>
+                
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn" type="submit"><img src="./img/loupe.png" alt="search-icon" width="24" height="24"></button>
+                </form>
+              </div>
+
+              
+            </div>
+          </nav>
+    </header>
+
+    <!-- main section -->
+    <main class="main">
+
+      <h2 class="main__item">Arthur Pendragon, Roi de Bretagne</h2>
+
+        <div class="row justify-content-lg-start">
+        <!-- <div class="d-flex flex-lg-row"> -->
+
+          <div class="col-lg-4">
+
+            <div class="text-center mb-lg-3">
+            <img src="./img/arthur.jpg" alt="Arthur Pendragon" class="img-fluid">
+            </div>
+
+          </div> 
+
+          <div class="col-lg-5 ml-lg-3">
+
+          <p class="main__item main__item--text mb-lg-3">Arthur Pendragon est le personnage principal de Kaamelott et le roi à la tête du Royaume de Logres, régnant sur toute l'île de Bretagne et les pays alliés car il détient Excalibur. Les Dieux l'ont désigné pour construire la Table Ronde autour de laquelle il a rassemblé les chevaliers de la Table Ronde pour mener à bien la quête du Graal.</p>
+
+          </div>
+
+        </div>
+
+        <div class="row justify-content-lg-start">
+
+          <div class="col-lg-4">
+
+            <h6 class="main__item">Est joué par: Alexandre Astier</h6>
+
+            <div class="text-center">
+            <img src="./img/alexandreastier.jpg" alt="Alexandre Astier" class="img-fluid">
+            </div>
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <h6 class="main__item">Ses citations :</h6>
+
+            <div class="card mb-3">
+                <div class="card-header d-flex justify-content-end">
+                  <div class="d-flex" style="color: orange;">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                    <span class="ps-1">5</span>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <blockquote class="blockquote mb-0">
+                    <p>C'est parce que je cherche le Graal que je suis roi. Et du coup que vous êtes reine. Si je cherchais pas le Graal, vous seriez encore en Carmélide en train de torcher le cul des vaches dans une des fermes de votre con de père !</p>
+                    <footer class="blockquote-footer">Alexandre Astier, <cite title="Source Title">Kaamelott, Livre II, Le passage secret, écrit par Alexandre Astier.</cite></footer>
+                  </blockquote>
+                </div>
+              </div>
+
+              <div class="card mb-3">
+                <div class="card-header d-flex justify-content-end">
+                  <div class="d-flex" style="color: orange;">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                    <span class="ps-1">5</span>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <blockquote class="blockquote mb-0">
+                    <p>Mais je ne suis pas romain, merde !</p>
+                    <footer class="blockquote-footer">Alexandre Astier, <cite title="Source Title">Kaamelott, livre II, Le secret d'Arthur, écrit par Alexandre Astier.</cite></footer>
+                  </blockquote>
+                </div>
+              </div>
+
+              <div class="card mb-3">
+                <div class="card-header d-flex justify-content-end">
+                  <div class="d-flex" style="color: orange;">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                    <span class="ps-1">5</span>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <blockquote class="blockquote mb-0">
+                    <p>Le seigneur Perceval ne se met jamais en situation dangereuse. Pour ça, il fait preuve d'une intelligence redoutable.</p>
+                    <footer class="blockquote-footer">Alexandre Astier, <cite title="Source Title">Kaamelott, Livre II, Always , écrit par Alexandre Astier.</cite></footer>
+                  </blockquote>
+                </div>
+              </div>
+          </div>
+        </div>
+        
+    </main>
+
+
+    <!-- footer -->
+    <footer>
+        
+        <div class="footer">
+            <a href="#" class="nav-link link-opacity-25-hover" role="button" >Mentions légales</a>
+            <a href="#" class="nav-link">Copyright &copy; 2023</a>
+        </div>
+            <p>Made by Edith, Céline, Angèle and Aurélie.</p>
+        
+    </footer>
+
+    <!-- script bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+</div>
+</body>
+</html>

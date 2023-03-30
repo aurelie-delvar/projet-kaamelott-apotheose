@@ -66,6 +66,15 @@ footer > a:hover {
     text-shadow: 4px 4px 10px black;
 } 
 
+.main__item {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.blockquote {
+    font-size: 1rem;
+}
+
 @media screen and (max-width: 375px) {
     
     footer  {
@@ -74,5 +83,13 @@ footer > a:hover {
 
     .citation {
         font-size : 9px;
+    }
+
+    .blockquote {
+        font-size: 0.8rem;
+    }
+
+    .main__item--text {
+        font-size: 0.8rem;
     }
 }
