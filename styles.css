@@ -1,5 +1,12 @@
 body {
     font-family: 'Times New Roman', serif;
+    background-image: url(./img/pexels-pixabay-221516.jpg) ;
+    opacity: 0.8;
+    height: 100vh;
+    width: 100vw;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 h1, h2, h3, h4, h5, h6, .title {
