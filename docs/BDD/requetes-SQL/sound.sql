@@ -1,0 +1,51 @@
+--
+-- Contenu de la table `sound`
+-- id => int, Auto Increment
+-- title => string
+--
+
+INSERT INTO `sound` (`id`,`title`) 
+VALUES
+(1,"2_3_poils_de_Q.mp3"),
+(2,"a_kadoc.mp3"),
+(3,"a_la_volette1.mp3"),
+(4,"a_moi_lassassin.mp3"),
+(5,"a_moi.mp3"),
+(6,"a_plus_tard.mp3"),
+(7,"a_roulette.mp3"),
+(8,"a_voui_vous_avez_raison.mp3"),
+(9,"ah_ah_mais_vous_etes_marteau_et_regardez_ca_ca_pisse_le_sang.mp3"),
+(10,"ah_bah_alors_la_je_les_attends_les_mecs.mp3"),
+(11,"ah_bravo_bah_vous_parlez_d_un_hero.mp3"),
+(12,"ah_cest_ca.mp3"),
+(13,"ah_le_printemps_on_crame_des_mecs.mp3"),
+(14,"ah_mais_arretez_de_gueuler_comme_un_con.mp3"),
+(15,"ah_nan_mais_quand_on_est_pas_habitue_c_est_drolement_impressionnant_la_magie.mp3"),
+(16,"ah_non_ca_c_est_que_nous.mp3"),
+(17,"ah_non_la_aujourd_hui_ca_passera_pas.mp3"),
+(18,"ah_ouais_je_l_ai_fait_trop_fulgurant_la_ca_va.mp3"),
+(19,"ah_oui_bravo_une_belle_lecon_de_sport.mp3"),
+(20,"ah_parce_que_c_est_la_seule_alternative_que_vous_me_proposez.mp3"),
+(21,"ah_qu_est_ce_que_vous_voulez_mon_petit_bohort.mp3"),
+(22,"ah_si_moi_j_irai_me_recoucher_avant_de_prendre_un_pain.mp3"),
+(23,"allez_boire_un_coup.mp3"),
+(24,"alors_ca_vient_ptite_bite.mp3"),
+(25,"alors_des_qu_il_s_agit_d_aller_se_dorer_les_miches_en_armorique.mp3"),
+(26,"alors_le_ratichon_on_a_un_ptit_creux.mp3"),
+(27,"alors_si_j_ai_bien_resume_le_truc_vous_allez_creuser_trois_pieds_et_demi_sur_toute_la_bretagne.mp3"),
+(28,"animaux_de_la_foret.mp3"),
+(29,"apres_pour_le_detail_je_sais_pas.mp3"),
+(30,"arretez_de_parler_aux_gens.mp3"),
+(31,"arretez_immediatement_de_me_prendre_pour_une_truite.mp3"),
+(32,"arthour.mp3"),
+(33,"assiette_fromage.mp3"),
+(34,"attendez_il_faut_que_ca_soit_vrai_tout_ce_qu_on_dit_la.mp3"),
+(35,"attention_attention_a_un_moment_il_y_a_des_granges_qui_vont_se_mettre_a_flamber_il_faudra_pas_demander_d_ou_sa_vient.mp3"),
+(36,"au_gros_sel_qu_est_ce_que_c_est_ces_conneries_vous_me_prenez_pour_une_epaule_d_agneau.mp3"),
+(37,"ave_cesar.mp3"),
+(38,"avec_sa_couille.mp3"),
+(39,"avez_de_la_chance.mp3"),
+(40,"bah_je_sais_pas_me_lacher_la_grappe_par_exemple.mp3"),
+(41,"bah_si_il_n_y_avait_que_les_oiseaux_elle_est_a_moitie_givree_de_toute_facon_on_ne_peut_pas_tout_relever_non_plus.mp3"),
+(42,"bataille_de_fions.mp3"),
+(43,"bien_manger_cest_important.mp3");
