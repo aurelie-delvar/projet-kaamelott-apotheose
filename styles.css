@@ -75,6 +75,10 @@ footer > a:hover {
     font-size: 1rem;
 }
 
+.main__item--img {
+    padding-left: 15px;
+}
+
 @media screen and (max-width: 375px) {
     
     footer  {
