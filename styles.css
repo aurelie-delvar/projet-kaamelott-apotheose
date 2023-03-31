@@ -14,12 +14,12 @@ h1, h2, h3, h4, h5, h6, .title {
 }
 
 .container {
+    padding:  0 ;
     background-color: rgba(240, 248, 255, 0.3);
-    /* opacity: 0.5; */
 }
 
 .navbar {
-    background-color: rgba(243, 245, 245, 0.7);
+    background-color: rgba(243, 245, 245, 0.2);
 }
 
 
