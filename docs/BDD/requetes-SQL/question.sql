@@ -1,7 +1,7 @@
 --
 -- Contenu de la table `question`
 -- id => int, Auto Increment
--- title => string (255)
+-- title => text
 -- answer1 => text
 -- answer2 => text
 -- answer3 => text
