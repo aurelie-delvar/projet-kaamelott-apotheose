@@ -42,6 +42,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $quotes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Avatar::class, inversedBy="users")
+     */
+    private $avatar;
+
     public function __construct()
     {
         $this->quotes = new ArrayCollection();
@@ -162,6 +167,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $quote->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAvatar(): ?Avatar
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?Avatar $avatar): self
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }
