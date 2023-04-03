@@ -89,14 +89,54 @@ footer > a:hover {
     object-fit: cover;
     }
 
-@media screen and (max-width: 375px) {
+/* .card-columns {
+    @include media-breakpoint-only(lg) {
+        column-count: 1;
+    }
+    @include media-breakpoint-only(md) {
+        column-count: 2;
+    }
+    @include media-breakpoint-only(xs) {
+        column-count: 1;
+    }
+    } */
+
+
+@media screen and (max-width: 768px) {
     
     footer  {
-        font-size : 9px;
+        font-size : 0.9rem;
     }
 
     .citation {
-        font-size : 9px;
+        font-size : 0.9rem;
+    }
+
+    .title {
+        font-size : 0.9rem;
+    }
+
+    .blockquote {
+        font-size: 0.9rem;
+    }
+
+    .main__item--text {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    
+    footer  {
+        font-size : 0.7rem;
+    }
+
+    .citation {
+        font-size : 0.7rem;
+    }
+
+    .title {
+        font-size : 0.7rem;
     }
 
     .blockquote {
