@@ -3,11 +3,11 @@
 -- id => int, Auto Increment
 -- text => text
 -- rating => tinyint, NULL
--- validated => boolean (false (1) non validé et true (0) validé)
+-- ! validated => boolean (false (1) non validé et true (0) validé)
 -- episode_id => Foreign Key
 -- personage_id => Foreign Key
 -- user_id => Foreign Key, NULL
---
+-- 
 
 INSERT INTO `quote` (`id`,`text`, `rating`, `validated`, `episode_id`,`personage_id`, `user_id`) 
 VALUES

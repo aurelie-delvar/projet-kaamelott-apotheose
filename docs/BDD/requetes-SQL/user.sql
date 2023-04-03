@@ -4,7 +4,7 @@
 -- email => string (180) 
 -- password => string (255)
 -- role => string (255)
--- avatar_id => Foreign Key, NULL
+-- ! conseil d'Alexandre utilisation de make:user revoir cette partie ... (EB)
 --
 
 INSERT INTO `user` (`id`,`email`, `password`, `role`, `avatar_id`) 
