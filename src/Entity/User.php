@@ -47,9 +47,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $avatar;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="user")
+     */
+    private $favorites;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="user")
+     */
+    private $rates;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PlayQuizz::class, mappedBy="user")
+     */
+    private $playQuizzs;
+
     public function __construct()
     {
         $this->quotes = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
+        $this->rates = new ArrayCollection();
+        $this->playQuizzs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -179,6 +197,96 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar(?Avatar $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favorite>
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Favorite $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+            $favorite->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Favorite $favorite): self
+    {
+        if ($this->favorites->removeElement($favorite)) {
+            // set the owning side to null (unless already changed)
+            if ($favorite->getUser() === $this) {
+                $favorite->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Rate>
+     */
+    public function getRates(): Collection
+    {
+        return $this->rates;
+    }
+
+    public function addRate(Rate $rate): self
+    {
+        if (!$this->rates->contains($rate)) {
+            $this->rates[] = $rate;
+            $rate->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRate(Rate $rate): self
+    {
+        if ($this->rates->removeElement($rate)) {
+            // set the owning side to null (unless already changed)
+            if ($rate->getUser() === $this) {
+                $rate->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlayQuizz>
+     */
+    public function getPlayQuizzs(): Collection
+    {
+        return $this->playQuizzs;
+    }
+
+    public function addPlayQuizz(PlayQuizz $playQuizz): self
+    {
+        if (!$this->playQuizzs->contains($playQuizz)) {
+            $this->playQuizzs[] = $playQuizz;
+            $playQuizz->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayQuizz(PlayQuizz $playQuizz): self
+    {
+        if ($this->playQuizzs->removeElement($playQuizz)) {
+            // set the owning side to null (unless already changed)
+            if ($playQuizz->getUser() === $this) {
+                $playQuizz->setUser(null);
+            }
+        }
 
         return $this;
     }
