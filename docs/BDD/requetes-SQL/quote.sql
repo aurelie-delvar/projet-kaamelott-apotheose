@@ -4,8 +4,8 @@
 -- text => text
 -- rating => tinyint, NULL
 -- ! validated => boolean (false (1) non validé et true (0) validé)
--- episode_id => Foreign Key
--- personage_id => Foreign Key
+-- episode_id => Foreign Key, NULL
+-- personage_id => Foreign Key, NULL
 -- user_id => Foreign Key, NULL
 -- 
 

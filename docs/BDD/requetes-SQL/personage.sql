@@ -3,12 +3,12 @@
 -- id => int, Auto Increment
 -- name => string (64)
 -- picture => string (128), NULL
--- descriptionPicture => text, NULL
+-- description_picture => text, NULL
 -- description => text, NULL
--- actor_id => Foreign Key
+-- actor_id => Foreign Key, NULL
 --
 
-INSERT INTO `personage` (`id`,`name`, `picture`,`descriptionPicture`, `description`, `actor_id`) 
+INSERT INTO `personage` (`id`,`name`, `picture`,`description_picture`, `description`, `actor_id`) 
 VALUES
 (1,"Angharad", NULL, NULL, NULL, 1),
 (2,"Anna", NULL, NULL, "Anna de Tintagel est la femme du Roi Loth d'Orcanie et la mère du chevalier de la Table Ronde, Gauvain.
