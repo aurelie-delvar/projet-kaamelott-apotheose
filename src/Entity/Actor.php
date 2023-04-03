@@ -37,6 +37,11 @@ class Actor
      */
     private $description;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Personage::class, mappedBy="actor", cascade={"persist", "remove"})
+     */
+    private $personage;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,28 @@ class Actor
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPersonage(): ?Personage
+    {
+        return $this->personage;
+    }
+
+    public function setPersonage(?Personage $personage): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($personage === null && $this->personage !== null) {
+            $this->personage->setActor(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($personage !== null && $personage->getActor() !== $this) {
+            $personage->setActor($this);
+        }
+
+        $this->personage = $personage;
 
         return $this;
     }

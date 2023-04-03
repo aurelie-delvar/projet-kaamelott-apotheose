@@ -32,6 +32,21 @@ class Quote
      */
     private $validated;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Episode::class, inversedBy="quotes")
+     */
+    private $episode;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Personage::class, inversedBy="quotes")
+     */
+    private $personage;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="quotes")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +84,42 @@ class Quote
     public function setValidated(bool $validated): self
     {
         $this->validated = $validated;
+
+        return $this;
+    }
+
+    public function getEpisode(): ?Episode
+    {
+        return $this->episode;
+    }
+
+    public function setEpisode(?Episode $episode): self
+    {
+        $this->episode = $episode;
+
+        return $this;
+    }
+
+    public function getPersonage(): ?Personage
+    {
+        return $this->personage;
+    }
+
+    public function setPersonage(?Personage $personage): self
+    {
+        $this->personage = $personage;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

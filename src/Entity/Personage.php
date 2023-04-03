@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PersonageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,23 @@ class Personage
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Quote::class, mappedBy="personage")
+     */
+    private $quotes;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Actor::class, inversedBy="personage", cascade={"persist", "remove"})
+     */
+    private $actor;
+
+
+
+    public function __construct()
+    {
+        $this->quotes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -89,4 +108,48 @@ class Personage
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Quote>
+     */
+    public function getQuotes(): Collection
+    {
+        return $this->quotes;
+    }
+
+    public function addQuote(Quote $quote): self
+    {
+        if (!$this->quotes->contains($quote)) {
+            $this->quotes[] = $quote;
+            $quote->setPersonage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuote(Quote $quote): self
+    {
+        if ($this->quotes->removeElement($quote)) {
+            // set the owning side to null (unless already changed)
+            if ($quote->getPersonage() === $this) {
+                $quote->setPersonage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getActor(): ?Actor
+    {
+        return $this->actor;
+    }
+
+    public function setActor(?Actor $actor): self
+    {
+        $this->actor = $actor;
+
+        return $this;
+    }
+
+ 
 }
