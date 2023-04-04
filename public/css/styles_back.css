@@ -15,6 +15,7 @@ h1, h2, h3, h4, h5, h6, .title {
 .main-content {
     text-align: center;
     padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .container {
@@ -69,4 +70,11 @@ footer > a:hover {
     footer  {
         font-size : 9px;
     }
+}
+
+.coucou {
+    padding: 2rem 10rem 2rem 10rem;
+    display:flex;
+    justify-content: space-around;
+    
 }
