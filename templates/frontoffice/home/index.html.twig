@@ -39,9 +39,29 @@
     <img class="img-fluid" src="./img/kamelott.jpeg">
     </div>
 
-    <div class="text-center"> 
-    <p class="citation">“ Ah y a pas à dire, dès qu'il y a du dessert, le repas est tout de suite plus chaleureux ! ” </p> <h6 class="name">Arthur Pendragon</h6>
+{# {% for quote in last10Quotes %}
+    <div class="card mb-3">
+        <div class="card-header d-flex justify-content-between">
+            <h6> La citation du moment </h6> 
+            <div class="d-flex" style="color: orange;">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+                <span class="ps-1">{{ quote.rating }}</span>
+            </div>
+
+        </div>
+        <div class="card-body">
+        <i class="bi bi-heart-fill d-flex justify-content-end"></i>
+        <blockquote class="blockquote mb-0">
+            <p>"{{ quote.text }}"</p>
+            <footer class="blockquote-footer"> {{ quote.personage }},<cite title="Source Title"> <strong>{{ quote.season.episode}}</strong>, {{ quote.episode}}.</cite></footer>
+        </blockquote>
+        </div>
     </div>
+    {% endfor %} #}
 </main>
 
 {% endblock %}

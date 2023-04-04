@@ -18,9 +18,24 @@ class HomeController extends AbstractController
     public function index(QuoteRepository $quoteRepository): Response
     {
         $randomQuote = $quoteRepository->randomQuote();
+
+        // TODO j'affiche la liste des 10 dernières citations
+        // j'ai besoin d'un repository : QuoteRepository
+        // le findAll() ne me permet pas de trier les résultats
+        // * $allQuotes = $quoteRepository->findAll();
+        $last10Quotes = $quoteRepository->findBy(
+            // je n'ai pas de critères, mais je dois fournir un tableau, celui ci sera vide
+            [],
+            ["id" => "DESC"], // tri par id decroissant
+            $limit = 10, //j'en veux 10
+            $offset = 0 // à partir de 0 (1er de la table)
+            
+        );
+        // dd($last10Quotes);
         
         return $this->render('frontoffice/home/index.html.twig', [
            "randomQuote" => $randomQuote,
+           "last10Quotes" => $last10Quotes
         ]);
     }
 
