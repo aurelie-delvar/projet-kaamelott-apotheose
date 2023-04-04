@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Season{% endblock %}
+
+{% block body %}
+    <h1>Modification saison</h1>
+
+    {{ include('backoffice/season/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_backoffice_season_browse') }}">retour à la liste</a>
+
+    
+{% endblock %}

@@ -1,18 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Personage index{% endblock %}
+{% block title %}Liste des Personnages{% endblock %}
 
 {% block body %}
-    <h1>Personage index</h1>
+    <h1>Liste des personnages</h1>
 
-    <table class="table">
+    <a href="{{ path('app_backoffice_personage_new') }}"class="btn btn-primary">Créer un nouveau paersonnage</a>
+
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Picture</th>
-                <th>DescriptionPicture</th>
-                <th>Description</th>
+                <th>Nom</th>
+                <th>Image</th>
+                <th>Description de l'image</th>
+                <th>Description du personnage</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,8 +27,8 @@
                 <td>{{ personage.descriptionPicture }}</td>
                 <td>{{ personage.description }}</td>
                 <td>
-                    <a href="{{ path('app_backoffice_personage_read', {'id': personage.id}) }}">voir</a>
-                    <a href="{{ path('app_backoffice_personage_edit', {'id': personage.id}) }}">modifier</a>
+                    <a href="{{ path('app_backoffice_personage_read', {'id': personage.id}) }}"class="btn btn-success" >voir</a>
+                    <a href="{{ path('app_backoffice_personage_edit', {'id': personage.id}) }}" class="btn btn-warning">modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_backoffice_personage_new') }}">Create new</a>
+    
 {% endblock %}

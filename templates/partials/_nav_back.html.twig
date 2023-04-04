@@ -1,0 +1,60 @@
+<header>
+
+    <div class="logo">
+    <a href="{{ path("app_backoffice_home") }}"><img class="img" src="{{ asset('img/logo.png') }}"></a>
+    </div>
+
+<nav class="navbar navbar-expand-xxl bg-body-secondary" >
+    <div class="container-fluid">
+        <a class="navbar-brand title" href="{{ path("app_backoffice_home") }}"> Kaamel'O'tt </a>
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{ asset('/img/icone.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                User-a-nom-tres-long
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Connexion</a></li>
+                    <li><a class="dropdown-item" href="#">Déconnexion</a></li>
+                    <li><a class="dropdown-item" href="#">Profil</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ path("app_backoffice_home") }}">Accueil</a>
+            </li>
+
+            <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="{{ path("app_backoffice_personage_browse") }}">Personnages</a>
+            </li>
+
+            <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">Citations</a>
+            </li>
+
+            <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">Saisons</a>
+            </li>
+
+            <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">Quizz</a>
+            </li>       
+
+        </ul>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn" type="submit"><img src="{{ asset('/img/loupe.png') }}" alt="search-icon" width="24" height="24"></button>
+        </form>
+        </div>
+
+    </div>
+</nav>
+
+</header>

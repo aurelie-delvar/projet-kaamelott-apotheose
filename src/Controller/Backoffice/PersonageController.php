@@ -26,7 +26,7 @@ class PersonageController extends AbstractController
     }
 
     /**
-     * @Route("personage/new", name="app_backoffice_personage_new", methods={"GET", "POST"})
+     * @Route("/personage/new", name="app_backoffice_personage_new", methods={"GET", "POST"})
      */
     public function new(Request $request, PersonageRepository $personageRepository): Response
     {
@@ -37,7 +37,7 @@ class PersonageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $personageRepository->add($personage, true);
 
-            return $this->redirectToRoute('app_backoffice_personage_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_backoffice_personage_browse', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('backoffice/personage/new.html.twig', [
@@ -47,7 +47,7 @@ class PersonageController extends AbstractController
     }
 
     /**
-     * @Route("personage/{id}", name="app_backoffice_personage_read", methods={"GET"})
+     * @Route("/personage/{id}", name="app_backoffice_personage_read", methods={"GET"})
      */
     public function read(Personage $personage): Response
     {
@@ -57,7 +57,7 @@ class PersonageController extends AbstractController
     }
 
     /**
-     * @Route("personage/{id}", name="app_backoffice_personage_edit", methods={"GET", "POST"})
+     * @Route("/personage/{id}/edit", name="app_backoffice_personage_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Personage $personage, PersonageRepository $personageRepository): Response
     {
@@ -67,7 +67,7 @@ class PersonageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $personageRepository->add($personage, true);
 
-            return $this->redirectToRoute('app_backoffice_personage_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_backoffice_personage_browse', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('backoffice/personage/edit.html.twig', [
@@ -77,7 +77,7 @@ class PersonageController extends AbstractController
     }
 
     /**
-     * @Route("personage/{id}", name="app_backoffice_personage_delete", methods={"POST"})
+     * @Route("/personage/{id}", name="app_backoffice_personage_delete", methods={"POST"})
      */
     public function delete(Request $request, Personage $personage, PersonageRepository $personageRepository): Response
     {
@@ -85,6 +85,6 @@ class PersonageController extends AbstractController
             $personageRepository->remove($personage, true);
         }
 
-        return $this->redirectToRoute('app_backoffice_personage_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_backoffice_personage_browse', [], Response::HTTP_SEE_OTHER);
     }
 }

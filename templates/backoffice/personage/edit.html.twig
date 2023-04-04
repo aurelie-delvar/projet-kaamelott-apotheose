@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Personage{% endblock %}
+{% block title %}Modifier un Personnage{% endblock %}
 
 {% block body %}
-    <h1>Edit Personage</h1>
+    <h1>Modifier un Personnage</h1>
+
+    <a href="{{ path('app_backoffice_personage_browse') }}" class="btn btn-primary">Retour à la liste</a>
 
     {{ include('backoffice/personage/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_backoffice_personage_index') }}">back to list</a>
+    
 
-    {{ include('backoffice/personage/_delete_form.html.twig') }}
+    
 {% endblock %}

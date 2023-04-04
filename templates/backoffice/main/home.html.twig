@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+
+    <main>
+    
+    <div class="main-content">
+        <h1>Bienvenue sur le Backoffice Kaamel'O'tt</h1>
+    </div>
+
+    <div class="container  ">
+
+        <div class="row gy-5 coucou">
+            <div class="col" >
+                <div class="card " style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Personnages</h5>
+                        <a href="{{ path('app_backoffice_home')}}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col" >
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Citations</h5>
+                        <a href="{{ path('app_backoffice_home')}}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col" >  
+                <div class="card " style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Saisons</h5>
+                        <a href="{{ path('app_backoffice_home')}}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col" >
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Episodes</h5>
+                        <a href="{{ path('app_backoffice_home')}}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>   
+            <div class="col" >
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Quizz</h5>
+                        <a href="{{ path('app_backoffice_home')}}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div> 
+            <div class="col" >  
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Questions</h5>
+                        <a href="{{ path('app_backoffice_home')}}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col" >   
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Utilisateurs</h5>
+                        <a href="{{ path('app_backoffice_home')}}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>    
+    </div>
+</div>
+
+    </main>
+
+{% endblock %}
