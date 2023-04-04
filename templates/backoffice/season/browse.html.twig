@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Season Browse{% endblock %}
+
+{% block body %}
+
+
+<main>
+    
+    <div class="main-content">
+        <h1>Bienvenue sur le Backoffice Kaamel'O'tt</h1>
+    </div>
+
+    <div class="container  ">
+        <a href="#" class="btn btn-primary" >Ajouter une saison</a>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for season in seasons %}
+                <tr>
+                    <th scope="row">{{ season.id }}</th>
+                    <td>{{ season.title }}</td>
+                    <td>
+                        <a href="{{ path('app_backoffice_season_read', {'id': season.id}) }}">Voir</a>
+                        <a href="#">Modifier</a>
+                        <a href="#">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</main>    
+{% endblock %}
