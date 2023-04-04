@@ -1,0 +1,40 @@
+%%mocodo
+:::::::::::
+Author: code_author, name_author
+:::
+
+
+:
+Quizz: code_quizz, title_quizz
+:
+Play: #code_quizz->Quizz->code_quizz, _#code_user->User->code_user, score
+:
+favorite: #code_user->User->code_user, _#code_quote->Quote->code_quote
+:::
+Episode: code_episode, title_episode, number_episode, #code_author->Author->code_author, #code_season->Season->code_season
+:::
+Season: code_season, title_season
+:
+
+
+:::
+User: code_user, email_user, password_user, role_user
+:::
+Quote: code_quote, text_quote, rating_quote, validated_quote, #code_episode->Episode->code_episode, #code_user->User->code_user, #code_personage->Personage->code_personage
+:::
+Actor: code_actor, name_actor, picture_actor, description_actor, descriptionPicture_actor, #code_personage->Personage->code_personage
+:::
+
+
+:
+Question: code_question, title_question, answer1_question, answer2_question, answer3_question, answer4_question, goodAnswer_question, #code_quizz->Quizz->code_quizz
+:::
+rate: #code_user->User->code_user, _#code_quote->Quote->code_quote, rating
+:::
+Personage: code_personage, name_personage, picture_personage, description_personage, descriptionPicture_personage, creditOrder_personage
+:::::
+
+
+:::
+Avatar: code_avatar, name_avatar, icon_avatar, #code_user->User->code_user
+:::::::::::

@@ -40,6 +40,7 @@ CREATE TABLE `PERSONAGE` (
   `picture_personage` VARCHAR(42),
   `description_personage` VARCHAR(42),
   `descriptionpicture_personage` VARCHAR(42),
+  `creditorder_personage` VARCHAR(42),
   PRIMARY KEY (`code_personage`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -73,8 +74,8 @@ CREATE TABLE `QUOTE` (
   `text_quote` VARCHAR(42),
   `rating_quote` VARCHAR(42),
   `validated_quote` VARCHAR(42),
-  `code_user` VARCHAR(42),
   `code_episode` VARCHAR(42),
+  `code_user` VARCHAR(42),
   `code_personage` VARCHAR(42),
   PRIMARY KEY (`code_quote`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -102,6 +103,7 @@ CREATE TABLE `FAVORITE` (
 CREATE TABLE `RATE` (
   `code_user` VARCHAR(42),
   `code_quote` VARCHAR(42),
+  `rating` VARCHAR(42),
   PRIMARY KEY (`code_user`, `code_quote`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -113,8 +115,8 @@ ALTER TABLE `PLAY` ADD FOREIGN KEY (`code_user`) REFERENCES `USER` (`code_user`)
 ALTER TABLE `PLAY` ADD FOREIGN KEY (`code_quizz`) REFERENCES `QUIZZ` (`code_quizz`);
 ALTER TABLE `QUESTION` ADD FOREIGN KEY (`code_quizz`) REFERENCES `QUIZZ` (`code_quizz`);
 ALTER TABLE `QUOTE` ADD FOREIGN KEY (`code_personage`) REFERENCES `PERSONAGE` (`code_personage`);
-ALTER TABLE `QUOTE` ADD FOREIGN KEY (`code_episode`) REFERENCES `EPISODE` (`code_episode`);
 ALTER TABLE `QUOTE` ADD FOREIGN KEY (`code_user`) REFERENCES `USER` (`code_user`);
+ALTER TABLE `QUOTE` ADD FOREIGN KEY (`code_episode`) REFERENCES `EPISODE` (`code_episode`);
 ALTER TABLE `FAVORITE` ADD FOREIGN KEY (`code_quote`) REFERENCES `QUOTE` (`code_quote`);
 ALTER TABLE `FAVORITE` ADD FOREIGN KEY (`code_user`) REFERENCES `USER` (`code_user`);
 ALTER TABLE `RATE` ADD FOREIGN KEY (`code_quote`) REFERENCES `QUOTE` (`code_quote`);
