@@ -12,7 +12,8 @@
     
     <div class="col-lg-8">
 
-        {% for quote in quotes %}
+        {# we have to seek "quotes" in data because with the pagination, this is where they are #}
+        {% for quote in quotes.data %}
         <div class="card mb-3">
             <div class="card-header d-flex justify-content-end">
 
@@ -35,6 +36,12 @@
             </div>
         </div>
         {% endfor %}
+
+        {# we create some variables needed for the partial pagination #}
+        {% set path = 'app_frontoffice_quotes_browse' %}
+        {% set pages = quotes.pages %}
+        {% set currentPage = quotes.page %}
+        {% include "partials/_pagination.html.twig" %}
 
     </div>
     
