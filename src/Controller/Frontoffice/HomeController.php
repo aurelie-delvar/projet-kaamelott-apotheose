@@ -2,10 +2,12 @@
 
 namespace App\Controller\Frontoffice;
 
+use App\Repository\ActorRepository;
 use App\Repository\QuoteRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\PersonageRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
@@ -25,9 +27,22 @@ class HomeController extends AbstractController
     /**
      * @Route("/mentions-legales", name="app_home_legalNotice")
      */
-    public function mentionsLegales(): Response
+    public function legalNotice(): Response
     {
         return $this->render('frontoffice/home/legalNotice.html.twig');
+    }
+
+    /**
+     * @Route("/iconographies", name="app_home_iconographyIndex")
+     */
+    public function iconographyIndex(PersonageRepository $personageRepository, ActorRepository $actorRepository): Response
+    {
+        $characters = $personageRepository->findAll();
+        $actors = $actorRepository->findAll();
+        return $this->render('frontoffice/home/iconographyIndex.html.twig', [
+            'characters' => $characters,
+            'actors' => $actors
+        ]);
     }
 
 }

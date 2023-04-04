@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt -Mentions Légales{% endblock %}
+
+{% block body %}
+<main class="p-3 ">
+   
+    {# todo Modifier la couleur bleu de la barre active #}
+    <h2 class="name main__item text-secondary">Iconographies</h2>
+
+        <div class="accordion accordion-flush text-bg-secondary" id="accordionFlushExample">
+            <div class="accordion-item ">
+                <h2 class="accordion-header text-bg-secondary">
+                <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Iconographie des images générales
+                </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>- Background :</strong> Background_Kaamelott.jpg, Publié sur Facebook compte officiel de Kaamelott — https://www.facebook.com/KaamelottOff/photos/370926179635876 </li>
+                            <li class="list-group-item"><strong>- Background :</strong> pexels-pixabay-221516.jpg, Libre d'utilisation — https://www.pexels.com/fr-fr/photo/silhouette-d-arbres-sur-la-foret-221516/ </li>
+                            <li class="list-group-item"><strong>- FavIcon :</strong> Publié sur Facebook compte officiel de Kaamelott — https://www.facebook.com/KaamelottOff/photos/1953214004740411?locale=fr_F </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    Acteurs
+                </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <ul class="list-group list-group-flush">
+                        {% for actor in actors %}
+                            {% if actor.picture %}
+                                <li class="list-group-item"><strong>- {{ actor.picture }} : </strong>{{ actor.descriptionPicture }} </li>
+                            {% endif %}
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    Personnages de Kaamelott
+                </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <ul class="list-group list-group-flush">
+                        {% for character in characters %}
+                            {% if character.picture %}
+                                <li class="list-group-item"><strong>- {{ character.picture }} :</strong> {{ character.descriptionPicture }} </li>
+                            {% endif %}
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+</main>
+
+{% endblock %}
