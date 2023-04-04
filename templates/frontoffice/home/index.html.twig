@@ -4,11 +4,36 @@
 
 {% block body %}
 <main>
-    <div class="text-center">
+    <div class="text-center mb-3">
     
     {# todo dynamiser la page quand on aura la BDD fonctionnelle #}
+
+    <div class="card mb-3">
+        <div class="card-header d-flex justify-content-end">
+
+            <div class="d-flex" style="color: orange;">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+                <span class="ps-1">{{ randomQuote.rating }}</span>
+            </div>
+
+            {% dump(randomQuote) %}
+
+        </div>
+        <div class="card-body">
+        <i class="bi bi-heart-fill d-flex justify-content-end"></i>
+        <blockquote class="blockquote mb-0">
+            <p>"{{ randomQuote.text }}"</p>
+            <footer class="blockquote-footer"> {{ randomQuote.personage_id }},<cite title="Source Title"> <strong>{{ randomQuote.episode_id}}</strong>, {{ randomQuote.episode_id}}.</cite></footer>
+        </blockquote>
+        </div>
+    </div>
+
     
-    <p class="citation">on est en statique “ Admirez-nous un peu après trente ans de souplesse… Trente ans d’éducation laxiste !… Entre la fille princesse qui abandonne le trône pour mettre les bouts dans la forêt avec un jean-foutre et le fils chevalier qui sait pas tenir sa cuillère et qui est pas foutu de se lever avant midi, vous verrez qu’à force d’être souples, on va finir par passer définitivement pour des romanos ! Et ils se sont pas levés ! ”</p>
+    <p class="citation">“ {{ randomQuote.text }} ”</p>
     <h6 class="name">Dame Sélie</h6>
     </div>
 

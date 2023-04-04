@@ -2,6 +2,7 @@
 
 namespace App\Controller\Frontoffice;
 
+use App\Repository\QuoteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,10 +13,12 @@ class HomeController extends AbstractController
      * @Route("/", name="default")
      * @Route("/home", name="app_home_index")
      */
-    public function index(): Response
+    public function index(QuoteRepository $quoteRepository): Response
     {
+        $randomQuote = $quoteRepository->randomQuote();
+        
         return $this->render('frontoffice/home/index.html.twig', [
-           
+           "randomQuote" => $randomQuote,
         ]);
     }
 
@@ -24,11 +27,7 @@ class HomeController extends AbstractController
      */
     public function mentionsLegales(): Response
     {
-        return $this->render('frontoffice/home/legalNotice.html.twig', [
-
-           
-        ]);
+        return $this->render('frontoffice/home/legalNotice.html.twig');
     }
-
 
 }

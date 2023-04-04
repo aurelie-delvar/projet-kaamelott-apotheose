@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PersonageController extends AbstractController
 {
     /**
-     * @Route("/personages", name="app_frontoffice_personages_browse")
+     * @Route("/personnages", name="app_frontoffice_personages_browse")
      */
     public function browse(PersonageRepository $personageRepository): Response
     {
@@ -22,7 +22,7 @@ class PersonageController extends AbstractController
     }
 
     /**
-     * @Route("/personage/{id}", name="app_frontoffice_personage_read", requirements={"id" = "\d+"})
+     * @Route("/personnage/{id}", name="app_frontoffice_personage_read", requirements={"id" = "\d+"})
      *
      */
     public function read(PersonageRepository $personageRepository, $id) : Response

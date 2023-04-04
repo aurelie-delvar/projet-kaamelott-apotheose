@@ -39,6 +39,21 @@ class QuoteRepository extends ServiceEntityRepository
         }
     }
 
+    public function randomQuote(): array
+    {
+        // version SQL
+        $sql = "SELECT * from quote
+        ORDER BY RAND() 
+        LIMIT 1";
+        
+        $doctrine = $this->getEntityManager()->getConnection();
+        $statement = $doctrine->prepare($sql);
+        $result = $statement->executeQuery();
+        $quoteArray = $result->fetchAssociative();
+
+        return $quoteArray;
+    }
+
 //    /**
 //     * @return Quote[] Returns an array of Quote objects
 //     */
