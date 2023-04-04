@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Personage{% endblock %}
+
+{% block body %}
+    <h1>Create new Personage</h1>
+
+    {{ include('backoffice/personage/_form.html.twig') }}
+
+    <a href="{{ path('app_backoffice_personage_index') }}">back to list</a>
+{% endblock %}

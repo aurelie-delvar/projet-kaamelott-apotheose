@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Personage index{% endblock %}
+
+{% block body %}
+    <h1>Personage index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Picture</th>
+                <th>DescriptionPicture</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for personage in personages %}
+            <tr>
+                <td>{{ personage.id }}</td>
+                <td>{{ personage.name }}</td>
+                <td>{{ personage.picture }}</td>
+                <td>{{ personage.descriptionPicture }}</td>
+                <td>{{ personage.description }}</td>
+                <td>
+                    <a href="{{ path('app_backoffice_personage_read', {'id': personage.id}) }}">voir</a>
+                    <a href="{{ path('app_backoffice_personage_edit', {'id': personage.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_backoffice_personage_new') }}">Create new</a>
+{% endblock %}
