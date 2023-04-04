@@ -4,7 +4,7 @@
     <a href="{{ path("app_backoffice_home") }}"><img class="img" src="{{ asset('img/logo.png') }}"></a>
     </div>
 
-<nav class="navbar navbar-expand-xxl bg-body-tertiary">
+<nav class="navbar navbar-expand-xxl bg-body-secondary">
     <div class="container-fluid">
         <a class="navbar-brand title" href="{{ path("app_backoffice_home") }}"> Kaamel'O'tt </a>
 
@@ -40,12 +40,24 @@
             </li>
 
             <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="#">Saisons</a>
+            <a class="nav-link " aria-current="page" href="{{ path('app_backoffice_season_browse') }}">Saisons</a>
+            </li>
+
+            <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">Episodes</a>
             </li>
 
             <li class="nav-item">
             <a class="nav-link " aria-current="page" href="#">Quizz</a>
-            </li>       
+            </li>  
+
+            <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">Questions</a>
+            </li> 
+
+            <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">Utilisateurs</a>
+            </li>      
 
         </ul>
         <form class="d-flex" role="search">

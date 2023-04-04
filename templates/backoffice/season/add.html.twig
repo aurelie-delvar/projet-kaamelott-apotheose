@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Season{% endblock %}
+
+{% block body %}
+    <h1>Créer une nouvelle saison</h1>
+
+    <a href="{{ path('app_backoffice_season_browse') }}" class="btn btn-primary">retour à la liste</a>
+
+    {{ include('backoffice/season/_form.html.twig') }}
+
+{% endblock %}
+
