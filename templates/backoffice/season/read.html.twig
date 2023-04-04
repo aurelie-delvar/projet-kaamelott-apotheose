@@ -25,7 +25,7 @@
                     <th scope="row">{{ season.id }}</th>
                     <td>{{ season.title }}</td>
                     <td>
-                        <a href="#">Modifier</a>
+                        <a href="{{ path('app_backoffice_season_edit', {'id': season.id}) }}">Modifier</a>
                         <a href="#">Supprimer</a> 
                     </td>
                 </tr>

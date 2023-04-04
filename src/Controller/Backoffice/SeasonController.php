@@ -3,6 +3,7 @@
 namespace App\Controller\Backoffice;
 
 use App\Entity\Season;
+use App\Form\SeasonType;
 use App\Repository\SeasonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,6 +36,27 @@ class SeasonController extends AbstractController
     {
         return $this->render('backoffice/season/read.html.twig', [
             'season' => $season,
+        ]);
+    }
+
+    /**
+     * update season
+     * @Route("/{id}/edit", name="app_backoffice_season_edit", methods={"GET", "POST"}, requirements={"id"="\d+"}))
+     */
+    public function edit(Request $request, Season $season, SeasonRepository $seasonRepository): Response
+    {
+        $form = $this->createForm(SeasonType::class, $season);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $seasonRepository->add($season, true);
+
+            return $this->redirectToRoute('app_backoffice_season_browse', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('backoffice/season/edit.html.twig', [
+            'season' => $season,
+            'form' => $form,
         ]);
     }
 }
