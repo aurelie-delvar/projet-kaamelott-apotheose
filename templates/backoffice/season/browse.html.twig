@@ -7,11 +7,11 @@
 <main>
     
     <div class="main-content">
-        <h1>Bienvenue sur le Backoffice Kaamel'O'tt</h1>
+        <h1>Liste des Saisons</h1>
     </div>
 
     <div class="container  ">
-        <a href="#" class="btn btn-primary" >Ajouter une saison</a>
+        <a href="{{ path('app_backoffice_season_add') }}" class="btn btn-primary" >Ajouter une saison</a>
 
         <table class="table table-striped">
             <thead>
@@ -27,9 +27,9 @@
                     <th scope="row">{{ season.id }}</th>
                     <td>{{ season.title }}</td>
                     <td>
-                        <a href="{{ path('app_backoffice_season_read', {'id': season.id}) }}">Voir</a>
-                        <a href="{{ path('app_backoffice_season_edit', {'id': season.id}) }}">Modifier</a>
-                        <a href="#">Supprimer</a>
+                        <a href="{{ path('app_backoffice_season_read', {'id': season.id}) }}" class="btn btn-success">Voir</a>
+                        <a href="{{ path('app_backoffice_season_edit', {'id': season.id}) }}" class="btn btn-warning">Modifier</a>
+                        
                     </td>
                 </tr>
             {% else %}
