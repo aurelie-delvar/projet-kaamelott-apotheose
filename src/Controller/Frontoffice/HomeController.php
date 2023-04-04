@@ -14,7 +14,7 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('home/index.html.twig', [
+        return $this->render('frontoffice/home/index.html.twig', [
            
         ]);
     }
@@ -24,7 +24,7 @@ class HomeController extends AbstractController
      */
     public function mentionsLegales(): Response
     {
-        return $this->render('home/mentionsLegales.html.twig', [
+        return $this->render('frontoffice/home/mentionsLegales.html.twig', [
            
         ]);
     }
