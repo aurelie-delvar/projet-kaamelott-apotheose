@@ -25,6 +25,7 @@ class HomeController extends AbstractController
     public function mentionsLegales(): Response
     {
         return $this->render('frontoffice/home/legalNotice.html.twig', [
+
            
         ]);
     }
