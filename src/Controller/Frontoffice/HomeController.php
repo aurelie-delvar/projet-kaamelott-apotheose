@@ -20,11 +20,12 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/mentions-legales", name="app_home_legales")
+     * @Route("/mentions-legales", name="app_home_legalNotice")
      */
     public function mentionsLegales(): Response
     {
-        return $this->render('frontoffice/home/mentionsLegales.html.twig', [
+        return $this->render('frontoffice/home/legalNotice.html.twig', [
+
            
         ]);
     }
