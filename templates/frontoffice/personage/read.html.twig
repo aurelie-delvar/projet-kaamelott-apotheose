@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ character.name }}{% endblock %}
+
+{% block body %}
+
+<main class="main">
+
+    <h2 class="main__item">{{ character.name }}</h2>
+
+    <div class="row mb-lg-4 justify-content-center">
+        
+        <div class="col-lg-4">
+
+            <div class="text-center mb-lg-3 main__item--img">
+                <figure>
+                <img src="{{ asset('img/personage/' ~ character.picture ) }}" alt="{{ character.name }}" class="img-fluid">
+                {# TODO: voir avec les filles pour la longueur des liens #}
+                <figcaption>{{ character.descriptionPicture }}</figcaption>
+                </figure>
+            </div>
+
+            <h6 class="main__item">Est joué par: {{ character.actor.name }}</h6>
+
+            <div class="text-center">
+                <figure>
+                <img src="{{ asset('img/actor/' ~ character.actor.picture ) }}" alt="{{ character.actor.name }}" class="img-fluid">
+                <figcaption>{{ character.actor.descriptionPicture }}</figcaption>
+                </figure>
+            </div>
+            
+
+        </div>
+        
+        
+        <div class="col-lg-8">
+            <div class="col">
+
+                <p class="main__item main__item--text mb-lg-3">{{ character.description }}</p>
+
+
+                <h6 class="main__item">Ses citations :</h6>
+
+                {% for quote in character.quotes %}
+
+                <div class="card mb-3">
+                    <div class="card-header d-flex justify-content-end">
+                    {# TODO: gérer la coloration des étoiles en fonction de la note #}
+                        <div class="d-flex" style="color: orange;">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        <span class="ps-1">{{ quote.rating }}</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <i class="bi bi-heart d-flex justify-content-end"></i>
+                        <blockquote class="blockquote mb-0">
+                        <p>"{{ quote.text }}"</p>
+                        <footer class="blockquote-footer">{{ character.name }}, <cite title="Source Title"><strong>{{ quote.episode.season.title }}</strong>, {{ quote.episode.title }}.</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+       
+    
+
+
+    {# <h2 class="main__item">{{ character.name }}</h2>
+
+    <div class="row justify-content-lg-start">
+
+        <div class="col-lg-4">
+
+            <div class="text-center mb-lg-3 main__item--img">
+            <figure>
+            <img src="{{ asset('img/personage/' ~ character.picture ) }}" alt="{{ character.name }}" class="img-fluid">
+            TODO: voir avec les filles pour la longueur des liens
+            <figcaption>{{ character.descriptionPicture }}</figcaption>
+            </figure>
+            </div>
+
+        </div> 
+
+        <div class="col-lg-5 ml-lg-3">
+
+            <p class="main__item main__item--text mb-lg-3">{{ character.description }}</p>
+
+        </div>
+
+    </div>
+
+    <div class="row justify-content-lg-start">
+
+        <div class="col-lg-4">
+
+            <h6 class="main__item">Est joué par: {{ character.actor.name }}</h6>
+
+            <div class="text-center">
+            <figure>
+            <img src="{{ asset('img/actor/' ~ character.actor.picture ) }}" alt="{{ character.actor.name }}" class="img-fluid">
+            <figcaption>{{ character.actor.descriptionPicture }}</figcaption>
+            </figure>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+            <h6 class="main__item">Ses citations :</h6>
+
+            {% for quote in character.quotes %}
+
+            <div class="card mb-3">
+                <div class="card-header d-flex justify-content-end">
+                TODO: gérer la coloration des étoiles en fonction de la note
+                    <div class="d-flex" style="color: orange;">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star"></i>
+                    <span class="ps-1">{{ quote.rating }}</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <i class="bi bi-heart d-flex justify-content-end"></i>
+                    <blockquote class="blockquote mb-0">
+                    <p>"{{ quote.text }}"</p>
+                    <footer class="blockquote-footer">{{ character.name }}, <cite title="Source Title"><strong>{{ quote.episode.season.title }}</strong>, {{ quote.episode.title }}.</cite></footer>
+                    </blockquote>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div> #}
+
+
+    
+</main>
+
+{% endblock %}

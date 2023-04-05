@@ -3,11 +3,11 @@
 -- id => int, Auto Increment
 -- email => string (180) 
 -- password => string (255)
--- role => string (255)
+-- roles => string (255)
 -- ! conseil d'Alexandre utilisation de make:user revoir cette partie ... (EB)
 --
 
-INSERT INTO `user` (`id`,`email`, `password`, `role`, `avatar_id`) 
+INSERT INTO `user` (`id`,`email`, `password`, `roles`, `avatar_id`) 
 VALUES 
 (1,"clara@oclock.fr", "clara", "USER", NULL),
 (2,"edith@oclock.fr", "edith", "ADMIN", 2),
