@@ -15,10 +15,11 @@ class PersonageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name',EntityType::class,[
+            ->add('name'
+            /*,EntityType::class,[
                 'class' => Personage::class,
                 'choice_label' =>'name',
-                'label' => 'Nom du personnage'])
+                'label' => 'Nom du personnage']*/)
             ->add('picture',EntityType::class,[
                 'class' => Personage::class,
                 'choice_label' =>'picture',

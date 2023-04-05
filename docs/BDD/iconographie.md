@@ -6,6 +6,8 @@
 "Background_Kaamelott.jpg", "Publié sur Facebook compte officiel de Kaamelott — https://www.facebook.com/KaamelottOff/photos/370926179635876"
 
 "pexels-pixabay-221516.jpg", "Libre d'utilisation — https://www.pexels.com/fr-fr/photo/silhouette-d-arbres-sur-la-foret-221516/"
+
+"excalibur-g96a16a51f_1920.jpg", "Images sponsorisées iStock — https://pixabay.com/fr/illustrations/excalibur-chevalier-moyen-%c3%a2ge-1962505/"
 ```
 
 ## FavIcon

@@ -23,3 +23,6 @@ public function buildForm(FormBuilderInterface $builder, array $options): void
         ;
     }
 ```
+
+## Object of class Proxies\__CG__\App\Entity\Avatar could not be converted to string
+
