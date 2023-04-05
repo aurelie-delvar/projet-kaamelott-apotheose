@@ -3,21 +3,27 @@
 namespace App\Controller\Frontoffice;
 
 use App\Repository\PersonageRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PersonageController extends AbstractController
 {
     /**
      * @Route("/personnages", name="app_frontoffice_personages_browse")
      */
-    public function browse(PersonageRepository $personageRepository): Response
+    public function browse(PersonageRepository $personageRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $characters = $personageRepository->findAll();
+        $pagination = $paginator->paginate(
+            $personageRepository->paginationQuery(), // here is our query from the repository
+            $request->query->get('page', 1), // 1 is the page by default
+            8, // the limit of results by page
+        );
 
         return $this->render('frontoffice/personage/index.html.twig', [
-            'characters' => $characters,
+            'pagination' => $pagination,
         ]);
     }
 

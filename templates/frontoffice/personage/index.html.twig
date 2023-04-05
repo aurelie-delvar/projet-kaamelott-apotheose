@@ -8,7 +8,8 @@
 
     <div class="row row-cols-1 row-cols-md-4 m-3">
 
-    {% for character in characters %}
+    {# now our array is pagination (from the controller) #}
+    {% for character in pagination %}
         <div class="col mb-3">
             <a href="{{ path('app_frontoffice_personage_read', {"id" : character.id }) }}" class="nav-link">
             <div class="card">
@@ -21,8 +22,9 @@
         </div>
     {% endfor %}
 
-
     </div>
+
+    {{ knp_pagination_render(pagination) }}
 
 </main>
 
