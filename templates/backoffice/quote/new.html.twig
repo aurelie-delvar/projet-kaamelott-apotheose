@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Quote{% endblock %}
+
+{% block body %}
+    <h1>Create new Quote</h1>
+
+    {{ include('backoffice/quote/_form.html.twig') }}
+
+    <a href="{{ path('app_backoffice_quote_index') }}">back to list</a>
+{% endblock %}

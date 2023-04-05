@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quote{% endblock %}
+
+{% block body %}
+    <h1>Quote</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ quote.id }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ quote.text }}</td>
+            </tr>
+            <tr>
+                <th>Rating</th>
+                <td>{{ quote.rating }}</td>
+            </tr>
+            <tr>
+                <th>Validated</th>
+                <td>{{ quote.validated ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_backoffice_quote_index') }}">back to list</a>
+
+    <a href="{{ path('app_backoffice_quote_edit', {'id': quote.id}) }}">edit</a>
+
+    {{ include('backoffice/quote/_delete_form.html.twig') }}
+{% endblock %}
