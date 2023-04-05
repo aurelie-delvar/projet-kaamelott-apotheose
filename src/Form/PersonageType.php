@@ -26,6 +26,7 @@ class PersonageType extends AbstractType
                 'choice_label' => 'name',
                 //'multiple' => true,
                 'expanded' => false,
+                'required' => false
                 
             ])
         ;
