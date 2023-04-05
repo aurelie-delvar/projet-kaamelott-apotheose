@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Quote;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Quote>
@@ -37,6 +38,69 @@ class QuoteRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function randomQuote(): array
+    {
+        // version SQL
+        $sql = "SELECT quote.text, quote.rating, personage.name , episode.title AS titleEpisode, season.title AS titleSeason
+        FROM quote
+        JOIN personage ON quote.personage_id = personage.id
+        JOIN episode ON quote.episode_id = episode_id
+        JOIN season ON episode.season_id = season_id
+        ORDER BY RAND() 
+        LIMIT 1";
+        
+        $doctrine = $this->getEntityManager()->getConnection();
+        $statement = $doctrine->prepare($sql);
+        $result = $statement->executeQuery();
+        $quoteArray = $result->fetchAssociative();
+
+        return $quoteArray;
+    }
+
+    /**
+     * A try to paginate the quote's page as it's far too long for now.
+     *
+     * @param int $page the page you're on.
+     * @param int $limit the number of quotes you want on one page. If nothing is indicated, it will be 10.
+     * 
+     * @return array
+     */
+    public function findQuotesPaginated(int $page, int $limit = 10): array
+    {
+        // with abs, limit is always positive (absolute)
+        $limit = abs($limit);
+
+        // initialisation of the results
+        $result = [];
+
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->select('q') // "q" stands for "quotes"
+            ->from('App\Entity\Quote', 'q')
+            ->setMaxResults($limit) // we want 10 results by page
+            ->setFirstResult(($page * $limit) - $limit); // the first result in the current page
+
+        // we tell Doctrine we need to pagine with Paginator, and we pass our query
+        $paginator = new Paginator($query);
+        $data = $paginator->getQuery()->getResult();
+
+        // we check if we really have datas
+        if(empty($data)) {
+            return $result; 
+        }
+
+        // we need to know the number of pages we generate, ceil round up the result
+        $pages = ceil($paginator->count() / $limit);
+
+        // we fill the array
+        $result['data'] = $data;
+        $result['pages'] = $pages;
+        $result['page'] = $page;
+        $result['limit'] = $limit;
+
+        // don't forget we return an array!
+        return $result;
     }
 
 //    /**

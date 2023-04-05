@@ -2,6 +2,7 @@
 
 namespace App\Controller\Frontoffice;
 
+use App\Repository\PersonageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,12 +10,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class PersonageController extends AbstractController
 {
     /**
-     * @Route("/personage", name="app_frontoffice_personage")
+     * @Route("/personnages", name="app_frontoffice_personages_browse")
      */
-    public function browse(): Response
+    public function browse(PersonageRepository $personageRepository): Response
     {
+        $characters = $personageRepository->findAll();
+
         return $this->render('frontoffice/personage/index.html.twig', [
-            'controller_name' => 'PersonageController',
+            'characters' => $characters,
+        ]);
+    }
+
+    /**
+     * @Route("/personnage/{id}", name="app_frontoffice_personage_read", requirements={"id" = "\d+"})
+     *
+     */
+    public function read(PersonageRepository $personageRepository, $id) : Response
+    {
+        $character = $personageRepository->find($id);
+
+        return $this->render('frontoffice/personage/read.html.twig', [
+            'character' => $character,
         ]);
     }
 }
