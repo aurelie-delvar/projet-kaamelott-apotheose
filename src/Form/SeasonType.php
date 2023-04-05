@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Season;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,6 +21,9 @@ class SeasonType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Season::class,
+            'attr' =>[
+                'novalidate' => 'novalidate'
+            ]
         ]);
     }
 }
