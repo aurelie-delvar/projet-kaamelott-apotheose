@@ -13,20 +13,13 @@
         <div class="col-lg-4">
 
             <div class="text-center mb-lg-3 main__item--img">
-                <figure>
-                <img src="{{ asset('img/personage/' ~ character.picture ) }}" alt="{{ character.name }}" class="img-fluid">
-                {# TODO: voir avec les filles pour la longueur des liens #}
-                <figcaption>{{ character.descriptionPicture }}</figcaption>
-                </figure>
+                <img src="{{ asset('img/personage/' ~ character.picture ) }}" alt="{{ character.name }}" class="img-fluid" title="Crédits : {{ character.descriptionPicture }}">
             </div>
 
             <h6 class="main__item">Est joué par: {{ character.actor.name }}</h6>
 
             <div class="text-center">
-                <figure>
-                <img src="{{ asset('img/actor/' ~ character.actor.picture ) }}" alt="{{ character.actor.name }}" class="img-fluid">
-                <figcaption>{{ character.actor.descriptionPicture }}</figcaption>
-                </figure>
+                <img src="{{ asset('img/actor/' ~ character.actor.picture ) }}" alt="{{ character.actor.name }}" class="img-fluid" title="Crédits : {{ character.descriptionPicture }}">
             </div>
             
 

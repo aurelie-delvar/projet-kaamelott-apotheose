@@ -12,7 +12,7 @@
         <div class="col mb-3">
             <a href="{{ path('app_frontoffice_personage_read', {"id" : character.id }) }}" class="nav-link">
             <div class="card">
-                <img src="{{ asset('img/personage/' ~ character.picture) }}" class="card-img-top" alt="{{ character.name }}">
+                <img src="{{ asset('img/personage/' ~ character.picture) }}" class="card-img-top" alt="{{ character.name }}" title="Crédits : {{ character.descriptionPicture }}">
                 <div class="card-body">
                     <h6 class="card-title">{{ character.name }}</h6>
                 </div>
