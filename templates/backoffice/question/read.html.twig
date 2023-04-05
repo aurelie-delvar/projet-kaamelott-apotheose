@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Questions{% endblock %}
+
+{% block body %}
+<main>
+    <div class="main-content">
+        <h1>Question</h1>
+    </div>
+
+    <div class="container  ">
+        <a href="{{ path('app_backoffice_question_browse') }}" class="btn btn-primary">Retour à la liste</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Answer1</th>
+                    <th scope="col">Answer2</th>
+                    <th scope="col">Answer3</th>
+                    <th scope="col">Answer4</th>
+                    <th scope="col">goodAnswer</th>
+                    <th scope="col">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">{{ question.id }}</td>
+                    <td>{{ question.title }}</td>
+                    <td>{{ question.answer1 }}</td>
+                    <td>{{ question.answer2 }}</td>
+                    <td>{{ question.answer3 }}</td>
+                    <td>{{ question.answer4 }}</td>
+                    <td>{{ question.goodAnswer }}</td>
+                    <td>
+                        <a href="{{ path('app_backoffice_question_edit', {'id': question.id}) }}" class="btn btn-warning">Modifier</a>
+                        {{ include('backoffice/question/_delete_form.html.twig') }}
+                    </td>
+                </tr>  
+            </tbody>
+        </table>
+    </div>
+</main>
+    
+{% endblock %}
