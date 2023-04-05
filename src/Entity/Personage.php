@@ -49,6 +49,11 @@ class Personage
      */
     private $actor;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $creditOrder;
+
 
 
     public function __construct()
@@ -147,6 +152,18 @@ class Personage
     public function setActor(?Actor $actor): self
     {
         $this->actor = $actor;
+
+        return $this;
+    }
+
+    public function isCreditOrder(): ?bool
+    {
+        return $this->creditOrder;
+    }
+
+    public function setCreditOrder(bool $creditOrder): self
+    {
+        $this->creditOrder = $creditOrder;
 
         return $this;
     }

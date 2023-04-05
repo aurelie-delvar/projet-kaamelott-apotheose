@@ -3,11 +3,11 @@
 -- id => int, Auto Increment
 -- name => string (64)
 -- picture => string (128), NULL
--- descriptionPicture => text, NULL
+-- description_picture => text, NULL
 -- description => text, NULL
 --
 
-INSERT INTO `actor` (`id`,`name`,`picture`, `descriptionPicture`, `description`) 
+INSERT INTO `actor` (`id`,`name`,`picture`, `description_picture`, `description`) 
 VALUES 
 (1,'Vanessa Guedj',NULL, NULL, NULL),
 (2,'Anouk Grinberg', "AnoukGrinberg.jpg", "Par Michel Broué — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=56299298",NULL),

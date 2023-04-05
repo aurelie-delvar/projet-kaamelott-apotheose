@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="896" height="608" viewBox="0 0 896 608" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="896" height="608" fill="#ffffbf" stroke="none" stroke-width="0"/>
+
+<!-- Association write -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<line x1="732" y1="43" x2="590" y2="43" stroke="#f46d43" stroke-width="2"/>
+	<text x="659" y="60" fill="#4575b4" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="590" y1="136" x2="590" y2="43" stroke="#f46d43" stroke-width="2"/>
+	<text x="595" y="86" fill="#4575b4" font-family="Verdana" font-size="12">1,1</text>
+	<g>
+		<path d="M599 18 a14 14 90 0 1 14 14 V43 h-46 V32 a14 14 90 0 1 14 -14" fill="#fdae61" stroke="#fdae61" stroke-width="0"/>
+		<path d="M613 43 v11 a14 14 90 0 1 -14 14 H581 a14 14 90 0 1 -14 -14 V43 H46" fill="#fee090" stroke="#fee090" stroke-width="0"/>
+		<rect x="567" y="18" width="46" height="50" fill="none" rx="14" stroke="#f46d43" stroke-width="2"/>
+		<line x1="567" y1="43" x2="613" y2="43" stroke="#f46d43" stroke-width="1"/>
+		<text x="575" y="35.75" fill="#000" font-family="Verdana" font-size="12">write</text>
+	</g>
+</g>
+
+<!-- Association Play -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<line x1="81" y1="136" x2="212" y2="136" stroke="#f46d43" stroke-width="2"/>
+	<text x="125" y="153" fill="#4575b4" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="212" y1="262" x2="212" y2="136" stroke="#f46d43" stroke-width="2"/>
+	<text x="185" y="203" fill="#4575b4" font-family="Verdana" font-size="12">0,N</text>
+	<g>
+		<path d="M222 111 a14 14 90 0 1 14 14 V136 h-48 V125 a14 14 90 0 1 14 -14" fill="#fdae61" stroke="#fdae61" stroke-width="0"/>
+		<path d="M236 136 v11 a14 14 90 0 1 -14 14 H202 a14 14 90 0 1 -14 -14 V136 H48" fill="#fee090" stroke="#fee090" stroke-width="0"/>
+		<rect x="188" y="111" width="48" height="50" fill="none" rx="14" stroke="#f46d43" stroke-width="2"/>
+		<line x1="188" y1="136" x2="236" y2="136" stroke="#f46d43" stroke-width="1"/>
+		<text x="199" y="128.75" fill="#000" font-family="Verdana" font-size="12">Play</text>
+		<text x="195" y="153.8" fill="#000" font-family="Verdana" font-size="12">score</text>
+	</g>
+</g>
+
+<!-- Association favorite -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<line x1="212" y1="262" x2="327" y2="136" stroke="#f46d43" stroke-width="2"/>
+	<text x="238.16" y="203" fill="#4575b4" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="445" y1="262" x2="327" y2="136" stroke="#f46d43" stroke-width="2"/>
+	<text x="395.49" y="203" fill="#4575b4" font-family="Verdana" font-size="12">0,N</text>
+	<g>
+		<path d="M344 111 a14 14 90 0 1 14 14 V136 h-62 V125 a14 14 90 0 1 14 -14" fill="#fdae61" stroke="#fdae61" stroke-width="0"/>
+		<path d="M358 136 v11 a14 14 90 0 1 -14 14 H310 a14 14 90 0 1 -14 -14 V136 H62" fill="#fee090" stroke="#fee090" stroke-width="0"/>
+		<rect x="296" y="111" width="62" height="50" fill="none" rx="14" stroke="#f46d43" stroke-width="2"/>
+		<line x1="296" y1="136" x2="358" y2="136" stroke="#f46d43" stroke-width="1"/>
+		<text x="304" y="128.75" fill="#000" font-family="Verdana" font-size="12">favorite</text>
+	</g>
+</g>
+
+<!-- Association belong to -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<line x1="590" y1="136" x2="445" y2="136" stroke="#f46d43" stroke-width="2"/>
+	<text x="507" y="153" fill="#4575b4" font-family="Verdana" font-size="12">1,N</text>
+	<line x1="445" y1="262" x2="445" y2="136" stroke="#f46d43" stroke-width="2"/>
+	<text x="450" y="203" fill="#4575b4" font-family="Verdana" font-size="12">1,1</text>
+	<g>
+		<path d="M467 111 a14 14 90 0 1 14 14 V136 h-72 V125 a14 14 90 0 1 14 -14" fill="#fdae61" stroke="#fdae61" stroke-width="0"/>
+		<path d="M481 136 v11 a14 14 90 0 1 -14 14 H423 a14 14 90 0 1 -14 -14 V136 H72" fill="#fee090" stroke="#fee090" stroke-width="0"/>
+		<rect x="409" y="111" width="72" height="50" fill="none" rx="14" stroke="#f46d43" stroke-width="2"/>
+		<line x1="409" y1="136" x2="481" y2="136" stroke="#f46d43" stroke-width="1"/>
+		<text x="416" y="128.75" fill="#000" font-family="Verdana" font-size="12">belong to</text>
+	</g>
+</g>
+
+<!-- Association Have -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<line x1="842" y1="136" x2="732" y2="136" stroke="#f46d43" stroke-width="2"/>
+	<text x="770" y="153" fill="#4575b4" font-family="Verdana" font-size="12">1,N</text>
+	<line x1="590" y1="136" x2="732" y2="136" stroke="#f46d43" stroke-width="2"/>
+	<text x="651" y="153" fill="#4575b4" font-family="Verdana" font-size="12">1,1</text>
+	<g>
+		<path d="M741 111 a14 14 90 0 1 14 14 V136 h-46 V125 a14 14 90 0 1 14 -14" fill="#fdae61" stroke="#fdae61" stroke-width="0"/>
+		<path d="M755 136 v11 a14 14 90 0 1 -14 14 H723 a14 14 90 0 1 -14 -14 V136 H46" fill="#fee090" stroke="#fee090" stroke-width="0"/>
+		<rect x="709" y="111" width="46" height="50" fill="none" rx="14" stroke="#f46d43" stroke-width="2"/>
+		<line x1="709" y1="136" x2="755" y2="136" stroke="#f46d43" stroke-width="1"/>
+		<text x="716" y="128.75" fill="#000" font-family="Verdana" font-size="12">Have</text>
+	</g>
+</g>
+
+<!-- Association Contain -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<line x1="81" y1="136" x2="81" y2="262" stroke="#f46d43" stroke-width="2"/>
+	<text x="86" y="187" fill="#4575b4" font-family="Verdana" font-size="12">1,N</text>
+	<line x1="81" y1="414" x2="81" y2="262" stroke="#f46d43" stroke-width="2"/>
+	<text x="86" y="330" fill="#4575b4" font-family="Verdana" font-size="12">1,1</text>
+	<g>
+		<path d="M98 237 a14 14 90 0 1 14 14 V262 h-62 V251 a14 14 90 0 1 14 -14" fill="#fdae61" stroke="#fdae61" stroke-width="0"/>
+		<path d="M112 262 v11 a14 14 90 0 1 -14 14 H64 a14 14 90 0 1 -14 -14 V262 H62" fill="#fee090" stroke="#fee090" stroke-width="0"/>
+		<rect x="50" y="237" width="62" height="50" fill="none" rx="14" stroke="#f46d43" stroke-width="2"/>
+		<line x1="50" y1="262" x2="112" y2="262" stroke="#f46d43" stroke-width="1"/>
+		<text x="58" y="254.75" fill="#000" font-family="Verdana" font-size="12">Contain</text>
+	</g>
+</g>
+
+<!-- Association propose -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<line x1="212" y1="262" x2="327" y2="262" stroke="#f46d43" stroke-width="2"/>
+	<text x="268" y="279" fill="#4575b4" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="445" y1="262" x2="327" y2="262" stroke="#f46d43" stroke-width="2"/>
+	<text x="365" y="279" fill="#4575b4" font-family="Verdana" font-size="12">0,1</text>
+	<g>
+		<path d="M345 237 a14 14 90 0 1 14 14 V262 h-64 V251 a14 14 90 0 1 14 -14" fill="#fdae61" stroke="#fdae61" stroke-width="0"/>
+		<path d="M359 262 v11 a14 14 90 0 1 -14 14 H309 a14 14 90 0 1 -14 -14 V262 H64" fill="#fee090" stroke="#fee090" stroke-width="0"/>
+		<rect x="295" y="237" width="64" height="50" fill="none" rx="14" stroke="#f46d43" stroke-width="2"/>
+		<line x1="295" y1="262" x2="359" y2="262" stroke="#f46d43" stroke-width="1"/>
+		<text x="303" y="254.75" fill="#000" font-family="Verdana" font-size="12">propose</text>
+	</g>
+</g>
+
+<!-- Association choice -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<line x1="212" y1="262" x2="212" y2="414" stroke="#f46d43" stroke-width="2"/>
+	<text x="186" y="330" fill="#4575b4" font-family="Verdana" font-size="12">0,1</text>
+	<line x1="212" y1="557" x2="212" y2="414" stroke="#f46d43" stroke-width="2"/>
+	<text x="217" y="507" fill="#4575b4" font-family="Verdana" font-size="12">1,1</text>
+	<g>
+		<path d="M225 389 a14 14 90 0 1 14 14 V414 h-54 V403 a14 14 90 0 1 14 -14" fill="#fdae61" stroke="#fdae61" stroke-width="0"/>
+		<path d="M239 414 v11 a14 14 90 0 1 -14 14 H199 a14 14 90 0 1 -14 -14 V414 H54" fill="#fee090" stroke="#fee090" stroke-width="0"/>
+		<rect x="185" y="389" width="54" height="50" fill="none" rx="14" stroke="#f46d43" stroke-width="2"/>
+		<line x1="185" y1="414" x2="239" y2="414" stroke="#f46d43" stroke-width="1"/>
+		<text x="193" y="406.75" fill="#000" font-family="Verdana" font-size="12">choice</text>
+	</g>
+</g>
+
+<!-- Association rate -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<line x1="212" y1="262" x2="327" y2="414" stroke="#f46d43" stroke-width="2"/>
+	<text x="229.28" y="330" fill="#4575b4" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="445" y1="262" x2="327" y2="414" stroke="#f46d43" stroke-width="2"/>
+	<text x="404.59" y="330" fill="#4575b4" font-family="Verdana" font-size="12">0,N</text>
+	<g>
+		<path d="M338 389 a14 14 90 0 1 14 14 V414 h-50 V403 a14 14 90 0 1 14 -14" fill="#fdae61" stroke="#fdae61" stroke-width="0"/>
+		<path d="M352 414 v11 a14 14 90 0 1 -14 14 H316 a14 14 90 0 1 -14 -14 V414 H50" fill="#fee090" stroke="#fee090" stroke-width="0"/>
+		<rect x="302" y="389" width="50" height="50" fill="none" rx="14" stroke="#f46d43" stroke-width="2"/>
+		<line x1="302" y1="414" x2="352" y2="414" stroke="#f46d43" stroke-width="1"/>
+		<text x="315" y="406.75" fill="#000" font-family="Verdana" font-size="12">rate</text>
+		<text x="309" y="431.8" fill="#000" font-family="Verdana" font-size="12">rating</text>
+	</g>
+</g>
+
+<!-- Association say -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<line x1="445" y1="262" x2="445" y2="414" stroke="#f46d43" stroke-width="2"/>
+	<text x="450" y="330" fill="#4575b4" font-family="Verdana" font-size="12">1,1</text>
+	<line x1="590" y1="414" x2="445" y2="414" stroke="#f46d43" stroke-width="2"/>
+	<text x="468" y="431" fill="#4575b4" font-family="Verdana" font-size="12">1,N</text>
+	<g>
+		<path d="M449 389 a14 14 90 0 1 14 14 V414 h-36 V403 a14 14 90 0 1 14 -14" fill="#fdae61" stroke="#fdae61" stroke-width="0"/>
+		<path d="M463 414 v11 a14 14 90 0 1 -14 14 H441 a14 14 90 0 1 -14 -14 V414 H36" fill="#fee090" stroke="#fee090" stroke-width="0"/>
+		<rect x="427" y="389" width="36" height="50" fill="none" rx="14" stroke="#f46d43" stroke-width="2"/>
+		<line x1="427" y1="414" x2="463" y2="414" stroke="#f46d43" stroke-width="1"/>
+		<text x="434" y="406.75" fill="#000" font-family="Verdana" font-size="12">say</text>
+	</g>
+</g>
+
+<!-- Association be -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<line x1="732" y1="262" x2="732" y2="414" stroke="#f46d43" stroke-width="2"/>
+	<text x="737" y="338" fill="#4575b4" font-family="Verdana" font-size="12">1,1</text>
+	<line x1="590" y1="414" x2="732" y2="414" stroke="#f46d43" stroke-width="2"/>
+	<text x="690" y="431" fill="#4575b4" font-family="Verdana" font-size="12">1,1</text>
+	<g>
+		<path d="M733 389 a14 14 90 0 1 14 14 V414 h-30 V403 a14 14 90 0 1 14 -14" fill="#fdae61" stroke="#fdae61" stroke-width="0"/>
+		<path d="M747 414 v11 a14 14 90 0 1 -14 14 H731 a14 14 90 0 1 -14 -14 V414 H30" fill="#fee090" stroke="#fee090" stroke-width="0"/>
+		<rect x="717" y="389" width="30" height="50" fill="none" rx="14" stroke="#f46d43" stroke-width="2"/>
+		<line x1="717" y1="414" x2="747" y2="414" stroke="#f46d43" stroke-width="1"/>
+		<text x="724" y="406.75" fill="#000" font-family="Verdana" font-size="12">be</text>
+	</g>
+</g>
+
+<!-- Entity Author -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<g>
+		<rect x="686" y="9" width="92" height="25" fill="#abd9e9" stroke="#abd9e9" stroke-width="0" opacity="1"/>
+		<rect x="686" y="34" width="92" height="43" fill="#e0f3f8" stroke="#e0f3f8" stroke-width="0" opacity="1"/>
+		<rect x="686" y="9" width="92" height="68" fill="none" stroke="#74add1" stroke-width="2" opacity="1"/>
+		<line x1="686" y1="34" x2="778" y2="34" stroke="#74add1" stroke-width="1"/>
+	</g>
+	<text x="712" y="26.75" fill="#000" font-family="Verdana" font-size="12">Author</text>
+	<text x="691" y="51.8" fill="#000" font-family="Verdana" font-size="12">code_author</text>
+	<line x1="691" y1="54" x2="767" y2="54" stroke="#000" stroke-width="1"/>
+	<text x="691" y="68.8" fill="#000" font-family="Verdana" font-size="12">name_author</text>
+</g>
+
+<!-- Entity Quizz -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<g>
+		<rect x="42" y="102" width="78" height="25" fill="#abd9e9" stroke="#abd9e9" stroke-width="0" opacity="1"/>
+		<rect x="42" y="127" width="78" height="43" fill="#e0f3f8" stroke="#e0f3f8" stroke-width="0" opacity="1"/>
+		<rect x="42" y="102" width="78" height="68" fill="none" stroke="#74add1" stroke-width="2" opacity="1"/>
+		<line x1="42" y1="127" x2="120" y2="127" stroke="#74add1" stroke-width="1"/>
+	</g>
+	<text x="64" y="119.75" fill="#000" font-family="Verdana" font-size="12">Quizz</text>
+	<text x="47" y="144.8" fill="#000" font-family="Verdana" font-size="12">code_quizz</text>
+	<line x1="47" y1="147" x2="115" y2="147" stroke="#000" stroke-width="1"/>
+	<text x="47" y="161.8" fill="#000" font-family="Verdana" font-size="12">title_quizz</text>
+</g>
+
+<!-- Entity Episode -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<g>
+		<rect x="534" y="94" width="112" height="25" fill="#abd9e9" stroke="#abd9e9" stroke-width="0" opacity="1"/>
+		<rect x="534" y="119" width="112" height="59" fill="#e0f3f8" stroke="#e0f3f8" stroke-width="0" opacity="1"/>
+		<rect x="534" y="94" width="112" height="84" fill="none" stroke="#74add1" stroke-width="2" opacity="1"/>
+		<line x1="534" y1="119" x2="646" y2="119" stroke="#74add1" stroke-width="1"/>
+	</g>
+	<text x="566" y="111.75" fill="#000" font-family="Verdana" font-size="12">Episode</text>
+	<text x="539" y="136.8" fill="#000" font-family="Verdana" font-size="12">code_episode</text>
+	<line x1="539" y1="139" x2="622" y2="139" stroke="#000" stroke-width="1"/>
+	<text x="539" y="153.8" fill="#000" font-family="Verdana" font-size="12">title_episode</text>
+	<text x="539" y="170.8" fill="#000" font-family="Verdana" font-size="12">number_episode</text>
+</g>
+
+<!-- Entity Season -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<g>
+		<rect x="797" y="102" width="90" height="25" fill="#abd9e9" stroke="#abd9e9" stroke-width="0" opacity="1"/>
+		<rect x="797" y="127" width="90" height="43" fill="#e0f3f8" stroke="#e0f3f8" stroke-width="0" opacity="1"/>
+		<rect x="797" y="102" width="90" height="68" fill="none" stroke="#74add1" stroke-width="2" opacity="1"/>
+		<line x1="797" y1="127" x2="887" y2="127" stroke="#74add1" stroke-width="1"/>
+	</g>
+	<text x="820" y="119.75" fill="#000" font-family="Verdana" font-size="12">Season</text>
+	<text x="802" y="144.8" fill="#000" font-family="Verdana" font-size="12">code_season</text>
+	<line x1="802" y1="147" x2="881" y2="147" stroke="#000" stroke-width="1"/>
+	<text x="802" y="161.8" fill="#000" font-family="Verdana" font-size="12">title_season</text>
+</g>
+
+<!-- Entity User -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<g>
+		<rect x="161" y="211" width="102" height="25" fill="#abd9e9" stroke="#abd9e9" stroke-width="0" opacity="1"/>
+		<rect x="161" y="236" width="102" height="77" fill="#e0f3f8" stroke="#e0f3f8" stroke-width="0" opacity="1"/>
+		<rect x="161" y="211" width="102" height="102" fill="none" stroke="#74add1" stroke-width="2" opacity="1"/>
+		<line x1="161" y1="236" x2="263" y2="236" stroke="#74add1" stroke-width="1"/>
+	</g>
+	<text x="198" y="228.75" fill="#000" font-family="Verdana" font-size="12">User</text>
+	<text x="166" y="253.8" fill="#000" font-family="Verdana" font-size="12">code_user</text>
+	<line x1="166" y1="256" x2="229" y2="256" stroke="#000" stroke-width="1"/>
+	<text x="166" y="270.8" fill="#000" font-family="Verdana" font-size="12">email_user</text>
+	<text x="166" y="287.8" fill="#000" font-family="Verdana" font-size="12">password_user</text>
+	<text x="166" y="304.8" fill="#000" font-family="Verdana" font-size="12">role_user</text>
+</g>
+
+<!-- Entity Quote -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<g>
+		<rect x="391" y="211" width="108" height="25" fill="#abd9e9" stroke="#abd9e9" stroke-width="0" opacity="1"/>
+		<rect x="391" y="236" width="108" height="77" fill="#e0f3f8" stroke="#e0f3f8" stroke-width="0" opacity="1"/>
+		<rect x="391" y="211" width="108" height="102" fill="none" stroke="#74add1" stroke-width="2" opacity="1"/>
+		<line x1="391" y1="236" x2="499" y2="236" stroke="#74add1" stroke-width="1"/>
+	</g>
+	<text x="427" y="228.75" fill="#000" font-family="Verdana" font-size="12">Quote</text>
+	<text x="396" y="253.8" fill="#000" font-family="Verdana" font-size="12">code_quote</text>
+	<line x1="396" y1="256" x2="467" y2="256" stroke="#000" stroke-width="1"/>
+	<text x="396" y="270.8" fill="#000" font-family="Verdana" font-size="12">text_quote</text>
+	<text x="396" y="287.8" fill="#000" font-family="Verdana" font-size="12">rating_quote</text>
+	<text x="396" y="304.8" fill="#000" font-family="Verdana" font-size="12">validated_quote</text>
+</g>
+
+<!-- Entity Actor -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<g>
+		<rect x="654" y="203" width="156" height="25" fill="#abd9e9" stroke="#abd9e9" stroke-width="0" opacity="1"/>
+		<rect x="654" y="228" width="156" height="93" fill="#e0f3f8" stroke="#e0f3f8" stroke-width="0" opacity="1"/>
+		<rect x="654" y="203" width="156" height="118" fill="none" stroke="#74add1" stroke-width="2" opacity="1"/>
+		<line x1="654" y1="228" x2="810" y2="228" stroke="#74add1" stroke-width="1"/>
+	</g>
+	<text x="716" y="220.75" fill="#000" font-family="Verdana" font-size="12">Actor</text>
+	<text x="659" y="245.8" fill="#000" font-family="Verdana" font-size="12">code_actor</text>
+	<line x1="659" y1="248" x2="726" y2="248" stroke="#000" stroke-width="1"/>
+	<text x="659" y="262.8" fill="#000" font-family="Verdana" font-size="12">name_actor</text>
+	<text x="659" y="279.8" fill="#000" font-family="Verdana" font-size="12">picture_actor</text>
+	<text x="659" y="296.8" fill="#000" font-family="Verdana" font-size="12">description_actor</text>
+	<text x="659" y="313.8" fill="#000" font-family="Verdana" font-size="12">descriptionPicture_actor</text>
+</g>
+
+<!-- Entity Question -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<g>
+		<rect x="9" y="338" width="144" height="25" fill="#abd9e9" stroke="#abd9e9" stroke-width="0" opacity="1"/>
+		<rect x="9" y="363" width="144" height="127" fill="#e0f3f8" stroke="#e0f3f8" stroke-width="0" opacity="1"/>
+		<rect x="9" y="338" width="144" height="152" fill="none" stroke="#74add1" stroke-width="2" opacity="1"/>
+		<line x1="9" y1="363" x2="153" y2="363" stroke="#74add1" stroke-width="1"/>
+	</g>
+	<text x="54" y="355.75" fill="#000" font-family="Verdana" font-size="12">Question</text>
+	<text x="14" y="380.8" fill="#000" font-family="Verdana" font-size="12">code_question</text>
+	<line x1="14" y1="383" x2="102" y2="383" stroke="#000" stroke-width="1"/>
+	<text x="14" y="397.8" fill="#000" font-family="Verdana" font-size="12">title_question</text>
+	<text x="14" y="414.8" fill="#000" font-family="Verdana" font-size="12">answer1_question</text>
+	<text x="14" y="431.8" fill="#000" font-family="Verdana" font-size="12">answer2_question</text>
+	<text x="14" y="448.8" fill="#000" font-family="Verdana" font-size="12">answer3_question</text>
+	<text x="14" y="465.8" fill="#000" font-family="Verdana" font-size="12">answer4_question</text>
+	<text x="14" y="482.8" fill="#000" font-family="Verdana" font-size="12">goodAnswer_question</text>
+</g>
+
+<!-- Entity Personage -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<g>
+		<rect x="495" y="346" width="190" height="25" fill="#abd9e9" stroke="#abd9e9" stroke-width="0" opacity="1"/>
+		<rect x="495" y="371" width="190" height="111" fill="#e0f3f8" stroke="#e0f3f8" stroke-width="0" opacity="1"/>
+		<rect x="495" y="346" width="190" height="136" fill="none" stroke="#74add1" stroke-width="2" opacity="1"/>
+		<line x1="495" y1="371" x2="685" y2="371" stroke="#74add1" stroke-width="1"/>
+	</g>
+	<text x="559" y="363.75" fill="#000" font-family="Verdana" font-size="12">Personage</text>
+	<text x="500" y="388.8" fill="#000" font-family="Verdana" font-size="12">code_personage</text>
+	<line x1="500" y1="391" x2="600" y2="391" stroke="#000" stroke-width="1"/>
+	<text x="500" y="405.8" fill="#000" font-family="Verdana" font-size="12">name_personage</text>
+	<text x="500" y="422.8" fill="#000" font-family="Verdana" font-size="12">picture_personage</text>
+	<text x="500" y="439.8" fill="#000" font-family="Verdana" font-size="12">description_personage</text>
+	<text x="500" y="456.8" fill="#000" font-family="Verdana" font-size="12">descriptionPicture_personage</text>
+	<text x="500" y="473.8" fill="#000" font-family="Verdana" font-size="12">creditOrder_personage</text>
+</g>
+
+<!-- Entity Avatar -->
+<g class="page_0_HtXN6hXa diagram_page" visibility="visible">
+	<g>
+		<rect x="166" y="515" width="92" height="25" fill="#abd9e9" stroke="#abd9e9" stroke-width="0" opacity="1"/>
+		<rect x="166" y="540" width="92" height="59" fill="#e0f3f8" stroke="#e0f3f8" stroke-width="0" opacity="1"/>
+		<rect x="166" y="515" width="92" height="84" fill="none" stroke="#74add1" stroke-width="2" opacity="1"/>
+		<line x1="166" y1="540" x2="258" y2="540" stroke="#74add1" stroke-width="1"/>
+	</g>
+	<text x="192" y="532.75" fill="#000" font-family="Verdana" font-size="12">Avatar</text>
+	<text x="171" y="557.8" fill="#000" font-family="Verdana" font-size="12">code_avatar</text>
+	<line x1="171" y1="560" x2="246" y2="560" stroke="#000" stroke-width="1"/>
+	<text x="171" y="574.8" fill="#000" font-family="Verdana" font-size="12">name_avatar</text>
+	<text x="171" y="591.8" fill="#000" font-family="Verdana" font-size="12">icon_avatar</text>
+</g>
+</svg>

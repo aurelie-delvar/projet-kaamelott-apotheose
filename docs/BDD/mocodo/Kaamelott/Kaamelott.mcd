@@ -1,0 +1,39 @@
+:
+:
+:
+:
+write, 0N Author, 11 Episode
+Author: code_author, name_author
+:
+
+Quizz: code_quizz, title_quizz
+Play, 0N Quizz, 0N User: score
+favorite, 0N User, 0N Quote
+belong to, 1N Episode, 11 Quote
+Episode: code_episode, title_episode, number_episode
+Have, 1N Season, 11 Episode
+Season: code_season, title_season
+
+Contain, 1N Quizz, 11 Question
+User: code_user, email_user, password_user, role_user
+propose, 0N User, 01 Quote
+Quote: code_quote, text_quote, rating_quote, validated_quote
+:
+Actor: code_actor, name_actor, picture_actor, description_actor, descriptionPicture_actor
+:
+
+Question: code_question, title_question, answer1_question, answer2_question, answer3_question, answer4_question, goodAnswer_question
+choice, 01 User, 11 Avatar
+rate, 0N User, 0N Quote: rating
+say, 11 Quote, 1N Personage
+Personage: code_personage, name_personage, picture_personage, description_personage, descriptionPicture_personage, creditOrder_personage
+be, 11 Actor, 11 Personage
+:
+
+:
+Avatar: code_avatar, name_avatar, icon_avatar
+:
+:
+:
+:
+:
