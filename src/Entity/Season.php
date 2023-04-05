@@ -6,6 +6,7 @@ use App\Repository\SeasonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SeasonRepository::class)
@@ -21,6 +22,14 @@ class Season
 
     /**
      * @ORM\Column(type="string", length=128)
+     * 
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 25,
+     *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères",
+     *      maxMessage = "Le titre de la saison ne peut pas dépasser {{ limit }} caractères"
+     * )
      */
     private $title;
 
