@@ -4,8 +4,8 @@
 -- text => text
 -- rating => tinyint, NULL
 -- ! validated => boolean (false (1) non validé et true (0) validé)
--- episode_id => Foreign Key
--- personage_id => Foreign Key
+-- episode_id => Foreign Key, NULL
+-- personage_id => Foreign Key, NULL
 -- user_id => Foreign Key, NULL
 -- 
 
@@ -78,7 +78,7 @@ Alors heu... Ils sont venus, ils lui ont mis un coup de lance et puis elle a ess
 Pis elle passait pas parce que bon ben... Elle avait plus conscience de sa masse donc elle est restée là, comme ça, pis... Bah six heures après, elle était crevée.
 Donc, la Duchesse d'Aquitaine !", 0, 0, 30, 14, NULL),
 (60,"(Récitant d'un ton peu convaincant) «Si c'est ma tête qui vous revient pas, vous pouvez toujours aller roupiller dans le couloir. […] Et à partir de maintenant, si j'entends un mot plus haut que l'autre je vous… renvoie dans votre bled d'at… natal à coups de pied dans… dans le fion. Comme ça vous pourrez aller ratisser la bouse et torcher le cul des poules, ça vous fera prendre l'air.»", 0, 0, 31, 14, NULL),
-(61,"Non, mais on peut adapter. […] On peut dire, euh… <small>bon, je dis :</small> […] «Avec votre dégaine… euh… […] Avec votre dégaine de crevette, faites gaffe à pas vous faire bouffer par un mérou.»", 0, 0, 32, 14, NULL),
+(61,"Non, mais on peut adapter. […] On peut dire, euh… bon, je dis : […] «Avec votre dégaine… euh… […] Avec votre dégaine de crevette, faites gaffe à pas vous faire bouffer par un mérou.»", 0, 0, 32, 14, NULL),
 (62,"Mais c'est pas juste, ça ! J'ai jamais porté de rose, hein. J'aime pas les fleurs, je me lave pas et je pisse dans mon armure, comme vous !", 0, 0, 33, 15, NULL),
 (63,"Quoi, c'est parce que je préfère les hommes c'est ça ? À ce compte-là, faut virer Bohort aussi...", 0, 0, 33, 15, NULL),
 (64,"Tapette, mais c'est qui qui se trimballe en robe à travers tout le pays? […] Moi j'te parle p'tite fofolle!!", 0, 0, 33, 15, NULL),
@@ -210,8 +210,8 @@ Au bout d'un moment, il est vraiment druide, c'mec-là, ou ça fait quinze ans q
 (163,"(À Perceval) Arthur, le dragon, Arthur... Y a rien qui gigote là-dedans ?", 0, 0, 90, 30, NULL),
 (164,"Vous, vous devriez arrêter de sourire. J'vous promets, ça devient vraiment malsain.", 0, 0, 90, 30, NULL),
 (165,"Quand vous voyez des gadins de 15 pieds de haut, plantés en rond, figurez-vous qu'ils ont pas poussé dans la nuit.", 0, 0, 91, 30, NULL),
-(166,"Vil félon, où as-tu dissimulé le Graal Sacré ?<br/>
-Dans ton cul !<br/>
+(166,"Vil félon, où as-tu dissimulé le Graal Sacré ?
+Dans ton cul !
 Tu paieras pour cet affront ! ", 0, 0, 92, 30, NULL),
 (167,"Non mais regardez. Maintenant que j'ai enlevé le mie de mon pain, aaah ouh, Arthur ! Le Graal tu t'en iras quérir. Mam mam mam mam, mam.", 0, 0, 92, 30, NULL),
 (168,"Attention, l'ogre des collines !", 0, 0, 92, 30, NULL),

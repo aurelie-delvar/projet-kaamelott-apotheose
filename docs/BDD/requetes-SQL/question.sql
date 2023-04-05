@@ -10,7 +10,7 @@
 -- quizz_id => Foreign Key, NULL
 --
 
-INSERT INTO `question` (`id`,`title`, `answer1`, `answer2`, `answer3`, `answer4`, `goodAnswer`, `quizz_id`) 
+INSERT INTO `question` (`id`,`title`, `answer1`, `answer2`, `answer3`, `answer4`, `good_answer`, `quizz_id`) 
 VALUES 
 (1,"A quel siècle se déroule l'histoire ?", "Au V ème", "Au VI ème", "Au XV ème", " Au IV ème", "Au V ème", 1),
 (2,"Est-ce qu'on peut s'en servir pour donner de l'élan à un pigeon ? Qui a osé dire ça à propos d'une catapulte ?", "Perceval", " Kadoc", "Yvain", "Karadoc
