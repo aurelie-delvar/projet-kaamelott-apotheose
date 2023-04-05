@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230403143429 extends AbstractMigration
+final class Version20230405091014 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -25,7 +25,7 @@ final class Version20230403143429 extends AbstractMigration
         $this->addSql('CREATE TABLE avatar (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(64) NOT NULL, icon VARCHAR(128) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE episode (id INT AUTO_INCREMENT NOT NULL, author_id INT DEFAULT NULL, season_id INT DEFAULT NULL, title VARCHAR(128) NOT NULL, number BIGINT DEFAULT NULL, INDEX IDX_DDAA1CDAF675F31B (author_id), INDEX IDX_DDAA1CDA4EC001D1 (season_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE favorite (id INT AUTO_INCREMENT NOT NULL, quote_id INT DEFAULT NULL, user_id INT DEFAULT NULL, INDEX IDX_68C58ED9DB805178 (quote_id), INDEX IDX_68C58ED9A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE personage (id INT AUTO_INCREMENT NOT NULL, actor_id INT DEFAULT NULL, name VARCHAR(64) NOT NULL, picture VARCHAR(128) DEFAULT NULL, description_picture LONGTEXT DEFAULT NULL, description LONGTEXT DEFAULT NULL, UNIQUE INDEX UNIQ_E60A6EC510DAF24A (actor_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE personage (id INT AUTO_INCREMENT NOT NULL, actor_id INT DEFAULT NULL, name VARCHAR(64) NOT NULL, picture VARCHAR(128) DEFAULT NULL, description_picture LONGTEXT DEFAULT NULL, description LONGTEXT DEFAULT NULL, credit_order TINYINT(1) NOT NULL, UNIQUE INDEX UNIQ_E60A6EC510DAF24A (actor_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE play_quizz (id INT AUTO_INCREMENT NOT NULL, quizz_id INT DEFAULT NULL, user_id INT DEFAULT NULL, score SMALLINT DEFAULT NULL, INDEX IDX_8DA87081BA934BCD (quizz_id), INDEX IDX_8DA87081A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE question (id INT AUTO_INCREMENT NOT NULL, quizz_id INT DEFAULT NULL, title LONGTEXT NOT NULL, answer1 LONGTEXT NOT NULL, answer2 LONGTEXT NOT NULL, answer3 LONGTEXT NOT NULL, answer4 LONGTEXT NOT NULL, good_answer LONGTEXT NOT NULL, INDEX IDX_B6F7494EBA934BCD (quizz_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE quizz (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
