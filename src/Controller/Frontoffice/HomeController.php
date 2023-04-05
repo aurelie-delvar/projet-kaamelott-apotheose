@@ -31,7 +31,7 @@ class HomeController extends AbstractController
             $offset = 0 // à partir de 0 (1er de la table)
             
         );
-        // dd($last10Quotes);
+        //  dd($last10Quotes);
         
         return $this->render('frontoffice/home/index.html.twig', [
            "randomQuote" => $randomQuote,
