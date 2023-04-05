@@ -79,3 +79,39 @@ footer > a:hover {
     justify-content: space-around;
     
 }
+
+/* pagination */
+.pagination{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+}
+
+.first a:link , .previous a:link , .page a:link , .next a:link , .last a:link  {
+    text-decoration: none;
+    color: #F8F9FA;
+}
+
+.first, .previous, .page, .next, .last{
+    text-align: center;
+    color: #F8F9FA;
+    height: 25px;
+    width: 25px;
+    border: 1px solid #F8F9FA;
+    background: #6C757D;
+    margin: 0 1px;
+}
+
+a:active .current{
+    text-align: center;
+    text-decoration: none ;
+    height: 25px;
+    width: 25px;
+    border: 1px solid black;
+    background-color: #F8F9FA;
+    margin: 0 1px;
+
+}

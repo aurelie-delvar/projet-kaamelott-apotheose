@@ -23,3 +23,6 @@ composer require symfony/doctrine-bridge
 composer require security-csrf
 
 composer require symfony/security-bundle
+
+# pagination
+composer require knplabs/knp-paginator-bundle
