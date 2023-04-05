@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\FilterFormType;
 
 /**
  * @Route("/backoffice")
@@ -61,7 +62,10 @@ class PersonageController extends AbstractController
      */
     public function edit(Request $request, Personage $personage, PersonageRepository $personageRepository): Response
     {
+        
         $form = $this->createForm(PersonageType::class, $personage);
+        
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

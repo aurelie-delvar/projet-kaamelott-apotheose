@@ -1,9 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Quote{% endblock %}
+{% block title %}Kaamel'O'tt - Citations{% endblock %}
 
 {% block body %}
-    <h1>Quote</h1>
+
+<main>
+    <div class="main-content">
+    <h1>Fiche de citation</h1>
+    </div>
+
+    <a href="{{ path('app_backoffice_quote_index') }}"class="btn btn-primary">Retour à la liste</a>
 
     <table class="table">
         <tbody>
@@ -26,9 +32,12 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_backoffice_quote_index') }}">back to list</a>
+    
 
-    <a href="{{ path('app_backoffice_quote_edit', {'id': quote.id}) }}">edit</a>
+    <a href="{{ path('app_backoffice_quote_edit', {'id': quote.id}) }}"class="btn btn-warning">Modifier</a>
 
     {{ include('backoffice/quote/_delete_form.html.twig') }}
+
+</main>   
+
 {% endblock %}

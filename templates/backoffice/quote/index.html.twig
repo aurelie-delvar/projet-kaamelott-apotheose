@@ -1,17 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Quote index{% endblock %}
+{% block title %}Kaamel'O'tt - Citations{% endblock %}
 
 {% block body %}
-    <h1>Quote index</h1>
+
+<main>
+    <div class="main-content">
+    <h1>Liste des citations</h1>
+    </div>
+
+    <a href="{{ path('app_backoffice_quote_new') }}"class="btn btn-primary">Créer une nouvelle citation</a>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Text</th>
+                <th>Texte</th>
                 <th>Rating</th>
-                <th>Validated</th>
+                <th>Validée</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,8 +29,8 @@
                 <td>{{ quote.rating }}</td>
                 <td>{{ quote.validated ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_backoffice_quote_show', {'id': quote.id}) }}">show</a>
-                    <a href="{{ path('app_backoffice_quote_edit', {'id': quote.id}) }}">edit</a>
+                    <a href="{{ path('app_backoffice_quote_show', {'id': quote.id}) }}"class="btn btn-success">show</a>
+                    <a href="{{ path('app_backoffice_quote_edit', {'id': quote.id}) }}"class="btn btn-warning">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -34,6 +40,6 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_backoffice_quote_new') }}">Create new</a>
+</main>
+    
 {% endblock %}
