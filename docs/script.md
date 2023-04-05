@@ -17,6 +17,7 @@ composer require --dev orm-fixtures
 # formulaires
 composer require symfony/form
 composer require symfony/validator
+composer require symfony/doctrine-bridge
 
 # make:crud
 composer require security-csrf
