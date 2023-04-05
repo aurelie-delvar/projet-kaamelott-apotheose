@@ -1,7 +1,7 @@
 {# we check if the number of pages is > 1 because if not, there's no need for a pagination #}
 {% if pages > 1 %} 
 
-<nav class="pagination">
+<nav class="pagination" max-size="review.maxPages">
     <ul class="pagination justify-content-center">
 
             {# if currentPage is 1, you can't go further! #}
