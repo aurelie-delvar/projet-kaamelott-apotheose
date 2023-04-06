@@ -2,8 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\Episode;
+use App\Entity\Author;
 use App\Entity\Season;
+use App\Entity\Episode;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -18,15 +19,15 @@ class EpisodeType extends AbstractType
             ->add('title', TextType::class,[
                 'label' => 'Titre de l\'épisode'
             ])
-            // 
+           
             ->add('number')
-            // ->add('author', EntityType::class, [
-            //     'class' => Author::class,
-            //     'choice_label' => 'name',
-            //     'label' => 'Nom de l\'auteur',
-            //     'expanded' => false,
-            //     'required' => false
-            // ])
+            ->add('author', EntityType::class, [
+                'class' => Author::class,
+                'choice_label' => 'name',
+                'label' => 'Nom de l\'auteur',
+                'expanded' => false,
+                'required' => false
+            ])
             ->add('season', EntityType::class, [
                 'class' => Season::class,
                 'choice_label' => 'Title',
