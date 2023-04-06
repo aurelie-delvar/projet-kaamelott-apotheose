@@ -13,7 +13,7 @@ class SeasonController extends AbstractController
     /**
      * @Route("/livre/{id}", name="app_frontoffice_season_read", requirements={"id":"\d+"})
      */
-    public function read($id, SeasonRepository $seasonRepository, EpisodeRepository $episodeRepository): Response 
+    public function read($id, SeasonRepository $seasonRepository): Response 
     {
         $season = $seasonRepository->find($id);
 
