@@ -89,6 +89,12 @@ footer > a:hover {
     object-fit: cover;
 }
 
+.icone {
+    width: 68px;
+    height: 68px;
+    object-fit: cover;
+}
+
 figcaption {
     background-color: #222;
     color: #fff;

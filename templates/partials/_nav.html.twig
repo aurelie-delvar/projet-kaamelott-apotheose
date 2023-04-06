@@ -35,15 +35,8 @@
             <a class="nav-link {{ (app.request.get('_route') is same as('app_frontoffice_personages_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_frontoffice_personages_browse") }}">Personnages</a>
             </li>
 
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle {{ (app.request.get('_route') is same as('app_frontoffice_quotes_browse')) ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Citations
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ path("app_frontoffice_quotes_browse") }}">Liste générale</a></li>
-                <li><a class="dropdown-item" href="#">Par livre</a></li>
-                <li><a class="dropdown-item" href="#">Par épisode</a></li>
-            </ul>
+            <li class="nav-item">
+            <a class="nav-link {{ (app.request.get('_route') is same as('app_frontoffice_quotes_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_frontoffice_quotes_browse") }}"> Citations </a>
             </li>
 
             <li class="nav-item dropdown">
@@ -51,13 +44,12 @@
                 Saisons
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Livre I</a></li>
-                <li><a class="dropdown-item" href="#">Livre II</a></li>
-                <li><a class="dropdown-item" href="#">Livre III</a></li>
-                <li><a class="dropdown-item" href="#">Livre IV</a></li>
-                <li><a class="dropdown-item" href="#">Livre V</a></li>
-                <li><a class="dropdown-item" href="#">Livre VI</a></li>
-                <li><a class="dropdown-item" href="#">Premier volet</a></li>
+
+                {# we loop here to get all our seasons #}
+                {% for season in seasonsList.getSeasons %}
+                <li><a class="dropdown-item" href="{{ path("app_frontoffice_season_read", {"id" : season.id }) }}">{{ season.title }}</a></li>
+                {% endfor %}
+
             </ul>
             </li>
 
@@ -84,6 +76,5 @@
 
     </div>
 </nav>
-
 
 </header>

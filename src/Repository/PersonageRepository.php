@@ -39,20 +39,17 @@ class PersonageRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Personage[] Returns an array of Personage objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * Trying to paginate with the paginator bundle which require a Doctrine query.
+    * We want a query in order for the paginate method of the paginator
+    */
+   public function paginationQuery()
+   {
+       return $this->createQueryBuilder('p')
+           ->orderBy('p.creditOrder, p.name', 'ASC')
+           ->getQuery()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Personage
 //    {
