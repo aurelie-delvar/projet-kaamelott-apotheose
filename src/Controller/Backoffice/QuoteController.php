@@ -3,6 +3,7 @@
 namespace App\Controller\Backoffice;
 
 use App\Entity\Quote;
+use App\Entity\User;
 use App\Form\QuoteType;
 use App\Repository\QuoteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,19 +17,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuoteController extends AbstractController
 {
     /**
-     * @Route("/", name="app_backoffice_quote_index", methods={"GET"})
+     * @Route("/", name="app_backoffice_quote_browse", methods={"GET"})
      */
-    public function index(QuoteRepository $quoteRepository): Response
+    public function browse(QuoteRepository $quoteRepository): Response
     {
-        return $this->render('backoffice/quote/index.html.twig', [
+        return $this->render('backoffice/quote/browse.html.twig', [
             'quotes' => $quoteRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="app_backoffice_quote_new", methods={"GET", "POST"})
+     * @Route("/add", name="app_backoffice_quote_add", methods={"GET", "POST"})
      */
-    public function new(Request $request, QuoteRepository $quoteRepository): Response
+    public function add(Request $request, QuoteRepository $quoteRepository): Response
     {
         $quote = new Quote();
         $form = $this->createForm(QuoteType::class, $quote);
@@ -37,21 +38,21 @@ class QuoteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $quoteRepository->add($quote, true);
 
-            return $this->redirectToRoute('app_backoffice_quote_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_backoffice_quote_browse', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('backoffice/quote/new.html.twig', [
+        return $this->renderForm('backoffice/quote/add.html.twig', [
             'quote' => $quote,
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_quote_show", methods={"GET"})
+     * @Route("/{id}", name="app_backoffice_quote_read", methods={"GET"})
      */
-    public function show(Quote $quote): Response
+    public function read(Quote $quote): Response
     {
-        return $this->render('backoffice/quote/show.html.twig', [
+        return $this->render('backoffice/quote/read.html.twig', [
             'quote' => $quote,
         ]);
     }
@@ -67,7 +68,7 @@ class QuoteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $quoteRepository->add($quote, true);
 
-            return $this->redirectToRoute('app_backoffice_quote_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_backoffice_quote_browse', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('backoffice/quote/edit.html.twig', [
@@ -85,6 +86,6 @@ class QuoteController extends AbstractController
             $quoteRepository->remove($quote, true);
         }
 
-        return $this->redirectToRoute('app_backoffice_quote_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_backoffice_quote_browse', [], Response::HTTP_SEE_OTHER);
     }
 }

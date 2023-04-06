@@ -9,7 +9,7 @@
     <h1>Liste des citations</h1>
     </div>
 
-    <a href="{{ path('app_backoffice_quote_new') }}"class="btn btn-primary">Créer une nouvelle citation</a>
+    <a href="{{ path('app_backoffice_quote_add') }}"class="btn btn-primary">Créer une nouvelle citation</a>
 
     <table class="table">
         <thead>
@@ -25,11 +25,11 @@
         {% for quote in quotes %}
             <tr>
                 <td>{{ quote.id }}</td>
-                <td>{{ quote.text }}</td>
+                <td>{{ quote.text|slice(0, 150) }} [...]</td>
                 <td>{{ quote.rating }}</td>
                 <td>{{ quote.validated ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_backoffice_quote_show', {'id': quote.id}) }}"class="btn btn-success">show</a>
+                    <a href="{{ path('app_backoffice_quote_read', {'id': quote.id}) }}"class="btn btn-success">show</a>
                     <a href="{{ path('app_backoffice_quote_edit', {'id': quote.id}) }}"class="btn btn-warning">edit</a>
                 </td>
             </tr>

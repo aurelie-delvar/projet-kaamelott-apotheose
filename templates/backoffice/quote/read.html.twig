@@ -9,7 +9,7 @@
     <h1>Fiche de citation</h1>
     </div>
 
-    <a href="{{ path('app_backoffice_quote_index') }}"class="btn btn-primary">Retour à la liste</a>
+    <a href="{{ path('app_backoffice_quote_browse') }}"class="btn btn-primary">Retour à la liste</a>
 
     <table class="table">
         <tbody>
@@ -28,6 +28,10 @@
             <tr>
                 <th>Validated</th>
                 <td>{{ quote.validated ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Utilisateur</th>
+                <td>{{ quote.rating }}</td>
             </tr>
         </tbody>
     </table>

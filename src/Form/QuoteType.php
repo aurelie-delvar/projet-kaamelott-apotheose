@@ -30,7 +30,7 @@ class QuoteType extends AbstractType
                     '3' => 3,
                     '4' => 4,
                     '5' => 5,
-                ]
+                    ]
 
             ])
             ->add('validated', ChoiceType::class, [
@@ -39,33 +39,29 @@ class QuoteType extends AbstractType
                     
                     'Non' => false,
                     'Oui' => true,
-                   
-                ]])
+                    ]
+            ])
             ->add('episode',EntityType::class, [
                 'class' => Episode::class,
                 'choice_label' => 'title',
-            'label' => 'Titre de l\'épisode',
-            'expanded' => false,
-            'required' => false
+                'label' => 'Titre de l\'épisode',
+                'expanded' => false,
+                'required' => false
             ])
             ->add('personage',EntityType::class, [
                 'class' => Personage::class,
                 'choice_label' => 'name',
-            'label' => 'Nom du personage',
-            'expanded' => false,
-            'required' => false
+                'label' => 'Nom du personage',
+                'expanded' => false,
+                'required' => false
             ])
-            //->add('user', EntityType::class, [
-            //    'class' => User::class,
-            //    'choice_label' => 'email',
-            //'label' => 'Nom du personage',
-            //'mapped' => true,
-           // 'expanded' => false,
-           // 'required' => false
-               
-            //]
-           // )
-        ;
+            ->add('user', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'email',
+                'label' => 'Utilisateur',
+                'expanded' => false,
+                'required' => false
+               ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

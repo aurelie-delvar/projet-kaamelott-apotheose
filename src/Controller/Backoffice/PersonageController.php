@@ -19,17 +19,17 @@ class PersonageController extends AbstractController
     /**
      * @Route("/personages", name="app_backoffice_personage_browse", methods={"GET"})
      */
-    public function index(PersonageRepository $personageRepository): Response
+    public function browse(PersonageRepository $personageRepository): Response
     {
-        return $this->render('backoffice/personage/index.html.twig', [
+        return $this->render('backoffice/personage/browse.html.twig', [
             'personages' => $personageRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/personage/new", name="app_backoffice_personage_new", methods={"GET", "POST"})
+     * @Route("/personage/add", name="app_backoffice_personage_add", methods={"GET", "POST"})
      */
-    public function new(Request $request, PersonageRepository $personageRepository): Response
+    public function add(Request $request, PersonageRepository $personageRepository): Response
     {
         $personage = new Personage();
         $form = $this->createForm(PersonageType::class, $personage);
@@ -41,7 +41,7 @@ class PersonageController extends AbstractController
             return $this->redirectToRoute('app_backoffice_personage_browse', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('backoffice/personage/new.html.twig', [
+        return $this->renderForm('backoffice/personage/add.html.twig', [
             'personage' => $personage,
             'form' => $form,
         ]);
@@ -52,7 +52,7 @@ class PersonageController extends AbstractController
      */
     public function read(Personage $personage): Response
     {
-        return $this->render('backoffice/personage/show.html.twig', [
+        return $this->render('backoffice/personage/read.html.twig', [
             'personage' => $personage,
         ]);
     }
