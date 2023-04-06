@@ -46,7 +46,7 @@ class PersonageRepository extends ServiceEntityRepository
    public function paginationQuery()
    {
        return $this->createQueryBuilder('p')
-           ->orderBy('p.id', 'ASC')
+           ->orderBy('p.creditOrder, p.name', 'ASC')
            ->getQuery()
        ;
    }
