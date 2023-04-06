@@ -18,12 +18,12 @@ class PlayQuizz
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Quizz::class, inversedBy="playQuizzs")
+     * @ORM\ManyToOne(targetEntity=Quizz::class, inversedBy="playQuizz")
      */
     private $quizz;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="playQuizzs")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="playQuizz")
      */
     private $user;
 

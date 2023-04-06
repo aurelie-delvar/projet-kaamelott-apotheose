@@ -53,7 +53,7 @@
             </li>
 
             <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="#">Quizz</a>
+            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_quizz_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_quizz_browse')}}">Quizz</a>
             </li>  
 
             <li class="nav-item">

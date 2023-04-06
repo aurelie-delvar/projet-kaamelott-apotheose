@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Quizz{% endblock %}
+
+{% block body %}
+<main>
+
+    <div class="main-content">
+        <h1>Modifier un quizz</h1>
+    </div>
+
+    <div class="container">
+
+    <a href="{{ path('app_backoffice_quizz_browse') }}" class="btn btn-primary">Retour à la liste</a>
+
+    {{ include('backoffice/quizz/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    </div>
+</main>
+{% endblock %}
