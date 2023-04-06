@@ -8,6 +8,8 @@
     <div class="main-content">
     <h1>Liste des personnages</h1>
     </div>
+
+     <div class="container  ">
     <a href="{{ path('app_backoffice_personage_add') }}"class="btn btn-primary">Créer un nouveau personnage</a>
 
     <table class="table table-striped">
@@ -41,6 +43,7 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 </main>
     
 {% endblock %}
