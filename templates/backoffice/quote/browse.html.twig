@@ -24,15 +24,15 @@
             </tr>
         </thead>
         <tbody>
-        {% for quote in quotes %}
+        {% for quote in pagination %}
             <tr>
                 <td>{{ quote.id }}</td>
                 <td>{{ quote.text|slice(0, 150) }} [...]</td>
                 <td>{{ quote.rating }}</td>
                 <td>{{ quote.validated ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_backoffice_quote_read', {'id': quote.id}) }}"class="btn btn-success">show</a>
-                    <a href="{{ path('app_backoffice_quote_edit', {'id': quote.id}) }}"class="btn btn-warning">edit</a>
+                    <a href="{{ path('app_backoffice_quote_read', {'id': quote.id}) }}"class="btn btn-success">Voir</a>
+                    <a href="{{ path('app_backoffice_quote_edit', {'id': quote.id}) }}"class="btn btn-warning">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -44,7 +44,7 @@
     </table>
 
     </div>
-
+ {{ knp_pagination_render(pagination) }}
 </main>
     
 {% endblock %}

@@ -51,6 +51,18 @@ class PersonageRepository extends ServiceEntityRepository
        ;
    }
 
+
+   /**
+    * Query for the paginator. Personage list of the backoffice.
+    */
+   public function paginationQueryBack()
+   {
+       return $this->createQueryBuilder('p')
+           ->orderBy('p.id', 'ASC')
+           ->getQuery()
+       ;
+   }
+
 //    public function findOneBySomeField($value): ?Personage
 //    {
 //        return $this->createQueryBuilder('p')

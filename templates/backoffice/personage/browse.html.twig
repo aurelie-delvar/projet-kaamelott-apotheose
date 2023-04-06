@@ -24,13 +24,13 @@
             </tr>
         </thead>
         <tbody>
-        {% for personage in personages %}
+        {% for personage in pagination %}
             <tr>
                 <td>{{ personage.id }}</td>
                 <td>{{ personage.name }}</td>
                 <td>{{ personage.picture }}</td>
                 <td>{{ personage.descriptionPicture }}</td>
-                <td>{{ personage.description }}</td>
+                <td>{{ personage.description|slice(0, 150) }} [...]</td>
                 <td>
                     <a href="{{ path('app_backoffice_personage_read', {'id': personage.id}) }}"class="btn btn-success" >voir</a>
                     <a href="{{ path('app_backoffice_personage_edit', {'id': personage.id}) }}" class="btn btn-warning">modifier</a>
@@ -44,6 +44,7 @@
         </tbody>
     </table>
     </div>
+     {{ knp_pagination_render(pagination) }}
 </main>
     
 {% endblock %}

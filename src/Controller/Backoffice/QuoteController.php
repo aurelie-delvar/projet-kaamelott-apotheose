@@ -6,6 +6,7 @@ use App\Entity\Quote;
 use App\Entity\User;
 use App\Form\QuoteType;
 use App\Repository\QuoteRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,10 +20,17 @@ class QuoteController extends AbstractController
     /**
      * @Route("/", name="app_backoffice_quote_browse", methods={"GET"})
      */
-    public function browse(QuoteRepository $quoteRepository): Response
+    public function browse(QuoteRepository $quoteRepository, Request $request, PaginatorInterface $paginator): Response
     {
+
+        $pagination = $paginator->paginate(
+            $quoteRepository->paginationQueryBack(), // here is our query from the repository
+            $request->query->get('page', 1), // 1 is the page by default
+            10, // the limit of results by page
+        );
+
         return $this->render('backoffice/quote/browse.html.twig', [
-            'quotes' => $quoteRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 

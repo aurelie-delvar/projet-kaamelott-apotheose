@@ -5,6 +5,7 @@ namespace App\Controller\Backoffice;
 use App\Entity\Personage;
 use App\Form\PersonageType;
 use App\Repository\PersonageRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,10 +20,18 @@ class PersonageController extends AbstractController
     /**
      * @Route("/personages", name="app_backoffice_personage_browse", methods={"GET"})
      */
-    public function browse(PersonageRepository $personageRepository): Response
+    public function browse(PersonageRepository $personageRepository, Request $request, PaginatorInterface $paginator): Response
     {
+
+        $pagination = $paginator->paginate(
+            $personageRepository->paginationQueryBack(), // here is our query from the repository
+            $request->query->get('page', 1), // 1 is the page by default
+            10, // the limit of results by page
+        );
+
+
         return $this->render('backoffice/personage/browse.html.twig', [
-            'personages' => $personageRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 
