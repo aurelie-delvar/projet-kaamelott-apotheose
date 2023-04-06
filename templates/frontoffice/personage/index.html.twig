@@ -1,18 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Personnages{% endblock %}
+{% block title %}Kaamel'O'tt - Personnages{% endblock %}
 
 {% block body %}
 
 <main>
 
-    <div class="row row-cols-1 row-cols-md-4 m-3">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 m-3">
 
-    {% for character in characters %}
+    {# now our array is pagination (from the controller) #}
+    {% for character in pagination %}
         <div class="col mb-3">
             <a href="{{ path('app_frontoffice_personage_read', {"id" : character.id }) }}" class="nav-link">
             <div class="card">
-                <img src="{{ asset('img/personage/' ~ character.picture) }}" class="card-img-top" alt="{{ character.name }}">
+            {% if character.picture %}
+                <img src="{{ asset('img/personage/' ~ character.picture) }}" class="card-img-top" alt="{{ character.name }}" title="Crédits : {{ character.descriptionPicture }}">
+            {% else %}
+            <div class="card-img-top text-center">
+                <img src="{{ asset('img/icone.png')}}" alt="- pas de photo de disponible pour le moment -" class="icone">
+                <br>- pas de photo de disponible pour le moment -
+            </div>
+            {% endif %}
                 <div class="card-body">
                     <h6 class="card-title">{{ character.name }}</h6>
                 </div>
@@ -21,8 +29,9 @@
         </div>
     {% endfor %}
 
-
     </div>
+
+    {{ knp_pagination_render(pagination) }}
 
 </main>
 
