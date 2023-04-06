@@ -3,13 +3,17 @@
 {% block title %}Kaamel'O'tt - Personnages{% endblock %}
 
 {% block body %}
+
+<main>
+<div class="main-content">
     <h1>Modifier un Personnage</h1>
+    </div>
 
     <a href="{{ path('app_backoffice_personage_browse') }}" class="btn btn-primary">Retour à la liste</a>
 
     {{ include('backoffice/personage/_form.html.twig', {'button_label': 'Update'}) }}
 
-    
+</main>  
 
     
 {% endblock %}

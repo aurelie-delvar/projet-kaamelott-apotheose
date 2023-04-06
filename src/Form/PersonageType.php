@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Actor;
 use App\Entity\Personage;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,22 +16,23 @@ class PersonageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name'
-            /*,EntityType::class,[
-                'class' => Personage::class,
-                'choice_label' =>'name',
-                'label' => 'Nom du personnage']*/)
-            ->add('picture',EntityType::class,[
-                'class' => Personage::class,
-                'choice_label' =>'picture',
+
+            ->add('name', TextType::class,[
+                
+                
+                'label' => 'Nom'])
+       // , EntityType::class,[
+       //     'class' => Personage::class,
+        //    'choice_label' =>'name',
+        //    'label' => 'Nom du personnage'])
+
+            ->add('picture',TextType::class,[
+                
+                
                 'label' => 'Image'])
-            ->add('descriptionPicture',EntityType::class,[
-                'class' => Personage::class,
-                'choice_label' =>'descriptionPicture',
-                'label' => 'Description de l\'image'])
-            ->add('description',EntityType::class,[
-                'class' => Personage::class,
-                'choice_label' =>'description',
+            ->add('descriptionPicture',TextType::class,[
+                    'label' => 'Description de l\'image'])
+            ->add('description',TextType::class,[
                 'label' => 'Description du personnage'])
             ->add('actor', EntityType::class, [
                 // ! ne pas oublier de dire de quelle entité en parle

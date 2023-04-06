@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Citations{% endblock %}
+
+{% block body %}
+
+<main>
+    <div class="main-content">
+    <h1>Modifier une citation</h1>
+    </div>
+
+      <a href="{{ path('app_backoffice_quote_browse') }}" class="btn btn-primary">Retour à la liste</a>
+
+    {{ include('backoffice/quote/_form.html.twig', {'button_label': 'Update'}) }}
+
+  
+</main>
+    
+{% endblock %}

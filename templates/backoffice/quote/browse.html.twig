@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Citations{% endblock %}
+
+{% block body %}
+
+<main>
+    <div class="main-content">
+    <h1>Liste des citations</h1>
+    </div>
+
+    <a href="{{ path('app_backoffice_quote_add') }}"class="btn btn-primary">Créer une nouvelle citation</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Texte</th>
+                <th>Rating</th>
+                <th>Validée</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quote in quotes %}
+            <tr>
+                <td>{{ quote.id }}</td>
+                <td>{{ quote.text|slice(0, 150) }} [...]</td>
+                <td>{{ quote.rating }}</td>
+                <td>{{ quote.validated ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_backoffice_quote_read', {'id': quote.id}) }}"class="btn btn-success">show</a>
+                    <a href="{{ path('app_backoffice_quote_edit', {'id': quote.id}) }}"class="btn btn-warning">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</main>
+    
+{% endblock %}
