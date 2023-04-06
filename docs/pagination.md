@@ -77,6 +77,10 @@ knp_paginator:
         pagination: "@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig"
 ```
 
+attention penser à vider le cache pour que cela s'affiche
+```bash
+bin/console cache:clear
+```
 
 
 https://www.youtube.com/watch?v=iEatWLAShVA&ab_channel=izicode

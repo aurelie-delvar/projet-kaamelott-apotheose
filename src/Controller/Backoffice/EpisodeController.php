@@ -75,7 +75,7 @@ class EpisodeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $episodeRepository->add($episode, true);
 
-            return $this->redirectToRoute('app_backoffice_episode_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_backoffice_episode_browse', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('backoffice/episode/edit.html.twig', [
@@ -93,6 +93,6 @@ class EpisodeController extends AbstractController
             $episodeRepository->remove($episode, true);
         }
 
-        return $this->redirectToRoute('app_backoffice_episode_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_backoffice_episode_browse', [], Response::HTTP_SEE_OTHER);
     }
 }
