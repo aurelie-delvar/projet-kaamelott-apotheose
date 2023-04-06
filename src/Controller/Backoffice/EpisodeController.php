@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class EpisodeController extends AbstractController
 {
     /**
-     * @Route("/episodes", name="app_backoffice_episode_browse", methods={"GET"})
+     * @Route("/", name="app_backoffice_episode_browse", methods={"GET"})
      */
     public function browse(EpisodeRepository $episodeRepository, Request $request, PaginatorInterface $paginator): Response
     {
@@ -34,9 +34,9 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_backoffice_episode_new", methods={"GET", "POST"})
+     * @Route("/add", name="app_backoffice_episode_add", methods={"GET", "POST"})
      */
-    public function new(Request $request, EpisodeRepository $episodeRepository): Response
+    public function add(Request $request, EpisodeRepository $episodeRepository): Response
     {
         $episode = new Episode();
         $form = $this->createForm(EpisodeType::class, $episode);
@@ -45,10 +45,10 @@ class EpisodeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $episodeRepository->add($episode, true);
 
-            return $this->redirectToRoute('app_backoffice_episode_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_backoffice_episode_browse', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('backoffice/episode/new.html.twig', [
+        return $this->renderForm('backoffice/episode/add.html.twig', [
             'episode' => $episode,
             'form' => $form,
         ]);

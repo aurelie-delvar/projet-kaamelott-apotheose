@@ -14,8 +14,8 @@ class EpisodeType extends AbstractType
         $builder
             ->add('title')
             ->add('number')
-            ->add('author')
-            ->add('season')
+            // ->add('author')
+            //->add('season')
         ;
     }
 
@@ -23,6 +23,9 @@ class EpisodeType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Episode::class,
+            'attr' =>[
+                'novalidate' => 'novalidate'
+            ]
         ]);
     }
 }
