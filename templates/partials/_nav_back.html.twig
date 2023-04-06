@@ -28,19 +28,19 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ path("app_backoffice_home") }}">Accueil</a>
+            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_home')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_backoffice_home") }}">Accueil</a>
             </li>
 
             <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="{{ path("app_backoffice_personage_browse") }}">Personnages</a>
+            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_personage_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_backoffice_personage_browse") }}">Personnages</a>
             </li>
 
             <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="{{ path("app_backoffice_quote_browse") }}">Citations</a>
+            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_quote_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_backoffice_quote_browse") }}">Citations</a>
             </li>
 
             <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="{{ path('app_backoffice_season_browse') }}">Saisons</a>
+            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_season_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_season_browse') }}">Saisons</a>
             </li>
 
             <li class="nav-item">
@@ -52,11 +52,11 @@
             </li>  
 
             <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="{{ path('app_backoffice_question_browse') }}">Questions</a>
+            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_question_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_question_browse') }}">Questions</a>
             </li> 
 
             <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="{{ path('app_backoffice_user_browse') }}">Utilisateurs</a>
+            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_user_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_user_browse') }}">Utilisateurs</a>
             </li>      
 
         </ul>
