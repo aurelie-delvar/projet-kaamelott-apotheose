@@ -20,7 +20,7 @@ class EpisodeController extends AbstractController
     /**
      * @Route("/episodes", name="app_backoffice_episode_browse", methods={"GET"})
      */
-    public function index(EpisodeRepository $episodeRepository, Request $request, PaginatorInterface $paginator): Response
+    public function browse(EpisodeRepository $episodeRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
             $episodeRepository->paginationQuery(),
@@ -28,7 +28,7 @@ class EpisodeController extends AbstractController
             10
         );
 
-        return $this->render('backoffice/episode/index.html.twig', [
+        return $this->render('backoffice/episode/browse.html.twig', [
             'pagination' => $pagination
         ]);
     }
@@ -55,11 +55,11 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_episode_show", methods={"GET"})
+     * @Route("/{id}", name="app_backoffice_episode_read", methods={"GET"})
      */
-    public function show(Episode $episode): Response
+    public function read(Episode $episode): Response
     {
-        return $this->render('backoffice/episode/show.html.twig', [
+        return $this->render('backoffice/episode/read.html.twig', [
             'episode' => $episode,
         ]);
     }

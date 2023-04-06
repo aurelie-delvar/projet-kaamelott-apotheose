@@ -81,19 +81,16 @@ footer > a:hover {
 }
 
 /* pagination */
-.pagination{
+/* .pagination{
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-around;
-    text-decoration: none;
+   
+    text-decoration: none teal;
 }
 
-.first a:link , .previous a:link , .page a:link , .next a:link , .last a:link  {
-    text-decoration: none;
-    color: #F8F9FA;
-}
+
 
 .first, .previous, .page, .next, .last{
     text-align: center;
@@ -114,4 +111,4 @@ a:active .current{
     background-color: #F8F9FA;
     margin: 0 1px;
 
-}
+} */
