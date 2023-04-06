@@ -2243,9 +2243,9 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `avatar_id`, `email`, `roles`, `password`) VALUES
 (1,	NULL,	'clara@oclock.fr',	'[\"ROLE_USER\"]',	'$2y$13$713hTlzabbG6VB2tZHbL9.CHJ8Ercem6A/rc43jbrJgIafalv0Ngy'),
 (2,	2,	'edith@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$EJflpolNjmmWsu7O1kJDr.kwxeEITNdhKqCMrifbaqU1aKbQhu4jK'),
-(3,	3,	'alexandre@oclock.fr',	'[\"ROLE_MANAGER\"]',	'$2y$13$K4JmHZ2I1g991EfhQiP2rOTW4SsvTrJRgycFiqfg8AZlzYFCEDBVy '),
+(3,	3,	'alexandre@oclock.fr',	'[\"ROLE_MANAGER\"]',	'$2y$13$gbyvnOBRgXAZSveEFHNKt.nHPZOuJOVgacqlZYxaPr/WxQa6uqY3S'),
 (4,	1,	'aurelie@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$YxK.Ahkw1U75SIyj59C0ZeOU5t3w9CYNBbpl90ADZKoD0Lqu7VPk.'),
-(5,	NULL,	'celine@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$2MlSMfl6dvWlWCckpEfA1ePAMTQIovRd1ErpIn6x3QGu2GapVWUCm '),
-(6,	NULL,	'angele@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$PSPUVDr84KfzbVouAPRxdudzi5jAamg5Q0jGcnDgTYo7V3oKe.JuS ');
+(5,	NULL,	'celine@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$zaWkK6Xf5l6M/UeQ1sOzG.rhzKiRzRcki7imw5iQOnklxH5d4UZoG'),
+(6,	NULL,	'angele@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$xuh4xf/DaEDPtfMwsC7yFeX1.zx70fW4.aLWy6emJYTcp3zcDBeEO');
 
--- 2023-04-06 09:12:32
+-- 2023-04-06 11:21:05

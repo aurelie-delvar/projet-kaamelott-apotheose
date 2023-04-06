@@ -6,8 +6,10 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -28,16 +30,27 @@ class UserController extends AbstractController
     /**
      * @Route("/add", name="app_backoffice_user_add", methods={"GET", "POST"})
      */
-    public function add(Request $request, UserRepository $userRepository): Response
+    public function add(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->add($user, true);
+            $password = $form->get("password")->getData();
+            $passwordConfirmed = $form->get("password_confirmed")->getData();
 
-            return $this->redirectToRoute('app_backoffice_user_browse', [], Response::HTTP_SEE_OTHER);
+            if($password === $passwordConfirmed){
+                $hashedpassword = $userPasswordHasherInterface->hashPassword($user, $password);
+                $user->setPassword($hashedpassword);
+
+                $userRepository->add($user, true);
+                
+                return $this->redirectToRoute('app_backoffice_user_browse', [], Response::HTTP_SEE_OTHER);
+            }
+            
+            $form->addError(new FormError("Les mots de passe ne correspondent pas."));
+   
         }
 
         return $this->renderForm('backoffice/user/add.html.twig', [
@@ -59,12 +72,20 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_backoffice_user_edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            if ($form->get("password")->getData())
+            {
+                $password = $form->get("password")->getData();
+                $hashedpassword = $userPasswordHasherInterface->hashPassword($user, $password);
+                $user->setPassword($hashedpassword);
+            }
+            
             $userRepository->add($user, true);
 
             return $this->redirectToRoute('app_backoffice_user_browse', [], Response::HTTP_SEE_OTHER);
