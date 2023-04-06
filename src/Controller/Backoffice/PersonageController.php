@@ -48,10 +48,13 @@ class PersonageController extends AbstractController
     }
 
     /**
-     * @Route("/personage/{id}", name="app_backoffice_personage_read", methods={"GET"})
+     * @Route("/personage/{id}", name="app_backoffice_personage_read", methods={"GET"}, requirements={"id"="\d+"})
+     * @return Response
      */
     public function read(Personage $personage): Response
     {
+
+       
         return $this->render('backoffice/personage/read.html.twig', [
             'personage' => $personage,
         ]);
