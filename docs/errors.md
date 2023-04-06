@@ -26,3 +26,14 @@ public function buildForm(FormBuilderInterface $builder, array $options): void
 
 ## Object of class Proxies\__CG__\App\Entity\Avatar could not be converted to string
 
+Il ne reconnait pas mon `user.avatar` dans mon fichier twig browse (user)
+
+Solution : mettre une condition pour afficher l'avatar uniquement s'il n'est pas null
+
+```php
+<td>
+    {% if user.avatar is not null %}
+        {{ user.avatar.name }}
+    {% endif %}
+</td>
+```
