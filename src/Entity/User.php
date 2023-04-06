@@ -70,14 +70,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\OneToMany(targetEntity=PlayQuizz::class, mappedBy="user")
      */
-    private $playQuizzs;
+    private $playQuizz;
 
     public function __construct()
     {
         $this->quotes = new ArrayCollection();
         $this->favorites = new ArrayCollection();
         $this->rates = new ArrayCollection();
-        $this->playQuizzs = new ArrayCollection();
+        $this->playQuizz = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -274,15 +274,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, PlayQuizz>
      */
-    public function getPlayQuizzs(): Collection
+    public function getPlayQuizz(): Collection
     {
-        return $this->playQuizzs;
+        return $this->playQuizz;
     }
 
     public function addPlayQuizz(PlayQuizz $playQuizz): self
     {
-        if (!$this->playQuizzs->contains($playQuizz)) {
-            $this->playQuizzs[] = $playQuizz;
+        if (!$this->playQuizz->contains($playQuizz)) {
+            $this->playQuizz[] = $playQuizz;
             $playQuizz->setUser($this);
         }
 
@@ -291,7 +291,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removePlayQuizz(PlayQuizz $playQuizz): self
     {
-        if ($this->playQuizzs->removeElement($playQuizz)) {
+        if ($this->playQuizz->removeElement($playQuizz)) {
             // set the owning side to null (unless already changed)
             if ($playQuizz->getUser() === $this) {
                 $playQuizz->setUser(null);
