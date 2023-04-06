@@ -7,8 +7,12 @@ use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class UserType extends AbstractType
 {
@@ -25,7 +29,35 @@ class UserType extends AbstractType
                 'multiple' => true,
                 'expanded' => true
             ])
-            ->add('password')
+            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event){
+                $formulaire = $event->getForm();
+                $data = $event->getData();
+
+                if ($data->getId() !== null)
+                {
+                    $formulaire->add('password', PasswordType::class, [
+                        "attr" => [
+                            "placeholder" => "laisse vide si inchangé"
+                        ],
+                        "mapped" => false
+                    ]);
+                } else {
+                    $formulaire->add('password', PasswordType::class, [
+                        "attr" => [
+                            "placeholder" => "votre mot de passe"
+                        ],
+                        "mapped" => false,
+                        
+                    ])
+                    ->add('password_confirmed', PasswordType::class, [
+                        "attr" => [
+                            "placeholder" => "veuillez confirmer le mot de passe"
+                        ],
+                        "mapped" => false,
+                        
+                        ]);  
+                }
+            })
             ->add('avatar', EntityType::class, [
                 'class' => Avatar::class,
                 'choice_label' => 'name',
@@ -40,7 +72,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            'attr' => ['novalidate' => 'novalidate']
+            
         ]);
     }
 }

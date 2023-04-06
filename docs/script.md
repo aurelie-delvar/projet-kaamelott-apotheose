@@ -20,9 +20,15 @@ composer require symfony/validator
 composer require symfony/doctrine-bridge
 
 # make:crud
+
+# Security
 composer require security-csrf
 
 composer require symfony/security-bundle
 
 # pagination
 composer require knplabs/knp-paginator-bundle
+bin/console make:auth
+
+# Error templates
+composer require symfony/twig-pack

@@ -26,3 +26,29 @@ public function buildForm(FormBuilderInterface $builder, array $options): void
 
 ## Object of class Proxies\__CG__\App\Entity\Avatar could not be converted to string
 
+Il ne reconnait pas mon `user.avatar` dans mon fichier twig browse (user)
+
+Solution : mettre une condition pour afficher l'avatar uniquement s'il n'est pas null
+
+```php
+<td>
+    {% if user.avatar is not null %}
+        {{ user.avatar.name }}
+    {% endif %}
+</td>
+```
+
+## Could not convert database value "USER" to Doctrine Type json
+
+Je souhaite afficher mes utilisateurs dans mon formulaire `edit` (sur Quote).
+
+L'erreur vient des données mal renseignées dans Adminer. La donnée était renseignée en string `USER` au lieu de `["ROLE_USER"]`.
+
+Solution:
+Il suffit de modifier les données dans la table `User` sur Adminer
+
+```sql
+["ROLE_USER"]
+["ROLE_ADMIN"]
+["ROLE_MANAGER"]
+```
