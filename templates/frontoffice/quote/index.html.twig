@@ -65,17 +65,13 @@
             <div class="col">
 
                 <div class="card  mb-3" style="max-width: 18rem;">
-                {# TODO #}
+
                     <div class="card-header title">Saisons</div>
-                    
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item title">Livre I</li>
-                        <li class="list-group-item title">Livre II</li>
-                        <li class="list-group-item title">Livre III</li>
-                        <li class="list-group-item title">Livre IV</li>
-                        <li class="list-group-item title">Livre V</li>
-                        <li class="list-group-item title">Livre VI</li>
-                        <li class="list-group-item title">Premier Volet</li>
+                    {# we loop here to get all our seasons #}
+                    {% for season in seasonsList.getSeasons %}
+                    <li class="list-group-item title"><a  class="nav-link" href="{{ path("app_frontoffice_season_read", {"id" : season.id }) }}">{{ season.title }}</a></li>
+                    {% endfor %}
                     </ul>
                     
                 </div>
