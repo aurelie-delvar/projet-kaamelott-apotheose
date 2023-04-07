@@ -3,20 +3,46 @@
 {% block title %}Kaamel'O'tt - {{ season.title }}{% endblock %}
 
 {% block body %}
+<main class="main">
 
-{% for episode in season.episodes %}
 
-<div class="card m-3">
-    <div class="card-header d-flex justify-content-between">
-        <h6> Citation du {{ season.title }} </h6> 
+
+<div class="row mb-lg-4 justify-content-center">
+    <h2 class="main__item">épisodes </h2>
+    <div class="col-lg-8">
+
+        <div class="card m-3">
+        <div class="card-header d-flex justify-content-between">
+            <h6> {{ season.title }} </h6> 
+        </div>
+        <div class="card-body">
+        {% for episode in season.episodes %}
+                <p>{{ episode.title }}<cite title="Source Title">, écrit par  {{ episode.author.name }}.</cite></p>
+        {% endfor %}
+        </div>
+        </div>
+    
     </div>
 
-    <div class="card-body">
-    <blockquote class="blockquote mb-0">
-        <p>{{ episode.title }}</p>
-    </div>
-</div>
+    <div class="col-lg-4">
 
-{% endfor %}
+            <div class="col">
+
+                <div class="card  m-3" style="max-width: 18rem;">
+
+                    <div class="card-header title">Saisons</div>
+                    <ul class="list-group list-group-flush">
+                    {# we loop here to get all our seasons #}
+                    {% for season in seasonsList.getSeasons %}
+                    <li class="list-group-item title"><a  class="nav-link" href="{{ path("app_frontoffice_season_read", {"id" : season.id }) }}">{{ season.title }}</a></li>
+                    {% endfor %}
+                    </ul>
+                    
+                </div>
+
+            </div>
+
+</div> 
+</main>
 
 {% endblock %}
