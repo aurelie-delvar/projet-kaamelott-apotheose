@@ -41,6 +41,9 @@ class ActorType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Actor::class,
+            'attr' => [
+                'novalidate' => 'novalidate', // desactive the html5 validation
+            ]
         ]);
     }
 }
