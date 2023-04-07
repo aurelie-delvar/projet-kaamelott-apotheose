@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Personnages{% endblock %}
+{% block title %}Kaamel'O'tt - Personnages{% endblock %}
 
 {% block body %}
-    <h1>Liste des personnages</h1>
 
-    <a href="{{ path('app_backoffice_personage_new') }}"class="btn btn-primary">Créer un nouveau paersonnage</a>
+<main>
+    <div class="main-content">
+    <h1>Liste des personnages</h1>
+    </div>
+
+     <div class="container  ">
+    <a href="{{ path('app_backoffice_personage_add') }}"class="btn btn-primary">Créer un nouveau personnage</a>
 
     <table class="table table-striped">
         <thead>
@@ -19,13 +24,13 @@
             </tr>
         </thead>
         <tbody>
-        {% for personage in personages %}
+        {% for personage in pagination %}
             <tr>
                 <td>{{ personage.id }}</td>
                 <td>{{ personage.name }}</td>
                 <td>{{ personage.picture }}</td>
                 <td>{{ personage.descriptionPicture }}</td>
-                <td>{{ personage.description }}</td>
+                <td>{{ personage.description|slice(0, 150) }} [...]</td>
                 <td>
                     <a href="{{ path('app_backoffice_personage_read', {'id': personage.id}) }}"class="btn btn-success" >voir</a>
                     <a href="{{ path('app_backoffice_personage_edit', {'id': personage.id}) }}" class="btn btn-warning">modifier</a>
@@ -38,6 +43,8 @@
         {% endfor %}
         </tbody>
     </table>
-
+    </div>
+     {{ knp_pagination_render(pagination) }}
+</main>
     
 {% endblock %}

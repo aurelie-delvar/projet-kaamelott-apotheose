@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Add Season{% endblock %}
+{% block title %}Kaamel'O'tt - Saisons{% endblock %}
 
 {% block body %}
-    <h1>Créer une nouvelle saison</h1>
-
+<main>
+    <div class="main-content">
+        <h1>Créer une nouvelle saison</h1>
+    </div>  
+    <div class="container  ">
     <a href="{{ path('app_backoffice_season_browse') }}" class="btn btn-primary">retour à la liste</a>
 
     {{ include('backoffice/season/_form.html.twig') }}
-
+    </div>
+</main>         
 {% endblock %}
 

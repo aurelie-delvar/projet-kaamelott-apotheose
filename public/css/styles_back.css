@@ -1,6 +1,6 @@
 body {
     font-family: 'Times New Roman', serif;
-    background-color: pink;
+    background-image: url(../img/background/excalibur-g96a16a51f_1920.jpg) ;
     /* height: 100vh; */
     /* width:100vw; */
     background-position: center;
@@ -22,11 +22,11 @@ h1, h2, h3, h4, h5, h6, .title {
     /* ? j'ai rajouté le margin top pour avoir le même retrait en haut que l'on a en bas car pas réussi à virer le bas */
     margin-top: 20px;
     padding:  0;
-    background-color: rgba(240, 248, 255, 0.3);
+    background-color: rgba(240, 248, 255, 0.5);
 }
 
 .navbar {
-    background-color: rgba(243, 245, 245, 0.2);
+    background-color: rgba(243, 245, 245, 0.1);
     
 }
 
@@ -73,9 +73,10 @@ footer > a:hover {
     }
 }
 
-.coucou {
+.main-bo {
     padding: 2rem 10rem 2rem 10rem;
     display:flex;
     justify-content: space-around;
     
 }
+

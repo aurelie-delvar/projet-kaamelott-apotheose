@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Utilisateurs{% endblock %}
+
+{% block body %}
+<main>
+    <div class="main-content">
+        <h1>Utilisateur</h1>
+    </div>
+    <div class="container  ">
+        <a href="{{ path('app_backoffice_user_browse') }}" class="btn btn-primary">Retour à la liste</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Rôles</th>
+                    <th scope="col">Mot de passe</th>
+                    <th scope="col">actions</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr>
+                    <th scope="row">{{ user.id }}</th>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>{{ user.password }}</td>
+                    <td>
+                        <a href="{{ path('app_backoffice_user_edit', {'id': user.id}) }}" class="btn btn-warning">Modifier</a>
+
+                        {{ include('backoffice/user/_delete_form.html.twig') }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+    
+{% endblock %}

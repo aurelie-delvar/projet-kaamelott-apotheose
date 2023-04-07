@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouveau personnage{% endblock %}
+{% block title %}Kaamel'O'tt - Personnages{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouveau personnage</h1>
 
+<main>
+    <div class="main-content">
+         <h1>Créer un nouveau personnage</h1>
+    </div>
+     <div class="container  ">
     <a href="{{ path('app_backoffice_personage_browse') }}" class="btn btn-primary">Retour à la liste</a>
 
     {{ include('backoffice/personage/_form.html.twig') }}
-
+     </div>
+</main>
     
 {% endblock %}

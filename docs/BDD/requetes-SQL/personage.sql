@@ -6,7 +6,7 @@
 -- description_picture => text, NULL
 -- description => text, NULL
 -- actor_id => Foreign Key, NULL
--- ! credit_order => boolean (false (1) personage not important et true (0) personage important)
+-- ! credit_order => boolean (true (1) personage secondary not important et false (0) personage primary important)
 --
 
 INSERT INTO `personage` (`id`,`name`, `picture`,`description_picture`, `description`, `actor_id`, `credit_order`) 

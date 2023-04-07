@@ -6,6 +6,8 @@ use App\Repository\EpisodeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EpisodeRepository::class)
@@ -21,11 +23,13 @@ class Episode
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Assert\NotBlank (message= "Le titre de l'épisode doit être renseigné")
      */
     private $title;
 
     /**
      * @ORM\Column(type="bigint", nullable=true)
+     * 
      */
     private $number;
 

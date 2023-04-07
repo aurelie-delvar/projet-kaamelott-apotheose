@@ -32,12 +32,12 @@ class Quizz
     /**
      * @ORM\OneToMany(targetEntity=PlayQuizz::class, mappedBy="quizz")
      */
-    private $playQuizzs;
+    private $playQuizz;
 
     public function __construct()
     {
         $this->questions = new ArrayCollection();
-        $this->playQuizzs = new ArrayCollection();
+        $this->playQuizz = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -90,15 +90,15 @@ class Quizz
     /**
      * @return Collection<int, PlayQuizz>
      */
-    public function getPlayQuizzs(): Collection
+    public function getPlayQuizz(): Collection
     {
-        return $this->playQuizzs;
+        return $this->playQuizz;
     }
 
     public function addPlayQuizz(PlayQuizz $playQuizz): self
     {
-        if (!$this->playQuizzs->contains($playQuizz)) {
-            $this->playQuizzs[] = $playQuizz;
+        if (!$this->playQuizz->contains($playQuizz)) {
+            $this->playQuizz[] = $playQuizz;
             $playQuizz->setQuizz($this);
         }
 
@@ -107,7 +107,7 @@ class Quizz
 
     public function removePlayQuizz(PlayQuizz $playQuizz): self
     {
-        if ($this->playQuizzs->removeElement($playQuizz)) {
+        if ($this->playQuizz->removeElement($playQuizz)) {
             // set the owning side to null (unless already changed)
             if ($playQuizz->getQuizz() === $this) {
                 $playQuizz->setQuizz(null);

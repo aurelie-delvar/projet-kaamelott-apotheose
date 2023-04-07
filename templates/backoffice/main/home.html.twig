@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Kaamel'O'tt - Backoffice{% endblock %}
 
 {% block body %}
 
@@ -12,7 +12,7 @@
 
     <div class="container  ">
 
-        <div class="row gy-5 coucou">
+        <div class="row gy-5 main-bo">
             <div class="col" >
                 <div class="card " style="width: 18rem;">
                     <div class="card-body">
@@ -26,7 +26,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Liste des Citations</h5>
-                        <a href="{{ path('app_backoffice_home')}}" class="btn btn-success">voir</a>
+                        <a href="{{ path('app_backoffice_quote_browse') }}" class="btn btn-success">voir</a>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Liste des Episodes</h5>
-                        <a href="{{ path('app_backoffice_home')}}" class="btn btn-success">voir</a>
+                        <a href="{{ path('app_backoffice_episode_browse') }}" class="btn btn-success">voir</a>
                     </div>
                 </div>
             </div>   
@@ -58,7 +58,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Liste des Questions</h5>
-                        <a href="{{ path('app_backoffice_home')}}" class="btn btn-success">voir</a>
+                        <a href="{{ path('app_backoffice_question_browse')}}" class="btn btn-success">voir</a>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Liste des Utilisateurs</h5>
-                        <a href="{{ path('app_backoffice_home')}}" class="btn btn-success">voir</a>
+                        <a href="{{ path('app_backoffice_user_browse') }}" class="btn btn-success">voir</a>
                     </div>
                 </div>
             </div>    

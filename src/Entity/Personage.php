@@ -2,13 +2,22 @@
 
 namespace App\Entity;
 
+//use App\Entity\Actor;
+
 use App\Repository\PersonageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * @ORM\Entity(repositoryClass=PersonageRepository::class)
+ * @UniqueEntity(
+ *     fields={"actor"},
+ *     message="Cet acteur a déjà un personnage attribué. Merci de choisir un autre acteur."
+ * )
  */
 class Personage
 {
@@ -21,6 +30,7 @@ class Personage
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @assert\NotBlank (message= "Le nom du personnage doit être renseigné")
      */
     private $name;
 
@@ -46,11 +56,13 @@ class Personage
 
     /**
      * @ORM\OneToOne(targetEntity=Actor::class, inversedBy="personage", cascade={"persist", "remove"})
+     * 
      */
     private $actor;
 
     /**
      * @ORM\Column(type="boolean")
+     *  
      */
     private $creditOrder;
 

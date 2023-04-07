@@ -5,10 +5,12 @@ namespace App\Controller\Backoffice;
 use App\Entity\Personage;
 use App\Form\PersonageType;
 use App\Repository\PersonageRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\FilterFormType;
 
 /**
  * @Route("/backoffice")
@@ -18,17 +20,25 @@ class PersonageController extends AbstractController
     /**
      * @Route("/personages", name="app_backoffice_personage_browse", methods={"GET"})
      */
-    public function index(PersonageRepository $personageRepository): Response
+    public function browse(PersonageRepository $personageRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        return $this->render('backoffice/personage/index.html.twig', [
-            'personages' => $personageRepository->findAll(),
+
+        $pagination = $paginator->paginate(
+            $personageRepository->paginationQueryBack(), // here is our query from the repository
+            $request->query->get('page', 1), // 1 is the page by default
+            10, // the limit of results by page
+        );
+
+
+        return $this->render('backoffice/personage/browse.html.twig', [
+            'pagination' => $pagination,
         ]);
     }
 
     /**
-     * @Route("/personage/new", name="app_backoffice_personage_new", methods={"GET", "POST"})
+     * @Route("/personage/add", name="app_backoffice_personage_add", methods={"GET", "POST"})
      */
-    public function new(Request $request, PersonageRepository $personageRepository): Response
+    public function add(Request $request, PersonageRepository $personageRepository): Response
     {
         $personage = new Personage();
         $form = $this->createForm(PersonageType::class, $personage);
@@ -40,18 +50,21 @@ class PersonageController extends AbstractController
             return $this->redirectToRoute('app_backoffice_personage_browse', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('backoffice/personage/new.html.twig', [
+        return $this->renderForm('backoffice/personage/add.html.twig', [
             'personage' => $personage,
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/personage/{id}", name="app_backoffice_personage_read", methods={"GET"})
+     * @Route("/personage/{id}", name="app_backoffice_personage_read", methods={"GET"}, requirements={"id"="\d+"})
+     * @return Response
      */
     public function read(Personage $personage): Response
     {
-        return $this->render('backoffice/personage/show.html.twig', [
+
+       
+        return $this->render('backoffice/personage/read.html.twig', [
             'personage' => $personage,
         ]);
     }
@@ -61,7 +74,10 @@ class PersonageController extends AbstractController
      */
     public function edit(Request $request, Personage $personage, PersonageRepository $personageRepository): Response
     {
+        
         $form = $this->createForm(PersonageType::class, $personage);
+        
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Utilisateurs{% endblock %}
+
+{% block body %}
+<main>
+    <div class="main-content">
+        <h1>Liste des Utilisateurs</h1>
+    </div>
+    <div class="container  ">
+        <a href="{{ path('app_backoffice_user_add') }}" class="btn btn-primary">Ajouter un utilisateur</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Rôles</th>
+                    <th scope="col">Mot de passe</th>
+                    <th scope="col">Avatar</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <th scope="row">{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>{{ user.password }}</td>
+                    <td>
+                    {% if user.avatar is not null %}
+                    {{ user.avatar.name }}
+                    {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('app_backoffice_user_read', {'id': user.id}) }}" class="btn btn-success">Voir</a>
+                        <a href="{{ path('app_backoffice_user_edit', {'id': user.id}) }}" class="btn btn-warning">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main> 
+    
+{% endblock %}

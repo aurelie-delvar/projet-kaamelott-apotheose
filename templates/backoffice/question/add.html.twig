@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Questions{% endblock %}
+
+{% block body %}
+<main>
+    <div class="main-content">
+        <h1>Créer une nouvelle question</h1>
+    </div>
+    <div class="container  ">
+        <a href="{{ path('app_backoffice_question_browse') }}" class="btn btn-primary">retour à la liste</a>
+        
+        {{ include('backoffice/question/_form.html.twig') }}
+    </div>
+</main>    
+{% endblock %}

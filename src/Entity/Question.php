@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\QuestionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=QuestionRepository::class)
@@ -19,6 +22,12 @@ class Question
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 5,
+     *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
+     * )
+     * 
      */
     private $title;
 
@@ -29,28 +38,54 @@ class Question
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 5,
+     *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
+     * )
      */
     private $answer1;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 5,
+     *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
+     * )
      */
     private $answer2;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 5,
+     *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
+     * )
      */
     private $answer3;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 5,
+     *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
+     * )
      */
     private $answer4;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 5,
+     *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
+     * )
      */
     private $goodAnswer;
+
 
     public function getId(): ?int
     {
