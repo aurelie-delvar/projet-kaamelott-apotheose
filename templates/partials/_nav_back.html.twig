@@ -63,6 +63,10 @@
 
             <li class="nav-item">
             <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_user_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_user_browse') }}">Utilisateurs</a>
+            </li>  
+
+            <li class="nav-item">
+            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_actors_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_actors_browse') }}">Acteurs</a>
             </li>      
 
         </ul>

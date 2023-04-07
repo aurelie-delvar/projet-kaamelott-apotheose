@@ -39,6 +39,17 @@ class ActorRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+    * Query for the paginator. Actors list for the backoffice.
+    */
+   public function paginationQueryBack()
+   {
+       return $this->createQueryBuilder('a')
+           ->orderBy('a.id', 'ASC')
+           ->getQuery()
+       ;
+   }
+
 //    /**
 //     * @return Actor[] Returns an array of Actor objects
 //     */

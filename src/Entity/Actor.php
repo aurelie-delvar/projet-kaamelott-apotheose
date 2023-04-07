@@ -2,11 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\ActorRepository;
+use assert\NotBlank;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ActorRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ActorRepository::class)
+ * @UniqueEntity(
+ *    fields={"personage"},
+ *    message="Cet acteur a déjà un acteur attribué. Merci de choisir un autre acteur."
+ * )
  */
 class Actor
 {
@@ -19,6 +26,7 @@ class Actor
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @assert\@NotBlank (message= "Le nom de l'acteur doit être renseigné")
      */
     private $name;
 
