@@ -13,7 +13,7 @@
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {% if app.user %}
                 
-                    <img src="/img/{{app.user.avatar.icon}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <img src="{{asset('img/' ~ app.user.avatar.icon)}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     <span>{{app.user.email}}</span>
                 {% else %}
                     <span>Anonyme</span>
