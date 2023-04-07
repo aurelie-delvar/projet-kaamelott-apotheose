@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Acteurs{% endblock %}
+
+{% block body %}
+<main>
+
+    <div class="main-content">
+        <h1>Modifier un acteur</h1>
+    </div>
+
+    <div class="container">
+
+    <a href="{{ path('app_backoffice_actors_browse') }}" class="btn btn-primary">Retour à la liste</a>
+
+    {{ include('backoffice/actor/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    </div>
+</main>
+{% endblock %}

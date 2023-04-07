@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ActorRepository;
+// use assert\NotBlank;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ActorRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ActorRepository::class)
+ * 
  */
 class Actor
 {
@@ -19,6 +23,7 @@ class Actor
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank (message= "Ce champ doit être rempli.")
      */
     private $name;
 
