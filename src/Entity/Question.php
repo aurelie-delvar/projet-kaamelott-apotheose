@@ -6,6 +6,7 @@ use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
@@ -17,6 +18,7 @@ class Question
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"question_browse"})
      */
     private $id;
 
@@ -28,11 +30,13 @@ class Question
      *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
      * )
      * 
+     * @Groups({"question_browse", "question_read"})
      */
     private $title;
 
     /**
      * @ORM\ManyToOne(targetEntity=Quizz::class, inversedBy="questions")
+     * 
      */
     private $quizz;
 
@@ -43,6 +47,8 @@ class Question
      *      min = 5,
      *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
      * )
+     * 
+     * @Groups({"question_browse", "question_read"})
      */
     private $answer1;
 
@@ -53,6 +59,8 @@ class Question
      *      min = 5,
      *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
      * )
+     * 
+     * @Groups({"question_browse", "question_read"})
      */
     private $answer2;
 
@@ -63,6 +71,8 @@ class Question
      *      min = 5,
      *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
      * )
+     * 
+     * @Groups({"question_browse", "question_read"})
      */
     private $answer3;
 
@@ -73,6 +83,8 @@ class Question
      *      min = 5,
      *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
      * )
+     * 
+     * @Groups({"question_browse", "question_read"})
      */
     private $answer4;
 
@@ -83,6 +95,8 @@ class Question
      *      min = 5,
      *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
      * )
+     * 
+     * @Groups({"question_browse", "question_read"})
      */
     private $goodAnswer;
 
