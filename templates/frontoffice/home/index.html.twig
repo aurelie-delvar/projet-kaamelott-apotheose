@@ -6,29 +6,10 @@
 <main  class="p-3">
     <div class="text-center mb-3">
     
+    <h2 class="main__item">La Citation du Moment</h2>
     {# todo dynamiser la page quand on aura la BDD fonctionnelle il faut aussi gérer rating et favorite #}
-
-    <div class="card mb-3">
-        <div class="card-header d-flex justify-content-between">
-            <h6> La citation du moment </h6> 
-            <div class="d-flex" style="color: orange;">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-half"></i>
-                <span class="ps-1">{{ randomQuote.rating }}</span>
-            </div>
-
-        </div>
-        <div class="card-body">
-        <i class="bi bi-heart-fill d-flex justify-content-end"></i>
-        <blockquote class="blockquote mb-0">
-            <p>"{{ randomQuote.text }}"</p>
-            <footer class="blockquote-footer"> {{ randomQuote.personage.name }},<cite title="Source Title"> <strong>{{ randomQuote.episode.season.title}}</strong>, {{ randomQuote.episode.title}}.</cite></footer>
-        </blockquote>
-        </div>
-    </div>
+    {% set quote = randomQuote %}
+    {% include '_card_quote.html.twig' %}
 
     <div class="text-center">
     <img class="img-fluid" src="./img/kamelott.jpeg">
@@ -38,26 +19,8 @@
         <div class="card-body text-bg-secondary">
             <h5 class="card-title">les Dix Dernières Citations</h5>
             {% for key, quote in last10Quotes %}
-                <div class="card mb-3">
-                    <div class="card-header d-flex justify-content-end">
-                    {# TODO: GERER LES PROPRIETES NULLES POUR UN AJOUT DE CITATION #}
-                        <div class="d-flex" style="color: orange;">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-half"></i>
-                            <span class="ps-1"> {{ quote.rating }}</span>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <i class="bi bi-heart-fill d-flex justify-content-end"></i>
-                        <blockquote class="blockquote mb-0">
-                            <p>"{{ quote.text }}"</p>
-                            <footer class="blockquote-footer"> {{ quote.personage.name  }},<cite title="Source Title"> <strong>{{ quote.episode.season.title }}</strong>, {{ quote.episode.title }} .</cite></footer>
-                        </blockquote>
-                    </div> 
-                </div>
+             {# TODO: GERER LES PROPRIETES NULLES POUR UN AJOUT DE CITATION #}
+                {% include '_card_quote.html.twig' %}
             {% endfor %}
         </div>
     </div>

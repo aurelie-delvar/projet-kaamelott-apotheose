@@ -2,6 +2,7 @@
 
 namespace App\Controller\Frontoffice;
 
+use App\Entity\Season;
 use App\Repository\SeasonRepository;
 use App\Repository\EpisodeRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -18,9 +19,12 @@ class SeasonController extends AbstractController
     public function read($id, SeasonRepository $seasonRepository, Request $request, PaginatorInterface $paginator, EpisodeRepository $episodeRepository): Response 
     {
         $season = $seasonRepository->find($id);
- 
+        // dd($season);
+        $episodes = $episodeRepository->findAll();
+        // dd($episodes);
         return $this->render('frontoffice/season/read.html.twig', [
             'season' => $season,
+            'episodes' => $episodes,
         ]);
     }
 }
