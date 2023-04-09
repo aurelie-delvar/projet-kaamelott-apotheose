@@ -2,6 +2,8 @@
 
 namespace App\Controller\Frontoffice;
 
+use App\Entity\Quizz;
+use App\Repository\QuizzRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,14 +11,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuizzController extends AbstractController
 {
     /**
-     * @Route("/quizz", name="app_frontoffice_quizz_index")
+     * @Route("/quizz/{id}", name="app_frontoffice_quizz_read", methods={"GET"}, requirements={"id"="\d+"})
+     * 
      */
-    public function index(): Response
+    public function read($id, QuizzRepository $quizzRepository): Response
     {
-        return $this->render('frontoffice/quizz/index.html.twig', [
-            'controller_name' => 'quizzController',
+        $quizz = $quizzRepository->find($id);
+        
+        return $this->render('frontoffice/quizz/read.html.twig', [
+            'quizz' => $quizz,
         ]);
     }
-
-   
+    
 }

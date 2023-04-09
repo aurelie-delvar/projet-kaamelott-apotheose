@@ -46,4 +46,5 @@ function insertQuestionInDom(question) {
     answersElement.append(answer1Element, answer2Element, answer3Element, answer4Element);
 
     questionList.append(popup);
+     
 }

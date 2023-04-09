@@ -6,6 +6,7 @@ use App\Repository\QuizzRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,6 +18,7 @@ class Quizz
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"question_browse", "question_read"})
      */
     private $id;
 
@@ -28,6 +30,7 @@ class Quizz
 
     /**
      * @ORM\OneToMany(targetEntity=Question::class, mappedBy="quizz")
+     * 
      */
     private $questions;
 

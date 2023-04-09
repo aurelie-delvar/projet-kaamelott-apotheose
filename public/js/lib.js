@@ -1,5 +1,5 @@
 //
-// lib/lib.js
+// js/lib.js
 // useful functions for my quiz
 //
 

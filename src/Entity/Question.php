@@ -36,7 +36,7 @@ class Question
 
     /**
      * @ORM\ManyToOne(targetEntity=Quizz::class, inversedBy="questions")
-     * 
+     * @Groups({"question_browse", "question_read"})
      */
     private $quizz;
 
