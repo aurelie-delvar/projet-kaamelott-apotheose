@@ -87,14 +87,14 @@ class QuoteRepository extends ServiceEntityRepository
     */
     public function querySearchBack($words)
     {
-        $sql = "SELECT quote.text, personage.name, episode.title AS titleEpisode, season.title AS titleSeason
+        $sql = "SELECT DISTINCT quote.text, personage.name, episode.title AS titleEpisode, season.title AS titleSeason
         FROM quote
         LEFT JOIN personage ON quote.personage_id = personage.id
         LEFT JOIN episode ON quote.episode_id = episode_id
         LEFT JOIN season ON episode.season_id = season_id
         WHERE quote.text LIKE '%$words%'
-        OR personage.name LIKE '%$words%'
-       /* OR episode.title LIKE '%$words%'
+       /* OR personage.name LIKE '%$words%'
+        OR episode.title LIKE '%$words%'
         OR season.title LIKE '%$words%'*/
         ORDER BY personage.name 
         LIMIT 50";
@@ -104,10 +104,12 @@ class QuoteRepository extends ServiceEntityRepository
         $doctrine = $this->getEntityManager()->getConnection();
         $statement = $doctrine->prepare($sql);
         $result = $statement->executeQuery();
-        $quoteArray = $result->fetchAssociative();
+        $arrayQuote = $result->fetchAllAssociative();
 
-        return $quoteArray;
-        dump($quoteArray);
+        return $arrayQuote;
+        
+        
+        
     }
  
 
