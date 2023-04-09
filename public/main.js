@@ -14,7 +14,7 @@ function insertQuestionInDom(question) {
     const questionList = appContainer;
 
     const popup = document.createElement('div');
-    popup.classList.add('popup.active');
+    popup.classList.add('question');
 
     const questionElement = document.createElement('div');
     questionElement.dataset.id = question.id;
