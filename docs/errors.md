@@ -52,3 +52,27 @@ Il suffit de modifier les données dans la table `User` sur Adminer
 ["ROLE_ADMIN"]
 ["ROLE_MANAGER"]
 ```
+
+## mauvaise nomination de la branche ???
+
+non ce n'est pas ça erreur toujours presente malgré le renomage,
+au départ j'avais ce nom "Author/AvatarController" je l'ai changé en me disant que ça pouvait venir de là "AuthorContoller-AvatarController" nouveau nom... mais ça ne change rien fait "composer install"  puis "composer require --dev symfony/maker-bundle" comme conseillé dans le mess d'erreur si je vais sur ma branche Rating sur laquelle j'ai bossé hier je peux faire mon ma:crud ...
+
+```bash
+student@teleporter:/var/www/html/apotheose/projet-13-kaamelott$ git checkout Author/AvatarController 
+Switched to branch 'Author/AvatarController'
+student@teleporter:/var/www/html/apotheose/projet-13-kaamelott$ bin/console ma:crud
+[critical] Error thrown while running command "'ma:crud'". Message: "There are no commands defined in the "ma" namespace.
+
+Did you mean one of these?
+    doctrine:mapping
+    doctrine:schema"
+
+                                                        
+  There are no commands defined in the "ma" namespace.  
+                                                        
+  Did you mean one of these?                            
+      doctrine:mapping                                  
+      doctrine:schema                                   
+                                                        
+```
