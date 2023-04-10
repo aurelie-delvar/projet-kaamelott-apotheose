@@ -15,25 +15,27 @@
         <thead>
             <tr>
                 
-                <th>Nom</th>
+                <th>Nom du personnage</th> 
                 <th>Citation</th>
-                <th>Description de l'image</th>
-                <th>Description du personnage</th>
-                <th>actions</th>
+                <th>Titre de l'épisode</th>
+                <th>Saison</th>
+                
             </tr>
         </thead>
         <tbody>
         {% for quote in pagination %}
             <tr>
-                {# <td>{{ personage.name }}</td> #}
-                <td>{{ quote.text|slice(0, 150) }} [...]</td>
-                {# <td>{{ episode.title }}</td>
-                <td>{{ season.title }}</td> #}
                 
-                <td>
+               
+                <td>{{ quote.personage.name }}</td> 
+                 <td>{{quote.text|slice(0, 150) }} [...]</td>
+                <td>{{ quote.titleEpisode }}</td>
+                <td>{{ quote.titleSeason }}</td> 
+                
+               {#  <td>
                     <a href="{{ path('app_backoffice_personage_read', {'id': personage.id}) }}"class="btn btn-success" >voir</a>
                     <a href="{{ path('app_backoffice_personage_edit', {'id': personage.id}) }}" class="btn btn-warning">modifier</a>
-                </td>
+                </td> #}
             </tr>
         {% else %}
             <tr>
@@ -43,6 +45,6 @@
         </tbody>
     </table>
     </div>
-     {{ knp_pagination_render(pagination) }}
+      {{ knp_pagination_render(pagination) }} 
 </main>
 {% endblock %}
