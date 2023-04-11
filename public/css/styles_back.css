@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6, .title {
     display: flex;
     justify-content: center;
     /* background-color: rgba(243, 245, 245, 0.6); */
-    background-color:#6c757dbe;
+    background-color: rgba(243, 245, 245, 0.6);
 }
 
 .main {

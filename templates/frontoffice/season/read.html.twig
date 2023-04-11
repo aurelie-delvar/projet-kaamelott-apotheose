@@ -23,7 +23,7 @@
   {% for episode in season.episodes %}
     <p class="accordion-header ">
       <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-~{{ episode.id }}" aria-expanded="false" aria-controls="flush-~{{ episode.id }}">
-        <span class="title" >Episode {{ episode.id }} -  </span>  <span> {{ episode.title }} </span><cite title="Source title">, écrit par  {{ episode.author.name }}.</cite> 
+         <span class="title" > {{ episode.title }} </span><cite title="Source title">, écrit par  {{ episode.author.name }}.</cite> 
       </button>
     </p>
     <div id="flush-~{{ episode.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
