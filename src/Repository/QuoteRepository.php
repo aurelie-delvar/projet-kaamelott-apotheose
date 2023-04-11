@@ -87,28 +87,46 @@ class QuoteRepository extends ServiceEntityRepository
     */
     public function querySearchBack($words)
     {
-        $sql = "SELECT DISTINCT quote.text, personage.name, episode.title AS titleEpisode, season.title AS titleSeason
+       /*  $sql = "SELECT DISTINCT quote.text, personage.name, episode.title AS titleEpisode, season.title AS titleSeason
         FROM quote
         LEFT JOIN personage ON quote.personage_id = personage.id
-        LEFT JOIN episode ON quote.episode_id = episode_id
-        LEFT JOIN season ON episode.season_id = season_id
+        LEFT JOIN episode ON quote.episode_id = episode.id
+        LEFT JOIN season ON episode.season_id = season.id
         WHERE quote.text LIKE '%$words%'
-       /* OR personage.name LIKE '%$words%'
+        OR personage.name LIKE '%$words%'
         OR episode.title LIKE '%$words%'
-        OR season.title LIKE '%$words%'*/
-        ORDER BY personage.name 
-        LIMIT 50";
+        OR season.title LIKE '%$words%'
+        ORDER BY personage.name" ;
 
         //TODO: résoudre le problème avec la requete SQL qui  utilise trop de ressources.
         
         $doctrine = $this->getEntityManager()->getConnection();
         $statement = $doctrine->prepare($sql);
+        
         $result = $statement->executeQuery();
         $arrayQuote = $result->fetchAllAssociative();
 
-        return $arrayQuote;
+        return $arrayQuote; */
+
         
-        
+        $queryBuilder =$this->createQueryBuilder('q');
+        $queryBuilder
+        ->select('DISTINCT q.text', 'p.name', 'e.title AS titleEpisode', 's.title AS titleSeason')
+    //->from( 'Quote','q')
+    ->leftJoin('q.personage', 'p')
+    ->leftJoin('q.episode', 'e')
+    ->leftJoin('e.season', 's')
+    ->where(
+        $queryBuilder->expr()->orX(
+            $queryBuilder->expr()->like('q.text', ':words'),
+            $queryBuilder->expr()->like('p.name', ':words'),
+            $queryBuilder->expr()->like('e.title', ':words'),
+            $queryBuilder->expr()->like('s.title', ':words')
+        )
+    )
+    ->orderBy('p.name');
+    $queryBuilder->setParameter('words', '%'.$words.'%');
+        return  $queryBuilder->getQuery();
         
     }
  
