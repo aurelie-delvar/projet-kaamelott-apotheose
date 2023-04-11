@@ -23,7 +23,6 @@ class SearchController extends AbstractController
      */
     public function search(Request $request, QuoteRepository $quoteRepository, PaginatorInterface $paginator): Response
     {
-
         $words = $request->request->get("searchBack");
 
         $session = $this->get("session");
@@ -34,10 +33,6 @@ class SearchController extends AbstractController
 
         $search = $words ?? $session->get("words"); 
         
-        dump($session->get("words"));
-
-        dump($words);
-
        //$results= $quoteRepository->querySearchBack($words);
        // dump($results);
     
@@ -50,8 +45,6 @@ class SearchController extends AbstractController
         // Items per page
        10
         );
-   
-
 
     return $this->render('backoffice/search/index.html.twig', [
        //'results' => $results
