@@ -49,7 +49,7 @@
                     {% if isFavorite %}
                        <i class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></i>
                     {% else %}
-                       <a href="{{ path('app_frontoffice_quotes_addFavorite', {id: quote.id}) }}"><i class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></i></a>
+                       <a href="{{ path('app_frontoffice_quotes_addFavorite', {id: quote.id}) }}" class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></a>
                     {% endif %}
 
 

@@ -58,12 +58,14 @@ class QuoteController extends AbstractController
 
         $manager->flush();
 
-        // dd($newFavorite);
+        $route = $_SERVER['HTTP_REFERER'];
 
+        // dd($newFavorite);
+        //dd ($route);
         // $essai = $quote->addFavorite($newFavorite);
 
-
-        return $this->redirectToRoute("default");
+        // ! https://stackoverflow.com/questions/12369615/serverhttp-referer-missing
+        return $this->redirect($_SERVER['HTTP_REFERER']);
         // return $this->redirectToRoute("app_home_show", ["id" => $movie->getId(), "slug" => $movie->getSlug()]);
     }
 }
