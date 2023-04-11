@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Favorite;
 use App\Repository\QuoteRepository;
 use App\Repository\FavoriteRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +38,7 @@ class QuoteController extends AbstractController
     /**
      * @Route("/favoris/{id}", name="app_frontoffice_quotes_addFavorite", requirements={"id" : "\d+"})
      */
-    public function addFavorite(QuoteRepository $quoteRepository, $id, FavoriteRepository $favoriteRepository, Request $request, UserInterface $user, ObjectManager $manager): Response
+    public function addFavorite(QuoteRepository $quoteRepository, $id, FavoriteRepository $favoriteRepository, Request $request, UserInterface $user, EntityManagerInterface $manager): Response
     {
 
         $quote = $quoteRepository->find($id);
@@ -62,6 +63,7 @@ class QuoteController extends AbstractController
         // $essai = $quote->addFavorite($newFavorite);
 
 
-        return $this->redirectToRoute($request->attributes->get('_route'));
+        return $this->redirectToRoute("default");
+        // return $this->redirectToRoute("app_home_show", ["id" => $movie->getId(), "slug" => $movie->getSlug()]);
     }
 }
