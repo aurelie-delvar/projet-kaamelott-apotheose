@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Avatar{% endblock %}
+
+{% block body %}
+<main>
+    
+    <div class="main-content">
+        <h1>Liste des Avatars</h1>
+    </div>
+    
+    <div class="container  ">
+        <a href="{{ path('app_backoffice_avatar_add') }}" class="btn btn-primary" >Ajouter un avatar</a>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Icon</th>
+                    <th scope="col">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for avatar in avatars %}
+                <tr>
+                    <th scope="row">{{ avatar.id }}</th>
+                    <td>{{ avatar.name }}</td>
+                    <td>{{ avatar.icon }}</td>
+                    <td>
+                        <a href="{{ path('app_backoffice_avatar_read', {'id': avatar.id}) }}" class="btn btn-success">voir</a>
+                        <a href="{{ path('app_backoffice_avatar_edit', {'id': avatar.id}) }}" class="btn btn-warning">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Pas d'avatar trouvé !</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</main> 
+
+{% endblock %}
