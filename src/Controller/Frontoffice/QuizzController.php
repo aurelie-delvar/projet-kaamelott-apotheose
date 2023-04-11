@@ -10,6 +10,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class QuizzController extends AbstractController
 {
+    
+    /**
+     * @Route("/quizz", name="app_frontoffice_quizz_browse")
+     */
+    public function browse(QuizzRepository $quizzRepository): Response
+    {
+        $quizzs = $quizzRepository->findAll();
+
+        return $this->render('frontoffice/quizz/browse.html.twig', [
+            'quizzs' => $quizzs,
+        ]);
+    }     
+    
     /**
      * @Route("/quizz/{id}", name="app_frontoffice_quizz_read", methods={"GET"}, requirements={"id"="\d+"})
      * 

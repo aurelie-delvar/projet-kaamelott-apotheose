@@ -4,11 +4,12 @@
 //
 
 async function getQuestions() {
-  const req = await fetch(`${url}/question`);
-  const questions = await req.json();
+  const req = await fetch(`${url}/quizz/1`);
+  const quizz = await req.json();
+  const questions = quizz.questions;
 
   questions.forEach(function (question){
-    insertQuestionInDom(question);
+    showQuestion(question);
   })
 }
 
