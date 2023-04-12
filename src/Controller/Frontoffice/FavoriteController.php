@@ -18,13 +18,17 @@ class FavoriteController extends AbstractController
     /**
      * @Route("/frontoffice/favorite", name="app_frontoffice_favorite")
      */
-    public function index(): Response
+    public function browse(FavoriteRepository $favoriteRepository): Response
     {
+
+        $favoris = $favoriteRepository->findAll();
+
         return $this->render('frontoffice/favorite/index.html.twig', [
-            'controller_name' => 'FavoriteController',
+            "favoris" => $favoris,
         ]);
     }
-        /**
+
+    /**
      * @Route("/favoris/{id}", name="app_frontoffice_quotes_addFavorite", requirements={"id" : "\d+"}, methods={"GET", "POST"})
      */
     public function addFavorite(QuoteRepository $quoteRepository, $id, FavoriteRepository $favoriteRepository, Request $request, UserInterface $user, EntityManagerInterface $manager): Response
