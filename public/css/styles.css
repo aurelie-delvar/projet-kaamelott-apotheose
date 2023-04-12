@@ -29,6 +29,7 @@ h1, h2, h3, h4, h5, h6, .title {
     width: 100%;
     display: flex;
     justify-content: center;
+    /* background-color: rgba(243, 245, 245, 0.6); */
     background-color: rgba(243, 245, 245, 0.6);
 }
 
@@ -69,6 +70,11 @@ footer > a:hover {
     text-decoration: none;
     text-shadow: 4px 4px 10px black;
 } 
+
+a {
+    text-decoration: none; 
+    color: black;
+}
 
 .main__item {
     margin: 20px 0;

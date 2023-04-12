@@ -3,20 +3,63 @@
 {% block title %}Kaamel'O'tt - {{ season.title }}{% endblock %}
 
 {% block body %}
+<main class="p-3">
 
-{% for episode in season.episodes %}
 
-<div class="card m-3">
-    <div class="card-header d-flex justify-content-between">
-        <h6> Citation du {{ season.title }} </h6> 
+
+<div class="row mb-lg-4 justify-content-center">
+    <h2 class="main__item">{{ season.title }}</h2>
+    <div class="col-lg-8 text-center">
+{# ! rajouter descriptif dans BDD #}
+<p>Le château de Kaamelott est achevé, la cour est établie, les choses sérieuses peuvent commencer. Une grande table ronde est construite, autour de laquelle les chevaliers se réuniront pour organiser la Quête du Graal, diriger le royaume, narrer leurs aventures victorieuses pour la gloire des dieux et du peuple. Tous les éléments sont réunis pour mener à bien la Quête. Du moins en théorie, car en pratique, le roi Arthur réalise bien vite que ceux qui l’entourent, s’ils ne manquent pas de motivation, ne vont pas toujours dans le même sens que lui, ni à la même vitesse.</p>
+
+
+
+<div class="accordion accordion-flush text-bg-secondary" id="accordionFlushExample">
+ 
+               
+       
+  <div class="accordion-item">
+  {% for episode in season.episodes %}
+    <p class="accordion-header ">
+      <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-~{{ episode.id }}" aria-expanded="false" aria-controls="flush-~{{ episode.id }}">
+         <span class="title" > {{ episode.title }} </span><cite title="Source title">, écrit par  {{ episode.author.name }}.</cite> 
+      </button>
+    </p>
+    <div id="flush-~{{ episode.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+            {% for quote in episode.quotes %}
+                {% include '_card_quote.html.twig' %}        
+            {% endfor %}
+      </div>
     </div>
-
-    <div class="card-body">
-    <blockquote class="blockquote mb-0">
-        <p>{{ episode.title }}</p>
-    </div>
+     {% endfor %} 
+  
+  </div>
+  
 </div>
+        
+    </div>
 
-{% endfor %}
+    <div class="col-lg-4">
+
+            <div class="col">
+
+                <div class="card  m-3" style="max-width: 18rem;">
+
+                    <div class="card-header title">Saisons</div>
+                    <ul class="list-group list-group-flush">
+                    {# we loop here to get all our seasons #}
+                    {% for season in seasonsList.getSeasons %}
+                    <li class="list-group-item title"><a  class="nav-link" href="{{ path("app_frontoffice_season_read", {"id" : season.id }) }}">{{ season.title }}</a></li>
+                    {% endfor %}
+                    </ul>
+                    
+                </div>
+
+            </div>
+
+</div> 
+</main>
 
 {% endblock %}

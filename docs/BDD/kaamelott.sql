@@ -7,13 +7,17 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
+DROP DATABASE IF EXISTS `kaamelott`;
+CREATE DATABASE `kaamelott` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `kaamelott`;
+
 DROP TABLE IF EXISTS `actor`;
 CREATE TABLE `actor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `picture` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description_picture` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(64) NOT NULL,
+  `picture` varchar(128) DEFAULT NULL,
+  `description_picture` longtext DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -78,7 +82,7 @@ INSERT INTO `actor` (`id`, `name`, `picture`, `description_picture`, `descriptio
 DROP TABLE IF EXISTS `author`;
 CREATE TABLE `author` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -92,8 +96,8 @@ INSERT INTO `author` (`id`, `name`) VALUES
 DROP TABLE IF EXISTS `avatar`;
 CREATE TABLE `avatar` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `icon` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `icon` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -109,7 +113,7 @@ CREATE TABLE `episode` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `author_id` int(11) DEFAULT NULL,
   `season_id` int(11) DEFAULT NULL,
-  `title` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(128) NOT NULL,
   `number` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_DDAA1CDAF675F31B` (`author_id`),
@@ -507,16 +511,23 @@ CREATE TABLE `favorite` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `favorite` (`id`, `quote_id`, `user_id`) VALUES
-(1,	1,	1);
+(55,	1,	2),
+(56,	2,	2),
+(57,	4,	2),
+(58,	765,	2),
+(59,	3,	2),
+(60,	5,	2),
+(61,	764,	2),
+(62,	129,	2);
 
 DROP TABLE IF EXISTS `personage`;
 CREATE TABLE `personage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `actor_id` int(11) DEFAULT NULL,
-  `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `picture` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description_picture` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(64) NOT NULL,
+  `picture` varchar(128) DEFAULT NULL,
+  `description_picture` longtext DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
   `credit_order` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_E60A6EC510DAF24A` (`actor_id`),
@@ -599,12 +610,12 @@ DROP TABLE IF EXISTS `question`;
 CREATE TABLE `question` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `quizz_id` int(11) DEFAULT NULL,
-  `title` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `answer1` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `answer2` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `answer3` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `answer4` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `good_answer` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` longtext NOT NULL,
+  `answer1` longtext NOT NULL,
+  `answer2` longtext NOT NULL,
+  `answer3` longtext NOT NULL,
+  `answer4` longtext NOT NULL,
+  `good_answer` longtext NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_B6F7494EBA934BCD` (`quizz_id`),
   CONSTRAINT `FK_B6F7494EBA934BCD` FOREIGN KEY (`quizz_id`) REFERENCES `quizz` (`id`)
@@ -638,7 +649,7 @@ INSERT INTO `question` (`id`, `quizz_id`, `title`, `answer1`, `answer2`, `answer
 DROP TABLE IF EXISTS `quizz`;
 CREATE TABLE `quizz` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -653,8 +664,8 @@ CREATE TABLE `quote` (
   `episode_id` int(11) DEFAULT NULL,
   `personage_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `text` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rating` smallint(6) DEFAULT NULL,
+  `text` longtext NOT NULL,
+  `rating` float DEFAULT NULL,
   `validated` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_6B71CBF4362B62A0` (`episode_id`),
@@ -666,10 +677,10 @@ CREATE TABLE `quote` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `quote` (`id`, `episode_id`, `personage_id`, `user_id`, `text`, `rating`, `validated`) VALUES
-(1,	1,	1,	NULL,	'Hé ben, si un jour j\'oublie que je suis boniche, vous serez gentil de me le rappeler !',	0,	0),
-(2,	2,	1,	NULL,	'Si Monsieur et Madame préfèrent s\'envoyer des fions dans l\'intimité, je peux aussi me retirer.',	0,	0),
-(3,	3,	1,	NULL,	'(À Arthur et à Mevanwi ensemble dans leur lit) Entre le calme plat du temps de Madame et la guérilla de cette nuit, je me permets de dire à Monsieur que Monsieur n\'a pas bien le sens de la mesure. Monsieur est en dents de scie...',	0,	0),
-(4,	4,	1,	NULL,	'(À Arthur au sujet de Mevanwi) Je dois avouer que la chose a du bon, si c\'est pour m\'éviter la vue de la grande décarade, le défilé des nouvelles têtes, la parade des amoureuses à calcul, les poids lourds de la jambe légère, le festival de la morue, en somme...',	0,	0),
+(1,	1,	1,	NULL,	'Hé ben, si un jour j\'oublie que je suis boniche, vous serez gentil de me le rappeler !',	1,	0),
+(2,	2,	1,	NULL,	'Si Monsieur et Madame préfèrent s\'envoyer des fions dans l\'intimité, je peux aussi me retirer.',	3.3,	0),
+(3,	3,	1,	NULL,	'(À Arthur et à Mevanwi ensemble dans leur lit) Entre le calme plat du temps de Madame et la guérilla de cette nuit, je me permets de dire à Monsieur que Monsieur n\'a pas bien le sens de la mesure. Monsieur est en dents de scie...',	1.8,	0),
+(4,	4,	1,	NULL,	'(À Arthur au sujet de Mevanwi) Je dois avouer que la chose a du bon, si c\'est pour m\'éviter la vue de la grande décarade, le défilé des nouvelles têtes, la parade des amoureuses à calcul, les poids lourds de la jambe légère, le festival de la morue, en somme...',	4.02,	0),
 (5,	5,	2,	NULL,	'Quand on veut être sûr de son coup, mon petit bonhomme, on plante des carottes, on ne joue pas les chefs d\'État !',	0,	0),
 (6,	5,	2,	NULL,	'(S\'adressant au roi Loth) Excusez-moi, est-ce qu\'à un seul moment, j\'aurais par mégarde donné le moindre signe de vouloir discuter avec vous?',	0,	0),
 (7,	5,	2,	NULL,	'Vous êtes une gigantesque tarlouze.',	0,	0),
@@ -2216,26 +2227,27 @@ INSERT INTO `rate` (`id`, `quote_id`, `user_id`, `rating`) VALUES
 DROP TABLE IF EXISTS `season`;
 CREATE TABLE `season` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `description` longtext DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `season` (`id`, `title`) VALUES
-(1,	'Livre I'),
-(2,	'Livre II'),
-(3,	'Livre III'),
-(4,	'Livre IV'),
-(5,	'Livre V'),
-(6,	'Livre VI'),
-(7,	'Pilote');
+INSERT INTO `season` (`id`, `title`, `description`) VALUES
+(1,	'Livre I',	'Le château de Kaamelott est achevé, la cour est établie, les choses sérieuses peuvent commencer. Une grande table ronde est construite, autour de laquelle les chevaliers se réuniront pour organiser la Quête du Graal, diriger le royaume, narrer leurs aventures victorieuses pour la gloire des dieux et du peuple. Tous les éléments sont réunis pour mener à bien la Quête. Du moins en théorie, car en pratique, le roi Arthur réalise bien vite que ceux qui l’entourent, s’ils ne manquent pas de motivation, ne vont pas toujours dans le même sens que lui, ni à la même vitesse.'),
+(2,	'Livre II',	'Les chevaliers sont bien installés dans leurs rôles, le gouvernement est en place et stable, le royaume est régulièrement sous la menace d’incursions barbares, mais l’unification des clans permet à l’armée de repousser les tentatives les unes après les autres. Le roi Arthur fait du mieux qu’il peut pour composer avec l’équipe disparate et passablement incompétente qui est supposée le seconder dans sa tâche ; les quêtes s’accomplissent avec plus ou moins de succès. Mais les prémices d’éléments dévastateurs font leur apparition : les relations deviennent de plus en plus tumultueuses entre le roi et son fidèle second, Lancelot, et la vie amoureuse du roi Arthur, peu flamboyante, ne l’aide pas à surmonter son désespoir chronique.'),
+(3,	'Livre III',	'La situation ne s\'arrange guère entre le roi Arthur et Lancelot. Le premier ne supporte plus que difficilement le rigorisme et l’élitisme du second, qui répond par le mépris à la souplesse dont fait preuve — selon lui — le roi dans sa façon de gouverner. Pour ne rien arranger, le roi Arthur s’éprend de dame Mevanwi, la femme du chevalier Karadoc ; commence alors une cour discrète et illicite, au regard de la loi et des dieux.'),
+(4,	'Livre IV',	'L’irréparable s’est produit : Lancelot est entré en rébellion. Il a définitivement quitté la cour de Kaamelott et la Table ronde pour mener sa propre Quête du Graal, à sa manière et en totale opposition avec Arthur, sans toutefois entreprendre une action militaire à son encontre. Pire, la passion adultère d’Arthur pour dame Mevanwi a eu une conséquence imprévue : la reine Guenièvre a, elle aussi, déserté et rejoint son amant Lancelot dans le reniement, ce qui vaut à la Dame du Lac d\'être bannie par les dieux. Soutenue militairement et financièrement par le roi Loth, toujours prêt à la traîtrise, la déchirure s’étend à tout le gouvernement, les chevaliers devant prendre parti pour le renégat ou le roi tout en acceptant son mariage interdit avec dame Mevanwi.'),
+(5,	'Livre V',	'La faute est réparée, Arthur s’est séparé de dame Mevanwi et a libéré Guenièvre de l’emprise de Lancelot, refaisant d’elle sa reine. Mais la situation ne peut plus guère s’améliorer. Lancelot a complètement disparu, et si certains le disaient fou et prétendent que la fuite de son amante l’a poussé à mettre fin à ses jours, Arthur est durement marqué par la disparition de l’homme qui a autrefois été son plus fidèle allié et ami. Lorsque sa mère et ses beaux-parents réclament du roi qu’il replante Excalibur dans le rocher pour rappeler au peuple qu’il est l’élu, Arthur s’exécute à contre-cœur avant de réaliser qu’une occasion s’offre à lui de changer le cours déplorable qu’a pris son existence.'),
+(6,	'Livre VI',	'Quinze ans avant les événements narrés dans la série Kaamelott. Arthur n’est encore qu’un simple soldat de la milice urbaine romaine ; plutôt solitaire, sentimental, guère ambitieux et sans grand avenir, il n’attend pas grand-chose de sa vie au sein d’un empire sur le déclin, mais les dieux et le Sénat en ont décidé autrement : le milicien anonyme va s’élever, jusqu’à devenir une des figures légendaires les plus célèbres de l’histoire. Le dernier épisode, Dies Iræ, reprend le cours de l\'histoire là où elle s\'était arrêtée à la fin du Livre V.'),
+(7,	'Pilote',	NULL);
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `avatar_id` int(11) DEFAULT NULL,
-  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:json)',
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(180) NOT NULL,
+  `roles` longtext NOT NULL COMMENT '(DC2Type:json)',
+  `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),
   KEY `IDX_8D93D64986383B10` (`avatar_id`),
@@ -2246,8 +2258,10 @@ INSERT INTO `user` (`id`, `avatar_id`, `email`, `roles`, `password`) VALUES
 (1,	5,	'clara@oclock.fr',	'[\"ROLE_USER\"]',	'$2y$13$713hTlzabbG6VB2tZHbL9.CHJ8Ercem6A/rc43jbrJgIafalv0Ngy'),
 (2,	2,	'edith@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$EJflpolNjmmWsu7O1kJDr.kwxeEITNdhKqCMrifbaqU1aKbQhu4jK'),
 (3,	3,	'alexandre@oclock.fr',	'[\"ROLE_MANAGER\"]',	'$2y$13$gbyvnOBRgXAZSveEFHNKt.nHPZOuJOVgacqlZYxaPr/WxQa6uqY3S'),
-(4,	1,	'aurelie@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$YxK.Ahkw1U75SIyj59C0ZeOU5t3w9CYNBbpl90ADZKoD0Lqu7VPk.'),
+(4,	3,	'aurelie@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$HRKAy8LlGDpJeQSG/J4WV.mIdAsPybgdRyTJ14DtbGJ0ikZMZfeJG'),
 (5,	4,	'celine@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$256HlYhvUVLNGJqUyDLPzusE/ARsDVyYT0WzMgiggOCEV8IRd9mqW'),
-(6,	4,	'angele@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$qz8atJxvs/1BjYpZccakD.luSkyN7XQFXz1WsBcuSoRbx4OOigcn6');
+(6,	4,	'angele@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$qz8atJxvs/1BjYpZccakD.luSkyN7XQFXz1WsBcuSoRbx4OOigcn6'),
+(9,	1,	'jb@tagada.fr',	'[\"ROLE_MANAGER\"]',	'$2y$13$jzjyzYOcOXgx.0RzwehXXOEScKKc/gY/9P81fepLi8jJunksYAUsS'),
+(10,	1,	'mm@toto.fr',	'[\"ROLE_MANAGER\"]',	'$2y$13$WnRyutd39kpD3VaAPmwp/eM1Tocrf/ICqzazzLqH69eW4BfdlQoua');
 
--- 2023-04-06 19:00:56
+-- 2023-04-12 12:50:55

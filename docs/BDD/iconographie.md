@@ -74,7 +74,7 @@
 
 "GuillaumeBriat.jpg", "Par Photo Béatrice Cruveiller — https://www.guillaume-briat.com/portraits-1, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=124324376"
 
-"AnneGirouard.jpg", "Par r 	Georges Seguin — Cette image a été extraite d&#039;un autre fichier, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=50985197"
+"AnneGirouard.jpg", "Par Georges Seguin — Cette image a été extraite d&#039;un autre fichier, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=50985197"
 
 "GeorgesBeller.jpg", "Par Bernard Grychowski — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=52891773"
 

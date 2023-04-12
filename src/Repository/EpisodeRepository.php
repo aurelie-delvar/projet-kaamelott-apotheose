@@ -39,13 +39,16 @@ class EpisodeRepository extends ServiceEntityRepository
         }
     }
 
-    public function paginationQuery()
+    public function episodePaginationQuery()
     {
        return $this->createQueryBuilder('e')
            ->orderBy('e.id', 'ASC')
            ->getQuery()
        ;
     }
+
+
+
 //    /**
 //     * @return Episode[] Returns an array of Episode objects
 //     */

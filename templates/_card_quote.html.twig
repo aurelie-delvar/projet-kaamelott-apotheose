@@ -1,0 +1,83 @@
+
+{# * pour récuperer la carte quote sur les pages qui en besoin mettre {% include '_card_quote.html.twig' %}  à l'emplacement souhaité #}
+
+<div class="card mb-3">
+    <div class="card-header d-flex justify-content-end">
+
+        <div class="d-flex" style="color: orange;">
+            {% set rating = quote.rating %}
+                    {# round(0,'floor') give the round number whith zero decimal so it give us the number of the full stars #}
+                    {% set biStarFill = rating|round(0, 'floor') %}
+                    {# if rating is a float between an integer+0.5 and the next integer "biStarHalf" #}
+                    {% set biStarHalf = rating - biStarFill >= 0.5 %}
+                    {% set biStar = 5 - biStarFill - (biStarHalf ? 1 : 0) %}
+                    {# {% dump(biStarFill)%}
+                    {% dump(biStarHalf)%}
+                    {% dump(biStar)%} #}
+                    {% for i in 1..5 %}
+                        {% if i <= biStarFill %}
+                            {{ '<i class="bi bi-star-fill"></i>' }}
+                        {% elseif i == biStarFill + 1 and biStarHalf %}
+                            {{ '<i class="bi bi-star-half"></i>' }}
+                        {% else %}
+                            {{ '<i class="bi bi-star"></i>' }}
+                        {% endif %}
+                    {% endfor %}
+            <span class="ps-1">{{ quote.rating }}</span>
+        </div>
+
+    </div>
+
+    <div class="card-body">
+    
+        <blockquote class="blockquote mb-0">
+            <p>"{{ quote.text }}"</p> 
+                <div>
+                {# We check if the user is connected, because if not, he can't put quotes in favorite #}
+                {% if is_granted("ROLE_USER") %}
+                            {% set isFavorite = false %}
+                
+                    {# We loop on the favorites of the quote #}
+                    {% for favoris in quote.favorites %}
+                        {# If there's a match, it means the user has the quote in his favorites #}
+                        {% if favoris.user.id == app.user.id %}
+                            {% set isFavorite = true %}
+                        {% endif %}
+                    {% endfor %}
+                                {# <a href="{{ path('remove_favoris', {id: quote.id}) }}"><i class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></i></a> #}
+                        
+                    {% if isFavorite %}
+                       <a href="{{ path('app_frontoffice_quotes_removeFavorite', {id: quote.id}) }}"  class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></a>
+                    {% else %}
+                       <a href="{{ path('app_frontoffice_quotes_addFavorite', {id: quote.id}) }}" class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></a>
+                    {% endif %}
+
+
+                {% endif %}
+{# 
+                        {% dump(app.user.id) %}
+                        {% dump(favoris.user.id) %}
+
+                         <i class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></i> #}
+
+
+
+
+                        {# <i class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></i> #}
+                        
+                                {# <a href="{{ path('add_favoris', {id: quote.id}) }}"><i class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></i></a> #}
+                       
+                    {# If there are no favorites for the quote, we still want a heart to appear #}
+                    
+                   
+                                {# <a href="{{ path('add_favoris', {id: quote.id}) }}"><i class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></i></a> #}
+
+                  
+                
+                </div>
+            
+            <footer class="blockquote-footer"> {{ quote.personage.name }},<cite title="Source Title"> <strong>{{ quote.episode.season.title }}</strong>, {{ quote.episode.title }}.</cite></footer>
+            
+        </blockquote>
+    </div>
+</div>

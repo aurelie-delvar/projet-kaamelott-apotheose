@@ -23,7 +23,7 @@ class EpisodeController extends AbstractController
     public function browse(EpisodeRepository $episodeRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $episodeRepository->paginationQuery(),
+            $episodeRepository->episodePaginationQuery(),
             $request->query->get('page', 1),
             10
         );
