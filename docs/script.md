@@ -28,6 +28,7 @@ composer require symfony/security-bundle
 
 # pagination
 composer require knplabs/knp-paginator-bundle
+
 bin/console make:auth
 
 # Error templates

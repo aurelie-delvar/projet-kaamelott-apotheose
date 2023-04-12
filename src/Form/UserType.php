@@ -2,17 +2,18 @@
 
 namespace App\Form;
 
-use App\Entity\Avatar;
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\FormBuilderInterface;
+use App\Entity\Avatar;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UserType extends AbstractType
 {
@@ -47,13 +48,28 @@ class UserType extends AbstractType
                             "placeholder" => "votre mot de passe"
                         ],
                         "mapped" => false,
+                        'constraints' => [
+                            new NotBlank(),
+                            new Regex(
+                                "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-+\-]).{8,}$/",
+                                "Le mot de passe doit contenir au minimum 8 caractères, une majuscule, un chiffre et un caractère spécial"
+                            ),
                         
-                    ])
+                        ]
+                        ])
                     ->add('password_confirmed', PasswordType::class, [
                         "attr" => [
                             "placeholder" => "veuillez confirmer le mot de passe"
                         ],
                         "mapped" => false,
+                        'constraints' => [
+                            new NotBlank(),
+                            new Regex(
+                                "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-+\-]).{8,}$/",
+                                "Le mot de passe doit contenir au minimum 8 caractères, une majuscule, un chiffre et un caractère spécial"
+                            ),
+                        
+                        ]
                         
                         ]);  
                 }
@@ -63,7 +79,7 @@ class UserType extends AbstractType
                 'choice_label' => 'name',
                 'label' => "Choix de l'avatar",
                 'expanded' => false,
-                'required' => false
+                // 'required' => false
             ])
         ;
     }
@@ -72,6 +88,9 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'attr' =>[
+                'novalidate' => 'novalidate'
+            ]
             
         ]);
     }
