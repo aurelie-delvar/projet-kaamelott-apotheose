@@ -10,7 +10,7 @@ const urlQuizz = 'http://localhost:8000/api/quizz/' + idPage;
 //console.log(urlQuizz);
 
 function initApp(){
-
+    
     getQuestions();
     
 }
