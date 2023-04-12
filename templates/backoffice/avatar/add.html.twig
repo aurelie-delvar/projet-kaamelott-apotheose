@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Avatar{% endblock %}
+
+{% block body %}
+<main>
+    
+    <div class="main-content">
+        <h1>Créer un nouvel Avatar</h1>
+    </div>
+    
+    <div class="container  ">
+        <a href="{{ path('app_backoffice_avatar_browse') }}" class="btn btn-primary">Retour à la liste</a>
+  
+        {{ include('backoffice/avatar/_form.html.twig') }}
+    </div>
+</main>  
+    
+{% endblock %}

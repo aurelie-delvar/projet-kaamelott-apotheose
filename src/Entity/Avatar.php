@@ -6,6 +6,7 @@ use App\Repository\AvatarRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AvatarRepository::class)
@@ -21,11 +22,13 @@ class Avatar
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank (message= "Ce champ doit être rempli.")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=128)
+     * 
      */
     private $icon;
 
