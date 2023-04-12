@@ -11,8 +11,9 @@ const urlQuizz = 'http://localhost:8000/api/quizz/' + idPage;
 
 function initApp(){
     
-    getQuestions();
-    
+   // getQuestions();
+   
+   showQuestion(0);
 }
 
 initApp();

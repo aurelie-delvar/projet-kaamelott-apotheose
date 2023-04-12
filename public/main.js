@@ -10,6 +10,11 @@ let appContainer = document.getElementById("questions-container");
 let startBtn = document.getElementById("start-btn");
 let resultat = document.getElementById("resultat");
 
+// var questions = new Array();
+
+var questions = {};
+
+
 /*function showQuestion(index){
 
     const questionList = appContainer;
@@ -89,6 +94,18 @@ let resultat = document.getElementById("resultat");
     
 }*/
 
+async function getQuestions() {
+
+    const req = await fetch(`${urlQuizz}`);
+    
+    const quizz = await req.json();
+   const questions = quizz.questions;
+  
+   return questions;
+    
+ //showQuestion(questions[0]);
+  }
+
 function next(){
 	
     if ( current_index+1 == questions.length){
@@ -102,7 +119,7 @@ function next(){
         resultats();
         
     }else{
-        show_quizz((current_index+1));
+        showQuestion((current_index+1));
     }
 }
 
@@ -132,24 +149,26 @@ function compare  (a,b){
  next();
 }
 
-function showQuestion(questions, index){
+async function showQuestion(index){
 	/*nbBonnereponse=0;*/
 	current_index = index;
+   let questions = await this.getQuestions();
+    console.log (questions);
     
-    console.log(questions.title);
+    console.log(questions[index].title);
 	startElement = document.getElementById("start-btn");
 	quizElement = document.getElementById("questions-container");
 	startElement.style.visibility = 'hidden';
 	quizElement.style.visibility = 'visible';
 	
 
-	document.getElementById("title").innerHTML = questions.title;
+	document.getElementById("title").innerHTML = questions[index].title;
 	answers = document.getElementById("answers");
 	answers.innerHTML = "";
-	answers.innerHTML += "<input type='button' value='"+questions.answer1+"' onclick=\"compare(\'"+questions.answer1+"\',\'"+questions.goodAnswer+"\');\" />"; 
-    answers.innerHTML += "<input type='button' value='"+questions.answer2+"' onclick=\"compare(\'"+questions.answer2+"\',\'"+questions.goodAnswer+"\');\" />"; 
-    answers.innerHTML += "<input type='button' value='"+questions.answer3+"' onclick=\"compare(\'"+questions.answer3+"\',\'"+questions.goodAnswer+"\');\" />"; 
-    answers.innerHTML += "<input type='button' value='"+questions.answer4+"' onclick=\"compare(\'"+questions.answer4+"\',\'"+questions.goodAnswer+"\');\" />";
+	answers.innerHTML += "<input type='button' value='"+questions[index].answer1+"' onclick=\"compare(\'"+questions[index].answer1+"\',\'"+questions[index].goodAnswer+"\');\" />"; 
+    answers.innerHTML += "<input type='button' value='"+questions[index].answer2+"' onclick=\"compare(\'"+questions[index].answer2+"\',\'"+questions[index].goodAnswer+"\');\" />"; 
+    answers.innerHTML += "<input type='button' value='"+questions[index].answer3+"' onclick=\"compare(\'"+questions[index].answer3+"\',\'"+questions[index].goodAnswer+"\');\" />"; 
+    answers.innerHTML += "<input type='button' value='"+questions[index].answer4+"' onclick=\"compare(\'"+questions[index].answer4+"\',\'"+questions[index].goodAnswer+"\');\" />";
     
 }
  

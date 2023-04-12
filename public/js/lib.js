@@ -12,7 +12,7 @@ async function getQuestions() {
 
   const questions = quizz.questions;
   
-  showQuestion(questions[0]);
+ // showQuestion(questions[0]);
 
   /*function handleClick() {
   console.log("le joueur a cliqué sur le bouton start");
