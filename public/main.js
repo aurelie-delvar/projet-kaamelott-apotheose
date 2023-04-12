@@ -165,10 +165,10 @@ async function showQuestion(index){
 	document.getElementById("title").innerHTML = questions[index].title;
 	answers = document.getElementById("answers");
 	answers.innerHTML = "";
-	answers.innerHTML += "<input type='button' value='"+questions[index].answer1+"' onclick=\"compare(\'"+questions[index].answer1+"\',\'"+questions[index].goodAnswer+"\');\" />"; 
-    answers.innerHTML += "<input type='button' value='"+questions[index].answer2+"' onclick=\"compare(\'"+questions[index].answer2+"\',\'"+questions[index].goodAnswer+"\');\" />"; 
-    answers.innerHTML += "<input type='button' value='"+questions[index].answer3+"' onclick=\"compare(\'"+questions[index].answer3+"\',\'"+questions[index].goodAnswer+"\');\" />"; 
-    answers.innerHTML += "<input type='button' value='"+questions[index].answer4+"' onclick=\"compare(\'"+questions[index].answer4+"\',\'"+questions[index].goodAnswer+"\');\" />";
+	answers.innerHTML += "<input type='button' class='answer' value='"+questions[index].answer1+"' onclick=\"compare(\'"+questions[index].answer1+"\',\'"+questions[index].goodAnswer+"\');\" />"; 
+    answers.innerHTML += "<input type='button' class='answer' value='"+questions[index].answer2+"' onclick=\"compare(\'"+questions[index].answer2+"\',\'"+questions[index].goodAnswer+"\');\" />"; 
+    answers.innerHTML += "<input type='button' class='answer' value='"+questions[index].answer3+"' onclick=\"compare(\'"+questions[index].answer3+"\',\'"+questions[index].goodAnswer+"\');\" />"; 
+    answers.innerHTML += "<input type='button' class='answer' value='"+questions[index].answer4+"' onclick=\"compare(\'"+questions[index].answer4+"\',\'"+questions[index].goodAnswer+"\');\" />";
     
 }
  
