@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Backoffice;
+namespace App\Controller\Frontoffice;
 
 use App\Repository\QuoteRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -23,7 +23,7 @@ class SearchController extends AbstractController
      */
     public function search( Request $request, QuoteRepository $quoteRepository, PaginatorInterface $paginator): Response
     {
-        $words = $request->request->get("searchBack");
+        $words = $request->request->get("searchFront");
 
         $session = $this->get("session");
 
@@ -46,7 +46,7 @@ class SearchController extends AbstractController
        10
         );
 
-    return $this->render('backoffice/search/index.html.twig', [
+    return $this->render('frontoffice/search/index.html.twig', [
        //'results' => $results
         'pagination' => $pagination,
         'search' => $search

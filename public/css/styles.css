@@ -132,3 +132,13 @@ figcaption {
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
+
+.searchLinks {
+   
+    color:black;
+}
+
+.searchLinks:hover {
+    color:rgb(80, 79, 79);
+    
+}
