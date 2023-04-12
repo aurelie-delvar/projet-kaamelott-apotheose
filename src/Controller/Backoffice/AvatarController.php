@@ -47,7 +47,7 @@ class AvatarController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_avatar_read", methods={"GET"})
+     * @Route("/{id}", name="app_backoffice_avatar_read", methods={"GET"}, requirements={"id"="\d+"})
      */
     public function read(Avatar $avatar): Response
     {
@@ -57,7 +57,7 @@ class AvatarController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_backoffice_avatar_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="app_backoffice_avatar_edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, Avatar $avatar, AvatarRepository $avatarRepository): Response
     {
@@ -77,7 +77,7 @@ class AvatarController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_avatar_delete", methods={"POST"})
+     * @Route("/{id}", name="app_backoffice_avatar_delete", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function delete(Request $request, Avatar $avatar, AvatarRepository $avatarRepository): Response
     {
