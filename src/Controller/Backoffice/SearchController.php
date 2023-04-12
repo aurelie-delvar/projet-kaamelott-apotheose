@@ -23,29 +23,33 @@ class SearchController extends AbstractController
      */
     public function search(Request $request, QuoteRepository $quoteRepository, PaginatorInterface $paginator): Response
     {
-
-    
-      
         $words = $request->request->get("searchBack");
 
-       $results= $quoteRepository->querySearchBack($words);
-        dump($results);
-    
-        // Paginate the results of the query
-        //$pagination = $paginator->paginate(
-        // Doctrine Query, not results
-        //$quoteRepository->querySearchBack($words),
-        // Define the page parameter
-       // $request->query->getInt('page', 1),
-        // Items per page
-      //  10
-  //  );
-   
+        $session = $this->get("session");
 
+        if($words != null) {
+            $session->set("words", $words);
+        }
+
+        $search = $words ?? $session->get("words"); 
+        
+       //$results= $quoteRepository->querySearchBack($words);
+       // dump($results);
+    
+        //Paginate the results of the query
+        $pagination = $paginator->paginate(
+        // Doctrine Query, not results
+        $quoteRepository->querySearchBack($search),
+        // Define the page parameter
+       $request->query->getInt('page', 1),
+        // Items per page
+       10
+        );
 
     return $this->render('backoffice/search/index.html.twig', [
-       // 'pagination' => $pagination
-        'results' => $results
+       //'results' => $results
+        'pagination' => $pagination,
+        'search' => $search
         
     ]);
 
