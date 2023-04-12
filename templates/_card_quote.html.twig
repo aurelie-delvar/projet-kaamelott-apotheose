@@ -47,7 +47,7 @@
                                 {# <a href="{{ path('remove_favoris', {id: quote.id}) }}"><i class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></i></a> #}
                         
                     {% if isFavorite %}
-                       <i class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></i>
+                       <a href="{{ path('app_frontoffice_quotes_removeFavorite', {id: quote.id}) }}"  class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></a>
                     {% else %}
                        <a href="{{ path('app_frontoffice_quotes_addFavorite', {id: quote.id}) }}" class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></a>
                     {% endif %}

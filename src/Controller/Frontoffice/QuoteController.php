@@ -35,37 +35,5 @@ class QuoteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/favoris/{id}", name="app_frontoffice_quotes_addFavorite", requirements={"id" : "\d+"})
-     */
-    public function addFavorite(QuoteRepository $quoteRepository, $id, FavoriteRepository $favoriteRepository, Request $request, UserInterface $user, EntityManagerInterface $manager): Response
-    {
 
-        $quote = $quoteRepository->find($id);
-
-        if(!$quote) {
-            throw new NotFoundHttpException("Pas de citation trouvée");
-        }
-
-        
-        $user->getUserIdentifier();
-        
-        $newFavorite = new Favorite();
-        $newFavorite->setUser($user);
-        $newFavorite->setQuote($quote);
-
-        $manager->persist($newFavorite);
-
-        $manager->flush();
-
-        $route = $_SERVER['HTTP_REFERER'];
-
-        // dd($newFavorite);
-        //dd ($route);
-        // $essai = $quote->addFavorite($newFavorite);
-
-        // ! https://stackoverflow.com/questions/12369615/serverhttp-referer-missing
-        return $this->redirect($_SERVER['HTTP_REFERER']);
-        // return $this->redirectToRoute("app_home_show", ["id" => $movie->getId(), "slug" => $movie->getSlug()]);
-    }
 }
