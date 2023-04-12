@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Backoffice;
+namespace App\Controller\Frontoffice;
 
 use App\Repository\QuoteRepository;
 use Knp\Component\Pager\PaginatorInterface;
