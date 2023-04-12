@@ -46,8 +46,8 @@ class QuoteRepository extends ServiceEntityRepository
         $sql = "SELECT quote.text, quote.rating, personage.name , episode.title AS titleEpisode, season.title AS titleSeason
         FROM quote
         JOIN personage ON quote.personage_id = personage.id
-        JOIN episode ON quote.episode_id = episode_id
-        JOIN season ON episode.season_id = season_id
+        JOIN episode ON quote.episode_id = episode.id
+        JOIN season ON episode.season_id = season.id
         ORDER BY RAND() 
         LIMIT 1";
         
@@ -98,7 +98,7 @@ class QuoteRepository extends ServiceEntityRepository
         OR season.title LIKE '%$words%'
         ORDER BY personage.name" ;
 
-        //TODO: résoudre le problème avec la requete SQL qui  utilise trop de ressources.
+    
         
         $doctrine = $this->getEntityManager()->getConnection();
         $statement = $doctrine->prepare($sql);
@@ -112,7 +112,7 @@ class QuoteRepository extends ServiceEntityRepository
         $queryBuilder =$this->createQueryBuilder('q');
         $queryBuilder
         ->select('DISTINCT q.text', 'p.name', 'e.title AS titleEpisode', 's.title AS titleSeason')
-    //->from( 'Quote','q')
+    
     ->leftJoin('q.personage', 'p')
     ->leftJoin('q.episode', 'e')
     ->leftJoin('e.season', 's')

@@ -21,7 +21,7 @@ class SearchController extends AbstractController
      * 
      * @return Response
      */
-    public function search(Request $request, QuoteRepository $quoteRepository, PaginatorInterface $paginator): Response
+    public function search( Request $request, QuoteRepository $quoteRepository, PaginatorInterface $paginator): Response
     {
 
     
