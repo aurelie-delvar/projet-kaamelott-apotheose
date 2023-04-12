@@ -5,11 +5,11 @@
 {% block body %}
 <main>
     <div class="main-content">
-    <h1>Résultats de {{ search }} classés par personnage</h1>
+    <h1>Résultats de  " {{ search }} " classés par nom du personnage</h1>
     </div>
 
      <div class="container  ">
-     <a href="{{ path('app_backoffice_home') }}" class="btn btn-primary">Retour à l'accueil</a>
+     
 
     <table class="table table-striped">
         <thead>
@@ -27,15 +27,12 @@
             <tr>
                 
                
-                <td>{{ quote.name }}</td> 
+                <td><a href="{{ path('app_frontoffice_personage_read', {'id': quote.idPersonage}) }}" class="searchLinks">{{ quote.name }}</a></td> 
                  <td>{{quote.text|slice(0, 150) }} [...]</td>
                 <td>{{ quote.titleEpisode }}</td>
-                <td>{{ quote.titleSeason }}</td> 
+                <td><a href="{{ path('app_frontoffice_season_read', {'id': quote.idSeason}) }}" class="searchLinks">{{ quote.titleSeason }}</a></td> 
                 
-               {#  <td>
-                    <a href="{{ path('app_backoffice_personage_read', {'id': personage.id}) }}"class="btn btn-success" >voir</a>
-                    <a href="{{ path('app_backoffice_personage_edit', {'id': personage.id}) }}" class="btn btn-warning">modifier</a>
-                </td> #}
+                
             </tr>
         {% else %}
             <tr>

@@ -111,7 +111,7 @@ class QuoteRepository extends ServiceEntityRepository
         
         $queryBuilder =$this->createQueryBuilder('q');
         $queryBuilder
-        ->select('DISTINCT q.text', 'p.name', 'e.title AS titleEpisode', 's.title AS titleSeason')
+        ->select('DISTINCT q.text', 'q.id', 'p.name', 'p.id AS idPersonage', 'e.title AS titleEpisode', 'e.id AS idEpisode', 's.id AS idSeason', 's.title AS titleSeason')
     
     ->leftJoin('q.personage', 'p')
     ->leftJoin('q.episode', 'e')
