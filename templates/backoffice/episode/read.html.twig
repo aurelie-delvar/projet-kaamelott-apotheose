@@ -27,10 +27,11 @@
             </tr>
         </tbody>
     </table>
-   </div>
-</main>    
+   
  
     <a href="{{ path('app_backoffice_episode_edit', {'id': episode.id}) }}" class="btn btn-warning">Modifier</a>
 
     {{ include('backoffice/episode/_delete_form.html.twig') }}
+    </div>
+</main>    
 {% endblock %}

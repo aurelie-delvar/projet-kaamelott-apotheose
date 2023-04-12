@@ -5,11 +5,11 @@
 {% block body %}
 <main>
     <div class="main-content">
-        <h1>Create new Episode</h1>
+        <h1>Créer un nouvel épisode</h1>
     </div>  
     <div class="container  ">
-    <a href="{{ path('app_backoffice_episode_browse') }}" class="btn btn-primary">retour à la liste</a>
-    {{ include('backoffice/episode/_form.html.twig') }}
+        <a href="{{ path('app_backoffice_episode_browse') }}" class="btn btn-primary">retour à la liste</a>
+        {{ include('backoffice/episode/_form.html.twig') }}
     </div>
 </main>    
 {% endblock %}
