@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - {{ quizz.title }}{% endblock %}
+
+{% block body %}
+
+<main class="main">
+
+    <h2 class="main__item">Kaamel'O'tt {{ quizz.title }}</h2>
+    <div id="app-container">
+        <button id="start-btn">Start</button>
+        <button id="score-container">Score: 0</button>        
+        
+        <div id="questions-container">
+            <div id="question">
+                <h4 id="title"></h4>
+                <div id="answers"></div> 
+            </div>
+        </div>
+        <div id="resultat">
+            <div id="score"></div>
+            <div id="againButton"></div>
+        </div>
+        
+    </div>
+    </div>
+
+</main>
+
+{% endblock %}    

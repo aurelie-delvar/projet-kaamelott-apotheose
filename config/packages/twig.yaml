@@ -3,6 +3,7 @@ twig:
     form_themes: ['bootstrap_5_layout.html.twig']
     globals:
         seasonsList: '@App\Twig\SeasonsExtension'
+        quizzsList: '@App\Twig\QuizzsExtension'
 when@test:
     twig:
         strict_variables: true

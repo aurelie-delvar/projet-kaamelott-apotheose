@@ -23,6 +23,9 @@ class QuizzType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Quizz::class,
+            'attr' => [
+                'novalidate' => 'novalidate', // desactive the html5 validation
+            ]
         ]);
     }
 }

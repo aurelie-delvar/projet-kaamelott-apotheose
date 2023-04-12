@@ -12,12 +12,11 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {% if app.user %}
-                
                     <img src="{{asset('img/' ~ app.user.avatar.icon)}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     <span>{{app.user.email}}</span>
                 {% else %}
+                    <img src="{{ asset('img/icone.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     <span>Anonyme</span>
-                    <i class="bi bi-person-square"></i>
                 {% endif %}
                 </a>
                 <ul class="dropdown-menu">
@@ -63,6 +62,10 @@
 
             <li class="nav-item">
             <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_user_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_user_browse') }}">Utilisateurs</a>
+            </li>  
+
+            <li class="nav-item">
+            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_actors_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_actors_browse') }}">Acteurs</a>
             </li>      
 
         </ul>
