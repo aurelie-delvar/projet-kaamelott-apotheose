@@ -47,7 +47,7 @@ class QuizzController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_quizz_read", methods={"GET"},requirements={"id"="\d+"})
+     * @Route("/{id}", name="app_backoffice_quizz_read", methods={"GET"}, requirements={"id"="\d+"})
      */
     public function read(Quizz $quizz): Response
     {

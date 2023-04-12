@@ -47,7 +47,7 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_author_read", methods={"GET"})
+     * @Route("/{id}", name="app_backoffice_author_read", methods={"GET"}, requirements={"id"="\d+"})
      */
     public function read(Author $author): Response
     {
@@ -57,7 +57,7 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_backoffice_author_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="app_backoffice_author_edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, Author $author, AuthorRepository $authorRepository): Response
     {
@@ -77,7 +77,7 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_author_delete", methods={"POST"})
+     * @Route("/{id}", name="app_backoffice_author_delete", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function delete(Request $request, Author $author, AuthorRepository $authorRepository): Response
     {
