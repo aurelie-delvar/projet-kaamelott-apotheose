@@ -12,7 +12,7 @@
   }
     
   #score-container {
-    position: fixed;
+    position: sticky;
     right: 40px;
     top: 40px;
     display: flex;
