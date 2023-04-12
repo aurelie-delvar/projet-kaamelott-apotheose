@@ -46,8 +46,8 @@ class QuoteRepository extends ServiceEntityRepository
         $sql = "SELECT quote.text, quote.rating, personage.name , episode.title AS titleEpisode, season.title AS titleSeason
         FROM quote
         JOIN personage ON quote.personage_id = personage.id
-        JOIN episode ON quote.episode_id = episode_id
-        JOIN season ON episode.season_id = season_id
+        JOIN episode ON quote.episode_id = episode.id
+        JOIN season ON episode.season_id = season.id
         ORDER BY RAND() 
         LIMIT 1";
         
