@@ -10,34 +10,30 @@
 <div class="row mb-lg-4 justify-content-center">
     <h2 class="main__item">{{ season.title }}</h2>
     <div class="col-lg-8 text-center">
-{# ! rajouter descriptif dans BDD #}
-<p>{{ season.description }}</p>
 
+      <p>{{ season.description }}</p>
 
-
-<div class="accordion accordion-flush text-bg-secondary" id="accordionFlushExample">
- 
-               
+      <div class="accordion accordion-flush text-bg-secondary" id="accordionFlushExample">  
        
-  <div class="accordion-item">
-  {% for episode in season.episodes %}
-    <p class="accordion-header ">
-      <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-~{{ episode.id }}" aria-expanded="false" aria-controls="flush-~{{ episode.id }}">
-         <span class="title" > {{ episode.title }} </span><cite title="Source title">, écrit par  {{ episode.author.name }}.</cite> 
-      </button>
-    </p>
-    <div id="flush-~{{ episode.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-            {% for quote in episode.quotes %}
-                {% include '_card_quote.html.twig' %}        
-            {% endfor %}
+        <div class="accordion-item">
+              {% for episode in season.episodes %}
+                <p class="accordion-header ">
+                  <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-~{{ episode.id }}" aria-expanded="false" aria-controls="flush-~{{ episode.id }}">
+                    <span class="title" > {{ episode.title }} </span><cite title="Source title">, écrit par  {{ episode.author.name }}.</cite> 
+                  </button>
+                </p>
+                <div id="flush-~{{ episode.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                        {% for quote in episode.quotes %}
+                            {% include '_card_quote.html.twig' %}        
+                        {% endfor %}
+                  </div>
+                </div>
+              {% endfor %} 
+    
+        </div>
+  
       </div>
-    </div>
-     {% endfor %} 
-  
-  </div>
-  
-</div>
         
     </div>
 
@@ -59,7 +55,7 @@
 
             </div>
 
-</div> 
+    </div> 
 </main>
 
 {% endblock %}
