@@ -64,28 +64,27 @@ class FavoriteController extends AbstractController
     /**
      * @Route("/favoris/delete/{id}", name="app_frontoffice_quotes_removeFavorite", requirements={"id" : "\d+"})
      */
-    public function removeFavorite( $id, FavoriteRepository $favoriteRepository, Request $request, UserInterface $user, EntityManagerInterface $manager): Response
+    public function removeFavorite($id, FavoriteRepository $favoriteRepository, Request $request, UserInterface $user, EntityManagerInterface $manager): Response
     {
 
         // $quote = $quoteRepository->find($id);
         
         $favoris = $favoriteRepository->find($id);
-        // dd($favoris);
         // if(!$quote) {
         //     throw new NotFoundHttpException("Pas de citation trouvée");
         // }
 
-        // $user->getUserIdentifier();
+        $user->getUserIdentifier();
         // $newFavorite = new Favorite();
-        // $newFavorite->setUser($user);
+        $favoris->setUser($user);
         // $newFavorite->setQuote($quote);
-        // $favoriteRepository->remove($favoris);
+        $favoriteRepository->remove($favoris,true);
         
         
 
         // $manager->persist($favoris);
 
-        $manager->flush();
+        // $manager->flush();
 
         $route = $_SERVER['HTTP_REFERER'];
         // dd($request);

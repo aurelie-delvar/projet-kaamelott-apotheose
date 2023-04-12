@@ -19,9 +19,6 @@
                     {# if rating is a float between an integer+0.5 and the next integer "biStarHalf" #}
                     {% set biStarHalf = rating - biStarFill >= 0.5 %}
                     {% set biStar = 5 - biStarFill - (biStarHalf ? 1 : 0) %}
-                    {# {% dump(biStarFill)%}
-                    {% dump(biStarHalf)%}
-                    {% dump(biStar)%} #}
                     {% for i in 1..5 %}
                         {% if i <= biStarFill %}
                             {{ '<i class="bi bi-star-fill"></i>' }}
@@ -61,7 +58,7 @@
             <h5 class="card-title">les Dix Dernières Citations</h5>
             {% for key, quote in last10Quotes %}
              {# TODO: GERER LES PROPRIETES NULLES POUR UN AJOUT DE CITATION #}
-                {% include '_card_quote.html.twig' %}
+                {# {% include '_card_quote.html.twig' %} #}
             {% endfor %}
         </div>
     </div>

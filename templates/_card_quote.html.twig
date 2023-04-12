@@ -11,9 +11,6 @@
                     {# if rating is a float between an integer+0.5 and the next integer "biStarHalf" #}
                     {% set biStarHalf = rating - biStarFill >= 0.5 %}
                     {% set biStar = 5 - biStarFill - (biStarHalf ? 1 : 0) %}
-                    {# {% dump(biStarFill)%}
-                    {% dump(biStarHalf)%}
-                    {% dump(biStar)%} #}
                     {% for i in 1..5 %}
                         {% if i <= biStarFill %}
                             {{ '<i class="bi bi-star-fill"></i>' }}
@@ -33,6 +30,7 @@
         <blockquote class="blockquote mb-0">
             <p>"{{ quote.text }}"</p> 
                 <div>
+                
                 {# We check if the user is connected, because if not, he can't put quotes in favorite #}
                 {% if is_granted("ROLE_USER") %}
                             {% set isFavorite = false %}
@@ -44,19 +42,22 @@
                             {% set isFavorite = true %}
                         {% endif %}
                     {% endfor %}
-                                {# <a href="{{ path('remove_favoris', {id: quote.id}) }}"><i class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></i></a> #}
-                        
+                    
+                    
                     {% if isFavorite %}
-                       <a href="{{ path('app_frontoffice_quotes_removeFavorite', {id: quote.id}) }}"  class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></a>
+                    {% for fav in favoris.getFavoris|slice(0, 1) %}
+                       <a href="{{ path('app_frontoffice_quotes_removeFavorite', {id: fav.id}) }}"  class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></a>
+                    {% endfor %}
                     {% else %}
                        <a href="{{ path('app_frontoffice_quotes_addFavorite', {id: quote.id}) }}" class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></a>
+                    
                     {% endif %}
+                    
 
 
                 {% endif %}
+                
 {# 
-                        {% dump(app.user.id) %}
-                        {% dump(favoris.user.id) %}
 
                          <i class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></i> #}
 

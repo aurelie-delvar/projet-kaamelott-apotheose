@@ -3,6 +3,8 @@ twig:
     form_themes: ['bootstrap_5_layout.html.twig']
     globals:
         seasonsList: '@App\Twig\SeasonsExtension'
+        favoris: '@App\Twig\FavorisExtension'
+        quote: '@App\Twig\QuoteExtension'
 when@test:
     twig:
         strict_variables: true
