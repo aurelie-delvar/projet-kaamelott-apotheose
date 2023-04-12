@@ -70,7 +70,7 @@ class PersonageController extends AbstractController
     }
 
     /**
-     * @Route("/personage/{id}/edit", name="app_backoffice_personage_edit", methods={"GET", "POST"})
+     * @Route("/personage/{id}/edit", name="app_backoffice_personage_edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, Personage $personage, PersonageRepository $personageRepository): Response
     {
@@ -93,7 +93,7 @@ class PersonageController extends AbstractController
     }
 
     /**
-     * @Route("/personage/{id}", name="app_backoffice_personage_delete", methods={"POST"})
+     * @Route("/personage/{id}", name="app_backoffice_personage_delete", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function delete(Request $request, Personage $personage, PersonageRepository $personageRepository): Response
     {

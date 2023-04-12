@@ -85,7 +85,7 @@ class QuoteRepository extends ServiceEntityRepository
     /**
     * Query for the paginator. Search results of the backoffice.
     */
-    public function querySearchBack($words)
+    public function querySearch($words)
     {
        /*  $sql = "SELECT DISTINCT quote.text, personage.name, episode.title AS titleEpisode, season.title AS titleSeason
         FROM quote

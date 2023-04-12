@@ -17,7 +17,7 @@ class SearchController extends AbstractController
     /**
      * résultat de recherche
      *
-     * @Route("/backoffice/search",name="app_backoffice_search", methods={"GET", "POST"})
+     * @Route("/frontoffice/search",name="app_frontoffice_search", methods={"GET", "POST"})
      * 
      * @return Response
      */
