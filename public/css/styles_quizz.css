@@ -2,78 +2,156 @@
   styles-quizz.css
 */
 
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+
+
 #questions-container {
+ 
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+
+
+#question {
+
+  background-color: white;
+  position: relative;
+  width: 32rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid rgba(13, 110, 221, 0.712);
+  border-radius:1rem ;
+  
+
+ 
+}
+
+  #answers {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-template-rows: repeat(3, max-content);
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
+
+    grid-template-columns: repeat(2, 6fr);
+    grid-template-rows: repeat(2, 6fr);
+    gap: 1rem 2rem;
+    margin-bottom: 1.5rem;
+    
+    align-content: stretch;
+    
+  }
+  
+  .answer {
+    
+    word-wrap: break-word;
+    border: none;
+    font-size: 1.5rem;
+    background: none;
+    padding:  1rem;
+    border: 1px solid rgba(13, 110, 221, 0.712);
+    outline: none;
+    border-radius: 1rem;
+    cursor: pointer;
+   
+  }
+
+  .answer:hover {
+    background: rgba(13, 110, 221, 0.712);
+    color: white;
+    transition: all 200ms ease-out;
   }
     
   #score-container {
     position: sticky;
-    right: 40px;
-    top: 40px;
+    right: 2.5rem;
+    top: 2.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 1.5rem;
     font-weight: bold;
     color: white;
-    background: rgb(13, 110, 221);
-    padding: 10px 15px;
-    min-width: 100px;
-    min-height: 45px;
-    border-radius: 10px;
+    background: rgb(77, 112, 153);
+    padding: 1rem ;
+    min-width: 6.25rem;
+    min-height: 3rem;
+    border-radius: 1rem;
   }
     
   #app-title {
     padding-top: 2rem;
     margin-top: 0;
-    margin-bottom: 40px;
-    margin: 0 0 40px 20px;
+    margin-bottom: 2.5rem;
+    margin: 0 0 2.5rem 1.5rem;
     text-align: center;
     font-weight: bold;
   }
   
-  .question {
-    background-color: white;
-  }
-    
-  .popup {
-    display: none;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: 550px;
-    height: max-content;
-    z-index: 1000;
-    transition: all 400ms ease-out;
-  }
-  
-  .popup.active {
-    display: inline-block;
-  }
-  
-  .popup.fadeout {
-    opacity: 0;
-    transform: all 250ms ease-out 500ms;
-  }
+
+
   
   #start-btn {
     position: sticky;
-    right: 40px;
-    top: 40px;
+    right: 2.5rem;
+    top: 2.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 1.5rem;
     font-weight: bold;
     color: white;
     background: green;
-    padding: 10px 15px;
-    min-width: 100px;
-    min-height: 45px;
-    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    min-width: 6.25rem;
+    min-height: 3rem;
+    border-radius: 1rem;
   }
+
+  @media screen and (max-width: 550px) {
+    
+    #title {
+        font-size : 1rem;
+    }
+
+    #question {
+
+  
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: max-content; 
+     
+    }
+
+    #answers {
+      
+    position:none;
+  
+      grid-template-columns: repeat(1, auto);
+     
+      gap: 1rem 2rem;
+      margin-bottom: 1.5rem;
+      
+    }
+    .answer {
+      
+      
+      font-size: 1rem;
+     
+    }
+   
+  }
+
+ 

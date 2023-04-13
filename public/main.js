@@ -26,8 +26,10 @@ async function getQuestions() {
 
 }
 
-function next(){
+
+async function next(){
 	
+	let questions = await this.getQuestions();
     if ( current_index+1 == questions.length){
         if( score <=1){
             alert(`Vous avez ${score} bonne réponse sur ${questions.length}`);
@@ -85,10 +87,10 @@ async function showQuestion(index){
 	document.getElementById("title").innerHTML = questions[index].title;
 	answers = document.getElementById("answers");
 	answers.innerHTML = "";
-	answers.innerHTML += "<input type='button' class='answer' value='"+questions[index].answer1+"' onclick=\"compare(\'"+questions[index].answer1+"\',\'"+questions[index].goodAnswer+"\');\" />"; 
-    answers.innerHTML += "<input type='button' class='answer' value='"+questions[index].answer2+"' onclick=\"compare(\'"+questions[index].answer2+"\',\'"+questions[index].goodAnswer+"\');\" />"; 
-    answers.innerHTML += "<input type='button' class='answer' value='"+questions[index].answer3+"' onclick=\"compare(\'"+questions[index].answer3+"\',\'"+questions[index].goodAnswer+"\');\" />"; 
-    answers.innerHTML += "<input type='button' class='answer' value='"+questions[index].answer4+"' onclick=\"compare(\'"+questions[index].answer4+"\',\'"+questions[index].goodAnswer+"\');\" />";
+	answers.innerHTML += "<button type='submit' class='answer' value='"+questions[index].answer1+"' onclick=\"compare(\'"+questions[index].answer1+"\',\'"+questions[index].goodAnswer+"\');\" > "+questions[index].answer1+"</button>"; 
+    answers.innerHTML += "<button type='submit' class='answer' value='"+questions[index].answer2+"' onclick=\"compare(\'"+questions[index].answer2+"\',\'"+questions[index].goodAnswer+"\');\" > "+questions[index].answer2+" </button>"; 
+    answers.innerHTML += "<button type='submit' class='answer' value='"+questions[index].answer3+"' onclick=\"compare(\'"+questions[index].answer3+"\',\'"+questions[index].goodAnswer+"\');\" > "+questions[index].answer3+"</button>"; 
+    answers.innerHTML += "<button type='submit' class='answer' value='"+questions[index].answer4+"' onclick=\"compare(\'"+questions[index].answer4+"\',\'"+questions[index].goodAnswer+"\');\" > "+questions[index].answer4+"</button>";
     
 }
  
