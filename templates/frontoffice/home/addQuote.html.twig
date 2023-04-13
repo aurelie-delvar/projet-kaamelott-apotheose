@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Ajouter une citation{% endblock %}
+
+{% block body %}
+<main>
+
+    <div class="main-content">
+        <h1>Proposer une citation</h1>
+    </div>  
+
+    <div class="container">
+
+        <a href="{{ path('default') }}" class="btn btn-primary">Retour à l'accueil</a>
+
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-success">{{ button_label|default('Valider') }}</button> 
+        {{ form_end(form) }}
+
+    </div>
+
+</main>    
+{% endblock %}
