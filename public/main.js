@@ -15,6 +15,7 @@ let resultatContainer = document.getElementById("resultat-container");
 let resultat = document.getElementById("resultat");
 let scoreDiv = document.getElementById("score");
 let	againDiv = document.getElementById("again");
+let titleElement = document.getElementById("title");
 
 
 // var questions = Object;
@@ -50,7 +51,8 @@ async function resultats(){
 	let questions = await this.getQuestions();
 	
 	scoreDiv.innerHTML = "";
-
+	titleElement.innerHTML="";
+	answers.innerHTML="";
 	quizElement.style.visibility = 'hidden';
 
 	resultatContainer.style.visibility = 'visible';
@@ -82,7 +84,7 @@ async function showQuestion(index){
 	resultatContainer.style.visibility = 'hidden';
 	quizElement.style.visibility = 'visible';
 	
-	document.getElementById("title").innerHTML = questions[index].title;
+	titleElement.innerHTML = questions[index].title;
 
 	answers.innerHTML = "";
 	answers.innerHTML += "<button type='submit' class='answer' value='"+questions[index].answer1+"' onclick=\"compare(\'"+questions[index].answer1+"\',\'"+questions[index].goodAnswer+"\');\" > "+questions[index].answer1+"</button>"; 
