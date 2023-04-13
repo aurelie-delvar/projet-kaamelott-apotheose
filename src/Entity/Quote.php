@@ -49,20 +49,21 @@ class Quote
      */
     private $user;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="quote")
-     */
-    private $favorites;
-
+    
     /**
      * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="quote")
      */
     private $rates;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favoriteQuote")
+     */
+    private $users;
+
     public function __construct()
     {
-        $this->favorites = new ArrayCollection();
         $this->rates = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,35 +143,7 @@ class Quote
         return $this;
     }
 
-    /**
-     * @return Collection<int, Favorite>
-     */
-    public function getFavorites(): Collection
-    {
-        return $this->favorites;
-    }
-
-    public function addFavorite(Favorite $favorite): self
-    {
-        if (!$this->favorites->contains($favorite)) {
-            $this->favorites[] = $favorite;
-            $favorite->setQuote($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFavorite(Favorite $favorite): self
-    {
-        if ($this->favorites->removeElement($favorite)) {
-            // set the owning side to null (unless already changed)
-            if ($favorite->getQuote() === $this) {
-                $favorite->setQuote(null);
-            }
-        }
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection<int, Rate>
@@ -197,6 +170,33 @@ class Quote
             if ($rate->getQuote() === $this) {
                 $rate->setQuote(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addFavoriteQuote($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeFavoriteQuote($this);
         }
 
         return $this;

@@ -498,28 +498,6 @@ INSERT INTO `episode` (`id`, `author_id`, `season_id`, `title`, `number`) VALUES
 (373,	1,	4,	'Les pionniers',	40),
 (374,	1,	4,	'Aux Yeux De Tous III',	21);
 
-DROP TABLE IF EXISTS `favorite`;
-CREATE TABLE `favorite` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `quote_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IDX_68C58ED9DB805178` (`quote_id`),
-  KEY `IDX_68C58ED9A76ED395` (`user_id`),
-  CONSTRAINT `FK_68C58ED9A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `FK_68C58ED9DB805178` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `favorite` (`id`, `quote_id`, `user_id`) VALUES
-(55,	1,	2),
-(56,	2,	2),
-(57,	4,	2),
-(58,	765,	2),
-(59,	3,	2),
-(60,	5,	2),
-(61,	764,	2),
-(62,	129,	2);
-
 DROP TABLE IF EXISTS `personage`;
 CREATE TABLE `personage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2264,4 +2242,16 @@ INSERT INTO `user` (`id`, `avatar_id`, `email`, `roles`, `password`) VALUES
 (9,	1,	'jb@tagada.fr',	'[\"ROLE_MANAGER\"]',	'$2y$13$jzjyzYOcOXgx.0RzwehXXOEScKKc/gY/9P81fepLi8jJunksYAUsS'),
 (10,	1,	'mm@toto.fr',	'[\"ROLE_MANAGER\"]',	'$2y$13$WnRyutd39kpD3VaAPmwp/eM1Tocrf/ICqzazzLqH69eW4BfdlQoua');
 
--- 2023-04-12 12:50:55
+DROP TABLE IF EXISTS `user_quote`;
+CREATE TABLE `user_quote` (
+  `user_id` int(11) NOT NULL,
+  `quote_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`quote_id`),
+  KEY `IDX_89B330ACA76ED395` (`user_id`),
+  KEY `IDX_89B330ACDB805178` (`quote_id`),
+  CONSTRAINT `FK_89B330ACA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_89B330ACDB805178` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- 2023-04-13 12:02:54

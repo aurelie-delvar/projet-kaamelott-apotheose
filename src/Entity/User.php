@@ -57,11 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $avatar;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Favorite::class, mappedBy="user")
-     */
-    private $favorites;
-
+    
     /**
      * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="user")
      */
@@ -72,12 +68,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $playQuizz;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Quote::class, inversedBy="users")
+     */
+    private $favoriteQuote;
+
     public function __construct()
     {
         $this->quotes = new ArrayCollection();
-        $this->favorites = new ArrayCollection();
         $this->rates = new ArrayCollection();
         $this->playQuizz = new ArrayCollection();
+        $this->favoriteQuote = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -211,35 +212,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Favorite>
-     */
-    public function getFavorites(): Collection
-    {
-        return $this->favorites;
-    }
-
-    public function addFavorite(Favorite $favorite): self
-    {
-        if (!$this->favorites->contains($favorite)) {
-            $this->favorites[] = $favorite;
-            $favorite->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFavorite(Favorite $favorite): self
-    {
-        if ($this->favorites->removeElement($favorite)) {
-            // set the owning side to null (unless already changed)
-            if ($favorite->getUser() === $this) {
-                $favorite->setUser(null);
-            }
-        }
-
-        return $this;
-    }
+    
 
     /**
      * @return Collection<int, Rate>
@@ -297,6 +270,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $playQuizz->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Quote>
+     */
+    public function getFavoriteQuote(): Collection
+    {
+        return $this->favoriteQuote;
+    }
+
+    public function addFavoriteQuote(Quote $favoriteQuote): self
+    {
+        if (!$this->favoriteQuote->contains($favoriteQuote)) {
+            $this->favoriteQuote[] = $favoriteQuote;
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteQuote(Quote $favoriteQuote): self
+    {
+        $this->favoriteQuote->removeElement($favoriteQuote);
 
         return $this;
     }
