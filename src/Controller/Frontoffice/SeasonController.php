@@ -7,6 +7,7 @@ use App\Repository\SeasonRepository;
 use App\Repository\EpisodeRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,8 +17,9 @@ class SeasonController extends AbstractController
     /**
      * @Route("/livre/{id}", name="app_frontoffice_season_read", requirements={"id":"\d+"})
      */
-    public function read($id, SeasonRepository $seasonRepository, Request $request, PaginatorInterface $paginator, EpisodeRepository $episodeRepository): Response 
+    public function read($id, SeasonRepository $seasonRepository, Request $request, Security $security, EpisodeRepository $episodeRepository): Response 
     {
+        $user = $security->getUser();
         $season = $seasonRepository->find($id);
         // dd($season);
         $episodes = $episodeRepository->findAll();
@@ -25,6 +27,7 @@ class SeasonController extends AbstractController
         return $this->render('frontoffice/season/read.html.twig', [
             'season' => $season,
             'episodes' => $episodes,
+            "user" => $user,
         ]);
     }
 }

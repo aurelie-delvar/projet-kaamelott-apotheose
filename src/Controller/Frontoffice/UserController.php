@@ -47,9 +47,7 @@ class UserController extends AbstractController
 
         // dd($users);
 
-        return $this->redirectToRoute('default', [
-            "users" => $users,
-        ]);
+        return $this->redirect($_SERVER['HTTP_REFERER']);
     }
     /**
      * @Route("/favorite-quotes/remove/{quoteId}", name="user_remove_favorite_quote")
@@ -77,8 +75,6 @@ class UserController extends AbstractController
 
         // dd($users);
 
-        return $this->redirectToRoute('default', [
-            "users" => $users,
-        ]);
+        return $this->redirect($_SERVER['HTTP_REFERER']);
     }
 }
