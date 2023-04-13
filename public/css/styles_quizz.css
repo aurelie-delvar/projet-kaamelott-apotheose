@@ -68,8 +68,6 @@
   justify-content: center;
   align-items: center;
   font-size: 18px;
-  font-weight: bold;
-  color: white;
   padding: 10px 15px;
   min-width: 100px;
   min-height: 45px;
@@ -78,18 +76,17 @@
 
 #start-btn{
   background: green;
+  font-weight: bold;
+  color: white;
 }
  
 #score-container {
   background: rgb(13, 110, 221);
+  font-weight: bold;
+  color: white;
 }
 
-#againButton{
-  background: rgb(225,224,174);
-}
-
-#inputAgain{
+#againButton {
+  background-color:rgb(225,224,174);
   color: black;
-  border: none;
-  background-color:rgb(225,224,174) ;
 }
