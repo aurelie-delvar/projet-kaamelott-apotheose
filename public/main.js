@@ -5,87 +5,85 @@
 // variables initialization
 var current_index = 0 ;
 let score = 0;
-answeredQuestions = 0;
-let appContainer = document.getElementById("questions-container");
-let startBtn = document.getElementById("start-btn");
+
+let start = document.getElementById("start");
+let scoreContainer = document.getElementById("score-container");
+
+let quizElement = document.getElementById("questions-container");
+let answers = document.getElementById("answers");
+let resultatContainer = document.getElementById("resultat-container");
 let resultat = document.getElementById("resultat");
+let scoreDiv = document.getElementById("score");
+let	againDiv = document.getElementById("again");
 
-// var questions = new Array();
 
+// var questions = Object;
 var questions = {};
-
 
 async function getQuestions() {
 
-    const req = await fetch(`${urlQuizz}`);
-    
+    const req = await fetch(`${urlQuizz}`); 
     const quizz = await req.json();
     const questions = quizz.questions;
   
-   return questions;
+	return questions;
 
 }
 
-
 async function next(){
-	
 	let questions = await this.getQuestions();
-    if ( current_index+1 == questions.length){
-        if( score <=1){
-            alert(`Vous avez ${score} bonne réponse sur ${questions.length}`);
-            
-        }else{
-          alert(`Vous avez ${score} bonnes réponses sur ${questions.length}`);
-          
+	
+    if (current_index+1 == questions.length){
+		
+        if(score <=1){
+            score++; 	
         }
-        resultats();
+		resultats();
         
     }else{
+		scoreContainer.innerHTML = "Score: " + score + " / " + questions.length;
         showQuestion((current_index+1));
     }
 }
 
-function resultats(){
-	quizElement = document.getElementById("questions-container");
-	resultat = document.getElementById("resultat");
-	score = document.getElementById("score");
-	score.innerHTML = "";
-	againButton = document.getElementById("againButton");
+async function resultats(){
+	let questions = await this.getQuestions();
+	
+	scoreDiv.innerHTML = "";
+
 	quizElement.style.visibility = 'hidden';
+
+	resultatContainer.style.visibility = 'visible';
+	scoreDiv.style.visibility = 'visible';
     resultat.style.visibility = 'visible';
 	
+	// display button score (top)
+	scoreContainer.innerHTML = "Score: " + score + " / " + questions.length;
+	// display score (bottom)
+	scoreDiv.innerHTML = `Vous avez ${score} bonnes réponses sur ${questions.length}`;
 	
-	score.innerHTML = `Vous avez ${score} bonnes réponses sur ${questions.length}`;
-	againButton.innerHTML = "<input type='button' value='again' onclick=\"startAgainQuiz()\";/>";
-	
+	againDiv.innerHTML = "<button type='submit' id='againButton' onclick=\"startAgainQuiz()\";>Recommencer</button>";
+
 }
 
 function compare  (a,b){
 	if (a.includes(b)){
-		alert("bonne réponse");
 		score +=1;
-		
-	}else{
-		alert("mauvaise réponse");
 	}
- next();
+ 	next();
 }
 
 async function showQuestion(index){
-
+	
 	current_index = index;
     let questions = await this.getQuestions();
-    console.log (questions);
-    
-    console.log(questions[index].title);
-	startElement = document.getElementById("start-btn");
-	quizElement = document.getElementById("questions-container");
-	startElement.style.visibility = 'hidden';
+	
+	start.style.visibility = 'hidden';
+	resultatContainer.style.visibility = 'hidden';
 	quizElement.style.visibility = 'visible';
 	
-
 	document.getElementById("title").innerHTML = questions[index].title;
-	answers = document.getElementById("answers");
+
 	answers.innerHTML = "";
 	answers.innerHTML += "<button type='submit' class='answer' value='"+questions[index].answer1+"' onclick=\"compare(\'"+questions[index].answer1+"\',\'"+questions[index].goodAnswer+"\');\" > "+questions[index].answer1+"</button>"; 
     answers.innerHTML += "<button type='submit' class='answer' value='"+questions[index].answer2+"' onclick=\"compare(\'"+questions[index].answer2+"\',\'"+questions[index].goodAnswer+"\');\" > "+questions[index].answer2+" </button>"; 
@@ -95,15 +93,15 @@ async function showQuestion(index){
 }
  
 function startAgainQuiz(){
-	startElement = document.getElementById("start-btn");
-	resultat = document.getElementById("resultat");
-	startBtn = document.getElementById("start-btn");
-	startElement.style.visibility = 'visible';
-    resultat.style.visibility = 'hidden';
 	
-	startBtn.innerHTML = "<input type='button' value='start' onclick=\"showQuizz(0)\";/>";
-	score=0;
-
+	//start.style.visibility = 'visible';
+	resultatContainer.style.visibility = 'hidden';
+    resultat.style.visibility = 'hidden';
+	scoreDiv.style.visibility = 'hidden';
+	
+	scoreContainer.innerHTML = "Score: 0";
+	score =0;
+	showQuestion(0);	
 }
 
 

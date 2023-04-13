@@ -1,6 +1,11 @@
 /*
   styles-quizz.css
 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 
 *,
