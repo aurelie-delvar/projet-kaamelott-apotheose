@@ -1,11 +1,6 @@
 /*
   styles-quizz.css
 */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 
 
 *,
@@ -17,7 +12,7 @@
 
 
 
-#questions-container {
+#questions-container, #resultat-container {
  
   display: grid;
   justify-content: center;
@@ -28,7 +23,7 @@
 
 
 
-#question {
+#question, #resultat {
 
   background-color: white;
   position: relative;
@@ -42,6 +37,13 @@
   
 
  
+}
+
+#score, #again {
+  display: flex;
+
+  justify-content: center;
+  padding: 1rem;
 }
 
   #answers {
@@ -77,36 +79,19 @@
     transition: all 200ms ease-out;
   }
     
-  #score-container {
-    position: sticky;
-    right: 2.5rem;
-    top: 2.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    background: rgb(77, 112, 153);
-    padding: 1rem ;
-    min-width: 6.25rem;
-    min-height: 3rem;
-    border-radius: 1rem;
-  }
+ 
     
-  #app-title {
+  #title {
     padding-top: 2rem;
-    margin-top: 0;
     margin-bottom: 2.5rem;
-    margin: 0 0 2.5rem 1.5rem;
-    text-align: center;
-    font-weight: bold;
+    text-align: justify;
+   
   }
   
 
 
   
-  #start-btn {
+  #score-container, #againButton {
     position: sticky;
     right: 2.5rem;
     top: 2.5rem;
@@ -114,13 +99,25 @@
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    background: green;
     padding: 1rem 1.5rem;
     min-width: 6.25rem;
     min-height: 3rem;
     border-radius: 1rem;
+  }
+
+  #score-container {
+    
+    font-weight: bold;
+    color: white;
+    background: rgb(77, 112, 153);
+    
+  }
+
+  #againButton {
+      
+    color:black;
+    background: rgb(225, 224, 174);
+    
   }
 
   @media screen and (max-width: 550px) {
@@ -129,7 +126,7 @@
         font-size : 1rem;
     }
 
-    #question {
+    #question, #resultat {
 
   
       position: relative;
