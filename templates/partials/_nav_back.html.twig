@@ -41,9 +41,25 @@
             <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_personage_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_backoffice_personage_browse") }}">Personnages</a>
             </li>
 
-            <li class="nav-item">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ (app.request.get('_route') starts with 'app_backoffice_quote') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">                    
+                        <span>Citations</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path("app_backoffice_quote_browse") }}">Validées</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_backoffice_quotes_to_validate') }}">À valider</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            {# <li class="nav-item">
             <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_quote_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_backoffice_quote_browse") }}">Citations</a>
             </li>
+
+            <li class="nav-item">
+            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_quotes_to_validate')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_quotes_to_validate') }}">Citations à valider</a>
+            </li>    #}
 
             <li class="nav-item">
             <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_season_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_season_browse') }}">Saisons</a>
@@ -63,7 +79,7 @@
 
             <li class="nav-item">
             <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_user_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_user_browse') }}">Utilisateurs</a>
-            </li>      
+            </li>    
 
         </ul>
         <form class="d-flex" role="search">
