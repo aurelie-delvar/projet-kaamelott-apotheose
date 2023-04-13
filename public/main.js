@@ -67,7 +67,7 @@ async function resultats(){
 }
 
 function compare  (a,b){
-	if (a.includes(b)){
+	if (b.includes(a)){
 		score +=1;
 	}
  	next();
