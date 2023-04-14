@@ -7,17 +7,13 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
-DROP DATABASE IF EXISTS `kaamelott`;
-CREATE DATABASE `kaamelott` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `kaamelott`;
-
 DROP TABLE IF EXISTS `actor`;
 CREATE TABLE `actor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) NOT NULL,
-  `picture` varchar(128) DEFAULT NULL,
-  `description_picture` longtext DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
+  `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `picture` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description_picture` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -82,7 +78,7 @@ INSERT INTO `actor` (`id`, `name`, `picture`, `description_picture`, `descriptio
 DROP TABLE IF EXISTS `author`;
 CREATE TABLE `author` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) NOT NULL,
+  `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -96,8 +92,8 @@ INSERT INTO `author` (`id`, `name`) VALUES
 DROP TABLE IF EXISTS `avatar`;
 CREATE TABLE `avatar` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) NOT NULL,
-  `icon` varchar(128) NOT NULL,
+  `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -113,7 +109,7 @@ CREATE TABLE `episode` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `author_id` int(11) DEFAULT NULL,
   `season_id` int(11) DEFAULT NULL,
-  `title` varchar(128) NOT NULL,
+  `title` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   `number` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_DDAA1CDAF675F31B` (`author_id`),
@@ -524,10 +520,10 @@ DROP TABLE IF EXISTS `personage`;
 CREATE TABLE `personage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `actor_id` int(11) DEFAULT NULL,
-  `name` varchar(64) NOT NULL,
-  `picture` varchar(128) DEFAULT NULL,
-  `description_picture` longtext DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
+  `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `picture` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description_picture` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `credit_order` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_E60A6EC510DAF24A` (`actor_id`),
@@ -610,12 +606,12 @@ DROP TABLE IF EXISTS `question`;
 CREATE TABLE `question` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `quizz_id` int(11) DEFAULT NULL,
-  `title` longtext NOT NULL,
-  `answer1` longtext NOT NULL,
-  `answer2` longtext NOT NULL,
-  `answer3` longtext NOT NULL,
-  `answer4` longtext NOT NULL,
-  `good_answer` longtext NOT NULL,
+  `title` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `answer1` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `answer2` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `answer3` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `answer4` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `good_answer` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_B6F7494EBA934BCD` (`quizz_id`),
   CONSTRAINT `FK_B6F7494EBA934BCD` FOREIGN KEY (`quizz_id`) REFERENCES `quizz` (`id`)
@@ -624,32 +620,32 @@ CREATE TABLE `question` (
 INSERT INTO `question` (`id`, `quizz_id`, `title`, `answer1`, `answer2`, `answer3`, `answer4`, `good_answer`) VALUES
 (1,	1,	'A quel siècle se déroule l\'histoire ?',	'Au V ème',	'Au VI ème',	'Au XV ème',	' Au IV ème',	'Au V ème'),
 (2,	1,	'Est-ce qu\'on peut s\'en servir pour donner de l\'élan à un pigeon ? Qui a osé dire ça à propos d\'une catapulte ?',	'Perceval',	' Kadoc',	'Yvain',	'Karadoc\r\n',	'Yvain'),
-(3,	1,	'Le Sloubi ça peut se jouer avec des dés MAIS normalement ça se joue avec quoi ?',	'Du suc\'',	'Des haricots',	' Des bouts de fromage',	'Des bouts de bois',	'Des bouts de bois'),
-(4,	1,	'Quelle chanson entête le roi Arthur pendant tout un épisode ?',	'Une souris verte',	'A la volette',	'Pomme d’api',	'Le roi Dagobert',	'A la volette'),
+(3,	1,	'Le Sloubi ça peut se jouer avec des dés MAIS normalement ça se joue avec quoi ?',	'Du suc',	'Des haricots',	' Des bouts de fromage',	'Des bouts de bois',	'Des bouts de bois'),
+(4,	1,	'Quelle chanson entête le roi Arthur pendant tout un épisode ?',	'Une souris verte',	'A la volette',	'Pomme d api',	'Le roi Dagobert',	'A la volette'),
 (5,	1,	'Qui n’est pas la maîtresse du roi ?',	'Demetra',	'Aelis',	'Guenièvre',	'Azenor',	'Guenièvre'),
 (6,	1,	'Qu’est-ce qui est petit et marron?',	'Un Marron',	'Une Châtaigne',	'Un Gland',	'Je ne mange pas de graines!',	'Un Marron'),
-(7,	1,	'Elle est où la poulette?',	'Ça suffit ! Elle est où la poulette ? Elle est bien cachée ?',	'Vous rendez la poulette sinon c\'est plus vous qui donnez à manger aux lapins !',	'Vous rendez la poulette ou c\'est tout nus dans les orties !',	'Ça suffit, vous rendez la poulette, sinon papi va se mettre en colère.',	'toutes les réponses sont bonnes'),
+(7,	1,	'Elle est où la poulette?',	'Ça suffit ! Elle est où la poulette ? Elle est bien cachée ?',	'Vous rendez la poulette sinon c est plus vous qui donnez à manger aux lapins !',	'Vous rendez la poulette ou c est tout nus dans les orties !',	'Ça suffit, vous rendez la poulette, sinon papi va se mettre en colère.',	'Ça suffit ! Elle est où la poulette ? Elle est bien cachée ? Vous rendez la poulette sinon c est plus vous qui donnez à manger aux lapins ! Vous rendez la poulette ou c est tout nus dans les orties ! Ça suffit, vous rendez la poulette, sinon papi va se mettre en colère. '),
 (8,	1,	'Qui descend plus “de la pucelle que du démon” ?',	'Arthur',	'Merlin',	'Guenièvre',	'La dame du lac',	'Merlin'),
 (9,	1,	'Qui dit \'Oh bah ça va je picole pas souvent !\' ?',	'Léodagan',	'Karadoc',	'Perceval',	'Lancelot',	'Lancelot'),
-(10,	1,	'Qui dit : \'Eh bien puisque c\'est ça, allez-y : détruisez tout ! Entretuez-vous ! Mettez la Bretagne à feu et à sang ! Et ne comptez plus sur moi pour vous amener mes gâteaux à la purée de pomme dont vous êtes si friand ! Dorénavant, vous devrez vous les cuisiner vous-même ! ENTRE DEUX MISES À SAC !\'',	'Bohort',	'Yvain',	'Le duc D’Aquitaine',	'Gauvain',	'Bohort'),
+(10,	1,	'Qui dit : \'Eh bien puisque c\'est ça, allez-y : détruisez tout ! Entretuez-vous ! Mettez la Bretagne à feu et à sang ! Et ne comptez plus sur moi pour vous amener mes gâteaux à la purée de pomme dont vous êtes si friand ! Dorénavant, vous devrez vous les cuisiner vous-même ! ENTRE DEUX MISES À SAC !\'',	'Bohort',	'Yvain',	'Le duc D Aquitaine',	'Gauvain',	'Bohort'),
 (11,	2,	'Elias de Kelliwic’h dit ',	'le Perfide',	'le Fourbe',	'le Sournois',	'le Rusé',	'le Fourbe'),
 (12,	2,	' Qui dit : \'- Voilà ! C’est tout ce qu’y a ! Unisson, quarte, quinte et c’est marre ! Tous les autres intervalles, c’est de la merde ! Le prochain que je chope en train de siffler un intervalle païen, je fais un rapport au pape !\'',	'Arthur',	'Le Répurgateur',	'Boniface évêque de Germanie',	'Le Père Blaise',	'Le Père Blaise'),
-(13,	2,	'Qui dit : \'Invoquer une meute de loups ? Moi je veux bien, mais je vous préviens : s’ils se retournent contre nous pour nous bouffer les miches, vous viendrez pas pleurer !\'',	'Merlin',	'Elias de Kelliwic’h',	'Méléagan',	'La Dame du Lac',	'Merlin'),
+(13,	2,	'Qui dit : \'Invoquer une meute de loups ? Moi je veux bien, mais je vous préviens : s’ils se retournent contre nous pour nous bouffer les miches, vous viendrez pas pleurer !\'',	'Merlin',	'Elias de Kelliwic h',	'Méléagan',	'La Dame du Lac',	'Merlin'),
 (14,	2,	'Qui dit : \'Attention, attention… il va y arriver un moment où il y a des granges qui vont se mettre à flamber, faudra pas demander d’où ça vient !\'',	'Roparzh',	'Le tavernier',	'Kadoc',	'Guethenoc',	'Guethenoc'),
 (15,	2,	'Qui dit: \'Faut arrêter ces conneries de nord et de sud ! Une fois pour toutes, le nord, suivant comment on est tourné, ça change tout !\'',	'Gauvain\r\n',	'Perceval',	'Yvain',	'Karadoc',	'Perceval'),
-(16,	2,	'Qui dit: \'- Les chicots c\'est sacré ! Parce que si on en prend pas soin, dans dix ans, c\'est tout à la soupe. Et celui qui me fera bouffer de la soupe, il est pas né !\'',	'Karadoc',	'Perceval',	'Le tavernier',	'Le maître d’armes',	'Karadoc'),
+(16,	2,	'Qui dit: \'- Les chicots c\'est sacré ! Parce que si on en prend pas soin, dans dix ans, c\'est tout à la soupe. Et celui qui me fera bouffer de la soupe, il est pas né !\'',	'Karadoc',	'Perceval',	'Le tavernier',	'Le maître d armes',	'Karadoc'),
 (17,	2,	'Qui dit : \'J’y connais rien, mais à votre avis, le fait que vous me touchiez pratiquement jamais, ça a une influence sur la fécondité ?\'',	'Demetra',	'Guenièvre',	'Azenor',	'Aelis',	'Guenièvre'),
 (18,	2,	'Qui dit: \'- Un village assailli de brigands, une femme qui se fait tabasser, une poule qui boîte, c\'est pas les opprimés qui manquent ! Et là au moins, j\'aurais l\'impression de servir à quelque chose.\'',	'Léodagan',	'Calogrenant',	'Lancelot',	'Caius',	'Lancelot'),
-(19,	2,	'Qui dit : \'Donc là, pour le voyageur isolé y\'a deux solutions : soit il dépose ses armes, ses objets, sa bouffe et ses fringues par terre, et il s\'en va d\'où il est venu à poil dans la neige, soit il décide de se battre... À un contre dix.\'',	'Le maître d’armes',	'Venec',	'Léodagan',	'Arthur',	'Venec'),
-(20,	2,	'Qui dit : \'Si j’échoue, je garde la butte aux Cerfs et je fais tomber une pluie de calamités sur le royaume par vengeance ! C’est pas pour rien qu’on m’appelle « le Fourbe ». Si je réussis, je garde la butte aux Cerfs, plus… Le tertre des  mes…\'',	'Elias de Kelliwitc’h',	'Merlin',	'Meleagan',	'Le roi Loth',	'Elias de Kelliwitc’h'),
-(21,	3,	'Qui dit : \'Tempora mori, tempora mundis recorda. Voilà. Et bien ça, par exemple, ça veut absolument rien dire, mais l’effet reste le même, et pourtant j’ai jamais foutu les pieds dans une salle de classe attention !\'',	'Ketchatar roi d’Irlande',	'Hoël roi d’Armorique',	'Loth roi d’Orcanie',	'Léodagan roi de Carmélide',	'Loth roi d’Orcanie'),
+(19,	2,	'Qui dit : \'Donc là, pour le voyageur isolé y\'a deux solutions : soit il dépose ses armes, ses objets, sa bouffe et ses fringues par terre, et il s\'en va d\'où il est venu à poil dans la neige, soit il décide de se battre... À un contre dix.\'',	'Le maître d armes',	'Venec',	'Léodagan',	'Arthur',	'Venec'),
+(20,	2,	'Qui dit : \'Si j’échoue, je garde la butte aux Cerfs et je fais tomber une pluie de calamités sur le royaume par vengeance ! C’est pas pour rien qu’on m’appelle « le Fourbe ». Si je réussis, je garde la butte aux Cerfs, plus… Le tertre des  mes…\'',	'Elias de Kelliwitc h',	'Merlin',	'Meleagan',	'Le roi Loth',	'Elias de Kelliwitc h'),
+(21,	3,	'Qui dit : \'Tempora mori, tempora mundis recorda. Voilà. Et bien ça, par exemple, ça veut absolument rien dire, mais l’effet reste le même, et pourtant j’ai jamais foutu les pieds dans une salle de classe attention !\'',	'Ketchatar roi d Irlande',	'Hoël roi d Armorique',	'Loth roi d Orcanie',	'Léodagan roi de Carmélide',	'Loth roi d Orcanie'),
 (22,	3,	' Qui dit : \'Ah, le printemps ! La nature se réveille, les oiseaux reviennent, on crame des mecs\'',	'Le roi Loth',	'Arthur',	'Lancelot',	'Léodagan',	'Arthur'),
-(23,	3,	'Selon Perceval, les vieux c’est classe car:',	'On les respecte en tant que tel.',	'La patience est un plat qui se prépare à l\'avance. ',	'Il dit rien, on ne sait pas ce qu’il pense, c’est mystérieux.',	'La patience est un plat qui se mange sans sauce.',	'Il dit rien, on ne sait pas ce qu’il pense, c’est mystérieux.');
+(23,	3,	'Selon Perceval, les vieux c’est classe car:',	'On les respecte en tant que tel.',	'La patience est un plat qui se prépare à l avance. ',	'Il dit rien, on ne sait pas ce qu il pense, c est mystérieux.',	'La patience est un plat qui se mange sans sauce.',	'Il dit rien, on ne sait pas ce qu il pense, c est mystérieux.');
 
 DROP TABLE IF EXISTS `quizz`;
 CREATE TABLE `quizz` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -664,7 +660,7 @@ CREATE TABLE `quote` (
   `episode_id` int(11) DEFAULT NULL,
   `personage_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `text` longtext NOT NULL,
+  `text` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `rating` float DEFAULT NULL,
   `validated` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
@@ -2227,8 +2223,8 @@ INSERT INTO `rate` (`id`, `quote_id`, `user_id`, `rating`) VALUES
 DROP TABLE IF EXISTS `season`;
 CREATE TABLE `season` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(128) NOT NULL,
-  `description` longtext DEFAULT NULL,
+  `title` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -2245,9 +2241,9 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `avatar_id` int(11) DEFAULT NULL,
-  `email` varchar(180) NOT NULL,
-  `roles` longtext NOT NULL COMMENT '(DC2Type:json)',
-  `password` varchar(255) NOT NULL,
+  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:json)',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),
   KEY `IDX_8D93D64986383B10` (`avatar_id`),
@@ -2264,4 +2260,4 @@ INSERT INTO `user` (`id`, `avatar_id`, `email`, `roles`, `password`) VALUES
 (9,	1,	'jb@tagada.fr',	'[\"ROLE_MANAGER\"]',	'$2y$13$jzjyzYOcOXgx.0RzwehXXOEScKKc/gY/9P81fepLi8jJunksYAUsS'),
 (10,	1,	'mm@toto.fr',	'[\"ROLE_MANAGER\"]',	'$2y$13$WnRyutd39kpD3VaAPmwp/eM1Tocrf/ICqzazzLqH69eW4BfdlQoua');
 
--- 2023-04-12 12:50:55
+-- 2023-04-12 15:38:08
