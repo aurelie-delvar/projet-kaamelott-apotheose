@@ -5,12 +5,12 @@
 {% block body %}
 <main>
     <div class="main-content">
-        <h1>Modification Question {{ question.id }}</h1>
+        <h1>Modifier une Question {{ question.id }}</h1>
     </div>
     <div class="container  ">
         <a href="{{ path('app_backoffice_question_browse') }}" class="btn btn-primary">retour à la liste</a>
 
-        {{ include('backoffice/question/_form.html.twig', {'button_label': 'Valider les modification'}) }}   
+        {{ include('backoffice/question/_form.html.twig', {'button_label': 'Valider les modifications'}) }}   
     </div>
 </main>        
 {% endblock %}
