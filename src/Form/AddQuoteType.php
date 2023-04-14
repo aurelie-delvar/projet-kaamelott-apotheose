@@ -37,13 +37,13 @@ class AddQuoteType extends AbstractType
                 'expanded' => false,
                 'required' => false
             ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'email',
-                'label' => 'Utilisateur',
-                'expanded' => false,
-                'required' => false
-            ])
+            // ->add('user', EntityType::class, [
+            //     'class' => User::class,
+            //     'choice_label' => 'email',
+            //     'label' => 'Utilisateur',
+            //     'expanded' => false,
+            //     'required' => false
+            // ])
         ;
     }
 

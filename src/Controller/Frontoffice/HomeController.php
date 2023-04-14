@@ -8,6 +8,7 @@ use App\Repository\ActorRepository;
 use App\Repository\QuoteRepository;
 use App\Repository\PersonageRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -75,9 +76,14 @@ class HomeController extends AbstractController
      * @Route("/formulaire-ajout-citation", name="app_add_quote", methods={"GET", "POST"})
      * @IsGranted("ROLE_USER", message="Vous devez être connecté(e) pour accéder à ce formulaire")
      */
-    public function formAddQuote(Request $request, QuoteRepository $quoteRepository) : Response
+    public function formAddQuote(Request $request, QuoteRepository $quoteRepository, Security $user) : Response
     {
         $quote = new Quote();
+
+        // $user->getUser();
+        $quote->setUser($user->getUser());
+
+
         $form = $this->createForm(AddQuoteType::class, $quote);
         $form->handleRequest($request);
 
