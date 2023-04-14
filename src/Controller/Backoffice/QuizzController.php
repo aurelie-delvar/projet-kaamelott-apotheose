@@ -3,7 +3,7 @@
 namespace App\Controller\Backoffice;
 
 use App\Entity\Quizz;
-use App\Form\Quizz1Type;
+use App\Form\QuizzType;
 use App\Repository\QuizzRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class QuizzController extends AbstractController
     public function add(Request $request, QuizzRepository $quizzRepository): Response
     {
         $quizz = new Quizz();
-        $form = $this->createForm(Quizz1Type::class, $quizz);
+        $form = $this->createForm(QuizzType::class, $quizz);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -47,7 +47,7 @@ class QuizzController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_quizz_read", methods={"GET"})
+     * @Route("/{id}", name="app_backoffice_quizz_read", methods={"GET"}, requirements={"id"="\d+"})
      */
     public function read(Quizz $quizz): Response
     {
@@ -57,11 +57,11 @@ class QuizzController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_backoffice_quizz_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="app_backoffice_quizz_edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, Quizz $quizz, QuizzRepository $quizzRepository): Response
     {
-        $form = $this->createForm(Quizz1Type::class, $quizz);
+        $form = $this->createForm(QuizzType::class, $quizz);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -77,7 +77,7 @@ class QuizzController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_quizz_delete", methods={"POST"})
+     * @Route("/{id}", name="app_backoffice_quizz_delete", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function delete(Request $request, Quizz $quizz, QuizzRepository $quizzRepository): Response
     {

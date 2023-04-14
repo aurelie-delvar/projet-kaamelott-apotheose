@@ -1,7 +1,7 @@
 
 {# * pour récuperer la carte quote sur les pages qui en besoin mettre {% include '_card_quote.html.twig' %}  à l'emplacement souhaité #}
 
-<div class="card mb-3">
+        <div class="card mb-3">
     <div class="card-header d-flex justify-content-end">
 
         <div class="d-flex" style="color: orange;">
@@ -35,45 +35,21 @@
                 <div>
                 {# We check if the user is connected, because if not, he can't put quotes in favorite #}
                 {% if is_granted("ROLE_USER") %}
-                            {% set isFavorite = false %}
-                
-                    {# We loop on the favorites of the quote #}
-                    {% for favoris in quote.favorites %}
-                        {# If there's a match, it means the user has the quote in his favorites #}
-                        {% if favoris.user.id == app.user.id %}
-                            {% set isFavorite = true %}
-                        {% endif %}
+                                {% set isFavorite = false %}
+                    {% for userFav in quote.users %}
+                            {% if user == userFav %}
+                                {% set isFavorite = true %}
+                             {% endif %}
                     {% endfor %}
-                                {# <a href="{{ path('remove_favoris', {id: quote.id}) }}"><i class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></i></a> #}
-                        
+                     
                     {% if isFavorite %}
-                       <a href="{{ path('app_frontoffice_quotes_removeFavorite', {id: quote.id}) }}"  class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></a>
+                       <a href="{{ path('user_remove_favorite_quote', {quoteId: quote.id}) }}"  class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></a>
                     {% else %}
-                       <a href="{{ path('app_frontoffice_quotes_addFavorite', {id: quote.id}) }}" class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></a>
+                       <a href="{{ path('user_add_favorite_quote', {quoteId: quote.id}) }}" class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></a>
                     {% endif %}
 
-
-                {% endif %}
-{# 
-                        {% dump(app.user.id) %}
-                        {% dump(favoris.user.id) %}
-
-                         <i class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></i> #}
-
-
-
-
-                        {# <i class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></i> #}
-                        
-                                {# <a href="{{ path('add_favoris', {id: quote.id}) }}"><i class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></i></a> #}
-                       
-                    {# If there are no favorites for the quote, we still want a heart to appear #}
-                    
-                   
-                                {# <a href="{{ path('add_favoris', {id: quote.id}) }}"><i class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></i></a> #}
-
                   
-                
+                {% endif %}
                 </div>
             
             <footer class="blockquote-footer"> {{ quote.personage.name }},<cite title="Source Title"> <strong>{{ quote.episode.season.title }}</strong>, {{ quote.episode.title }}.</cite></footer>

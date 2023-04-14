@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Acteurs{% endblock %}
+
+{% block body %}
+<main>
+
+    <div class="main-content">
+        <h1>Fiche d'acteur</h1>
+    </div>
+
+    <div class="container">
+
+    <a href="{{ path('app_backoffice_actors_browse') }}" class="btn btn-primary">Retour à la liste</a>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ actor.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ actor.name }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ actor.picture }}</td>
+            </tr>
+            <tr>
+                <th>Description de l'image</th>
+                <td>{{ actor.descriptionPicture }}</td>
+            </tr>
+            <tr>
+                <th>Description de l'acteur</th>
+                <td>{{ actor.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_backoffice_actor_edit', {'id': actor.id}) }}" class="btn btn-warning">Modifier</a>
+
+    {{ include('backoffice/actor/_delete_form.html.twig') }}
+
+    </div>
+
+</main>
+{% endblock %}

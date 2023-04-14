@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Acteurs{% endblock %}
+
+{% block body %}
+<main>
+    <div class="main-content">
+        <h1>Liste des acteurs</h1>
+    </div>
+
+    <div class="container">
+
+    <a href="{{ path('app_backoffice_actor_add') }}" class="btn btn-primary">Créer un nouvel acteur</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Image</th>
+                <th>Description de l'image</th>
+                <th>Description de l'acteur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for actor in pagination %}
+            <tr>
+                <td>{{ actor.id }}</td>
+                <td>{{ actor.name }}</td>
+                <td>{{ actor.picture }}</td>
+                <td>{{ actor.descriptionPicture }}</td>
+                <td>{{ actor.description|slice(0, 150) }} [...]</td>
+                <td>
+                    <a href="{{ path('app_backoffice_actor_read', {'id': actor.id}) }}" class="btn btn-success">Voir</a>
+                    <a href="{{ path('app_backoffice_actor_edit', {'id': actor.id}) }}" class="btn btn-warning">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Pas d'acteur trouvé !</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+    {{ knp_pagination_render(pagination) }}
+</main>
+{% endblock %}

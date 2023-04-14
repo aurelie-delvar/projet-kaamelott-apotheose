@@ -81,3 +81,12 @@ footer > a:hover {
     
 }
 
+.searchLinks {
+   
+    color:midnightblue;
+}
+
+.searchLinks:hover {
+    color: brown;
+}
+

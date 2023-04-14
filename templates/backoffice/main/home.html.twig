@@ -12,7 +12,7 @@
 
     <div class="container  ">
 
-        <div class="row gy-5 main-bo">
+        <div class="row gy-5 main-bo row-cols-3 justify-content-start">
             <div class="col" >
                 <div class="card " style="width: 18rem;">
                     <div class="card-body">
@@ -50,7 +50,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Liste des Quizz</h5>
-                        <a href="{{ path('app_backoffice_home')}}" class="btn btn-success">voir</a>
+                        <a href="{{ path('app_backoffice_quizz_browse')}}" class="btn btn-success">voir</a>
                     </div>
                 </div>
             </div> 
@@ -69,10 +69,34 @@
                         <a href="{{ path('app_backoffice_user_browse') }}" class="btn btn-success">voir</a>
                     </div>
                 </div>
+            </div> 
+            <div class="col" >   
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Auteurs</h5>
+                        <a href="{{ path('app_backoffice_author_browse') }}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
             </div>    
+            <div class="col" >   
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Avatars</h5>
+                        <a href="{{ path('app_backoffice_avatar_browse') }}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col" >   
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Liste des Acteurs</h5>
+                        <a href="{{ path('app_backoffice_actors_browse') }}" class="btn btn-success">voir</a>
+                    </div>
+                </div>
+            </div>
     </div>
 </div>
 
-    </main>
+</main>
 
 {% endblock %}

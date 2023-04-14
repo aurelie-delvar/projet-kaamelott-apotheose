@@ -1,0 +1,159 @@
+/*
+  styles-quizz.css
+*/
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+
+
+#questions-container, #resultat-container {
+ 
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+
+
+#question, #resultat {
+
+  background-color: white;
+  position: relative;
+  width: 32rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid rgba(13, 110, 221, 0.712);
+  border-radius:1rem ;
+  
+
+ 
+}
+
+#score, #again {
+  display: flex;
+
+  justify-content: center;
+  padding: 1rem;
+}
+
+  #answers {
+    position: relative;
+    display: grid;
+
+    grid-template-columns: repeat(2, 6fr);
+    grid-template-rows: repeat(2, 6fr);
+    gap: 1rem 2rem;
+    margin-bottom: 1.5rem;
+    
+    align-content: stretch;
+    
+  }
+  
+  .answer {
+    
+    word-wrap: break-word;
+    border: none;
+    font-size: 1.5rem;
+    background: none;
+    padding:  1rem;
+    border: 1px solid rgba(13, 110, 221, 0.712);
+    outline: none;
+    border-radius: 1rem;
+    cursor: pointer;
+   
+  }
+
+  .answer:hover {
+    background: rgba(13, 110, 221, 0.712);
+    color: white;
+    transition: all 200ms ease-out;
+  }
+    
+ 
+    
+  #title {
+    padding-top: 2rem;
+    margin-bottom: 2.5rem;
+    text-align: justify;
+   
+  }
+  
+
+
+  
+  #score-container, #againButton {
+    position: sticky;
+    right: 2.5rem;
+    top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 1rem 1.5rem;
+    min-width: 6.25rem;
+    min-height: 3rem;
+    border-radius: 1rem;
+  }
+
+  #score-container {
+    
+    font-weight: bold;
+    color: white;
+    background: rgb(77, 112, 153);
+    
+  }
+
+  #againButton {
+      
+    color:black;
+    background: rgb(225, 224, 174);
+    
+  }
+
+  @media screen and (max-width: 550px) {
+    
+    #title {
+        font-size : 1rem;
+    }
+
+    #question, #resultat {
+
+  
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: max-content; 
+     
+    }
+
+    #answers {
+      
+    position:none;
+  
+      grid-template-columns: repeat(1, auto);
+     
+      gap: 1rem 2rem;
+      margin-bottom: 1.5rem;
+      
+    }
+    .answer {
+      
+      
+      font-size: 1rem;
+     
+    }
+   
+  }
+
+ 

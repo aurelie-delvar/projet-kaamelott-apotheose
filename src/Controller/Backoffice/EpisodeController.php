@@ -55,7 +55,7 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_episode_read", methods={"GET"})
+     * @Route("/{id}", name="app_backoffice_episode_read", methods={"GET"}, requirements={"id"="\d+"})
      */
     public function read(Episode $episode): Response
     {
@@ -65,7 +65,7 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_backoffice_episode_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="app_backoffice_episode_edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, Episode $episode, EpisodeRepository $episodeRepository): Response
     {
@@ -85,7 +85,7 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_episode_delete", methods={"POST"})
+     * @Route("/{id}", name="app_backoffice_episode_delete", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function delete(Request $request, Episode $episode, EpisodeRepository $episodeRepository): Response
     {

@@ -100,7 +100,7 @@ class QuoteController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_quote_read", methods={"GET"})
+     * @Route("/{id}", name="app_backoffice_quote_read", methods={"GET"}, requirements={"id"="\d+"})
      */
     public function read(Quote $quote): Response
     {
@@ -110,7 +110,7 @@ class QuoteController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_backoffice_quote_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="app_backoffice_quote_edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, Quote $quote, QuoteRepository $quoteRepository): Response
     {
@@ -130,7 +130,7 @@ class QuoteController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_quote_delete", methods={"POST"})
+     * @Route("/{id}", name="app_backoffice_quote_delete", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function delete(Request $request, Quote $quote, QuoteRepository $quoteRepository): Response
     {

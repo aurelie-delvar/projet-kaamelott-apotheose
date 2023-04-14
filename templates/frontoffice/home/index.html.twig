@@ -9,7 +9,7 @@
     <h2 class="main__item">La Citation du Moment</h2>
     {# todo dynamiser la page quand on aura la BDD fonctionnelle il faut aussi gérer rating et favorite #}
     {% set quote = randomQuote %}
-    {% include '_card_quote.html.twig' %}
+    {% include 'partials/_card_quote.html.twig' %}
 
     <div class="text-center">
     <img class="img-fluid" src="./img/kamelott.jpeg">
@@ -20,7 +20,7 @@
             <h5 class="card-title">les Dix Dernières Citations</h5>
             {% for key, quote in last10Quotes %}
              {# TODO: GERER LES PROPRIETES NULLES POUR UN AJOUT DE CITATION #}
-                {% include '_card_quote.html.twig' %}
+                {% include 'partials/_card_quote.html.twig' %}
             {% endfor %}
         </div>
     </div>

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Author{% endblock %}
+
+{% block body %}
+
+<main>
+    
+    <div class="main-content">
+        <h1>Liste des Auteurs</h1>
+    </div>
+
+    <div class="container  ">
+        <a href="{{ path('app_backoffice_author_add') }}" class="btn btn-primary" >Ajouter un auteur</a>
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for author in authors %}
+            <tr>
+                <th scope="row">{{ author.id }}</th>
+                <td>{{ author.name }}</td>
+                <td>
+                    <a href="{{ path('app_backoffice_author_read', {'id': author.id}) }}" class="btn btn-success">voir</a>
+                    <a href="{{ path('app_backoffice_author_edit', {'id': author.id}) }}" class="btn btn-warning" >Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Pas d'auteur trouvé !</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+</main> 
+{% endblock %}

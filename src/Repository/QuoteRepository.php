@@ -85,6 +85,7 @@ class QuoteRepository extends ServiceEntityRepository
     }
 
     /**
+
     * Query for the paginator. Quote list of the backoffice.
     */
     public function paginationQueryBackFalse()
@@ -113,7 +114,52 @@ class QuoteRepository extends ServiceEntityRepository
     }
 
     
+    * Query for the paginator. Search results of the backoffice.
+    */
+    public function querySearch($words)
+    {
+       /*  $sql = "SELECT DISTINCT quote.text, personage.name, episode.title AS titleEpisode, season.title AS titleSeason
+        FROM quote
+        LEFT JOIN personage ON quote.personage_id = personage.id
+        LEFT JOIN episode ON quote.episode_id = episode.id
+        LEFT JOIN season ON episode.season_id = season.id
+        WHERE quote.text LIKE '%$words%'
+        OR personage.name LIKE '%$words%'
+        OR episode.title LIKE '%$words%'
+        OR season.title LIKE '%$words%'
+        ORDER BY personage.name" ;
 
+    
+        
+        $doctrine = $this->getEntityManager()->getConnection();
+        $statement = $doctrine->prepare($sql);
+        
+        $result = $statement->executeQuery();
+        $arrayQuote = $result->fetchAllAssociative();
+
+        return $arrayQuote; */
+
+        
+        $queryBuilder =$this->createQueryBuilder('q');
+        $queryBuilder
+        ->select('DISTINCT q.text', 'q.id', 'p.name', 'p.id AS idPersonage', 'e.title AS titleEpisode', 'e.id AS idEpisode', 's.id AS idSeason', 's.title AS titleSeason')
+    
+    ->leftJoin('q.personage', 'p')
+    ->leftJoin('q.episode', 'e')
+    ->leftJoin('e.season', 's')
+    ->where(
+        $queryBuilder->expr()->orX(
+            $queryBuilder->expr()->like('q.text', ':words'),
+            $queryBuilder->expr()->like('p.name', ':words'),
+            $queryBuilder->expr()->like('e.title', ':words'),
+            $queryBuilder->expr()->like('s.title', ':words')
+        )
+    )
+    ->orderBy('p.name');
+    $queryBuilder->setParameter('words', '%'.$words.'%');
+        return  $queryBuilder->getQuery();
+        
+    }
  
 
 //    public function findOneBySomeField($value): ?Quote

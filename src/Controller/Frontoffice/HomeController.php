@@ -20,10 +20,10 @@ class HomeController extends AbstractController
      * @Route("/", name="default")
      * @Route("/home", name="app_home_index")
      */
-    public function index(QuoteRepository $quoteRepository): Response
+    public function index(QuoteRepository $quoteRepository, Security $security): Response
     {
         // $randomQuote = $quoteRepository->randomQuote();
-        
+        $user = $security->getUser();
         $randomId = rand(1,700);
         $quoteByRandId = $quoteRepository -> find($randomId);
         // dd ($quoteByRandId);
@@ -45,7 +45,9 @@ class HomeController extends AbstractController
         
         return $this->render('frontoffice/home/index.html.twig', [
            "randomQuote" => $quoteByRandId,
-           "last10Quotes" => $last10Quotes
+           "last10Quotes" => $last10Quotes,
+           "user" => $user,
+           
         ]);
     }
 
@@ -101,5 +103,4 @@ class HomeController extends AbstractController
             'form' => $form,
         ]);
     }
-
 }
