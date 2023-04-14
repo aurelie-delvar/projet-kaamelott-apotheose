@@ -2,16 +2,11 @@
 
 // I retrieve the url of my current page
 const url= document.location.href;
-console.log(document.location);
-console.log(url);
 // I remove the url from my page and I only keep the last information of the url
-const idPage = url.substring(url.lastIndexOf( "/" )+1 ); 
-console.log(idPage);
-const urlApi = document.location.origin + '/api/quizz/'; 
-console.log(urlApi);
+const idPage = url.substring(url.lastIndexOf( "/" )+1 );
 // I concatenate the url of the api with the id of my page
-const urlQuizz = urlApi + idPage;
-console.log(urlQuizz);
+const urlQuizz = 'http://localhost:8000/api/quizz/' + idPage;
+
 //console.log(urlQuizz);
 
 function initApp(){
