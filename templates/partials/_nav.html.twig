@@ -6,7 +6,11 @@
 
 <nav class="navbar navbar-expand-xxl bg-body-tertiary">
     <div class="container-fluid">
+    {% if is_granted("ROLE_MANAGER") %}
+        <a class="navbar-brand title" href="{{ path("app_backoffice_home") }}"> Kaamel'O'tt </a>
+    {% else %}
         <a class="navbar-brand title" href="{{ path("default") }}"> Kaamel'O'tt </a>
+    {% endif %}
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
