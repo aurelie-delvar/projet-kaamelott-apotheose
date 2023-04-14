@@ -92,7 +92,7 @@ footer > p {
     border-top: solid 1px lightgrey;
 }
 
-footer > a:hover {
+.footer > a:hover {
     text-decoration: none;
     text-shadow: 4px 4px 10px black;
 } 
