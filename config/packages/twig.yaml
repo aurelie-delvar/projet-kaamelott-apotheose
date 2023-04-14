@@ -4,6 +4,7 @@ twig:
     globals:
         seasonsList: '@App\Twig\SeasonsExtension'
         quizzsList: '@App\Twig\QuizzsExtension'
+        currentUser: '@App\Twig\CurrentUserExtension'
 when@test:
     twig:
         strict_variables: true
