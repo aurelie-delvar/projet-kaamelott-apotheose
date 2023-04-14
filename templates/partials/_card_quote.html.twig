@@ -40,7 +40,7 @@
                 {% if is_granted("ROLE_USER") %}
                                 {% set isFavorite = false %}
                     {% for userFav in quote.users %}
-                            {% if user == userFav %}
+                            {% if currentUser.getUser == userFav %}
                                 {% set isFavorite = true %}
                              {% endif %}
                     {% endfor %}
