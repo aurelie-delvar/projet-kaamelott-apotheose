@@ -24,6 +24,9 @@
                         {% endif %}
                     {% endfor %}
             <span class="ps-1">{{ quote.rating }}</span>
+            <div class="d-flex mb-4">
+                        <a href="{{ path('user_add_rating_quote', {quoteId: quote.id})}}" class="btn btn-secondary">Donner une Note à la Citation</a>
+                    </div>
         </div>
 
     </div>
