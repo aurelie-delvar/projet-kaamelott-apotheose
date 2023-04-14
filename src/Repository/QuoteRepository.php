@@ -67,6 +67,7 @@ class QuoteRepository extends ServiceEntityRepository
    {
        return $this->createQueryBuilder('q')
            ->orderBy('q.id', 'ASC')
+           ->where('q.validated = true')
            ->getQuery()
        ;
    }
@@ -74,15 +75,45 @@ class QuoteRepository extends ServiceEntityRepository
     /**
     * Query for the paginator. Quote list of the backoffice.
     */
-    public function paginationQueryBack()
+    public function paginationQueryBackTrue()
     {
         return $this->createQueryBuilder('q')
             ->orderBy('q.id', 'ASC')
+            ->where('q.validated = true')
             ->getQuery()
         ;
     }
 
     /**
+
+    * Query for the paginator. Quote list of the backoffice.
+    */
+    public function paginationQueryBackFalse()
+    {
+        return $this->createQueryBuilder('q')
+            ->orderBy('q.id', 'ASC')
+            ->where('q.validated = false')
+            ->getQuery()
+        ;
+    }
+
+    /**
+     * Query to validate a user's quote 
+     */
+    public function setValidationToTrue($id)
+    {
+        $query = $this->createQueryBuilder('App\Entity\Quote', 'q')
+                    ->update('App\Entity\Quote','q')
+                    ->set('q.validated', 1)
+                    ->where('q.id  = :id')
+                    ->setParameter('id', $id)
+                    ->getQuery()
+        ;
+
+        return $result = $query->execute();
+    }
+
+    
     * Query for the paginator. Search results of the backoffice.
     */
     public function querySearch($words)

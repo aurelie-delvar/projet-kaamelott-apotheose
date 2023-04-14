@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Kaamel'O'tt - Citations{% endblock %}
+{% block title %}Kaamel'O'tt - Citations en attente{% endblock %}
 
 {% block body %}
 
@@ -11,20 +11,18 @@
 
      <div class="container">
 
-        <a href="{{ path('app_backoffice_quote_add') }}"class="btn btn-primary">Créer une nouvelle citation</a>
-
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Texte</th>
-                <th>Rating</th>
+                <th>Note</th>
                 <th>Validée</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for quote in validatedTrue %}
+        {% for quote in validatedFalse %}
             <tr>
                 <td>{{ quote.id }}</td>
                 <td>{{ quote.text|slice(0, 150) }} [...]</td>
@@ -32,8 +30,10 @@
                 
                 <td>{{ quote.validated ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_backoffice_quote_read', {'id': quote.id}) }}"class="btn btn-success">Voir</a>
-                    <a href="{{ path('app_backoffice_quote_edit', {'id': quote.id}) }}"class="btn btn-warning">Modifier</a>
+                    <a href="{{ path('app_backoffice_quote_validate', {'id': quote.id}) }}" class="btn btn-success">Valider</a>
+                    <div class="mt-3">
+                    {{ include('backoffice/quote/_delete_form.html.twig') }}
+                    </div>
                 </td>
             </tr>
         {% else %}
@@ -45,7 +45,7 @@
     </table>
 
     </div>
- {{ knp_pagination_render(validatedTrue) }}
+ {{ knp_pagination_render(validatedFalse) }}
 </main>
     
 {% endblock %}

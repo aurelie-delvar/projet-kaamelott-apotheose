@@ -2,12 +2,16 @@
 
 namespace App\Controller\Frontoffice;
 
+use App\Entity\Quote;
+use App\Form\AddQuoteType;
 use App\Repository\ActorRepository;
 use App\Repository\QuoteRepository;
 use App\Repository\PersonageRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
@@ -31,7 +35,7 @@ class HomeController extends AbstractController
         // * $allQuotes = $quoteRepository->findAll();
         $last10Quotes = $quoteRepository->findBy(
             // je n'ai pas de critères, mais je dois fournir un tableau, celui ci sera vide
-            [],
+            ["validated" => 1],
             ["id" => "DESC"], // tri par id decroissant
             $limit = 10, //j'en veux 10
             $offset = 0 // à partir de 0 (1er de la table)
@@ -68,5 +72,35 @@ class HomeController extends AbstractController
         ]);
     }
 
-    
+    /**
+     * form for the user to ask for adding a quote
+     *
+     * @Route("/formulaire-ajout-citation", name="app_add_quote", methods={"GET", "POST"})
+     * @IsGranted("ROLE_USER", message="Vous devez être connecté(e) pour accéder à ce formulaire")
+     */
+    public function formAddQuote(Request $request, QuoteRepository $quoteRepository, Security $user) : Response
+    {
+        $quote = new Quote();
+
+        // $user->getUser();
+        $quote->setUser($user->getUser());
+
+
+        $form = $this->createForm(AddQuoteType::class, $quote);
+        $form->handleRequest($request);
+
+        // here, we switch to POST and we want the user to be redirected to the homepage
+        if($form->isSubmitted() && $form->isValid()) {
+
+            // if the form is ok, we flush to add in database
+            $quoteRepository->add($quote, true);
+
+            return $this->redirectToRoute('default', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('frontoffice/home/addQuote.html.twig', [
+            'quote' => $quote,
+            'form' => $form,
+        ]);
+    }
 }

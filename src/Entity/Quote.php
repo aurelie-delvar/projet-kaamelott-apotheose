@@ -63,6 +63,7 @@ class Quote
     public function __construct()
     {
         $this->rates = new ArrayCollection();
+        $this->validated = 0;
         $this->users = new ArrayCollection();
     }
 
