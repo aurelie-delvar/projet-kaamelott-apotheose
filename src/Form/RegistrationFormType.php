@@ -15,6 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -30,24 +31,47 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'label' => 'Mot de passe',
                 'always_empty' => false,
-                'invalid_message' => 'Le mot de passe n\'est pas valide', // ne marche pas
-                'attr' => ['autocomplete' => 'new-password'],
+                // 'invalid_message' => 'Le mot de passe n\'est pas valide', // ne marche pas
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                    'placeholder' => 'Entrez un mot de passe'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un mot de passe',
                     ]),
-                    // TODO: ajouter notre regex ici
-                    new Regex(
-                        "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-+\-]).{8,}$/")
+                    new Regex([
+                        "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-+\-]).{8,}$/",
+                        'Le mot de passe doit être valide'
+                    ])
                 ],
+            ])
+            ->add('password_confirmed', PasswordType::class, [
+                "attr" => [
+                    "placeholder" => "Veuillez confirmer le mot de passe"
+                ],
+                "mapped" => false,
+                'label' => 'Vérification mot de passe',
+                'constraints' => [
+                    new NotBlank(),
+                    new Regex(
+                        "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-+\-]).{8,}$/",
+                        "Le mot de passe doit contenir au minimum 8 caractères, une majuscule, un chiffre et un caractère spécial"
+                    ),
+                ]
             ])
             ->add('avatar', EntityType::class, [
                 'class' => Avatar::class,
-                'empty_data' => 'Pions', // à tester
                 'choice_label' => 'name',
                 'label' => 'Choix de l\'avatar',
                 'expanded' => true,
-            ])
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez choisir un avatar'
+                    ])
+                ]
+            ]);
         ;
     }
 

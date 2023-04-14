@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Avatar;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\KaamelottAuthenticator;
@@ -17,35 +18,41 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/inscription", name="app_register")
      */
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, KaamelottAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
 
-        // TODO: mettre le role à user
-        
+        $user->setRoles(["ROLE_USER"]);
+
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-            $userPasswordHasher->hashPassword(
+
+            $password = $form->get("password")->getData();
+            $passwordConfirmed = $form->get("password_confirmed")->getData();
+
+            if ($password === $passwordConfirmed) {
+
+                // encode the plain password
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
+                );
+
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+                return $userAuthenticator->authenticateUser(
                     $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-
-            $entityManager->persist($user);
-            $entityManager->flush();
-            // do anything else you need here, like send an email
-
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+                    $authenticator,
+                    $request
+                );
+            }   
         }
 
         return $this->render('registration/register.html.twig', [
