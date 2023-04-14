@@ -63,7 +63,7 @@ class Quote
     {
         $this->favorites = new ArrayCollection();
         $this->rates = new ArrayCollection();
-        $this->validated = 1;
+        $this->validated = 0;
     }
 
     public function getId(): ?int

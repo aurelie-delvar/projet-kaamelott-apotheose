@@ -23,14 +23,14 @@ class QuoteController extends AbstractController
     public function browse(QuoteRepository $quoteRepository, Request $request, PaginatorInterface $paginator): Response
     {
 
-        $paginationFalse = $paginator->paginate(
-            $quoteRepository->paginationQueryBackFalse(), // here is our query from the repository
+        $paginationTrue = $paginator->paginate(
+            $quoteRepository->paginationQueryBackTrue(), // here is our query from the repository
             $request->query->get('page', 1), // 1 is the page by default
             10, // the limit of results by page
         );
 
         return $this->render('backoffice/quote/browse.html.twig', [
-            'validatedFalse' => $paginationFalse,
+            'validatedTrue' => $paginationTrue,
         ]);
     }
 
@@ -41,14 +41,14 @@ class QuoteController extends AbstractController
      */
     public function browseToValidate(QuoteRepository $quoteRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $paginationTrue = $paginator->paginate(
-            $quoteRepository->paginationQueryBackTrue(), // here is our query from the repository
+        $paginationFalse = $paginator->paginate(
+            $quoteRepository->paginationQueryBackFalse(), // here is our query from the repository
             $request->query->get('page', 1), // 1 is the page by default
             10, // the limit of results by page
         );
 
         return $this->render('backoffice/quote/toValidate.html.twig', [
-            'validatedTrue' => $paginationTrue,
+            'validatedFalse' => $paginationFalse,
         ]);
     }
 

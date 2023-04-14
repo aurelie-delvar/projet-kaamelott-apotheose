@@ -67,6 +67,7 @@ class QuoteRepository extends ServiceEntityRepository
    {
        return $this->createQueryBuilder('q')
            ->orderBy('q.id', 'ASC')
+           ->where('q.validated = true')
            ->getQuery()
        ;
    }
@@ -102,7 +103,7 @@ class QuoteRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('App\Entity\Quote', 'q')
                     ->update('App\Entity\Quote','q')
-                    ->set('q.validated', 0)
+                    ->set('q.validated', 1)
                     ->where('q.id  = :id')
                     ->setParameter('id', $id)
                     ->getQuery()

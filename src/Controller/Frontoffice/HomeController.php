@@ -34,7 +34,7 @@ class HomeController extends AbstractController
         // * $allQuotes = $quoteRepository->findAll();
         $last10Quotes = $quoteRepository->findBy(
             // je n'ai pas de critères, mais je dois fournir un tableau, celui ci sera vide
-            ["validated" => 0],
+            ["validated" => 1],
             ["id" => "DESC"], // tri par id decroissant
             $limit = 10, //j'en veux 10
             $offset = 0 // à partir de 0 (1er de la table)
