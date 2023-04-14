@@ -4,6 +4,7 @@ namespace App\Controller\Frontoffice;
 
 use App\Entity\Rate;
 use App\Entity\User;
+use App\Form\RatingType;
 use App\Repository\QuoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -111,38 +112,25 @@ class UserController extends AbstractController
 
         $form->handleRequest($request);
 
-        // $user -> setUser($currentUser);
-        // $users = $quoteRepository -> find($quote) -> getUsers();
-        $user->addRate($rating);
-        $entityManager->flush();
-
-        // dd($users);
-
-        return $this->redirect($_SERVER['HTTP_REFERER']);
-
-
-        
-
-        // on récupère les infos du formulaire, et on met à jour notre entité $newReview
-        $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid())
         {
             // TODO : persist + flush
-            // il nous manque l'association avec le film
-            $newReview->setMovie($movieFromRoute);
+            // il nous manque l'association avec la citation
+            $newRating->setQuote($quote);
 
             // TODO : recalcul du rating
 
-            $reviewRepository->add($newReview, true);
+            $quoteRepository->addRate($newRating, true);
 
             // redirection
-            return $this->redirectToRoute('app_home_show', ["id" => $movieFromRoute->getId(),"slug" => $movieFromRoute->getSlug()]);
+            return $this->redirectToRoute($_SERVER['HTTP_REFERER']);
         }
 
-        return $this->renderForm('review/index.html.twig', [
+              
+
+        return $this->renderForm('frontoffice/user/formRating.html.twig', [
             "formulaire" => $form,
-            "movie" => $movieFromRoute
+            "quote" => $quote
         ]);
     }
 

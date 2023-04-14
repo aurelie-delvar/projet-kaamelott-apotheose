@@ -6,6 +6,7 @@ use App\Entity\Rate;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RatingType extends AbstractType
 {
@@ -20,6 +21,7 @@ class RatingType extends AbstractType
                     'Peut mieux faire' => 2,
                     'Nul' => 1
                 ],
+                'label' => 'Donner votre avis',
                 'multiple' => false,
                 'expanded' => false,
             ])
