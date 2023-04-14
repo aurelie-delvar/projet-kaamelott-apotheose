@@ -64,7 +64,7 @@ async function resultats(){
 	// display score (bottom)
 	scoreDiv.innerHTML = `Vous avez ${score} bonnes réponses sur ${questions.length}`;
 	
-	againDiv.innerHTML = "<button type='submit' id='againButton' onclick=\"startAgainQuiz()\";>Recommencer</button>";
+	againDiv.innerHTML = "<button  type='submit'  id='againButton' onclick=\"startAgainQuiz()\";>Recommencer</button>";
 
 }
 

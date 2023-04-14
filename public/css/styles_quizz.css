@@ -112,6 +112,7 @@
     font-weight: bold;
     color: white;
     background: rgb(77, 112, 153);
+   
     
   }
 
@@ -119,6 +120,12 @@
       
     color:white;
     background:#6C757D;
+    
+  }
+
+  #againButton:hover {
+      
+    background:#54545f;
     
   }
 
