@@ -2,6 +2,7 @@
 
 namespace App\Controller\Frontoffice;
 
+use App\Entity\User;
 use App\Repository\QuoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
@@ -12,12 +13,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/frontoffice/user", name="app_frontoffice_user")
+     * @Route("/favoris/{userId}", name="app_favorites_user")
      */
     public function index(): Response
     {
-        return $this->render('frontoffice/user/index.html.twig', [
-            'controller_name' => 'UserController',
+
+
+        
+        return $this->render('frontoffice/user/indexFav.html.twig', [
+            
         ]);
     }
 
@@ -41,7 +45,7 @@ class UserController extends AbstractController
 
         }
         // $user -> setUser($currentUser);
-        $users = $quoteRepository -> find($quote) -> getUsers();
+        // $users = $quoteRepository -> find($quote) -> getUsers();
         $user->addFavoriteQuote($quote);
         $entityManager->flush();
 
@@ -49,6 +53,7 @@ class UserController extends AbstractController
 
         return $this->redirect($_SERVER['HTTP_REFERER']);
     }
+
     /**
      * @Route("/favorite-quotes/remove/{quoteId}", name="user_remove_favorite_quote")
      */
