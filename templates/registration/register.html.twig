@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kaamel'O'tt - Inscription{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="text-center mb-3">
+        <h1>Inscription</h1>
+    </div>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword) }}
+        {{ form_row(registrationForm.avatar) }}
+
+        <button type="submit" class="btn btn-success">Valider</button>
+    {{ form_end(registrationForm) }}
+
+</div>
+</main>
+
+{% endblock %}

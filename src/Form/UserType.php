@@ -27,7 +27,12 @@ class UserType extends AbstractType
                     "USER" => "ROLE_USER"
                 ], 
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez choisir un rôle'
+                    ])
+                ]
             ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event){
                 $formulaire = $event->getForm();
