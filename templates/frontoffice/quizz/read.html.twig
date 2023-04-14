@@ -4,11 +4,11 @@
 
 {% block body %}
 
-<main class="main">
+<main class="main p-3">
 
     <h2 class="main__item">Kaamel'O'tt {{ quizz.title }}</h2>
     <div id="app-container">
-        <button id="start-btn">Start</button>
+        <div id="start">Start</div>
         <button id="score-container">Score: 0</button>        
         
         <div id="questions-container">
@@ -17,12 +17,14 @@
                 <div id="answers"></div> 
             </div>
         </div>
-        <div id="resultat">
-            <div id="score"></div>
-            <div id="againButton"></div>
+
+        <div id="resultat-container">
+            <div id="resultat">
+                <div id="score"></div>
+                <div id="again"></div>
+            </div>
         </div>
         
-    </div>
     </div>
 
 </main>
