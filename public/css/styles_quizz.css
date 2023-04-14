@@ -11,7 +11,6 @@
 
 
 
-
 #questions-container, #resultat-container {
  
   display: grid;
@@ -21,7 +20,10 @@
   padding-top: 1rem;
 }
 
-
+.score_position{
+  display:flex;
+  justify-content: center;
+}
 
 #question, #resultat {
 
