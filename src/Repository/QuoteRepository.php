@@ -113,7 +113,7 @@ class QuoteRepository extends ServiceEntityRepository
         return $result = $query->execute();
     }
 
-    
+    /**
     * Query for the paginator. Search results of the backoffice.
     */
     public function querySearch($words)

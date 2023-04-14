@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AddQuoteType extends AbstractType
 {
@@ -21,21 +22,21 @@ class AddQuoteType extends AbstractType
                 'label' => 'Texte de la citation',
             ]
             )
-            // ->add('rating')
-            // ->add('validated')
             ->add('episode', EntityType::class, [
                 'class' => Episode::class,
                 'choice_label' => 'title',
+                'constraints' => [new NotBlank(['message' => 'Ce champ ne peut être vide'])],
                 'label' => 'Titre de l\'épisode',
                 'expanded' => false,
-                'required' => false
+                'placeholder' => 'Sélectionner un choix'
             ])
             ->add('personage', EntityType::class, [
                 'class' => Personage::class,
                 'choice_label' => 'name',
+                'constraints' => [new NotBlank(['message' => 'Ce champ ne peut être vide'])],
                 'label' => 'Nom du personage',
                 'expanded' => false,
-                'required' => false
+                'placeholder' => 'Sélectionner un choix'
             ])
             // ->add('user', EntityType::class, [
             //     'class' => User::class,
