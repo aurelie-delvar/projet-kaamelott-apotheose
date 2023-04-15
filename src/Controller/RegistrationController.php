@@ -26,6 +26,13 @@ class RegistrationController extends AbstractController
 
         $user->setRoles(["ROLE_USER"]);
 
+        // $avatar = new Avatar();
+        // $avatar->getName();
+        // $avatar->setName();
+        // dd($avatar);
+        // $user->setAvatar($avatar);
+        // dd($user);
+
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -47,8 +54,7 @@ class RegistrationController extends AbstractController
                     $authenticator,
                     $request
                 );
-            }   
-        // }
+        }   
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),

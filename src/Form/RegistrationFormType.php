@@ -29,7 +29,7 @@ class RegistrationFormType extends AbstractType
                 'type' => PasswordType::class,
                 'mapped' => false,
                 'invalid_message' => 'Les mots de passe doivent être identiques.',
-                'options' => ['attr' => ['class' => 'password-field']],
+                // 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Confirmation mot de passe'],
@@ -51,7 +51,7 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Veuillez choisir un avatar'
                     ])
-                ]
+                    ],
             ]);
         ;
     }
