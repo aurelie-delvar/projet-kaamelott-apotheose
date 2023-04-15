@@ -25,39 +25,20 @@ class RegistrationFormType extends AbstractType
             ->add('email', TextType::class, [
                 'label' => 'Votre adresse email',
             ])
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
                 'mapped' => false,
-                'label' => 'Mot de passe',
-                'always_empty' => false,
-                // 'invalid_message' => 'Le mot de passe n\'est pas valide', // ne marche pas
-                'attr' => [
-                    'autocomplete' => 'new-password',
-                    'placeholder' => 'Entrez un mot de passe'
-                ],
+                'invalid_message' => 'Les mots de passe doivent être identiques.',
+                'options' => ['attr' => ['class' => 'password-field']],
+                'required' => true,
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmation mot de passe'],
                 'constraints' => [
+                    new Regex("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-+\-]).{8,}$/",
+                    'Le mot de passe doit contenir au minimum 8 caractères, une majuscule, un chiffre et un caractère spécial'),
                     new NotBlank([
-                        'message' => 'Veuillez entrer un mot de passe',
-                    ]),
-                    new Regex([
-                        "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-+\-]).{8,}$/",
-                        'Le mot de passe doit être valide'
+                        'message' => 'Veuillez renseigner un mot de passe.'
                     ])
-                ],
-            ])
-            ->add('password_confirmed', PasswordType::class, [
-                "attr" => [
-                    "placeholder" => "Veuillez confirmer le mot de passe"
-                ],
-                "mapped" => false,
-                'label' => 'Vérification mot de passe',
-                'constraints' => [
-                    new NotBlank(),
-                    new Regex(
-                        "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-+\-]).{8,}$/",
-                        "Le mot de passe doit contenir au minimum 8 caractères, une majuscule, un chiffre et un caractère spécial"
-                    ),
                 ]
             ])
             ->add('avatar', EntityType::class, [
