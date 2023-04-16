@@ -39,6 +39,26 @@ class RateRepository extends ServiceEntityRepository
         }
     }
 
+    
+
+
+    public function averageRating(): array
+    {
+        // version SQL
+        $sql = "SELECT AVG(rating) , quote_id
+        FROM rate
+        GROUP BY quote_id";
+        
+        $doctrine = $this->getEntityManager()->getConnection();
+        $statement = $doctrine->prepare($sql);
+        $result = $statement->executeQuery();
+        $quoteArray = $result->fetchAssociative();
+
+        return $quoteArray;
+    }
+
+
+
 //    /**
 //     * @return Rate[] Returns an array of Rate objects
 //     */

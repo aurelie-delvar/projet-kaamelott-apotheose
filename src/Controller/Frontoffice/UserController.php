@@ -6,6 +6,7 @@ use App\Entity\Rate;
 use App\Entity\User;
 use App\Form\RatingType;
 use App\Repository\QuoteRepository;
+use App\Repository\RateRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -90,14 +91,19 @@ class UserController extends AbstractController
     /**
      * @Route("/quote-rating/add/{quoteId}", name="user_add_rating_quote")
      */
-    public function addRating(EntityManagerInterface $entityManager, Security $security, Request $request, int $quoteId, QuoteRepository $quoteRepository): Response
+    public function addRating(EntityManagerInterface $entityManager, Security $security, Request $request, int $quoteId, QuoteRepository $quoteRepository, RateRepository $rateRepository): Response
     {
         
         // je récupère le User s'il est connecté
         $user = $security->getUser();
+        
         // je récupère la quote grâce à son id
         $quote = $quoteRepository->find($quoteId);
-        // dd($user);
+        // dd($quote);//
+
+        $averageRatingQuote = $rateRepository -> averageRating($quote);
+        // dd($averageRatingQuote);
+
         if (!$user) {
             throw $this->createNotFoundException('L\'utilisateur doit être connecté pour noter une citation en favori.');
         }
@@ -109,21 +115,31 @@ class UserController extends AbstractController
 
         $newRating = new Rate();
         $form = $this->createForm(RatingType::class, $newRating);
-
+        
+        //rajout user_id et quote_id
+        
+// dd($request);
         $form->handleRequest($request);
-
+        dd($form);
         if ($form->isSubmitted() && $form->isValid())
         {
             // TODO : persist + flush
             // il nous manque l'association avec la citation
-            $newRating->setQuote($quote);
+            $newRating->setQuote($quote); //on a la note du form
+            // dd($newRating);
+
+            $quoteRating = $quoteRepository->find($quoteId);
+            
+            $quoteRating -> addRate($newRating);
+            dd($quoteRating);
+            // dd($rateRepository);
 
             // TODO : recalcul du rating
 
-            $quoteRepository->addRate($newRating, true);
+            // $averageRatingQuote ->setRating($newRating);
 
             // redirection
-            return $this->redirectToRoute($_SERVER['HTTP_REFERER']);
+            return $this->redirectToRoute('default');
         }
 
               
