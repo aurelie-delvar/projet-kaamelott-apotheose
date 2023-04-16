@@ -3,7 +3,7 @@
 {% block title %}Kaamel'O'tt - Connexion{% endblock %}
 
 {% block body %}
-<form method="post">
+{# <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -23,7 +23,7 @@
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
-    >
+    > #}
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -36,8 +36,51 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
+    {# <button class="btn btn-lg btn-primary" type="submit">
         Valider
     </button>
+</form> #}
+
+
+<form method="post">
+<main  class="p-3">
+    <div class="text-center mb-3">
+    
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+    
+        <div class="mb-3">
+            Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+        </div>
+    {% endif %}
+    <h2 class="main__item">Veuillez vous connecter</h2>
+  
+    <div class="card mt-3 mb-3"> 
+        <div class="card-body text-bg-secondary">
+            {# {{ form_start(formulaire, {'attr': {'novalidate': 'novalidate'}}) }} #}
+        <label for="inputEmail">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        <label for="inputPassword">Mot de passe</label>
+        <input type="password" name="password" id="inputPassword" class="form-control mb-3" autocomplete="current-password" required>
+
+        <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}">
+       
+            {# {{ form_row(formulaire.rating)}}
+   
+        <button type="submit" class="btn btn-outline-light" id="button_add_review">Ajouter la Note</button>
+            {{ form_end(formulaire) }} #}
+            <button class="btn btn-lg btn-outline-light" type="submit">
+        Valider
+    </button>
+        </div>
+    </div>
+
+</main>
+
 </form>
+
 {% endblock %}
