@@ -114,13 +114,16 @@ class UserController extends AbstractController
         }
 
         $newRating = new Rate();
+        //rajout user_id et quote_id
+        $newRating ->setUser($user);
+        $newRating -> setQuote($quote);
         $form = $this->createForm(RatingType::class, $newRating);
         
-        //rajout user_id et quote_id
+        
         
 // dd($request);
         $form->handleRequest($request);
-        dd($form);
+        // dd($form);
         if ($form->isSubmitted() && $form->isValid())
         {
             // TODO : persist + flush
@@ -131,7 +134,7 @@ class UserController extends AbstractController
             $quoteRating = $quoteRepository->find($quoteId);
             
             $quoteRating -> addRate($newRating);
-            dd($quoteRating);
+            // dd($quoteRating);
             // dd($rateRepository);
 
             // TODO : recalcul du rating
