@@ -19,10 +19,6 @@ h1, h2, h3, h4, h5, h6, .title {
     background-color: rgba(240, 248, 255, 0.3);
 }
 
-.navbar {
-    background-color: rgba(243, 245, 245, 0.2);
-}
-
 .logo {
     margin: auto;
     padding: 20px 20px;
@@ -33,6 +29,35 @@ h1, h2, h3, h4, h5, h6, .title {
     background-color: rgba(243, 245, 245, 0.6);
 }
 
+.navbar {
+    background-color: rgba(243, 245, 245, 0.2);
+}
+
+.icone {
+    width: 68px;
+    height: 68px;
+    object-fit: cover;
+}
+
+.main {
+    margin: 0 20px ;    
+}
+
+.main__item {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.main__item--img {
+    padding-left: 15px;
+}
+
+.main-content {
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
 .name {
     font-weight: 700 ;
 }
@@ -41,17 +66,86 @@ h1, h2, h3, h4, h5, h6, .title {
     padding: 20px 20px ;    
 }
 
-.main {
-    margin: 0 20px ;    
+.blockquote {
+    font-size: 1rem;
 }
+
+.addQuote_position {
+    display:flex;
+    justify-content: center;
+}
+
+.addQuote_size{
+    margin:2rem;
+    width: 80%; 
+}
+
+.addQuoteBtn{
+    margin-bottom: 1rem;
+    background : #6c757d;
+}
+
+a {
+    text-decoration: none; 
+    color: black;
+}  
+
+.card-img-top {
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+}
+
 
 .img {
     width: 100%;
 }
 
+figcaption {
+    background-color: #222;
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 3px;
+    text-align: center;
+}
+
+.searchLinks {
+   
+    color:black;
+}
+
+.searchLinks:hover {
+    color:rgb(80, 79, 79);
+    
+}
+
+.login_on{
+    margin: 3rem;
+}
+
+.deconnection:hover{
+    color:rgb(128, 36, 36);
+} 
+
+.login_position {
+    display:flex;
+    justify-content: center;
+}
+
+.login_size{
+    margin:2rem;
+    width: 50%; 
+}
+
+.loginBtn{
+    background : #6c757d;
+    margin-top:1rem;
+}
+
+
 footer {
     margin-top: 2rem;
-    color: white;
+     color: white; 
 }
 
 .footer {
@@ -66,48 +160,13 @@ footer > p {
     border-top: solid 1px lightgrey;
 }
 
-footer > a:hover {
+.footer > a:hover {
+    
     text-decoration: none;
     text-shadow: 4px 4px 10px black;
 } 
 
-a {
-    text-decoration: none; 
-    color: black;
-}
 
-.main__item {
-    margin: 20px 0;
-    text-align: center;
-}
-
-.blockquote {
-    font-size: 1rem;
-}
-
-.main__item--img {
-    padding-left: 15px;
-}
-
-.card-img-top {
-    width: 100%;
-    height: 40vh;
-    object-fit: cover;
-}
-
-.icone {
-    width: 68px;
-    height: 68px;
-    object-fit: cover;
-}
-
-figcaption {
-    background-color: #222;
-    color: #fff;
-    font-size: 0.7rem;
-    padding: 3px;
-    text-align: center;
-}
 
 .pagination {
     /* max-width: 100%; */
@@ -133,18 +192,5 @@ figcaption {
     }
 }
 
-.main-content {
-    text-align: center;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
 
-.searchLinks {
-   
-    color:black;
-}
 
-.searchLinks:hover {
-    color:rgb(80, 79, 79);
-    
-}
