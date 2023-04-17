@@ -21,15 +21,23 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+        // we take the user's data if there are, else we return null
+        $user = $options['data'] ?? null;
+        // as we want the email form to be disabled, we'll put this var in the corresponding field
+        // it checks if user exists and has an Id, and returns true or false
+        $hasEmail = $user && $user->getId();
+
         $builder
             ->add('email', TextType::class, [
                 'label' => 'Votre adresse email',
+                // here it will be true or false
+                'disabled' => $hasEmail,
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'mapped' => false,
                 'invalid_message' => 'Les mots de passe doivent être identiques.',
-                // 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Confirmation mot de passe'],
