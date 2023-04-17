@@ -2,11 +2,12 @@
 
 namespace App\Controller\Frontoffice;
 
+
 use App\Entity\Rate;
 use App\Entity\User;
 use App\Form\RatingType;
-use App\Repository\QuoteRepository;
 use App\Repository\RateRepository;
+use App\Repository\QuoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -101,8 +102,6 @@ class UserController extends AbstractController
         $quote = $quoteRepository->find($quoteId);
         // dd($quote);//
 
-        $averageRatingQuote = $rateRepository -> averageRating($quote);
-        // dd($averageRatingQuote);
 
         if (!$user) {
             throw $this->createNotFoundException('L\'utilisateur doit être connecté pour noter une citation en favori.');
@@ -120,26 +119,31 @@ class UserController extends AbstractController
         $form = $this->createForm(RatingType::class, $newRating);
         
         
-        
-// dd($request);
+
         $form->handleRequest($request);
         // dd($form);
         if ($form->isSubmitted() && $form->isValid())
         {
             // TODO : persist + flush
             // il nous manque l'association avec la citation
+            $newRating ->setUser($user);
             $newRating->setQuote($quote); //on a la note du form
             // dd($newRating);
+            $entityManager->persist($newRating);
+            $entityManager->flush();
 
-            $quoteRating = $quoteRepository->find($quoteId);
-            
-            $quoteRating -> addRate($newRating);
-            // dd($quoteRating);
-            // dd($rateRepository);
+
 
             // TODO : recalcul du rating
+           
+            $averageRatingQuote = $rateRepository -> averageRating($quoteId);
+            // le pb se trouve ici et sur rate repisitory
+            dd($averageRatingQuote);
 
-            // $averageRatingQuote ->setRating($newRating);
+
+            $quote -> setRating($rating);
+            $entityManager->persist($quote);
+            $entityManager->flush();
 
             // redirection
             return $this->redirectToRoute('default');

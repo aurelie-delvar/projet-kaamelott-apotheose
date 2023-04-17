@@ -47,7 +47,7 @@ class RateRepository extends ServiceEntityRepository
         // version SQL
         $sql = "SELECT AVG(rating) , quote_id
         FROM rate
-        GROUP BY quote_id";
+        Where quote_id";
         
         $doctrine = $this->getEntityManager()->getConnection();
         $statement = $doctrine->prepare($sql);
