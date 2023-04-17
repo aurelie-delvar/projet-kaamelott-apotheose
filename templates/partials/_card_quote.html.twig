@@ -23,7 +23,7 @@
                             {{ '<i class="bi bi-star"></i>' }}
                         {% endif %}
                     {% endfor %}
-            <span class="ps-1">{{ quote.rating }}</span>
+            <span class="ps-1">{{ quote.rating|round(1, 'floor')  }}</span>
            
                         
                  
