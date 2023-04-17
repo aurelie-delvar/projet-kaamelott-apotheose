@@ -15,14 +15,11 @@
                 
                     <img src="{{asset('img/' ~ app.user.avatar.icon)}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     <span>{{app.user.email}}</span>
-                {# {% else %} #}
-                    {# <img src="{{ asset('img/icone.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                    <span>Anonyme</span> #}
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ path("app_login") }}">Connexion</a></li>
                     <li><a class="dropdown-item" href="{{ path("app_logout") }}">Déconnexion</a></li>
-                    <li><a class="dropdown-item" href="#">Profil</a></li>
+                    <li><a class="dropdown-item" href="{{ path("user_read_profile", {"id" : app.user.id }) }}">Profil</a></li>
                 </ul>
             </li>
         {% else %}

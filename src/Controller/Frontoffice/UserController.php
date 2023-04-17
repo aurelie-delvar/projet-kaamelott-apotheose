@@ -3,12 +3,16 @@
 namespace App\Controller\Frontoffice;
 
 use App\Entity\User;
+use App\Form\RegistrationFormType;
+use App\Repository\UserRepository;
 use App\Repository\QuoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
@@ -81,5 +85,52 @@ class UserController extends AbstractController
         // dd($users);
 
         return $this->redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    /**
+     * User's profile
+     *
+     * @Route("/utilisateur/{id}/profil", name="user_read_profile", requirements={"id" = "\d+"})
+     */
+    public function read(UserRepository $userRepository, $id) : Response
+    {
+        $user = $userRepository->find($id);
+
+        return $this->render('frontoffice/user/profile.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * Edit user's profile
+     * 
+     * @Route("/utilisateur/{id}/edition-profil", name ="user_edit_profile", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     */
+    public function edit(User $user, Request $request, UserPasswordHasherInterface $userPasswordHasherInterface, UserRepository $userRepository) : Response
+    {
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+        $user->setEmail($user->getEmail());
+
+        // $form->getViewData()->getEmail();
+        // dd($form->getViewData()->getEmail());
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $password = $form->get("password")->getData();
+            $hashedpassword = $userPasswordHasherInterface->hashPassword($user, $password);
+            $user->setPassword($hashedpassword);
+            
+            $userRepository->add($user, true);
+
+            return $this->redirectToRoute("user_read_profile", [], Response::HTTP_SEE_OTHER);
+
+        }
+
+        return $this->renderForm('frontoffice/user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+
     }
 }

@@ -46,12 +46,6 @@ class RegistrationFormType extends AbstractType
                 'choice_label' => 'name',
                 'label' => 'Choix de l\'avatar',
                 'expanded' => true,
-            //     'required' => true,
-            //     'constraints' => [
-            //         new NotBlank([
-            //             'message' => 'Veuillez choisir un avatar'
-            //         ])
-            //         ],
             ]);
         ;
     }
