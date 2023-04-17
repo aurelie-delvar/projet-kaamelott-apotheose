@@ -138,10 +138,10 @@ class UserController extends AbstractController
            
             $averageRatingQuote = $rateRepository -> averageRating($quoteId);
             // le pb se trouve ici et sur rate repisitory
-            dd($averageRatingQuote);
+            // dd($averageRatingQuote);
 
 
-            $quote -> setRating($rating);
+            $quote -> setRating($averageRatingQuote);
             $entityManager->persist($quote);
             $entityManager->flush();
 
