@@ -17,9 +17,8 @@ class SeasonController extends AbstractController
     /**
      * @Route("/livre/{id}", name="app_frontoffice_season_read", requirements={"id":"\d+"})
      */
-    public function read($id, SeasonRepository $seasonRepository, Request $request, Security $security, EpisodeRepository $episodeRepository): Response 
+    public function read($id, SeasonRepository $seasonRepository, Request $request, EpisodeRepository $episodeRepository): Response 
     {
-        $user = $security->getUser();
         $season = $seasonRepository->find($id);
         // dd($season);
         $episodes = $episodeRepository->findAll();
@@ -27,7 +26,6 @@ class SeasonController extends AbstractController
         return $this->render('frontoffice/season/read.html.twig', [
             'season' => $season,
             'episodes' => $episodes,
-            "user" => $user,
         ]);
     }
 }
