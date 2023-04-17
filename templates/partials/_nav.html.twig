@@ -94,8 +94,8 @@
 
         </ul>
 
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Search">
+        <form class="d-flex" role="search" method="post" action="{{ path('app_frontoffice_search') }}">
+            <input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Search" name="searchBack">
 
             <button class="btn" type="submit"><img src="{{ asset('img/loupe.png') }}" alt="search-icon" width="24" height="24"></button>
         </form>
