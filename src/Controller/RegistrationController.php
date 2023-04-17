@@ -2,36 +2,34 @@
 
 namespace App\Controller;
 
-use App\Entity\Avatar;
 use App\Entity\User;
+use App\Entity\Avatar;
 use App\Form\RegistrationFormType;
+use App\Repository\AvatarRepository;
 use App\Security\KaamelottAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
     /**
      * @Route("/inscription", name="app_register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, KaamelottAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(AvatarRepository $avatarRepository, Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, KaamelottAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
 
         $user->setRoles(["ROLE_USER"]);
 
-        // $avatar = new Avatar();
-        // $avatar->getName();
-        // $avatar->setName();
-        // dd($avatar);
-        // $user->setAvatar($avatar);
-        // dd($user);
+        $avatar = $avatarRepository->find(5);
+
+        $user->setAvatar($avatar);
 
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
