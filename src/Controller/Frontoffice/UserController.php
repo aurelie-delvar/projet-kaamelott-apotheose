@@ -140,8 +140,12 @@ class UserController extends AbstractController
      *
      * @Route("/utilisateur/{id}/profil", name="user_read_profile", requirements={"id" = "\d+"})
      */
-    public function read(UserRepository $userRepository, $id) : Response
+    public function read(UserRepository $userRepository, $id, User $user) : Response
     {
+        if($this->getUser() !== $user) {
+            throw $this->createAccessDeniedException("Vous n'êtes pas autorisé ici.");
+        }
+
         $user = $userRepository->find($id);
 
         return $this->render('frontoffice/user/profile.html.twig', [
@@ -156,6 +160,10 @@ class UserController extends AbstractController
      */
     public function edit(User $user, Request $request, UserPasswordHasherInterface $userPasswordHasherInterface, UserRepository $userRepository) : Response
     {
+
+        if($this->getUser() !== $user) {
+            throw $this->createAccessDeniedException("Vous n'êtes pas autorisé ici.");
+        }
 
         $form = $this->createForm(RegistrationFormType::class, $user);
         
