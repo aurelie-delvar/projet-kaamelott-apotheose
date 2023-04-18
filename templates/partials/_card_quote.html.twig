@@ -43,7 +43,7 @@
                     {% for userFav in quote.users %}
                             {% if currentUser.getUser == userFav %}
                                 {% set isFavorite = true %}
-                             {% endif %}
+                            {% endif %}
                     {% endfor %}
                      
                     {% if isFavorite %}
@@ -57,7 +57,25 @@
                 </div>
             
             <footer class="blockquote-footer"> {{ quote.personage.name }},<cite title="Source Title"> <strong>{{ quote.episode.season.title }}</strong>, {{ quote.episode.title }}.</cite></footer>
-             <a href="{{ path('user_add_rating_quote', {quoteId: quote.id})}}" class="btn btn-outline-secondary d-flex justify-content-end">Donner une Note à la Citation</a>
+                {# We check if the user is connected, because if not, he can't rate the quote #}
+                {% if is_granted("ROLE_USER") %} 
+
+                    {% set isRating = false %}
+                    {% for userRate in quote.users %}
+                            {% if currentUser.getUser == userRate %}
+                                {% set isRating = true %}
+                            {% endif %}
+                    {% endfor %}
+                     
+                    {% if isRating %}
+                       <p class="btn btn-outline-secondary d-flex justify-content-end">Vous avez déjà noté cette Citation</a>
+                    {% else %}
+                       
+                       <a href="{{ path('user_add_rating_quote', {quoteId: quote.id})}}" class="btn btn-outline-secondary d-flex justify-content-end">Donner une Note à cette Citation</a>
+                    {% endif %}
+
+                {% endif %}
+
         </blockquote>
     </div>
 </div>

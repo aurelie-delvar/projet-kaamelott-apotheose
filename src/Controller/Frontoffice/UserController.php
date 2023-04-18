@@ -31,25 +31,10 @@ class UserController extends AbstractController
     public function index(Security $security, $userId, UserRepository $userRepository,QuoteRepository $quoteRepository): Response
     {
 
-        // $allFav=[];
         $favoritesQuotesId = $userRepository -> favoritesQuotes($userId);
-        // dd($favoritesQuotesId);
-        // foreach ($) {
-        //     $favQuotes = $quoteRepository -> findBy([
-        //         "id" => $value
-        //     ]);
-        //     $allFav[]=$favQuotes;
-        // }
         
- 
-    
-        // dd($favoritesQuotesId);
-        // dd($favQuotes);
-        // dd($allFav);
         return $this->render('frontoffice/user/indexFav.html.twig', [
-            
             "allFav" => $favoritesQuotesId,
-            
         ]);
     }
 
@@ -72,12 +57,9 @@ class UserController extends AbstractController
             throw $this->createNotFoundException('La citation demandée n\'existe pas.');
 
         }
-        // $user -> setUser($currentUser);
-        // $users = $quoteRepository -> find($quote) -> getUsers();
+        
         $user->addFavoriteQuote($quote);
         $entityManager->flush();
-
-        // dd($users);
 
         return $this->redirect($_SERVER['HTTP_REFERER']);
     }
@@ -92,7 +74,7 @@ class UserController extends AbstractController
         $user = $security->getUser();
         // je récupère la quote grâce à son id
         $quote = $quoteRepository->find($quoteId);
-        // dd($user);
+       
         if (!$user) {
             throw $this->createNotFoundException('L\'utilisateur doit être connecté pour retirer une citation en favori.');
         }
@@ -101,12 +83,12 @@ class UserController extends AbstractController
             throw $this->createNotFoundException('La citation demandée n\'existe pas.');
 
         }
-        // $user -> setUser($currentUser);
-        $users = $quoteRepository -> find($quote) -> getUsers();
+        
+        // $users = $quoteRepository -> find($quote) -> getUsers();
         $user->removeFavoriteQuote($quote);
         $entityManager->flush();
 
-        // dd($users);
+        
 
         return $this->redirect($_SERVER['HTTP_REFERER']);
     }
@@ -239,8 +221,6 @@ class UserController extends AbstractController
         
         // je récupère la quote grâce à son id
         $quote = $quoteRepository->find($quoteId);
-        // dd($quote);//
-
 
         if (!$user) {
             throw $this->createNotFoundException('L\'utilisateur doit être connecté pour noter une citation en favori.');
@@ -252,20 +232,19 @@ class UserController extends AbstractController
         }
 
         $newRating = new Rate();
-        //rajout user_id et quote_id
+
         $newRating ->setUser($user);
         $newRating -> setQuote($quote);
         $form = $this->createForm(RatingType::class, $newRating);
-        
-        
 
         $form->handleRequest($request);
-        // dd($form);
+
         if ($form->isSubmitted() && $form->isValid())
         {
-             //! condition pour noter qu'une seule fois la citation
-            // TODO : persist + flush
-            // il nous manque l'association avec la citation
+            //! condition pour noter qu'une seule fois la citation
+            
+            //  DONE: persist + flush
+            
             $newRating ->setUser($user);
             $newRating->setQuote($quote); //on a la note du form
             // dd($newRating);
@@ -274,22 +253,16 @@ class UserController extends AbstractController
 
             
 
-            // TODO : recalcul du rating
+            //  DONE: recalcul du rating
            
             $averageRatingQuote = $rateRepository -> averageRating($quoteId);
           
-            // dd($averageRatingQuote);
-
-
             $quote -> setRating($averageRatingQuote);
             $entityManager->persist($quote);
             $entityManager->flush();
 
-            // redirection
             return $this->redirectToRoute('default');
         }
-
-              
 
         return $this->renderForm('frontoffice/user/formRating.html.twig', [
             "formulaire" => $form,
