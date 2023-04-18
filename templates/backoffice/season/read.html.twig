@@ -27,7 +27,10 @@
                     <td>
                         <a href="{{ path('app_backoffice_season_edit', {'id': season.id}) }}" class="btn btn-warning">Modifier</a>
                        
-                        {{ include('backoffice/season/_delete_form.html.twig') }}
+                       {% if is_granted("ROLE_ADMIN") %}
+                            {{ include('backoffice/season/_delete_form.html.twig') }}
+                        {% endif %}
+
                     </td>
                 </tr>
             </tbody>
