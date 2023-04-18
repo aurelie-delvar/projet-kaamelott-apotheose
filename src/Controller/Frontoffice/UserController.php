@@ -5,12 +5,9 @@ namespace App\Controller\Frontoffice;
 
 use App\Entity\Rate;
 use App\Entity\User;
-<<<<<<< HEAD
 use App\Form\RegistrationFormType;
-=======
 use App\Form\RatingType;
 use App\Repository\RateRepository;
->>>>>>> ratingBis
 use App\Repository\UserRepository;
 use App\Repository\QuoteRepository;
 use App\Repository\AvatarRepository;
@@ -33,9 +30,7 @@ class UserController extends AbstractController
      */
     public function index(Security $security, $userId, UserRepository $userRepository,QuoteRepository $quoteRepository): Response
     {
-<<<<<<< HEAD
 
-=======
         // $allFav=[];
         $favoritesQuotesId = $userRepository -> favoritesQuotes($userId);
         // dd($favoritesQuotesId);
@@ -51,7 +46,6 @@ class UserController extends AbstractController
         // dd($favoritesQuotesId);
         // dd($favQuotes);
         // dd($allFav);
->>>>>>> ratingBis
         return $this->render('frontoffice/user/indexFav.html.twig', [
             
             "allFav" => $favoritesQuotesId,
@@ -118,7 +112,6 @@ class UserController extends AbstractController
     }
 
 
-<<<<<<< HEAD
                                                         // PROFILE PARTS //
 
     /**
@@ -215,7 +208,6 @@ class UserController extends AbstractController
         ]);
 
     }
-=======
     /**
      * @Route("/quote-rating/add/{quoteId}", name="user_add_rating_quote")
      */
@@ -290,5 +282,4 @@ class UserController extends AbstractController
 
 
 
->>>>>>> ratingBis
 }
