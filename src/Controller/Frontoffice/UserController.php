@@ -156,7 +156,7 @@ class UserController extends AbstractController
     /**
      * Edit user's profile
      * 
-     * @Route("/utilisateur/{id}/edition-profil", name ="user_edit_profile", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     * @Route("/utilisateur/{id}/edition", name ="user_edit_profile", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function edit(User $user, Request $request, UserPasswordHasherInterface $userPasswordHasherInterface, UserRepository $userRepository) : Response
     {
@@ -186,5 +186,23 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
 
+    }
+
+    /**
+     * For the user to delete his own profile
+     * 
+     * @Route("utilisateur/{id}/suppression", name="user_delete_profile", methods={"POST"}, requirements={"id"="\d+"})
+     */
+    public function delete(User $user, Request $request, UserRepository $userRepository) : Response
+    {
+        if($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            $userRepository->remove($user, true);
+        }
+
+        // I had to add these lines because a error occured due to the session still standing
+        $request->getSession()->invalidate();
+        $this->container->get('security.token_storage')->setToken(null);
+
+        return $this->redirectToRoute('default', [], Response::HTTP_SEE_OTHER);
     }
 }

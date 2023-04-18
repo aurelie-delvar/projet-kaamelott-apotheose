@@ -15,7 +15,9 @@
 
 <a class="btn btn-success" href="{{ path("user_edit_profile", {"id" : user.id}) }}">Modifier mon profil</a>
 
-<button class="btn btn-danger">Supprimer mon profil</button>
+<div class="mb-3">
+{{ include('frontoffice/user/_delete_form.html.twig') }}
+</div>
 
 </div>
 
