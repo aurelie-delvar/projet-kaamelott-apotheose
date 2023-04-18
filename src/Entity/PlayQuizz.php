@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PlayQuizzRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PlayQuizzRepository::class)
@@ -19,6 +20,7 @@ class PlayQuizz
 
     /**
      * @ORM\ManyToOne(targetEntity=Quizz::class, inversedBy="playQuizz")
+     * @Groups({"user_browse", "user_read"})
      */
     private $quizz;
 
@@ -29,6 +31,7 @@ class PlayQuizz
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
+     * @Groups({"user_browse", "user_read"})
      */
     private $score;
 

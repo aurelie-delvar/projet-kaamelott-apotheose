@@ -18,20 +18,20 @@ class Quizz
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"question_browse", "question_read", "quizz_browse", "quizz_read"})
+     * @Groups({"quizz_browse", "quizz_read", "user_browse", "user_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank (message= "Ce champ doit être rempli.")]
-     * @Groups({"question_browse", "question_read", "quizz_browse", "quizz_read"})
+     * @Groups({"quizz_browse", "quizz_read"})
      */
     private $title;
 
     /**
      * @ORM\OneToMany(targetEntity=Question::class, mappedBy="quizz")
-     * @Groups({"question_browse", "question_read", "quizz_browse", "quizz_read"})
+     * @Groups({"quizz_browse", "quizz_read"})
      * 
      */
     private $questions;
