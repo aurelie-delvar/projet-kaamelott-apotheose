@@ -59,5 +59,30 @@ class UserController extends AbstractController
         );
     }
    
+    /**
+     * @Route("/api/user", name="app_api_user_add", methods={"POST"})
+     */
+    public function edit(User $user = null){
+        if($user === null){
+            return $this->json(
+                [
+                    "message" => "cet utilisateur n'existe pas"
+                ],
+                Response::HTTP_NOT_FOUND
+            );
+        }
+
+        return $this->json(
+            $user,
+            Response::HTTP_FOUND,
+            [],
+            [
+                "groups" =>
+                [
+                    "user_read"
+                ]
+            ]
+        );
+    }
     
 }

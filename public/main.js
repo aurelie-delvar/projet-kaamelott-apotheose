@@ -35,8 +35,8 @@ async function getQuizz() {
 
     const req = await fetch(`${urlQuizz}`); 
     const quizz = await req.json();
-	const idQuizz = quizz.id;
-	return idQuizz;
+	const quizzId = quizz.id;
+	return quizzId;
 
 }
 
@@ -56,8 +56,21 @@ async function next(){
     }
 }
 
+async function postScore(url = `${newUrl}api/play/quizz/add`, data = {}) {
+	const options = {
+	  method: 'POST',
+	  headers: {
+		'Content-Type': 'application/json'
+	  },
+	  body: JSON.stringify(data)
+	};
+  
+	const response = await fetch(url, options);
+	return response.json();
+  }
+
 async function resultats(){
-	let idQuizz = await this.getQuizz();
+	let quizzId = await this.getQuizz();
 	let questions = await this.getQuestions();
 
 	scoreDiv.innerHTML = "";
@@ -75,45 +88,23 @@ async function resultats(){
 	scoreDiv.innerHTML = `Vous avez ${score} bonnes réponses sur ${questions.length}`;
 	
 	// Send score to profil user (->backoffice)
-	// if update 
-	/*const data = {score: score};
-	fetch(`${newUrl}api/score/add`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
-		
-		})
-		.then(response => {
-			console.log(response);
-		})
-		
-		.catch(error => {
-			console.error(error);
-		})
-	
-	
-		const req = await fetch(`${newUrl}api/score/add`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				score: score,
-				idQuizz: idQuizz
-			})
-		});
+	const formData = new FormData();
+	formData.append("score", score);
+	console.log(formData);
 
-		if(req.status === 201){
-			console.log("score créé, Yess");
-		} else {
-			console.log("score non créé ");
-		}*/
+	fetch(`${newUrl}api/play/quizz/add`, {
+	method: 'POST',
+	body: formData
+	})
+	.then(response => {
+		console.log("score créé, Yess" + response);
+	})
+	.catch(error => console.error(error));
 	
 	againDiv.innerHTML = "<button  type='submit'  id='againButton' onclick=\"startAgainQuiz()\";>Recommencer</button>";
-
+	
 }
+
 
 function compare  (a,b){
 	if (b.includes(a)){
@@ -152,6 +143,9 @@ function startAgainQuiz(){
 	score =0;
 	showQuestion(0);	
 }
+
+
+  
 
 
 

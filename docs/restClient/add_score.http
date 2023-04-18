@@ -1,0 +1,8 @@
+POST http://localhost:8000/api/play/quizz/add
+content-type: application/json
+
+{
+    "score": 10,
+    "quizzId": 1,
+    "userId": 6
+}

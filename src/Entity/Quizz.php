@@ -18,14 +18,14 @@ class Quizz
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"quizz_browse", "quizz_read", "user_browse", "user_read"})
+     * @Groups({"quizz_browse", "quizz_read", "user_browse", "user_read", "playQuizz_browse", "playQuizz_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank (message= "Ce champ doit être rempli.")]
-     * @Groups({"quizz_browse", "quizz_read"})
+     * @Groups({"quizz_browse", "quizz_read", "playQuizz_browse","playQuizz_read"})
      */
     private $title;
 

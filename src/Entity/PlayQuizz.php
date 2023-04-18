@@ -20,18 +20,19 @@ class PlayQuizz
 
     /**
      * @ORM\ManyToOne(targetEntity=Quizz::class, inversedBy="playQuizz")
-     * @Groups({"user_browse", "user_read"})
+     * @Groups({"playQuizz_browse", "playQuizz_read"})
      */
     private $quizz;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="playQuizz")
+     * @Groups({"playQuizz_browse", "playQuizz_read"})
      */
     private $user;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
-     * @Groups({"user_browse", "user_read"})
+     * @Groups({"playQuizz_browse", "playQuizz_read"})
      */
     private $score;
 
