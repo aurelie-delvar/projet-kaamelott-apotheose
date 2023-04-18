@@ -22,10 +22,10 @@ class HomeController extends AbstractController
      */
     public function index(QuoteRepository $quoteRepository): Response
     {
-        // $randomQuote = $quoteRepository->randomQuote();
+        $randomQuote = $quoteRepository->randomQuote();
         
-        $randomId = rand(1,700);
-        $quoteByRandId = $quoteRepository -> find($randomId);
+        // $randomId = rand(1,700);
+        // $quoteByRandId = $quoteRepository -> find($randomId);
         // dd ($quoteByRandId);
 
 
@@ -44,7 +44,7 @@ class HomeController extends AbstractController
         // dd($last10Quotes);
         
         return $this->render('frontoffice/home/index.html.twig', [
-           "randomQuote" => $quoteByRandId,
+           "randomQuote" => $randomQuote,
            "last10Quotes" => $last10Quotes,
         ]);
     }

@@ -7,6 +7,7 @@ use App\Entity\Rate;
 use App\Entity\User;
 use App\Form\RatingType;
 use App\Repository\RateRepository;
+use App\Repository\UserRepository;
 use App\Repository\QuoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,12 +21,26 @@ class UserController extends AbstractController
     /**
      * @Route("/favoris/{userId}", name="app_favorites_user")
      */
-    public function index(): Response
+    public function index(Security $security, $userId, UserRepository $userRepository,QuoteRepository $quoteRepository): Response
     {
-
-
+        // $allFav=[];
+        $favoritesQuotesId = $userRepository -> favoritesQuotes($userId);
+        // dd($favoritesQuotesId);
+        // foreach ($) {
+        //     $favQuotes = $quoteRepository -> findBy([
+        //         "id" => $value
+        //     ]);
+        //     $allFav[]=$favQuotes;
+        // }
         
+ 
+    
+        // dd($favoritesQuotesId);
+        // dd($favQuotes);
+        // dd($allFav);
         return $this->render('frontoffice/user/indexFav.html.twig', [
+            
+            "allFav" => $favoritesQuotesId,
             
         ]);
     }
@@ -124,6 +139,7 @@ class UserController extends AbstractController
         // dd($form);
         if ($form->isSubmitted() && $form->isValid())
         {
+             //! condition pour noter qu'une seule fois la citation
             // TODO : persist + flush
             // il nous manque l'association avec la citation
             $newRating ->setUser($user);
@@ -132,12 +148,12 @@ class UserController extends AbstractController
             $entityManager->persist($newRating);
             $entityManager->flush();
 
-
+            
 
             // TODO : recalcul du rating
            
             $averageRatingQuote = $rateRepository -> averageRating($quoteId);
-            // le pb se trouve ici et sur rate repisitory
+          
             // dd($averageRatingQuote);
 
 
