@@ -1,31 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Kaamel'O'tt - {{ character.name }}{% endblock %}
+{% block title %}Kaamel'O'tt - {{ personage.name }}{% endblock %}
 
 {% block body %}
 
 <main class="main">
 
-    <h2 class="main__item">{{ character.name }}</h2>
+    <h2 class="main__item">{{ personage.name }}</h2>
 
     <div class="row mb-lg-4 justify-content-center">
         
         <div class="col-lg-4">
 
             <div class="text-center mb-lg-3 main__item--img">
-            {% if character.picture %}
-                <img src="{{ asset('img/personage/' ~ character.picture ) }}" alt="{{ character.name }}" class="img-fluid" title="Crédits : {{ character.descriptionPicture }}">
+            {% if personage.picture %}
+                <img src="{{ asset('img/personage/' ~ personage.picture ) }}" alt="{{ personage.name }}" class="img-fluid" title="Crédits : {{ personage.descriptionPicture }}">
             {% else %}
                 <img src="{{ asset('img/icone.png')}}" alt="- pas de photo de disponible pour le moment -" class="img-fluid">
                 <br>- pas de photo de disponible pour le moment -
             {% endif %}
             </div>
 
-            <h6 class="main__item">Est joué par: {{ character.actor.name }}</h6>
+            <h6 class="main__item">Est joué par: {{ personage.actor.name }}</h6>
 
             <div class="text-center">
-            {% if character.actor.picture %}
-                <img src="{{ asset('img/actor/' ~ character.actor.picture ) }}" alt="{{ character.actor.name }}" class="img-fluid" title="Crédits : {{ character.descriptionPicture }}">
+            {% if personage.actor.picture %}
+                <img src="{{ asset('img/actor/' ~ personage.actor.picture ) }}" alt="{{ personage.actor.name }}" class="img-fluid" title="Crédits : {{ personage.descriptionPicture }}">
             {% else %}
                 <img src="{{ asset('img/icone.png')}}" alt="- pas de photo de disponible pour le moment -" class="img-fluid">
                 <br>- pas de photo de disponible pour le moment -
@@ -39,18 +39,20 @@
         <div class="col-lg-8">
             <div class="col">
 
-                <p class="main__item main__item--text mb-lg-3">{{ character.description }}</p>
+                <p class="main__item main__item--text mb-lg-3">{{ personage.description }}</p>
 
 
                 <h6 class="main__item">Ses citations :</h6>
 
-                {% for quote in character.quotes %}
+                {# {% for quote in character.quotes %} #}
+                {% for quote in pagination %}
 
                 {% include 'partials/_card_quote.html.twig' %}
 
                 {% endfor %}
 
             </div>
+            {{ knp_pagination_render(pagination) }}
 
         </div>
 

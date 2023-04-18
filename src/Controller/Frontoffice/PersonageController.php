@@ -3,6 +3,7 @@
 namespace App\Controller\Frontoffice;
 
 use App\Repository\PersonageRepository;
+use App\Repository\QuoteRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -32,12 +33,19 @@ class PersonageController extends AbstractController
      * @Route("/personnage/{id}", name="app_frontoffice_personage_read", requirements={"id" = "\d+"})
      *
      */
-    public function read(PersonageRepository $personageRepository, $id) : Response
+    public function read(PersonageRepository $personageRepository, $id, PaginatorInterface $paginator, QuoteRepository $quoteRepository, Request $request) : Response
     {
-        $character = $personageRepository->find($id);
+        $personage = $personageRepository->find($id);
+
+        $pagination = $paginator->paginate(
+            $quoteRepository->paginateCharacterQuotes($id),
+            $request->query->get('page', 1),
+            5,
+        );
 
         return $this->render('frontoffice/personage/read.html.twig', [
-            'character' => $character,
+            'personage' => $personage,
+            'pagination' => $pagination,
         ]);
     }
 }
