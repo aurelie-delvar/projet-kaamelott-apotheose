@@ -3,14 +3,12 @@
 // I retrieve the url of my current page
 const url= document.location.href;
 console.log(url);
-const newUrl = url.replace("quizz/1","");
-console.log(newUrl);
 // I remove the url from my page and I only keep the last information of the url
 const idPage = url.substring(url.lastIndexOf( "/" )+1 );
+// I remove the end of the url
+const newUrl = url.replace("quizz/" + idPage,"");
+console.log(newUrl);
 
-//en prod http://edithbernard-server.eddi.cloud/projet-13-kaamelott/public/api/quizz/1
-
-//console.log(urlQuizz);
 // I concatenate the url of the api with the id of my page
 //const urlQuizz = 'http://localhost:8000/api/quizz/' + idPage;
 const urlQuizz = newUrl + "api/quizz/" + idPage;
