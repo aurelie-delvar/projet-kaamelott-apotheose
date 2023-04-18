@@ -7,7 +7,6 @@ const idPage = url.substring(url.lastIndexOf( "/" )+1 );
 // I remove the end of the url
 const newUrl = url.replace("quizz/" + idPage,"");
 
-
 // I concatenate the url of the api with the id of my page
 const urlQuizz = newUrl + "api/quizz/" + idPage;
 

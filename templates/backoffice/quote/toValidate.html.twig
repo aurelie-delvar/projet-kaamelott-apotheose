@@ -32,7 +32,10 @@
                 <td>
                     <a href="{{ path('app_backoffice_quote_validate', {'id': quote.id}) }}" class="btn btn-success">Valider</a>
                     <div class="mt-3">
-                    {{ include('backoffice/quote/_delete_form.html.twig') }}
+
+                    {% if is_granted("ROLE_ADMIN") %}
+                        {{ include('backoffice/quote/_delete_form.html.twig') }}
+                     {% endif %}
                     </div>
                 </td>
             </tr>

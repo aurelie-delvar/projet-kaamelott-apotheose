@@ -166,12 +166,11 @@ footer > p {
     text-shadow: 4px 4px 10px black;
 } 
 
-
-
-.pagination {
-    /* max-width: 100%; */
-    /* overflow-wrap: break-word; */
+.invalid-feedback {
+    color: blue;
+    text-shadow: 1px 0 0 white, 0 1px 0 white, 0 -1px 0 white, -1px 0 0 white, 1px 1px 0 white, 1px -1px 0 white, -1px 1px 0 white, -1px -1px 0 white;;
 }
+
 
 @media screen and (max-width: 375px) {
     
