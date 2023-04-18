@@ -23,12 +23,8 @@ class HomeController extends AbstractController
     public function index(QuoteRepository $quoteRepository): Response
     {
         $randomQuote = $quoteRepository->randomQuote();
+
         
-        // $randomId = rand(1,700);
-        // $quoteByRandId = $quoteRepository -> find($randomId);
-        // dd ($quoteByRandId);
-
-
         // TODO j'affiche la liste des 10 dernières citations
         // j'ai besoin d'un repository : QuoteRepository
         // le findAll() ne me permet pas de trier les résultats
