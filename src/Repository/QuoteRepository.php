@@ -43,11 +43,12 @@ class QuoteRepository extends ServiceEntityRepository
     public function randomQuote(): array
     {
         // version SQL
-        $sql = "SELECT quote.text, quote.rating, personage.name , episode.title AS titleEpisode, season.title AS titleSeason
+        $sql = "SELECT quote.id, quote.text, quote.rating, personage.name , episode.title AS episode, season.title AS season
         FROM quote
         JOIN personage ON quote.personage_id = personage.id
         JOIN episode ON quote.episode_id = episode.id
         JOIN season ON episode.season_id = season.id
+        
         ORDER BY RAND() 
         LIMIT 1";
         

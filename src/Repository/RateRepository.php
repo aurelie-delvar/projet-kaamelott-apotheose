@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Rate;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Mapping\Id;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -38,6 +39,26 @@ class RateRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    
+
+
+    public function averageRating($quoteId)
+    {
+        // version SQL
+        $sql = "SELECT AVG(rating) as newrate
+        FROM rate
+        WHERE quote_id = ". $quoteId;
+        
+        $doctrine = $this->getEntityManager()->getConnection();
+        $statement = $doctrine->prepare($sql);
+        $result = $statement->executeQuery();
+        $avgRate = $result->fetchOne();
+
+        return $avgRate;
+    }
+
+
 
 //    /**
 //     * @return Rate[] Returns an array of Rate objects

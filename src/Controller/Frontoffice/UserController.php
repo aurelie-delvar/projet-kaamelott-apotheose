@@ -2,8 +2,15 @@
 
 namespace App\Controller\Frontoffice;
 
+
+use App\Entity\Rate;
 use App\Entity\User;
+<<<<<<< HEAD
 use App\Form\RegistrationFormType;
+=======
+use App\Form\RatingType;
+use App\Repository\RateRepository;
+>>>>>>> ratingBis
 use App\Repository\UserRepository;
 use App\Repository\QuoteRepository;
 use App\Repository\AvatarRepository;
@@ -24,10 +31,30 @@ class UserController extends AbstractController
     /**
      * @Route("/favoris/{userId}", name="app_favorites_user")
      */
-    public function index(): Response
+    public function index(Security $security, $userId, UserRepository $userRepository,QuoteRepository $quoteRepository): Response
     {
+<<<<<<< HEAD
 
+=======
+        // $allFav=[];
+        $favoritesQuotesId = $userRepository -> favoritesQuotes($userId);
+        // dd($favoritesQuotesId);
+        // foreach ($) {
+        //     $favQuotes = $quoteRepository -> findBy([
+        //         "id" => $value
+        //     ]);
+        //     $allFav[]=$favQuotes;
+        // }
+        
+ 
+    
+        // dd($favoritesQuotesId);
+        // dd($favQuotes);
+        // dd($allFav);
+>>>>>>> ratingBis
         return $this->render('frontoffice/user/indexFav.html.twig', [
+            
+            "allFav" => $favoritesQuotesId,
             
         ]);
     }
@@ -91,6 +118,7 @@ class UserController extends AbstractController
     }
 
 
+<<<<<<< HEAD
                                                         // PROFILE PARTS //
 
     /**
@@ -187,4 +215,80 @@ class UserController extends AbstractController
         ]);
 
     }
+=======
+    /**
+     * @Route("/quote-rating/add/{quoteId}", name="user_add_rating_quote")
+     */
+    public function addRating(EntityManagerInterface $entityManager, Security $security, Request $request, int $quoteId, QuoteRepository $quoteRepository, RateRepository $rateRepository): Response
+    {
+        
+        // je récupère le User s'il est connecté
+        $user = $security->getUser();
+        
+        // je récupère la quote grâce à son id
+        $quote = $quoteRepository->find($quoteId);
+        // dd($quote);//
+
+
+        if (!$user) {
+            throw $this->createNotFoundException('L\'utilisateur doit être connecté pour noter une citation en favori.');
+        }
+
+        if (!$quote) {
+            throw $this->createNotFoundException('La citation demandée n\'existe pas.');
+
+        }
+
+        $newRating = new Rate();
+        //rajout user_id et quote_id
+        $newRating ->setUser($user);
+        $newRating -> setQuote($quote);
+        $form = $this->createForm(RatingType::class, $newRating);
+        
+        
+
+        $form->handleRequest($request);
+        // dd($form);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+             //! condition pour noter qu'une seule fois la citation
+            // TODO : persist + flush
+            // il nous manque l'association avec la citation
+            $newRating ->setUser($user);
+            $newRating->setQuote($quote); //on a la note du form
+            // dd($newRating);
+            $entityManager->persist($newRating);
+            $entityManager->flush();
+
+            
+
+            // TODO : recalcul du rating
+           
+            $averageRatingQuote = $rateRepository -> averageRating($quoteId);
+          
+            // dd($averageRatingQuote);
+
+
+            $quote -> setRating($averageRatingQuote);
+            $entityManager->persist($quote);
+            $entityManager->flush();
+
+            // redirection
+            return $this->redirectToRoute('default');
+        }
+
+              
+
+        return $this->renderForm('frontoffice/user/formRating.html.twig', [
+            "formulaire" => $form,
+            "quote" => $quote
+        ]);
+    }
+
+
+
+
+
+
+>>>>>>> ratingBis
 }
