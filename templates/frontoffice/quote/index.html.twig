@@ -28,16 +28,12 @@
             <div class="col">
             
                 <div class="card  mb-3" style="max-width: 18rem;">
-                    <div class="card-header title"><a class="nav-link " aria-current="page" href="{{ path("app_frontoffice_personages_browse") }}">Personnages</a></div>
-                    {# TODO en statique en attente de la modifiction de la table perso "principaux" #}
+                    <div class="card-header title"><a class="nav-link " aria-current="page">Personnages</a></div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item title">Arthur</li>
-                        <li class="list-group-item title">Perceval</li>
-                        <li class="list-group-item title">Lancelot</li>
-                        <li class="list-group-item title">Leodagan</li>
-                        <li class="list-group-item title">Karadoc</li>
-                        <li class="list-group-item title">Dame Sélie</li>
-                        <li class="list-group-item title"><a class="nav-link " aria-current="page" href="{{ path("app_frontoffice_personages_browse") }}"> Autres Personnages</a></li>
+                    {% for character in charactersVIP.getCharacters %}
+                        <li class="list-group-item title"><a class="nav-link " aria-current="page" href="{{ path("app_frontoffice_personage_read", {"id" : character.id }) }}"> {{ character.name }}</a></li>
+                    {% endfor %}
+                        <li class="list-group-item title"><a class="nav-link " aria-current="page" href="{{ path("app_frontoffice_personages_browse") }}"> Tous les Personnages</a></li>
                     </ul>
                     
                 </div>   

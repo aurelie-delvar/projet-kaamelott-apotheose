@@ -30,7 +30,7 @@ class QuoteController extends AbstractController
             $request->query->get('page', 1),
             10,
         );
-// dd($pagination);
+
         return $this->render('frontoffice/quote/index.html.twig', [
             "pagination" => $pagination,
         ]);
