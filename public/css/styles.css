@@ -70,6 +70,21 @@ h1, h2, h3, h4, h5, h6, .title {
     font-size: 1rem;
 }
 
+.addQuote_position {
+    display:flex;
+    justify-content: center;
+}
+
+.addQuote_size{
+    margin:2rem;
+    width: 80%; 
+}
+
+.addQuoteBtn{
+    margin-bottom: 1rem;
+    background : #6c757d;
+}
+
 a {
     text-decoration: none; 
     color: black;

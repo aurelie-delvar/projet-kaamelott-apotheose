@@ -13,15 +13,15 @@
     {% endif %}
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if app.user %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">    
-                {% if app.user %}
+                
                     <img src="{{asset('img/' ~ app.user.avatar.icon)}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     <span>{{app.user.email}}</span>
-                {% else %}
-                    <img src="{{ asset('img/icone.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                    <span>Anonyme</span>
-                {% endif %}
+                {# {% else %} #}
+                    {# <img src="{{ asset('img/icone.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <span>Anonyme</span> #}
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ path("app_login") }}">Connexion</a></li>
@@ -29,7 +29,16 @@
                     <li><a class="dropdown-item" href="#">Profil</a></li>
                 </ul>
             </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{ path("app_register") }}">S'inscrire</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{ path("app_login") }}">Se connecter</a>
+        </li>
+        {% endif %}
         </ul>
+        
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -85,8 +94,8 @@
 
         </ul>
 
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Search">
+        <form class="d-flex" role="search" method="post" action="{{ path('app_frontoffice_search') }}">
+            <input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Search" name="searchFront">
 
             <button class="btn" type="submit"><img src="{{ asset('img/loupe.png') }}" alt="search-icon" width="24" height="24"></button>
         </form>

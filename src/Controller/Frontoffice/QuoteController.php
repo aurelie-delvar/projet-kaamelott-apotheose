@@ -22,10 +22,9 @@ class QuoteController extends AbstractController
     /**
      * @Route("/citations", name="app_frontoffice_quotes_browse")
      */
-    public function browse(QuoteRepository $quoteRepository, Request $request, Security $security, PaginatorInterface $paginator): Response
+    public function browse(QuoteRepository $quoteRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        // je récupère le User s'il est connecté
-        $user = $security->getUser();
+        
         $pagination = $paginator->paginate(
             $quoteRepository->paginationQuery(),
             $request->query->get('page', 1),
@@ -34,7 +33,6 @@ class QuoteController extends AbstractController
 // dd($pagination);
         return $this->render('frontoffice/quote/index.html.twig', [
             "pagination" => $pagination,
-            "user" => $user,
         ]);
     }
 

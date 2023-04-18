@@ -32,14 +32,12 @@ class PersonageController extends AbstractController
      * @Route("/personnage/{id}", name="app_frontoffice_personage_read", requirements={"id" = "\d+"})
      *
      */
-    public function read(PersonageRepository $personageRepository, $id, Security $security) : Response
+    public function read(PersonageRepository $personageRepository, $id) : Response
     {
         $character = $personageRepository->find($id);
-        $user = $security->getUser();
 
         return $this->render('frontoffice/personage/read.html.twig', [
             'character' => $character,
-            "user" => $user,
         ]);
     }
 }
