@@ -13,11 +13,11 @@
                 {# Résulats du dernier quizz #}
                 <p class="m-3 fs-3">Résultats de votre dernier quizz : </p>
                 <div class="d-flex justify-content-around">
-                    <a class="btn btn-lg btn-outline-light" href="{{ path("user_edit_profile", {"id" : user.id}) }}">Modifier mon profil</a>
+                    <a class="btn btn-outline-light" href="{{ path("user_edit_profile", {"id" : user.id}) }}">Modifier</a>
 
-                   <div class="mb-3">
+                   
                         {{ include('frontoffice/user/_delete_form.html.twig') }}
-                    </div>
+                    
             </div>
         </div>
     </div>
