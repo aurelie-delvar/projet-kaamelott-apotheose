@@ -75,11 +75,15 @@
             </ul>
             </li>
 
-            <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Favoris</a>
-            </li>
+
 
             {% if is_granted("ROLE_USER") %}
+            <li class="nav-item">
+            <a class="nav-link {{ (app.request.get('_route') is same as('app_favorites_user',  {"userId" : app.user.id})) ? 'active' : '' }}" aria-current="page" href="{{ path("app_favorites_user",  {"userId" : app.user.id }) }}">Favoris</a>
+            </li>
+            
+
+            
             <li class="nav-item">
             <a class="nav-link {{ (app.request.get('_route') is same as('app_add_quote')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_add_quote") }}">Proposer une citation</a>
             </li>   

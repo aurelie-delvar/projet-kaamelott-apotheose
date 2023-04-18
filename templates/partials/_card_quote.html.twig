@@ -23,7 +23,10 @@
                             {{ '<i class="bi bi-star"></i>' }}
                         {% endif %}
                     {% endfor %}
-            <span class="ps-1">{{ quote.rating }}</span>
+            <span class="ps-1">{{ quote.rating|round(1, 'floor')  }}</span>
+           
+                        
+                 
         </div>
 
     </div>
@@ -33,6 +36,7 @@
         <blockquote class="blockquote mb-0">
             <p>"{{ quote.text }}"</p> 
                 <div>
+               
                 {# We check if the user is connected, because if not, he can't put quotes in favorite #}
                 {% if is_granted("ROLE_USER") %}
                                 {% set isFavorite = false %}
@@ -53,7 +57,7 @@
                 </div>
             
             <footer class="blockquote-footer"> {{ quote.personage.name }},<cite title="Source Title"> <strong>{{ quote.episode.season.title }}</strong>, {{ quote.episode.title }}.</cite></footer>
-            
+             <a href="{{ path('user_add_rating_quote', {quoteId: quote.id})}}" class="btn btn-outline-secondary d-flex justify-content-end">Donner une Note à la Citation</a>
         </blockquote>
     </div>
 </div>
