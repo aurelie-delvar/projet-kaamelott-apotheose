@@ -12,27 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuizzController extends AbstractController
 {
     /**
-     * @Route("/api/quizz", name="app_api_quizz_browse")
-     */
-    public function browse(QuizzRepository $quizzRepository): JsonResponse
-    {
-        
-        $allQuizz = $quizzRepository->findAll();
-
-        return $this->json(
-            $allQuizz,
-            Response::HTTP_OK,
-            [],
-            [
-                "groups"=> 
-                [
-                    "quizz_browse"
-                ]
-            ]
-        );    
-    }
-
-    /**
      * @Route("/api/quizz/{id}", name="app_api_quizz_read", requirements={"id"="\d+"}, methods={"GET"})
      */
     public function read(Quizz $quizz = null){
@@ -57,6 +36,5 @@ class QuizzController extends AbstractController
             ]
         );
     }
-
 
 }

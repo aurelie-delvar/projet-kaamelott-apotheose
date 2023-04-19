@@ -11,8 +11,17 @@
 <h1 class="mt-3 text-center">Bonjour {{ user.email }} </h1>
 
 {# Résulats du dernier quizz #}
-<p>Résultats de votre dernier quizz : </p>
+<div>
 
+    {% if scoreArray is not empty %}
+    {% for score in scoreArray %}
+    <p>Votre dernier score pour le quizz {{ score.quizz_id }} est : {{ score.score }}</p>
+    {% endfor %}
+    {% else %}
+    <p>Vous n'avez pas encore joué à nos quizz.</p>
+    {% endif %}
+    
+</div>
 <a class="btn btn-success" href="{{ path("user_edit_profile", {"id" : user.id}) }}">Modifier mon profil</a>
 
 <button class="btn btn-danger">Supprimer mon profil</button>

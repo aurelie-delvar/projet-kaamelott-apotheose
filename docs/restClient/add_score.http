@@ -3,6 +3,6 @@ content-type: application/json
 
 {
     "quizz": 3,
-    "user": 3,
-    "score": 3   
+    "user": 4,
+    "score": 1   
 }

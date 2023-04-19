@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class PlayQuizzController extends AbstractController
 {
     /**
-     * @Route("/api/play/quizz", name="app_api_play_quizz", methods={"GET"})
+     * @Route("/api/play/quizz", name="app_api_play_quizz_browse", methods={"GET"})
      */
     public function browse(PlayQuizzRepository $playQuizzRepository): JsonResponse
     {
@@ -68,8 +68,10 @@ class PlayQuizzController extends AbstractController
 
     public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, PlayQuizzRepository $playQuizzRepository, ValidatorInterface $validator ): JsonResponse
     {
+                
         $jsonContent = $request->getContent();
-        //dump($jsonContent);
+        
+        dump($jsonContent);
         try {
             $scoreFromJson = $serializer->deserialize(
                 $jsonContent,
@@ -84,7 +86,7 @@ class PlayQuizzController extends AbstractController
                 Response::HTTP_UNPROCESSABLE_ENTITY
             );
         } 
-
+        
         $listError = $validator->validate($scoreFromJson);
 
         if (count($listError) > 0){
@@ -113,54 +115,4 @@ class PlayQuizzController extends AbstractController
         );
     }
 
-    /**
-     * 
-     * @Route("/api/play/quizz/{id}", name="app_api_play_quizz_edit", requirements={"id"="\d+"}, methods={"PUT", "PATCH"})
-     */
-
-     public function edit(int $id, PlayQuizzRepository $playQuizzRepository, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, ValidatorInterface $validator): JsonResponse
-     {
-        $playQuizz = $playQuizzRepository->find($id); 
-
-        if (!$playQuizz) {
-            return $this->json(
-                [
-                    "message" => "Score non trouvé"
-                ],
-                Response::HTTP_NOT_FOUND
-            );
-        }
-        
-        $jsonContent = $request->getContent();
-        dump($jsonContent);
-        try {
-            $serializer->deserialize(
-                $jsonContent,
-                PlayQuizz::class,
-                'json',
-            );
-        } catch (\Throwable $error){
-            return $this->json(
-                [
-                    "message" => $error->getMessage()
-                ],
-                Response::HTTP_UNPROCESSABLE_ENTITY
-            );
-        }
-
-        $e = $validator->validate($playQuizz); 
-        if (count($e) > 0) {
-            
-            return $this->json(
-                $e,
-                Response::HTTP_UNPROCESSABLE_ENTITY
-            );
-        }  
-        $entityManager->flush();
- 
-        return $this->json(
-            null,
-            Response::HTTP_NO_CONTENT
-        );
-     }
 }

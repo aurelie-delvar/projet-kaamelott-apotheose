@@ -14,9 +14,10 @@ let answers = document.getElementById("answers");
 let resultatContainer = document.getElementById("resultat-container");
 let resultat = document.getElementById("resultat");
 let scoreDiv = document.getElementById("score");
+let profilDiv = document.getElementById("profil");
 let	againDiv = document.getElementById("again");
 let titleElement = document.getElementById("title");
-
+let userInput = document.getElementById("userId");
 
 // var questions = Object;
 var questions = {};
@@ -56,23 +57,11 @@ async function next(){
     }
 }
 
-async function postScore(url = `${newUrl}api/play/quizz/add`, data = {}) {
-	const options = {
-	  method: 'POST',
-	  headers: {
-		'Content-Type': 'application/json'
-	  },
-	  body: JSON.stringify(data)
-	};
-  
-	const response = await fetch(url, options);
-	return response.json();
-  }
-
 async function resultats(){
 	let quizzId = await this.getQuizz();
 	let questions = await this.getQuestions();
-
+	let userId = userInput.value;
+	
 	scoreDiv.innerHTML = "";
 	titleElement.innerHTML="";
 	answers.innerHTML="";
@@ -87,24 +76,23 @@ async function resultats(){
 	// display score (bottom)
 	scoreDiv.innerHTML = `Vous avez ${score} bonnes réponses sur ${questions.length}`;
 	
-	// Send score to profil user (->backoffice)
-	const formData = new FormData();
-	formData.append("score", score);
-	console.log(formData);
-
+	// Send score to profil user (->backoffice -> BDD)
 	fetch(`${newUrl}api/play/quizz/add`, {
 	method: 'POST',
-	body: formData
+	body: JSON.stringify({
+		"quizz":quizzId,
+		"score":score,
+		"user": userId
+	  })
 	})
 	.then(response => {
-		console.log("score créé, Yess" + response);
+		profilDiv.innerHTML = "Votre score a été ajouté dans votre profil";
 	})
 	.catch(error => console.error(error));
-	
+
 	againDiv.innerHTML = "<button  type='submit'  id='againButton' onclick=\"startAgainQuiz()\";>Recommencer</button>";
 	
 }
-
 
 function compare  (a,b){
 	if (b.includes(a)){
