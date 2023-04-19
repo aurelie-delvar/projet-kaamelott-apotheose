@@ -66,12 +66,12 @@ class PlayQuizzController extends AbstractController
      * @Route("/api/play/quizz/add", name="app_api_play_quizz_add", methods={"GET", "POST"})
      */
 
-    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager): JsonResponse
+    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, PlayQuizzRepository $playQuizzRepository, ValidatorInterface $validator ): JsonResponse
     {
         $jsonContent = $request->getContent();
         //dump($jsonContent);
         try {
-            $serializer->deserialize(
+            $scoreFromJson = $serializer->deserialize(
                 $jsonContent,
                 PlayQuizz::class,
                 'json',
@@ -85,11 +85,31 @@ class PlayQuizzController extends AbstractController
             );
         } 
 
-        $entityManager->flush();
+        $listError = $validator->validate($scoreFromJson);
 
+        if (count($listError) > 0){
+            return $this->json(
+                $listError,
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        $playQuizzRepository->add($scoreFromJson, true);
+        
         return $this->json(
-            null,
-            Response::HTTP_NO_CONTENT
+            $jsonContent,
+
+            Response::HTTP_CREATED,
+
+            [],
+
+            [
+                "groups" => 
+                [
+                    "playQuizz_read",
+                    "playQuizz_browse"
+                ]
+            ]
         );
     }
 
