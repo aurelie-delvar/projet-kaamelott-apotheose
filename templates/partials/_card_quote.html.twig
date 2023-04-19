@@ -34,7 +34,7 @@
                
                 {# We check if the user is connected, because if not, he can't put quotes in favorite #}
                 {% if is_granted("ROLE_USER") %}
-                
+
                                 {% set isFavorite = false %}
                     {% for userFav in quote.users %}
                             {% if currentUser.getUser == userFav %}
@@ -56,11 +56,17 @@
                 {# We check if the user is connected, because if not, he can't rate the quote #}
                 {% if is_granted("ROLE_USER") %} 
 
+
                     {% set isRating = false %}
-                    {% for userRate in quote.users %}
-                            {% if currentUser.getUser == userRate %}
+
+                    {% for key, userRate in quote.rates %}
+                            {% dump(quote.rates) %}
+                            {% dump(currentUser.getUser) %}
+                            {% dump(userRate.user) %}
+                            {% if currentUser.getUser == userRate.user %}
                                 {% set isRating = true %}
                             {% endif %}
+
                     {% endfor %}
                      
                     {% if isRating %}

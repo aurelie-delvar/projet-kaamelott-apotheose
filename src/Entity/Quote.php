@@ -53,7 +53,7 @@ class Quote
 
     
     /**
-     * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="quote")
+     * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="quote", fetch="EAGER")
      */
     private $rates;
 

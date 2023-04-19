@@ -89,7 +89,6 @@
         <div class="card-body text-bg-secondary">
             <h5 class="card-title">les Dix Dernières Citations</h5>
             {% for key, quote in last10Quotes %}
-             {# TODO: GERER LES PROPRIETES NULLES POUR UN AJOUT DE CITATION #}
                 {% include 'partials/_card_quote.html.twig' %}
             {% endfor %}
         </div>
