@@ -43,7 +43,7 @@ class QuoteRepository extends ServiceEntityRepository
     public function randomQuote(): array
     {
         // version SQL
-        $sql = "SELECT quote.id, quote.text, quote.rating, personage.name , episode.title AS episode, season.title AS season
+        $sql = "SELECT quote.id, quote.text, quote.rating, personage.name AS `personage`, episode.title AS episode, season.title AS season
         FROM quote
         JOIN personage ON quote.personage_id = personage.id
         JOIN episode ON quote.episode_id = episode.id
@@ -66,11 +66,17 @@ class QuoteRepository extends ServiceEntityRepository
     */
    public function paginationQuery()
    {
-       return $this->createQueryBuilder('q')
-           ->orderBy('q.id', 'ASC')
-           ->where('q.validated = true')
-           ->getQuery()
-       ;
+       $query = $this->createQueryBuilder('q')
+                    ->select('q.text, q.rating, p.name, p.id, e.title, s.title as season')
+                    ->leftJoin('q.personage', 'p')
+                    ->leftJoin('q.episode', 'e')
+                    ->leftJoin('e.season', 's')
+                    ->orderBy('q.id', 'ASC')
+                    ->where('q.validated = true')
+                    ->getQuery()
+        ;
+
+        return $query->execute();
    }
 
     /**
@@ -111,7 +117,7 @@ class QuoteRepository extends ServiceEntityRepository
                     ->getQuery()
         ;
 
-        return $result = $query->execute();
+        return $query->execute();
     }
 
     /**
@@ -119,12 +125,6 @@ class QuoteRepository extends ServiceEntityRepository
      */
     public function paginateCharacterQuotes($id)
     {
-
-//         select quote.text, quote.rating, personage.name, episode.title  from quote
-// join personage on quote.personage_id = personage.id
-// join episode on quote.episode_id = episode.id
-// where validated = 1
-// and personage_id = 3
         $query = $this->createQueryBuilder('q')
                     ->select('q.text, q.rating, p.name, p.id, e.title, s.title as season')
                     ->leftJoin('q.personage', 'p')
@@ -164,6 +164,26 @@ class QuoteRepository extends ServiceEntityRepository
         return $queryBuilder->getQuery();   
     }
  
+    /**
+     * Last 10 quotes using DQL
+     */
+    public function last10quotes($offset = 0) 
+    {
+        $queryBuilder = $this->createQueryBuilder('q')
+                    ->select('q.id, q.text, q.rating, p.name, e.title, s.title as season')
+                    ->join('q.personage', 'p')
+                    ->join('q.episode', 'e')
+                    ->join('e.season', 's')
+                    ->where('q.validated = true')
+                    ->orderBy('q.id', 'DESC')
+                    ->setFirstResult($offset)
+                    ->setMaxResults(10)
+                    ->getQuery()
+        ;
+
+        return $queryBuilder->execute();
+
+    }
 
 //    public function findOneBySomeField($value): ?Quote
 //    {
