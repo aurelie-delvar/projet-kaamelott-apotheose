@@ -60,9 +60,7 @@
                     {% set isRating = false %}
 
                     {% for key, userRate in quote.rates %}
-                            {% dump(quote.rates) %}
-                            {% dump(currentUser.getUser) %}
-                            {% dump(userRate.user) %}
+                    
                             {% if currentUser.getUser == userRate.user %}
                                 {% set isRating = true %}
                             {% endif %}

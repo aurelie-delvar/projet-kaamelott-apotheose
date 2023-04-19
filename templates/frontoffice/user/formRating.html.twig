@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Kaamel'O'tt - rating{% endblock %}
+{% block title %}Kaamel'O'tt - Notation{% endblock %}
 
 {% block body %}
 <main  class="p-3">
@@ -15,7 +15,8 @@
        
             {{ form_row(formulaire.rating)}}
    
-        <button type="submit" class="btn btn-outline-light" id="button_add_review">Ajouter la Note</button>
+        <a href=""><button type="submit" class="btn btn-outline-light" id="button_add_review">Ajouter la Note</button></a>
+        {% dump(app.request.server) %}
             {{ form_end(formulaire) }}
         </div>
     </div>

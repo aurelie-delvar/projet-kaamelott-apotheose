@@ -26,20 +26,19 @@ class UserController extends AbstractController
 
                                                         // FAVORITE PARTS //
     /**
-     * @Route("/favoris/{userId}", name="app_favorites_user")
+     * @Route("/favoris/{id}", name="app_favorites_user")
      */
-    public function index(Security $security, $userId, UserRepository $userRepository,QuoteRepository $quoteRepository): Response
+    public function index(User $user): Response
     {
-
-        $favoritesQuotesId = $userRepository -> favoritesQuotes($userId);
+        // $favoritesQuotesId = $userRepository -> favoritesQuotes($userId);
         
         return $this->render('frontoffice/user/indexFav.html.twig', [
-            "allFav" => $favoritesQuotesId,
+            "user" => $user,
         ]);
     }
 
     /**
-     * @Route("/favorite-quotes/add/{quoteId}", name="user_add_favorite_quote")
+     * @Route("/citations-favorites/ajout/{quoteId}", name="user_add_favorite_quote")
      */
     public function addFavorite(EntityManagerInterface $entityManager, Security $security, int $quoteId, QuoteRepository $quoteRepository): Response
     {
@@ -65,7 +64,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/favorite-quotes/remove/{quoteId}", name="user_remove_favorite_quote")
+     * @Route("/citations-favorites/supprimer/{quoteId}", name="user_remove_favorite_quote")
      */
     public function removeFavorite(EntityManagerInterface $entityManager, Security $security, int $quoteId, QuoteRepository $quoteRepository): Response
     {
@@ -211,10 +210,12 @@ class UserController extends AbstractController
 
                                                         // RATING PARTS //
     /**
-     * @Route("/quote-rating/add/{quoteId}", name="user_add_rating_quote")
+     * @Route("/citation-noter/ajout/{quoteId}", name="user_add_rating_quote")
      */
     public function addRating(EntityManagerInterface $entityManager, Security $security, Request $request, int $quoteId, QuoteRepository $quoteRepository, RateRepository $rateRepository): Response
     {
+
+        $url = $_SERVER['HTTP_REFERER'];
         
         // je récupère le User s'il est connecté
         $user = $security->getUser();
@@ -260,8 +261,8 @@ class UserController extends AbstractController
             $quote -> setRating($averageRatingQuote);
             $entityManager->persist($quote);
             $entityManager->flush();
-
-            return $this->redirectToRoute('default');
+            
+            // return $this->render($url);
         }
 
         return $this->renderForm('frontoffice/user/formRating.html.twig', [
