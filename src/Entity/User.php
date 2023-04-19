@@ -70,7 +70,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $playQuizz;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Quote::class, inversedBy="users")
+     * @ORM\ManyToMany(targetEntity=Quote::class, inversedBy="users", fetch="EAGER")
      */
     private $favoriteQuote;
 

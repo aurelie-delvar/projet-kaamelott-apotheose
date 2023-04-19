@@ -59,6 +59,7 @@ class Quote
 
     /**
      * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favoriteQuote")
+     *
      */
     private $users;
 
