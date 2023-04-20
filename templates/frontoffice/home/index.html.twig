@@ -4,26 +4,22 @@
 
 {% block body %}
 <main  class="p-3">
-    <div class="text-center mb-3">
+    <div class="text-center m-3">
     
-    <h2 class="main__item">La Citation du Moment</h2>
-    {# todo dynamiser la page quand on aura la BDD fonctionnelle il faut aussi gérer rating et favorite #}
-    {% set quote = randomQuote %}
-    {# {% include 'partials/_card_quote.html.twig' %} #}
+        <h2 class="main__item">La Citation du Moment</h2>
 
-
-
+            {% set quote = randomQuote %}
 
         <div class="card mb-3">
-    <div class="card-header d-flex justify-content-end">
+            <div class="card-header d-flex justify-content-end">
+                <div class="d-flex" style="color: orange;">
+                    {% set rating = quote.rating %}
+                        {# round(0,'floor') give the round number whith zero decimal so it give us the number of the full stars #}
+                        {% set biStarFill = rating|round(0, 'floor') %}
+                        {# if rating is a float between an integer+0.5 and the next integer "biStarHalf" #}
+                        {% set biStarHalf = rating - biStarFill >= 0.5 %}
+                        {% set biStar = 5 - biStarFill - (biStarHalf ? 1 : 0) %}
 
-        <div class="d-flex" style="color: orange;">
-            {% set rating = quote.rating %}
-                    {# round(0,'floor') give the round number whith zero decimal so it give us the number of the full stars #}
-                    {% set biStarFill = rating|round(0, 'floor') %}
-                    {# if rating is a float between an integer+0.5 and the next integer "biStarHalf" #}
-                    {% set biStarHalf = rating - biStarFill >= 0.5 %}
-                    {% set biStar = 5 - biStarFill - (biStarHalf ? 1 : 0) %}
                     {% for i in 1..5 %}
                         {% if i <= biStarFill %}
                             {{ '<i class="bi bi-star-fill"></i>' }}
@@ -33,64 +29,34 @@
                             {{ '<i class="bi bi-star"></i>' }}
                         {% endif %}
                     {% endfor %}
-            <span class="ps-1">{{ quote.rating|round(1, 'floor')  }}</span>
-           
-                        
-                 
-        </div>
-
-    </div>
-
-    <div class="card-body">
-    
-        <blockquote class="blockquote mb-0">
-            <p>"{{ quote.text }}"</p> 
-                <div>
-               
-                {# We check if the user is connected, because if not, he can't put quotes in favorite #}
-                {# {% if is_granted("ROLE_USER") %}
-                                {% set isFavorite = false %}
-                    {% for userFav in quote.userQuote %}
-                            {% if currentUser.getUser == userFav %}
-                                {% set isFavorite = true %}
-                             {% endif %}
-                    {% endfor %}
-                     
-                    {% if isFavorite %}
-                       <a href="{{ path('user_remove_favorite_quote', {quoteId: quote.id}) }}"  class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></a>
-                    {% else %}
-                       <a href="{{ path('user_add_favorite_quote', {quoteId: quote.id}) }}" class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></a>
-                    {% endif %}
-
-                  
-                {% endif %} #}
+                    <span class="ps-1">{{ quote.rating|round(1, 'floor')  }}</span>
                 </div>
-            
-            <footer class="blockquote-footer"> {{ quote.name }},<cite title="Source Title"> <strong>{{ quote.season }}</strong>, {{ quote.episode }}.</cite></footer>
-             <a href="{{ path('user_add_rating_quote', {quoteId: quote.id})}}" class="btn btn-outline-secondary d-flex justify-content-end">Donner une Note à la Citation</a>
-        </blockquote>
-    </div>
-</div>
+            </div>
+            <div class="card-body">
+        
+                <blockquote class="blockquote mb-0">
+                <p>"{{ quote.text }}"</p> 
+                                
+                <footer class="blockquote-footer"> {{ quote.name }},<cite title="Source Title"> <strong>{{ quote.season }}</strong>, {{ quote.episode }}.</cite></footer>
+                <a href="{{ path('user_add_rating_quote', {quoteId: quote.id})}}" class="btn btn-outline-secondary d-flex justify-content-end">Donner une Note à la Citation</a>
+                </blockquote>
+            </div>
+        </div>
+    
 
+        <div class="text-center m-5">
+            <img class="img-fluid" src="./img/kamelott.jpeg">
+        </div>
 
-
-
-
-
-
-    <div class="text-center">
-    <img class="img-fluid" src="./img/kamelott.jpeg">
-    </div>
-
-    <div class="card mt-3 mb-3"> 
-        <div class="card-body text-bg-secondary">
-            <h5 class="card-title">les Dix Dernières Citations</h5>
-            {% for key, quote in last10Quotes %}
-                {% include 'partials/_card_quote.html.twig' %}
-            {% endfor %}
+        <div class="card m-3"> 
+            <div class="card-body text-bg-secondary">
+                <h2 class="card-title">les Dix Dernières Citations</h2>
+                    {% for key, quote in last10Quotes %}
+                        {% include 'partials/_card_quote.html.twig' %}
+                    {% endfor %}
+            </div>
         </div>
     </div>
-
 </main>
 
 {% endblock %}
