@@ -19,6 +19,7 @@ class Rate
 
     /**
      * @ORM\ManyToOne(targetEntity=Quote::class, inversedBy="rates")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $quote;
 

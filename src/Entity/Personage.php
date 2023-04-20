@@ -56,6 +56,7 @@ class Personage
 
     /**
      * @ORM\OneToOne(targetEntity=Actor::class, inversedBy="personage", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      * 
      */
     private $actor;
