@@ -1,99 +1,131 @@
 <header>
 
     <div class="logo">
-    <a href="{{ path("default") }}"><img class="img" src="{{ asset('img/logo.png') }}"></a>
+        <a href="{{ path("default") }}"><img class="img" src="{{ asset('img/logo.png') }}"></a>
     </div>
 
-<nav class="navbar navbar-expand-xl bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-    {% if is_granted("ROLE_MANAGER") %}
-        <a class="navbar-brand title" href="{{ path("app_backoffice_home") }}"> Kaamel'O'tt </a>
-    {% else %}
-        <a class="navbar-brand title" href="{{ path("default") }}"> Kaamel'O'tt </a>
-    {% endif %}
+        {% if is_granted("ROLE_MANAGER") %}
+            <a class="navbar-brand title" href="{{ path("app_backoffice_home") }}"> Kaamel'O'tt </a>
+        {% else %}
+            <a class="navbar-brand title" href="{{ path("default") }}"> Kaamel'O'tt </a>
+        {% endif %}
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        {% if app.user %}
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">    
-                
-                    <img src="{{asset('img/' ~ app.user.avatar.icon)}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                    <span>{{app.user.email}}</span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ path("app_logout") }}">Déconnexion</a></li>
-                    <li><a class="dropdown-item" href="{{ path("user_read_profile", {"id" : app.user.id }) }}">Profil</a></li>
-                </ul>
-            </li>
-        {% else %}
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{ path("app_register") }}">S'inscrire</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{ path("app_login") }}">Se connecter</a>
-        </li>
-        {% endif %}
+            {% if app.user %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">    
+                        <img src="{{asset('img/' ~ app.user.avatar.icon)}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                        <span>{{app.user.email}}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path("app_logout") }}">Déconnexion</a></li>
+                        <li><a class="dropdown-item" href="{{ path("user_read_profile", {"id" : app.user.id }) }}">Profil</a></li>
+                    </ul>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ path("app_register") }}">S'inscrire</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ path("app_login") }}">Se connecter</a>
+                </li>
+            {% endif %}
         </ul>
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('default')) ? 'active' : '' }}" aria-current="page" href="{{ path("default") }}">Accueil</a>
-            </li>
-  
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_frontoffice_personages_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_frontoffice_personages_browse") }}">Personnages</a>
-            </li>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link {{ (app.request.get('_route') is same as('default')) ? 'active' : '' }}" aria-current="page" href="{{ path("default") }}">Accueil</a>
+                </li>
+    
+                <li class="nav-item">
+                    <a class="nav-link {{ (app.request.get('_route') is same as('app_frontoffice_personages_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_frontoffice_personages_browse") }}">Personnages</a>
+                </li>
 
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_frontoffice_quotes_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_frontoffice_quotes_browse") }}"> Citations </a>
-            </li>
+                {% if is_granted("ROLE_USER") %}
 
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle {{ (app.request.get('_route') starts with 'app_frontoffice_season_read') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Saisons
-            </a>
-            <ul class="dropdown-menu">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle 
 
-                {# we loop here to get all our seasons #}
-                {% for season in seasonsList.getSeasons %}
-                <li><a class="dropdown-item" href="{{ path("app_frontoffice_season_read", {"id" : season.id }) }}">{{ season.title }}</a></li>
-                {% endfor %}
+                                {# {{  (app.request.get('_route') contains 'quotes') ? 'active' : '' }} #}
+                                    " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Citations
+                                </a>
+                                <ul class="dropdown-menu">
+
+                                
+                                    <li class="">
+                                        <a class="dropdown-item {{ (app.request.get('_route') is same as('app_frontoffice_quotes_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_frontoffice_quotes_browse") }}"> Citations </a>
+                                    </li>
+
+                                    <li class=" ">
+                                        <a class="dropdown-item {{ (app.request.get('_route') is same as('app_favorites_quotes_user',  {"id" : app.user.id})) ? 'active' : '' }}" aria-current="page" href="{{ path("app_favorites_quotes_user",  {"id" : app.user.id }) }}">Favoris</a>
+                                    </li>
+                                    
+                                    <li class=" ">
+                                        <a class="dropdown-item {{ (app.request.get('_route') is same as('app_add_quote')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_add_quote") }}">Proposer une citation</a>
+                                    </li>                    
+
+
+
+                                </ul>
+                            </li>
+
+                            
+                {% else %}
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ (app.request.get('_route') is same as('app_frontoffice_quotes_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_frontoffice_quotes_browse") }}"> Citations </a>
+                    </li>
+
+                 {% endif %}   
+
+                
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ (app.request.get('_route') starts with 'app_frontoffice_season_read') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Saisons
+                    </a>
+                    <ul class="dropdown-menu">
+
+                        {# we loop here to get all our seasons #}
+                        {% for season in seasonsList.getSeasons %}
+                        <li><a class="dropdown-item" href="{{ path("app_frontoffice_season_read", {"id" : season.id }) }}">{{ season.title }}</a></li>
+                        {% endfor %}
+
+                    </ul>
+                </li>
+
+                {% if is_granted("ROLE_USER") %}
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Quizz
+                    </a>
+                    <ul class="dropdown-menu">
+                        {# we loop here to get all our quizzs #}
+                        {% for quizz in quizzsList.getQuizzs %}
+                            <li><a class="dropdown-item" href="{{ path("app_frontoffice_quizz_read", {"id" : quizz.id })}}">{{ quizz.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                   
+                {% endif %}    
 
             </ul>
-            </li>
-            {% if is_granted("ROLE_USER") %}
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Quizz
-            </a>
-            <ul class="dropdown-menu">
-                {# we loop here to get all our quizzs #}
-                {% for quizz in quizzsList.getQuizzs %}
-                <li><a class="dropdown-item" href="{{ path("app_frontoffice_quizz_read", {"id" : quizz.id })}}">{{ quizz.title }}</a></li>
-                {% endfor %}
-            </ul>
-            </li>
 
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_favorites_user',  {"id" : app.user.id})) ? 'active' : '' }}" aria-current="page" href="{{ path("app_favorites_user",  {"id" : app.user.id }) }}">Favoris</a>
-            </li>
-            
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_add_quote')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_add_quote") }}">Proposer une citation</a>
-            </li>   
-            {% endif %}    
+            <form class="d-flex" role="search" method="post" action="{{ path('app_frontoffice_search') }}">
+                <input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Search" name="searchFront">
 
-        </ul>
-
-        <form class="d-flex" role="search" method="post" action="{{ path('app_frontoffice_search') }}">
-            <input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Search" name="searchFront">
-
-            <button class="btn" type="submit"><img src="{{ asset('img/loupe.png') }}" alt="search-icon" width="24" height="24"></button>
-        </form>
+                <button class="btn" type="submit"><img src="{{ asset('img/loupe.png') }}" alt="search-icon" width="24" height="24"></button>
+            </form>
         </div>
 
     </div>

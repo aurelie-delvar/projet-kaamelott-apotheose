@@ -27,7 +27,7 @@ class UserController extends AbstractController
 
                                                         // FAVORITE PARTS //
     /**
-     * @Route("/favoris/{id}", name="app_favorites_user", requirements={"id" = "\d+"})
+     * @Route("/favoris/{id}", name="app_favorites_quotes_user", requirements={"id" = "\d+"})
      */
     public function index(User $user): Response
     {       
