@@ -66,11 +66,9 @@ class UserType extends AbstractType
             ->add('avatar', EntityType::class, [
                 'class' => Avatar::class,
                 'choice_label' => 'name',
-                'label' => "Choix de l'avatar",
-                'expanded' => false,
-                'required' => false
-            ])
-        ;
+                'label' => 'Choix de l\'avatar',
+                'expanded' => true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

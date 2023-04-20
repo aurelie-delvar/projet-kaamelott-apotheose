@@ -4,6 +4,7 @@ namespace App\Controller\Backoffice;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\AvatarRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
@@ -30,9 +31,14 @@ class UserController extends AbstractController
     /**
      * @Route("/add", name="app_backoffice_user_add", methods={"GET", "POST"})
      */
-    public function add(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
+    public function add(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface, AvatarRepository $avatarRepository): Response
     {
         $user = new User();
+
+        $avatar = $avatarRepository->find(5);
+
+        $user->setAvatar($avatar);
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -107,6 +113,14 @@ class UserController extends AbstractController
             $userRepository->remove($user, true);
         }
 
+        // I had to add these lines because a error occured due to the session still standing
+        if ($this->getUser() == $user){
+            $request->getSession()->invalidate();
+            $this->container->get('security.token_storage')->setToken(null);
+    
+            return $this->redirectToRoute('default', [], Response::HTTP_SEE_OTHER);
+        }
+        
         return $this->redirectToRoute('app_backoffice_user_browse', [], Response::HTTP_SEE_OTHER);
     }
 }

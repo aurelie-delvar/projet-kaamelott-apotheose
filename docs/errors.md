@@ -118,3 +118,22 @@ $jsonContent = $request->getContent();
 ## Return value of App\Repository\PlayQuizzRepository::displayScore1() must be of the type array, bool returned
 
 J'ai cette erreur lorsque l'utilisateur n'a pas joué à un quizz lors de l'affichage du score dans le profil utilisateur.
+
+## You cannot refresh a user from the EntityUserProvider that does not contain an identifier. The user object has to be serialized with its own identifier mapped by Doctrine
+
+J'ai cette erreur lorsque je souhaite supprimer mon identifiant depuis le backoffice.
+C'est normal, lorsqu'un utilisateur est supprimé, on est redirigé vers la page browse user de backoffice.
+
+Pour corriger cette erreur, j'ai ajouté cette condition.
+
+```php
+
+// I had to add these lines because a error occured due to the session still standing
+        if ($this->getUser() == $user){
+            $request->getSession()->invalidate();
+            $this->container->get('security.token_storage')->setToken(null);
+    
+            return $this->redirectToRoute('default', [], Response::HTTP_SEE_OTHER);
+        }
+
+```
