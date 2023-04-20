@@ -56,7 +56,7 @@ dans notre twig
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="4">no records found</td>
+                    <td colspan="4">Pas de résultat.</td>
                 </tr>
             {% endfor %}
 ```
