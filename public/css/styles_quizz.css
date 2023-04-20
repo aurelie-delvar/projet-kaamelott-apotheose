@@ -41,7 +41,7 @@
  
 }
 
-#score, #again {
+#score, #again, #profil {
   display: flex;
 
   justify-content: center;

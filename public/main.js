@@ -14,9 +14,10 @@ let answers = document.getElementById("answers");
 let resultatContainer = document.getElementById("resultat-container");
 let resultat = document.getElementById("resultat");
 let scoreDiv = document.getElementById("score");
+let profilDiv = document.getElementById("profil");
 let	againDiv = document.getElementById("again");
 let titleElement = document.getElementById("title");
-
+let userInput = document.getElementById("userId");
 
 // var questions = Object;
 var questions = {};
@@ -35,8 +36,8 @@ async function getQuizz() {
 
     const req = await fetch(`${urlQuizz}`); 
     const quizz = await req.json();
-	const idQuizz = quizz.id;
-	return idQuizz;
+	const quizzId = quizz.id;
+	return quizzId;
 
 }
 
@@ -57,9 +58,10 @@ async function next(){
 }
 
 async function resultats(){
-	let idQuizz = await this.getQuizz();
+	let quizzId = await this.getQuizz();
 	let questions = await this.getQuestions();
-
+	let userId = userInput.value;
+	
 	scoreDiv.innerHTML = "";
 	titleElement.innerHTML="";
 	answers.innerHTML="";
@@ -74,45 +76,22 @@ async function resultats(){
 	// display score (bottom)
 	scoreDiv.innerHTML = `Vous avez ${score} bonnes réponses sur ${questions.length}`;
 	
-	// Send score to profil user (->backoffice)
-	// if update 
-	/*const data = {score: score};
-	fetch(`${newUrl}api/score/add`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
-		
-		})
-		.then(response => {
-			console.log(response);
-		})
-		
-		.catch(error => {
-			console.error(error);
-		})
-	
-	
-		const req = await fetch(`${newUrl}api/score/add`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				score: score,
-				idQuizz: idQuizz
-			})
-		});
+	// Send score to profil user (->backoffice -> BDD)
+	fetch(`${newUrl}api/play/quizz/add`, {
+	method: 'POST',
+	body: JSON.stringify({
+		"quizz":quizzId,
+		"score":score,
+		"user": userId
+	  })
+	})
+	.then(response => {
+		profilDiv.innerHTML = "Votre score a été ajouté dans votre profil";
+	})
+	.catch(error => console.error(error));
 
-		if(req.status === 201){
-			console.log("score créé, Yess");
-		} else {
-			console.log("score non créé ");
-		}*/
-	
 	againDiv.innerHTML = "<button  type='submit'  id='againButton' onclick=\"startAgainQuiz()\";>Recommencer</button>";
-
+	
 }
 
 function compare  (a,b){
@@ -152,6 +131,9 @@ function startAgainQuiz(){
 	score =0;
 	showQuestion(0);	
 }
+
+
+  
 
 
 

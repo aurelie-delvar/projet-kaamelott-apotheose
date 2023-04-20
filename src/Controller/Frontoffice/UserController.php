@@ -11,6 +11,7 @@ use App\Repository\RateRepository;
 use App\Repository\UserRepository;
 use App\Repository\QuoteRepository;
 use App\Repository\AvatarRepository;
+use App\Repository\PlayQuizzRepository;
 use App\Security\KaamelottAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -142,16 +143,19 @@ class UserController extends AbstractController
      *
      * @Route("/utilisateur/{id}/profil", name="user_read_profile", requirements={"id" = "\d+"})
      */
-    public function read(UserRepository $userRepository, $id, User $user) : Response
+    public function read(UserRepository $userRepository, $id, User $user, PlayQuizzRepository $playQuizzRepository) : Response
     {
         if($this->getUser() !== $user) {
             throw $this->createAccessDeniedException("Vous n'êtes pas autorisé ici.");
         }
 
         $user = $userRepository->find($id);
+       
+        $scoreArray = $playQuizzRepository->displayScore($id);
 
         return $this->render('frontoffice/user/profile.html.twig', [
             'user' => $user,
+            'scoreArray' => $scoreArray
         ]);
     }
 
