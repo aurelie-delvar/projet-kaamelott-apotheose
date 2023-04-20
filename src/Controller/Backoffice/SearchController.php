@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class SearchController extends AbstractController
 {
@@ -21,11 +22,11 @@ class SearchController extends AbstractController
      * 
      * @return Response
      */
-    public function search( Request $request, QuoteRepository $quoteRepository, PaginatorInterface $paginator): Response
+    public function search( Request $request, QuoteRepository $quoteRepository, PaginatorInterface $paginator, SessionInterface $session): Response
     {
         $words = $request->request->get("searchBack");
 
-        $session = $this->get("session");
+        // $session = $this->get("session"); => deprecated, use sessionInterface instead
 
         if($words != null) {
             $session->set("words", $words);

@@ -31,6 +31,15 @@ async function getQuestions() {
 
 }
 
+async function getQuizz() {
+
+    const req = await fetch(`${urlQuizz}`); 
+    const quizz = await req.json();
+	const idQuizz = quizz.id;
+	return idQuizz;
+
+}
+
 async function next(){
 	let questions = await this.getQuestions();
 	
@@ -48,8 +57,9 @@ async function next(){
 }
 
 async function resultats(){
+	let idQuizz = await this.getQuizz();
 	let questions = await this.getQuestions();
-	
+
 	scoreDiv.innerHTML = "";
 	titleElement.innerHTML="";
 	answers.innerHTML="";
@@ -64,7 +74,44 @@ async function resultats(){
 	// display score (bottom)
 	scoreDiv.innerHTML = `Vous avez ${score} bonnes réponses sur ${questions.length}`;
 	
-	againDiv.innerHTML = "<button type='submit' id='againButton' onclick=\"startAgainQuiz()\";>Recommencer</button>";
+	// Send score to profil user (->backoffice)
+	// if update 
+	/*const data = {score: score};
+	fetch(`${newUrl}api/score/add`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
+		
+		})
+		.then(response => {
+			console.log(response);
+		})
+		
+		.catch(error => {
+			console.error(error);
+		})
+	
+	
+		const req = await fetch(`${newUrl}api/score/add`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				score: score,
+				idQuizz: idQuizz
+			})
+		});
+
+		if(req.status === 201){
+			console.log("score créé, Yess");
+		} else {
+			console.log("score non créé ");
+		}*/
+	
+	againDiv.innerHTML = "<button  type='submit'  id='againButton' onclick=\"startAgainQuiz()\";>Recommencer</button>";
 
 }
 

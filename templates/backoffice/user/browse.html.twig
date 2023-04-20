@@ -7,8 +7,12 @@
     <div class="main-content">
         <h1>Liste des Utilisateurs</h1>
     </div>
-    <div class="container  ">
-        <a href="{{ path('app_backoffice_user_add') }}" class="btn btn-primary">Ajouter un utilisateur</a>
+    <div class="content">
+
+        {% if is_granted("ROLE_ADMIN") %}
+            <a href="{{ path('app_backoffice_user_add') }}" class="btn btn-primary">Ajouter un utilisateur</a>
+        {% endif %}
+
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -34,7 +38,10 @@
                     </td>
                     <td>
                         <a href="{{ path('app_backoffice_user_read', {'id': user.id}) }}" class="btn btn-success">Voir</a>
+
+                        {% if is_granted("ROLE_ADMIN") %}
                         <a href="{{ path('app_backoffice_user_edit', {'id': user.id}) }}" class="btn btn-warning">Modifier</a>
+                        {% endif %}
                     </td>
                 </tr>
             {% else %}

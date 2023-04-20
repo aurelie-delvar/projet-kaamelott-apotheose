@@ -6,6 +6,7 @@ use App\Entity\Actor;
 use App\Entity\Personage;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,7 +33,7 @@ class PersonageType extends AbstractType
                 'label' => 'Image'])
             ->add('descriptionPicture',TextType::class,[
                     'label' => 'Description de l\'image'])
-            ->add('description',TextType::class,[
+            ->add('description',TextareaType::class,[
                 'label' => 'Description du personnage'])
             ->add('actor', EntityType::class, [
                 // ! ne pas oublier de dire de quelle entité en parle

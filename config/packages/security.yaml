@@ -34,7 +34,20 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/backoffice/user/add, roles: ROLE_ADMIN }
+        - { path: ^/backoffice/user/\d+/edit, roles: ROLE_ADMIN, methods: [POST,GET]  }
+        - { path: ^\/backoffice\/.+\/\d+, roles: ROLE_ADMIN, methods: [POST] }
+        - { path: ^/backoffice, roles: ROLE_MANAGER }
+        # TODO: routes en frontoffice pour anonyme/user
 
+        # - { path: ^/backoffice/.+/new, roles: ROLE_ADMIN }
+        # - { path: ^/backoffice/.+/, roles: ROLE_MANAGER, methods: [GET] }
+        # GET /backoffice/.../{id} : app_...._show
+        # - { path: ^/backoffice/.+/\d+, roles: ROLE_MANAGER, methods: [GET] }
+        # POST /backoffice/.../{id} : app_...._delete
+        
+    # https://symfony.com/doc/5.4/security.html#security-role-hierarchy
     role_hierarchy:
         # un ROLE doit TOUJOURS commencer par ROLE_
         ROLE_ADMIN: ROLE_MANAGER

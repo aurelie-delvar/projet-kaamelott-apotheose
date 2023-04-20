@@ -8,9 +8,21 @@ body {
     background-repeat: no-repeat;    
 }
 
+.container {
+    /* ? j'ai rajouté le margin top pour avoir le même retrait en haut que l'on a en bas car pas réussi à virer le bas */
+    margin-top: 20px;
+     padding:  0;
+    background-color: rgba(240, 248, 255, 0.5);
+}
+
 h1, h2, h3, h4, h5, h6, .title {
     font-family: 'Cinzel Decorative', cursive, 'Times New Roman';
 }
+
+.main {
+    margin: 0 20px ;    
+}
+
 
 .main-content {
     text-align: center;
@@ -18,11 +30,33 @@ h1, h2, h3, h4, h5, h6, .title {
     padding-bottom: 2rem;
 }
 
-.container {
-    /* ? j'ai rajouté le margin top pour avoir le même retrait en haut que l'on a en bas car pas réussi à virer le bas */
-    margin-top: 20px;
-    padding:  0;
+.content {
+    padding: 1rem;
     background-color: rgba(240, 248, 255, 0.5);
+}
+
+
+.main-bo {
+    padding: 2rem 10rem 2rem 10rem;
+    display:flex;
+    justify-content: space-around;
+    
+}
+
+
+
+.form_position{
+    display:flex;
+    justify-content: center;
+}
+
+.form_size{
+    padding:1rem;
+    width: 80%; 
+}
+
+.btn{
+    margin-bottom:0.5rem;
 }
 
 .navbar {
@@ -40,8 +74,14 @@ h1, h2, h3, h4, h5, h6, .title {
     background-color: rgba(243, 245, 245, 0.6);
 }
 
-.main {
-    margin: 0 20px ;    
+
+.searchLinks {
+   
+    color:midnightblue;
+}
+
+.searchLinks:hover {
+    color: brown;
 }
 
 footer {
@@ -61,10 +101,11 @@ footer > p {
     border-top: solid 1px lightgrey;
 }
 
-footer > a:hover {
+.footer > a:hover {
     text-decoration: none;
     text-shadow: 4px 4px 10px black;
 } 
+
 
 
 @media screen and (max-width: 375px) {
@@ -74,19 +115,5 @@ footer > a:hover {
     }
 }
 
-.main-bo {
-    padding: 2rem 10rem 2rem 10rem;
-    display:flex;
-    justify-content: space-around;
-    
-}
 
-.searchLinks {
-   
-    color:midnightblue;
-}
-
-.searchLinks:hover {
-    color: brown;
-}
 

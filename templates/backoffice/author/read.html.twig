@@ -10,7 +10,7 @@
 
     </div>
 
-    <div class="container  ">
+    <div class="content">
     <a href="{{ path('app_backoffice_author_browse') }}" class="btn btn-primary">retour à la liste</a>
         <table class="table table-striped">
             <tbody>
@@ -29,7 +29,10 @@
 
     <a href="{{ path('app_backoffice_author_edit', {'id': author.id}) }}" class="btn btn-warning">Modifier</a>
 
-    {{ include('backoffice/author/_delete_form.html.twig') }}
+    {% if is_granted("ROLE_ADMIN") %}
+        {{ include('backoffice/author/_delete_form.html.twig') }}
+    {% endif %}
+
     </div>
 </main> 
 {% endblock %}

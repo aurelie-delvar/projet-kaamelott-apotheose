@@ -2,58 +2,62 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Question;
-use App\Repository\QuestionRepository;
+use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class QuestionController extends AbstractController
+class UserController extends AbstractController
 {
+    
     /**
-     * @Route("/api/question", name="app_api_question_browse", methods={"GET"})
+     * @Route("/api/user", name="app_api_user_browse")
      */
-    public function browse(QuestionRepository $questionRepository): JsonResponse
+    public function browse(UserRepository $userRepository): JsonResponse
     {
-        $allQuestion = $questionRepository->findAll();
         
+        $allUser = $userRepository->findAll();
+
         return $this->json(
-            $allQuestion,
+            $allUser,
             Response::HTTP_OK,
             [],
             [
-                "groups" => 
+                "groups"=> 
                 [
-                    "question_browse"
+                    "user_browse"
                 ]
             ]
-        );
+        );    
     }
 
     /**
-     * @Route("/api/question/{id}", name="app_api_question_read", requirements={"id"="\d+"}, methods={"GET"})
+     * @Route("/api/user/{id}", name="app_api_user_read", requirements={"id"="\d+"}, methods={"GET"})
      */
-    public function read(Question $question = null){
-        if($question === null){
+    public function read(User $user = null){
+        if($user === null){
             return $this->json(
                 [
-                    "message" => "cette question n'existe pas"
+                    "message" => "cet utilisateur n'existe pas"
                 ],
                 Response::HTTP_NOT_FOUND
             );
         }
 
         return $this->json(
-            $question,
+            $user,
             Response::HTTP_FOUND,
             [],
             [
                 "groups" =>
                 [
-                    "question_read"
+                    "user_read"
                 ]
             ]
         );
     }
+   
+    
 }

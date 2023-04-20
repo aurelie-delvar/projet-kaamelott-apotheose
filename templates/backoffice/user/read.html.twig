@@ -7,7 +7,7 @@
     <div class="main-content">
         <h1>Utilisateur</h1>
     </div>
-    <div class="container  ">
+    <div class="content">
         <a href="{{ path('app_backoffice_user_browse') }}" class="btn btn-primary">Retour à la liste</a>
         <table class="table table-striped">
             <thead>
@@ -26,10 +26,12 @@
                     <td>{{ user.email }}</td>
                     <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                     <td>{{ user.password }}</td>
-                    <td>
+                    <td> {% if is_granted("ROLE_ADMIN") %}
                         <a href="{{ path('app_backoffice_user_edit', {'id': user.id}) }}" class="btn btn-warning">Modifier</a>
 
-                        {{ include('backoffice/user/_delete_form.html.twig') }}
+                       
+                            {{ include('backoffice/user/_delete_form.html.twig') }}
+                        {% endif %}
                     </td>
                 </tr>
             </tbody>

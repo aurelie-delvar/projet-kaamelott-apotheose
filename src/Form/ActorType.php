@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ActorType extends AbstractType
 {
@@ -24,7 +25,7 @@ class ActorType extends AbstractType
             ->add('descriptionPicture', TextType::class, [
                 'label' => 'Description de l\'image'
             ])
-            ->add('description', TextType::class, [
+            ->add('description', TextareaType::class, [
                 'label' => 'Description de l\'acteur'
             ])
             ->add('personage', EntityType::class, [

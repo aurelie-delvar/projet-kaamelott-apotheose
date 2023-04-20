@@ -10,7 +10,7 @@
         <h1>SAISON {{ season.id }}</h1>
     </div>
 
-    <div class="container  ">
+    <div class="content">
         <a href="{{ path('app_backoffice_season_browse') }}" class="btn btn-primary">Retour à la liste</a>
         <table class="table table-striped">
             <thead>
@@ -27,7 +27,10 @@
                     <td>
                         <a href="{{ path('app_backoffice_season_edit', {'id': season.id}) }}" class="btn btn-warning">Modifier</a>
                        
-                        {{ include('backoffice/season/_delete_form.html.twig') }}
+                       {% if is_granted("ROLE_ADMIN") %}
+                            {{ include('backoffice/season/_delete_form.html.twig') }}
+                        {% endif %}
+
                     </td>
                 </tr>
             </tbody>
