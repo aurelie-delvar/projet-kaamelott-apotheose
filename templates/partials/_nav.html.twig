@@ -17,7 +17,6 @@
                     <span>{{app.user.email}}</span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ path("app_login") }}">Connexion</a></li>
                     <li><a class="dropdown-item" href="{{ path("app_logout") }}">Déconnexion</a></li>
                     <li><a class="dropdown-item" href="{{ path("user_read_profile", {"id" : app.user.id }) }}">Profil</a></li>
                 </ul>

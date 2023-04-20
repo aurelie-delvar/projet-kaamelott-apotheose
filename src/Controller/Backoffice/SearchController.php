@@ -34,7 +34,6 @@ class SearchController extends AbstractController
         $search = $words ?? $session->get("words"); 
         
        //$results= $quoteRepository->querySearchBack($words);
-       // dump($results);
     
         //Paginate the results of the query
         $pagination = $paginator->paginate(

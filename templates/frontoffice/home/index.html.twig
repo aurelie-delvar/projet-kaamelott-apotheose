@@ -24,9 +24,6 @@
                     {# if rating is a float between an integer+0.5 and the next integer "biStarHalf" #}
                     {% set biStarHalf = rating - biStarFill >= 0.5 %}
                     {% set biStar = 5 - biStarFill - (biStarHalf ? 1 : 0) %}
-                    {# {% dump(biStarFill)%}
-                    {% dump(biStarHalf)%}
-                    {% dump(biStar)%} #}
                     {% for i in 1..5 %}
                         {% if i <= biStarFill %}
                             {{ '<i class="bi bi-star-fill"></i>' }}
