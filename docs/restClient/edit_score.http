@@ -1,0 +1,7 @@
+PATCH http://localhost:8000/api/play/quizz/1
+content-type: application/json
+
+{
+    "id": 1,
+    "score": 10
+}

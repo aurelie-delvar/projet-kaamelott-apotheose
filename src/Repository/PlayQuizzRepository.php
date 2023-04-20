@@ -39,6 +39,25 @@ class PlayQuizzRepository extends ServiceEntityRepository
         }
     }
 
+    public function displayScore($id)
+    {
+        
+        $sql= "SELECT pq.*
+        FROM play_quizz pq
+        JOIN (
+            SELECT quizz_id, MAX(id) AS last_play_id
+            FROM play_quizz
+            WHERE user_id = $id
+            GROUP BY quizz_id
+        ) last_play ON pq.quizz_id = last_play.quizz_id AND pq.id = last_play.last_play_id";
+        
+        $doctrine = $this->getEntityManager()->getConnection();
+        $statement = $doctrine->prepare($sql);
+        $result = $statement->executeQuery();
+        $scoreArray = $result->fetchAllAssociative();
+        return $scoreArray;
+    }
+
 //    /**
 //     * @return PlayQuizz[] Returns an array of PlayQuizz objects
 //     */

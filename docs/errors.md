@@ -87,3 +87,34 @@ Pour corriger cette erreur, il faut aller sur adminer.
 
 Dans la table personnage (porteuse de la clé étrangère), mettre la clé étrangère en `CASCADE` sur le `ON DELETE`.
 Cela supprimera le personnage et l'acteur associé.
+
+## Cannot validate values of type "string" automatically. Please provide a constraint
+
+Je souhaite ajouter le score dans la table `PlayQuizz`.
+L'erreur se situe dans mon controller car je tente d'ajouter un objet JSON `jsonContent` au lieu de récupérer mon objet JSON désérialisé.
+Il suffit d'ajouter une variable `scoreFromJson` contenant ma désérialisation.
+
+```php
+//function add dans le PlayQuizzController
+
+$jsonContent = $request->getContent();
+        //dump($jsonContent);
+        try {
+            $scoreFromJson = $serializer->deserialize(
+                $jsonContent,
+                PlayQuizz::class,
+                'json',
+            );
+        } catch (\Throwable $error){
+            return $this->json(
+                [
+                    "message" => $error->getMessage()
+                ],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        } 
+```
+
+## Return value of App\Repository\PlayQuizzRepository::displayScore1() must be of the type array, bool returned
+
+J'ai cette erreur lorsque l'utilisateur n'a pas joué à un quizz lors de l'affichage du score dans le profil utilisateur.

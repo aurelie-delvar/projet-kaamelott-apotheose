@@ -18,7 +18,7 @@ class Question
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"question_browse"})
+     * 
      */
     private $id;
 
@@ -30,7 +30,7 @@ class Question
      *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
      * )
      * 
-     * @Groups({"quizz_browse", "quizz_read"})
+     * @Groups({"quizz_read"})
      */
     private $title;
 
@@ -48,7 +48,7 @@ class Question
      *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
      * )
      * 
-     * @Groups({"quizz_browse", "quizz_read"})
+     * @Groups({"quizz_read"})
      */
     private $answer1;
 
@@ -60,7 +60,7 @@ class Question
      *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
      * )
      * 
-     * @Groups({"quizz_browse", "quizz_read"})
+     * @Groups({"quizz_read"})
      */
     private $answer2;
 
@@ -72,7 +72,7 @@ class Question
      *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
      * )
      * 
-     * @Groups({"quizz_browse", "quizz_read"})
+     * @Groups({"quizz_read"})
      */
     private $answer3;
 
@@ -84,7 +84,7 @@ class Question
      *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
      * )
      * 
-     * @Groups({"quizz_browse", "quizz_read"})
+     * @Groups({"quizz_read"})
      */
     private $answer4;
 
@@ -96,7 +96,7 @@ class Question
      *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
      * )
      * 
-     * @Groups({"quizz_browse", "quizz_read"})
+     * @Groups({"quizz_read"})
      */
     private $goodAnswer;
 
