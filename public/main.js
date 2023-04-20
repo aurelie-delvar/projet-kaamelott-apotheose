@@ -61,7 +61,7 @@ async function resultats(){
 	let quizzId = await this.getQuizz();
 	let questions = await this.getQuestions();
 	let userId = userInput.value;
-	
+	console.log(userId);
 	scoreDiv.innerHTML = "";
 	titleElement.innerHTML="";
 	answers.innerHTML="";

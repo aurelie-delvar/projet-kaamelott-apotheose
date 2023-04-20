@@ -67,7 +67,7 @@ class AuthorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $authorRepository->add($author, true);
 
-            return $this->redirectToRoute('app_backoffice_author_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_backoffice_author_browse', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('backoffice/author/edit.html.twig', [
@@ -85,6 +85,6 @@ class AuthorController extends AbstractController
             $authorRepository->remove($author, true);
         }
 
-        return $this->redirectToRoute('app_backoffice_author_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_backoffice_author_browse', [], Response::HTTP_SEE_OTHER);
     }
 }
