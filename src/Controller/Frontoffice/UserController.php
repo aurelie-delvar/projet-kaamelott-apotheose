@@ -217,10 +217,7 @@ class UserController extends AbstractController
      * @Route("/citation-noter/ajout/{quoteId}", name="user_add_rating_quote")
      */
     public function addRating(EntityManagerInterface $entityManager, Security $security, Request $request, int $quoteId, QuoteRepository $quoteRepository, RateRepository $rateRepository): Response
-    {
-
-        $url = $_SERVER['HTTP_REFERER'];
-        
+    {        
         // je récupère le User s'il est connecté
         $user = $security->getUser();
         
@@ -266,7 +263,7 @@ class UserController extends AbstractController
             $entityManager->persist($quote);
             $entityManager->flush();
             
-            // return $this->render($url);
+            return $this->redirectToRoute('default');
         }
 
         return $this->renderForm('frontoffice/user/formRating.html.twig', [
