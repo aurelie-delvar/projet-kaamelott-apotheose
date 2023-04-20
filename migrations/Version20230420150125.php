@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230414083047 extends AbstractMigration
+final class Version20230420150125 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -34,15 +34,15 @@ final class Version20230414083047 extends AbstractMigration
         $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, avatar_id INT DEFAULT NULL, email VARCHAR(180) NOT NULL, roles LONGTEXT NOT NULL COMMENT \'(DC2Type:json)\', password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), INDEX IDX_8D93D64986383B10 (avatar_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE user_quote (user_id INT NOT NULL, quote_id INT NOT NULL, INDEX IDX_89B330ACA76ED395 (user_id), INDEX IDX_89B330ACDB805178 (quote_id), PRIMARY KEY(user_id, quote_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE episode ADD CONSTRAINT FK_DDAA1CDAF675F31B FOREIGN KEY (author_id) REFERENCES author (id)');
-        $this->addSql('ALTER TABLE episode ADD CONSTRAINT FK_DDAA1CDA4EC001D1 FOREIGN KEY (season_id) REFERENCES season (id)');
-        $this->addSql('ALTER TABLE personage ADD CONSTRAINT FK_E60A6EC510DAF24A FOREIGN KEY (actor_id) REFERENCES actor (id)');
+        $this->addSql('ALTER TABLE episode ADD CONSTRAINT FK_DDAA1CDA4EC001D1 FOREIGN KEY (season_id) REFERENCES season (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE personage ADD CONSTRAINT FK_E60A6EC510DAF24A FOREIGN KEY (actor_id) REFERENCES actor (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE play_quizz ADD CONSTRAINT FK_8DA87081BA934BCD FOREIGN KEY (quizz_id) REFERENCES quizz (id)');
         $this->addSql('ALTER TABLE play_quizz ADD CONSTRAINT FK_8DA87081A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
-        $this->addSql('ALTER TABLE question ADD CONSTRAINT FK_B6F7494EBA934BCD FOREIGN KEY (quizz_id) REFERENCES quizz (id)');
+        $this->addSql('ALTER TABLE question ADD CONSTRAINT FK_B6F7494EBA934BCD FOREIGN KEY (quizz_id) REFERENCES quizz (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE quote ADD CONSTRAINT FK_6B71CBF4362B62A0 FOREIGN KEY (episode_id) REFERENCES episode (id)');
         $this->addSql('ALTER TABLE quote ADD CONSTRAINT FK_6B71CBF4EA8E3E4A FOREIGN KEY (personage_id) REFERENCES personage (id)');
         $this->addSql('ALTER TABLE quote ADD CONSTRAINT FK_6B71CBF4A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
-        $this->addSql('ALTER TABLE rate ADD CONSTRAINT FK_DFEC3F39DB805178 FOREIGN KEY (quote_id) REFERENCES quote (id)');
+        $this->addSql('ALTER TABLE rate ADD CONSTRAINT FK_DFEC3F39DB805178 FOREIGN KEY (quote_id) REFERENCES quote (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE rate ADD CONSTRAINT FK_DFEC3F39A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D64986383B10 FOREIGN KEY (avatar_id) REFERENCES avatar (id)');
         $this->addSql('ALTER TABLE user_quote ADD CONSTRAINT FK_89B330ACA76ED395 FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE');
