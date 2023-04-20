@@ -4,7 +4,7 @@
     <a href="{{ path("default") }}"><img class="img" src="{{ asset('img/logo.png') }}"></a>
     </div>
 
-<nav class="navbar navbar-expand-xxl bg-body-tertiary">
+<nav class="navbar navbar-expand-xl bg-body-tertiary">
     <div class="container-fluid">
     {% if is_granted("ROLE_MANAGER") %}
         <a class="navbar-brand title" href="{{ path("app_backoffice_home") }}"> Kaamel'O'tt </a>
@@ -21,7 +21,6 @@
                     <span>{{app.user.email}}</span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ path("app_login") }}">Connexion</a></li>
                     <li><a class="dropdown-item" href="{{ path("app_logout") }}">Déconnexion</a></li>
                     <li><a class="dropdown-item" href="{{ path("user_read_profile", {"id" : app.user.id }) }}">Profil</a></li>
                 </ul>
@@ -79,11 +78,15 @@
             </ul>
             </li>
 
-            <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Favoris</a>
-            </li>
+
 
             {% if is_granted("ROLE_USER") %}
+            <li class="nav-item">
+            <a class="nav-link {{ (app.request.get('_route') is same as('app_favorites_user',  {"id" : app.user.id})) ? 'active' : '' }}" aria-current="page" href="{{ path("app_favorites_user",  {"id" : app.user.id }) }}">Favoris</a>
+            </li>
+            
+
+            
             <li class="nav-item">
             <a class="nav-link {{ (app.request.get('_route') is same as('app_add_quote')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_add_quote") }}">Proposer une citation</a>
             </li>   

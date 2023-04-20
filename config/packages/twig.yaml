@@ -5,6 +5,7 @@ twig:
         seasonsList: '@App\Twig\SeasonsExtension'
         quizzsList: '@App\Twig\QuizzsExtension'
         currentUser: '@App\Twig\CurrentUserExtension'
+        charactersVIP: '@App\Twig\CharactersExtension'
 when@test:
     twig:
         strict_variables: true

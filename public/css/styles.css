@@ -1,8 +1,6 @@
 body {
     font-family: 'Times New Roman', serif;
     background-image: url(../img/pexels-pixabay-221516.jpg) ;
-    /* height: 100vh; */
-    /* width:100vw; */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;    
@@ -25,7 +23,6 @@ h1, h2, h3, h4, h5, h6, .title {
     width: 100%;
     display: flex;
     justify-content: center;
-    /* background-color: rgba(243, 245, 245, 0.6); */
     background-color: rgba(243, 245, 245, 0.6);
 }
 
@@ -107,6 +104,10 @@ figcaption {
     font-size: 0.7rem;
     padding: 3px;
     text-align: center;
+}
+
+.iconono {
+    word-wrap: break-word;
 }
 
 .searchLinks {

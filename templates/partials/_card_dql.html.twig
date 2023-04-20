@@ -21,7 +21,7 @@
                         {% endif %}
                     {% endfor %}
             <span class="ps-1">{{ quote.rating|round(1, 'floor')  }}</span>
-                  
+               
         </div>
 
     </div>
@@ -41,30 +41,25 @@
                                 {% set isFavorite = true %}
                             {% endif %}
                     {% endfor %}
-                     
+                 
                     {% if isFavorite %}
-                       <a href="{{ path('user_remove_favorite_quote', {quoteId: quote.id}) }}"  class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></a>
+                       <a href="{{ path('user_remove_favorite_quote', {quoteId: quote.id}) }}"  class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></a> 
                     {% else %}
                        <a href="{{ path('user_add_favorite_quote', {quoteId: quote.id}) }}" class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></a>
                     {% endif %}
 
-                  
                 {% endif %}
                 </div>
             
             <footer class="blockquote-footer"> {{ quote.personage.name }},<cite title="Source Title"> <strong>{{ quote.episode.season.title }}</strong>, {{ quote.episode.title }}.</cite></footer>
                 {# We check if the user is connected, because if not, he can't rate the quote #}
-                {% if is_granted("ROLE_USER") %} 
-
+                {# {% if is_granted("ROLE_USER") %} 
 
                     {% set isRating = false %}
-
-                    {% for key, userRate in quote.rates %}
-                    
-                            {% if currentUser.getUser == userRate.user %}
+                    {% for userRate in quote.users %}
+                            {% if currentUser.getUser == userRate %}
                                 {% set isRating = true %}
                             {% endif %}
-
                     {% endfor %}
                      
                     {% if isRating %}
@@ -74,7 +69,7 @@
                        <a href="{{ path('user_add_rating_quote', {quoteId: quote.id})}}" class="btn btn-outline-secondary d-flex justify-content-end">Donner une Note à cette Citation</a>
                     {% endif %}
 
-                {% endif %}
+                {% endif %} #}
 
         </blockquote>
     </div>

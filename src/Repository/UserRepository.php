@@ -56,6 +56,27 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->add($user, true);
     }
 
+    public function favoritesQuotes($userId):array
+    {
+        // version SQL
+        $sql = "SELECT quote.id, quote.text, quote.rating, personage.name, episode.title AS episode, season.title AS season , user_quote.quote_id
+        FROM quote
+        JOIN personage ON quote.personage_id = personage.id
+        JOIN episode ON quote.episode_id = episode.id
+        JOIN season ON episode.season_id = season.id
+        JOIN user_quote ON user_quote.quote_id = quote.id
+        WHERE user_quote.user_id= ". $userId;
+        
+        $doctrine = $this->getEntityManager()->getConnection();
+        $statement = $doctrine->prepare($sql);
+        $result = $statement->executeQuery();
+        $favArray = $result->fetchAllAssociative();
+
+        return $favArray;
+    }
+
+  
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

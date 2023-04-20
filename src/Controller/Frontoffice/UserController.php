@@ -2,8 +2,12 @@
 
 namespace App\Controller\Frontoffice;
 
+
+use App\Entity\Rate;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Form\RatingType;
+use App\Repository\RateRepository;
 use App\Repository\UserRepository;
 use App\Repository\QuoteRepository;
 use App\Repository\AvatarRepository;
@@ -22,18 +26,19 @@ class UserController extends AbstractController
 
                                                         // FAVORITE PARTS //
     /**
-     * @Route("/favoris/{userId}", name="app_favorites_user")
+     * @Route("/favoris/{id}", name="app_favorites_user")
      */
-    public function index(): Response
+    public function index(User $user): Response
     {
-
+        // $favoritesQuotesId = $userRepository -> favoritesQuotes($userId);
+        
         return $this->render('frontoffice/user/indexFav.html.twig', [
-            
+            "user" => $user,
         ]);
     }
 
     /**
-     * @Route("/favorite-quotes/add/{quoteId}", name="user_add_favorite_quote")
+     * @Route("/citations-favorites/ajout/{quoteId}", name="user_add_favorite_quote")
      */
     public function addFavorite(EntityManagerInterface $entityManager, Security $security, int $quoteId, QuoteRepository $quoteRepository): Response
     {
@@ -51,18 +56,15 @@ class UserController extends AbstractController
             throw $this->createNotFoundException('La citation demandée n\'existe pas.');
 
         }
-        // $user -> setUser($currentUser);
-        // $users = $quoteRepository -> find($quote) -> getUsers();
+        
         $user->addFavoriteQuote($quote);
         $entityManager->flush();
-
-        // dd($users);
 
         return $this->redirect($_SERVER['HTTP_REFERER']);
     }
 
     /**
-     * @Route("/favorite-quotes/remove/{quoteId}", name="user_remove_favorite_quote")
+     * @Route("/citations-favorites/supprimer/{quoteId}", name="user_remove_favorite_quote")
      */
     public function removeFavorite(EntityManagerInterface $entityManager, Security $security, int $quoteId, QuoteRepository $quoteRepository): Response
     {
@@ -71,7 +73,7 @@ class UserController extends AbstractController
         $user = $security->getUser();
         // je récupère la quote grâce à son id
         $quote = $quoteRepository->find($quoteId);
-        // dd($user);
+       
         if (!$user) {
             throw $this->createNotFoundException('L\'utilisateur doit être connecté pour retirer une citation en favori.');
         }
@@ -80,12 +82,12 @@ class UserController extends AbstractController
             throw $this->createNotFoundException('La citation demandée n\'existe pas.');
 
         }
-        // $user -> setUser($currentUser);
-        $users = $quoteRepository -> find($quote) -> getUsers();
+        
+        // $users = $quoteRepository -> find($quote) -> getUsers();
         $user->removeFavoriteQuote($quote);
         $entityManager->flush();
 
-        // dd($users);
+        
 
         return $this->redirect($_SERVER['HTTP_REFERER']);
     }
@@ -156,7 +158,7 @@ class UserController extends AbstractController
     /**
      * Edit user's profile
      * 
-     * @Route("/utilisateur/{id}/edition-profil", name ="user_edit_profile", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     * @Route("/utilisateur/{id}/edition", name ="user_edit_profile", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function edit(User $user, Request $request, UserPasswordHasherInterface $userPasswordHasherInterface, UserRepository $userRepository) : Response
     {
@@ -187,4 +189,86 @@ class UserController extends AbstractController
         ]);
 
     }
+
+    /**
+     * For the user to delete his own profile
+     * 
+     * @Route("utilisateur/{id}/suppression", name="user_delete_profile", methods={"POST"}, requirements={"id"="\d+"})
+     */
+    public function delete(User $user, Request $request, UserRepository $userRepository) : Response
+    {
+        if($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            $userRepository->remove($user, true);
+        }
+
+        // I had to add these lines because a error occured due to the session still standing
+        $request->getSession()->invalidate();
+        $this->container->get('security.token_storage')->setToken(null);
+
+        return $this->redirectToRoute('default', [], Response::HTTP_SEE_OTHER);
+    }
+
+                                                        // RATING PARTS //
+    /**
+     * @Route("/citation-noter/ajout/{quoteId}", name="user_add_rating_quote")
+     */
+    public function addRating(EntityManagerInterface $entityManager, Security $security, Request $request, int $quoteId, QuoteRepository $quoteRepository, RateRepository $rateRepository): Response
+    {
+
+        $url = $_SERVER['HTTP_REFERER'];
+        
+        // je récupère le User s'il est connecté
+        $user = $security->getUser();
+        
+        // je récupère la quote grâce à son id
+        $quote = $quoteRepository->find($quoteId);
+
+        if (!$user) {
+            throw $this->createNotFoundException('L\'utilisateur doit être connecté pour noter une citation en favori.');
+        }
+
+        if (!$quote) {
+            throw $this->createNotFoundException('La citation demandée n\'existe pas.');
+
+        }
+
+        $newRating = new Rate();
+
+        $newRating ->setUser($user);
+        $newRating -> setQuote($quote);
+        $form = $this->createForm(RatingType::class, $newRating);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            //! condition pour noter qu'une seule fois la citation
+            
+            //  DONE: persist + flush
+            
+            $newRating ->setUser($user);
+            $newRating->setQuote($quote); //on a la note du form
+            // dd($newRating);
+            $entityManager->persist($newRating);
+            $entityManager->flush();
+
+            
+
+            //  DONE: recalcul du rating
+           
+            $averageRatingQuote = $rateRepository -> averageRating($quoteId);
+          
+            $quote -> setRating($averageRatingQuote);
+            $entityManager->persist($quote);
+            $entityManager->flush();
+            
+            // return $this->render($url);
+        }
+
+        return $this->renderForm('frontoffice/user/formRating.html.twig', [
+            "formulaire" => $form,
+            "quote" => $quote
+        ]);
+    }
+
 }
