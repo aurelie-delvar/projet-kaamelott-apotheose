@@ -6,61 +6,58 @@
 
 <main class="main">
 
-<h2 class="main__item">Citations</h2>
+    <h2 class="main__item">Citations</h2>
 
-<div class="row mb-lg-4 justify-content-center">
-    
-    <div class="col-lg-8">
-
-        {% for quote in pagination %}
-
-        {% include 'partials/_card_quote.html.twig' %}
+    <div class="row mb-lg-4 justify-content-center">
         
-        {% endfor %}
+        <div class="col-lg-8">
+            {% for quote in pagination %}
 
-    </div>
-    
-    
-    <div class="col-lg-4">
-
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-1">
-
-            <div class="col">
+                {% include 'partials/_card_quote.html.twig' %}
             
-                <div class="card  mb-3" style="max-width: 18rem;">
-                    <div class="card-header title"><a class="nav-link " aria-current="page">Personnages</a></div>
-                    <ul class="list-group list-group-flush">
-                    {% for character in charactersVIP.getCharacters %}
-                        <li class="list-group-item title"><a class="nav-link " aria-current="page" href="{{ path("app_frontoffice_personage_read", {"id" : character.id }) }}"> {{ character.name }}</a></li>
-                    {% endfor %}
-                        <li class="list-group-item title"><a class="nav-link " aria-current="page" href="{{ path("app_frontoffice_personages_browse") }}"> Tous les Personnages</a></li>
-                    </ul>
-                    
-                </div>   
-            
-            </div>
+            {% endfor %}
+        </div>
+    
+        <div class="col-lg-4">
 
-            <div class="col">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-1">
 
-                <div class="card  mb-3" style="max-width: 18rem;">
+                <div class="col">
+                
+                    <div class="card  mb-3" style="max-width: 18rem;">
+                        <div class="card-header title"><a class="nav-link " aria-current="page">Personnages</a></div>
+                        <ul class="list-group list-group-flush">
+                            {% for character in charactersVIP.getCharacters %}
+                                <li class="list-group-item title"><a class="nav-link " aria-current="page" href="{{ path("app_frontoffice_personage_read", {"id" : character.id }) }}"> {{ character.name }}</a></li>
+                            {% endfor %}
+                                <li class="list-group-item title"><a class="nav-link " aria-current="page" href="{{ path("app_frontoffice_personages_browse") }}"> Tous les Personnages</a></li>
+                        </ul>
+                        
+                    </div>   
+                
+                </div>
 
-                    <div class="card-header title">Saisons</div>
-                    <ul class="list-group list-group-flush">
-                    {# we loop here to get all our seasons #}
-                    {% for season in seasonsList.getSeasons %}
-                    <li class="list-group-item title"><a  class="nav-link" href="{{ path("app_frontoffice_season_read", {"id" : season.id }) }}">{{ season.title }}</a></li>
-                    {% endfor %}
-                    </ul>
-                    
+                <div class="col">
+
+                    <div class="card  mb-3" style="max-width: 18rem;">
+
+                        <div class="card-header title">Saisons</div>
+                        <ul class="list-group list-group-flush">
+                        {# we loop here to get all our seasons #}
+                            {% for season in seasonsList.getSeasons %}
+                                <li class="list-group-item title"><a  class="nav-link" href="{{ path("app_frontoffice_season_read", {"id" : season.id }) }}">{{ season.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        
+                    </div>
+
                 </div>
 
             </div>
-
         </div>
-    </div>
-</div> 
+    </div> 
 
-{{ knp_pagination_render(pagination) }}
+        {{ knp_pagination_render(pagination) }}
 
 
 </main>

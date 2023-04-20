@@ -5,22 +5,24 @@
 {% block body %}
 
 <main  class="p-3">
-    <div class="text-center mb-3">
+    <div class="text-center m-3">
 
         <h2 class="main__item">Bonjour {{ user.email }} </h2>
+
         <div class="card mt-3 mb-3"> 
             <div class="card-body text-bg-secondary">
-                {# Résulats du dernier quizz #}
-                <div>
+                {# Results lastest quizz #}
+                <div class=" m-5">
                     {% if scoreArray is not empty %}
-                    {% for score in scoreArray %}
-                    <p>Votre dernier score pour le quizz {{ score.quizz_id }} est : {{ score.score }}</p>
-                    {% endfor %}
+                        {% for score in scoreArray %}
+                            <p>Votre dernier score pour le quizz {{ score.quizz_id }} est : {{ score.score }}</p>
+                        {% endfor %}
                     {% else %}
-                    <p>Vous n'avez pas encore joué à nos quizz.</p>
+                        <p>Vous n'avez pas encore joué à nos quizz.</p>
                     {% endif %}   
                 </div>
                 <div class="d-flex justify-content-around">
+
                     <a class="btn btn-outline-light" href="{{ path("user_edit_profile", {"id" : user.id}) }}">Modifier</a>
 
                     {{ include('frontoffice/user/_delete_form.html.twig') }}

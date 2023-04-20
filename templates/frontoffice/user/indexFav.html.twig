@@ -9,10 +9,11 @@
         <h2 class="main__item">Mes Citations Favorites</h2>
         
         <div class="card mt-3 mb-3"> 
+
             <div class="card-body text-bg-secondary">
                 {% for quote in user.favoriteQuote %}
 
-                {% include 'partials/_card_quote.html.twig' %}   
+                 {% include 'partials/_card_quote.html.twig' %}   
 
                 {% endfor %}
             </div>
