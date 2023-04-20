@@ -40,7 +40,9 @@
 
     <a href="{{ path('app_backoffice_actor_edit', {'id': actor.id}) }}" class="btn btn-warning">Modifier</a>
 
-    {{ include('backoffice/actor/_delete_form.html.twig') }}
+    {% if is_granted("ROLE_ADMIN") %}
+        {{ include('backoffice/actor/_delete_form.html.twig') }}
+    {% endif %}
 
     </div>
 

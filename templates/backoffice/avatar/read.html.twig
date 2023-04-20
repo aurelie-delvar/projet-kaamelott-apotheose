@@ -32,5 +32,8 @@
 
     <a href="{{ path('app_backoffice_avatar_edit', {'id': avatar.id}) }}" class="btn btn-warning">Modifier</a>
 
-    {{ include('backoffice/avatar/_delete_form.html.twig') }}
+        {% if is_granted("ROLE_ADMIN") %}
+            {{ include('backoffice/avatar/_delete_form.html.twig') }}
+         {% endif %}
+
 {% endblock %}

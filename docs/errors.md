@@ -76,3 +76,14 @@ Did you mean one of these?
       doctrine:schema                                   
                                                         
 ```
+
+## An exception occurred while executing a query: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`kaamelott`.`quote`, CONSTRAINT `FK_6B71CBF4EA8E3E4A` FOREIGN KEY (`personage_id`) REFERENCES `personage` (`id`))
+
+Lorsque je souhaite supprimer un personnage, j'ai cette erreur.
+
+C'est normal, j'ai une relation (OneToOne) avec la table actor.
+
+Pour corriger cette erreur, il faut aller sur adminer.
+
+Dans la table personnage (porteuse de la clé étrangère), mettre la clé étrangère en `CASCADE` sur le `ON DELETE`.
+Cela supprimera le personnage et l'acteur associé.

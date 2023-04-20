@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -22,6 +23,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"user_browse", "user_read"})
      */
     private $id;
 
@@ -29,9 +31,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * 
      * @Assert\NotBlank
-     *  @Assert\Email(
+     * @Assert\Email(
      *     message = "L'adresse mail '{{ value }}' n'est pas valide."
      * )
+     * @Groups({"user_browse", "user_read"})
      */
     private $email;
 
@@ -66,6 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=PlayQuizz::class, mappedBy="user")
+     * @Groups({"user_browse", "user_read"})
      */
     private $playQuizz;
 
