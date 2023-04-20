@@ -18,7 +18,7 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="default")
-     * @Route("/home", name="app_home_index")
+     * @Route("/accueil", name="app_home_index")
      */
     public function index(QuoteRepository $quoteRepository): Response
     {
