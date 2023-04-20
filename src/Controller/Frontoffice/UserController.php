@@ -27,7 +27,7 @@ class UserController extends AbstractController
 
                                                         // FAVORITE PARTS //
     /**
-     * @Route("/favoris/{id}", name="app_favorites_user")
+     * @Route("/favoris/{id}", name="app_favorites_user", requirements={"id" = "\d+"})
      */
     public function index(User $user): Response
     {
@@ -39,7 +39,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/citations-favorites/ajout/{quoteId}", name="user_add_favorite_quote")
+     * @Route("/citations-favorites/ajout/{quoteId}", name="user_add_favorite_quote", requirements={"id" = "\d+"})
      */
     public function addFavorite(EntityManagerInterface $entityManager, Security $security, int $quoteId, QuoteRepository $quoteRepository): Response
     {
@@ -65,7 +65,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/citations-favorites/supprimer/{quoteId}", name="user_remove_favorite_quote")
+     * @Route("/citations-favorites/supprimer/{quoteId}", name="user_remove_favorite_quote", requirements={"id" = "\d+"})
      */
     public function removeFavorite(EntityManagerInterface $entityManager, Security $security, int $quoteId, QuoteRepository $quoteRepository): Response
     {
@@ -214,7 +214,7 @@ class UserController extends AbstractController
 
                                                         // RATING PARTS //
     /**
-     * @Route("/citation-noter/ajout/{quoteId}", name="user_add_rating_quote")
+     * @Route("/citation-noter/ajout/{quoteId}", name="user_add_rating_quote", requirements={"quoteId" = "\d+"})
      */
     public function addRating(EntityManagerInterface $entityManager, Security $security, Request $request, int $quoteId, QuoteRepository $quoteRepository, RateRepository $rateRepository): Response
     {        
