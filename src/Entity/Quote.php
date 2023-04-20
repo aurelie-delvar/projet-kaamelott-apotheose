@@ -53,12 +53,13 @@ class Quote
 
     
     /**
-     * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="quote")
+     * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="quote", fetch="EAGER")
      */
     private $rates;
 
     /**
      * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favoriteQuote")
+     *
      */
     private $users;
 

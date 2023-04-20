@@ -24,7 +24,7 @@ class PersonageController extends AbstractController
     {
 
         $pagination = $paginator->paginate(
-            $personageRepository->paginationQueryBack(), // here is our query from the repository
+            $personageRepository->paginationQuery(), // here is our query from the repository
             $request->query->get('page', 1), // 1 is the page by default
             10, // the limit of results by page
         );

@@ -2,13 +2,18 @@
 
 namespace App\Controller\Frontoffice;
 
+use App\Entity\User;
+use App\Entity\Personage;
+use App\Repository\QuoteRepository;
 use App\Repository\PersonageRepository;
+use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class PersonageController extends AbstractController
 {
@@ -32,12 +37,17 @@ class PersonageController extends AbstractController
      * @Route("/personnage/{id}", name="app_frontoffice_personage_read", requirements={"id" = "\d+"})
      *
      */
-    public function read(PersonageRepository $personageRepository, $id) : Response
+    public function read(Personage $personage, PaginatorInterface $paginator, Request $request) : Response
     {
-        $character = $personageRepository->find($id);
+        $pagination = $paginator->paginate(
+            $personage->getQuotes(), // we want all the quotes of the personage
+            $request->query->get('page', 1), // 1 is the page by default
+            5, // the limit of results by page
+        );
 
         return $this->render('frontoffice/personage/read.html.twig', [
-            'character' => $character,
+            'character' => $personage,
+            'pagination' => $pagination,
         ]);
     }
 }

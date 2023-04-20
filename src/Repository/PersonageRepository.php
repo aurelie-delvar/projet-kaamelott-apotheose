@@ -42,23 +42,12 @@ class PersonageRepository extends ServiceEntityRepository
    /**
     * Trying to paginate with the paginator bundle which require a Doctrine query.
     * We want a query in order for the paginate method of the paginator
+    * This is for the front & back offices.
     */
    public function paginationQuery()
    {
        return $this->createQueryBuilder('p')
            ->orderBy('p.creditOrder, p.name', 'ASC')
-           ->getQuery()
-       ;
-   }
-
-
-   /**
-    * Query for the paginator. Personage list of the backoffice.
-    */
-   public function paginationQueryBack()
-   {
-       return $this->createQueryBuilder('p')
-           ->orderBy('p.id', 'ASC')
            ->getQuery()
        ;
    }
