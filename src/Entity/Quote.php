@@ -54,6 +54,7 @@ class Quote
     
     /**
      * @ORM\OneToMany(targetEntity=Rate::class, mappedBy="quote", fetch="EAGER")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $rates;
 

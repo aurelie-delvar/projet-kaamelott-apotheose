@@ -114,8 +114,8 @@ CREATE TABLE `episode` (
   PRIMARY KEY (`id`),
   KEY `IDX_DDAA1CDAF675F31B` (`author_id`),
   KEY `IDX_DDAA1CDA4EC001D1` (`season_id`),
-  CONSTRAINT `episode_ibfk_4` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `episode_ibfk_5` FOREIGN KEY (`season_id`) REFERENCES `season` (`id`) ON DELETE CASCADE
+  CONSTRAINT `episode_ibfk_7` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`),
+  CONSTRAINT `episode_ibfk_9` FOREIGN KEY (`season_id`) REFERENCES `season` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `episode` (`id`, `author_id`, `season_id`, `title`, `number`) VALUES
@@ -505,7 +505,7 @@ CREATE TABLE `personage` (
   `credit_order` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_E60A6EC510DAF24A` (`actor_id`),
-  CONSTRAINT `personage_ibfk_2` FOREIGN KEY (`actor_id`) REFERENCES `actor` (`id`) ON DELETE CASCADE
+  CONSTRAINT `personage_ibfk_4` FOREIGN KEY (`actor_id`) REFERENCES `actor` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `personage` (`id`, `actor_id`, `name`, `picture`, `description_picture`, `description`, `credit_order`) VALUES
@@ -575,13 +575,38 @@ CREATE TABLE `play_quizz` (
   PRIMARY KEY (`id`),
   KEY `IDX_8DA87081BA934BCD` (`quizz_id`),
   KEY `IDX_8DA87081A76ED395` (`user_id`),
-  CONSTRAINT `play_quizz_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `play_quizz_ibfk_3` FOREIGN KEY (`quizz_id`) REFERENCES `quizz` (`id`) ON DELETE CASCADE
+  CONSTRAINT `play_quizz_ibfk_5` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `play_quizz_ibfk_6` FOREIGN KEY (`quizz_id`) REFERENCES `quizz` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `play_quizz` (`id`, `quizz_id`, `user_id`, `score`) VALUES
 (1,	1,	1,	5),
-(2,	2,	3,	6);
+(2,	2,	3,	6),
+(3,	3,	3,	3),
+(4,	3,	6,	2),
+(5,	3,	6,	2),
+(6,	3,	6,	1),
+(7,	3,	6,	1),
+(8,	3,	6,	1),
+(9,	3,	3,	3),
+(10,	3,	6,	1),
+(11,	3,	3,	3),
+(12,	3,	4,	1),
+(13,	3,	6,	2),
+(14,	2,	6,	1),
+(15,	1,	6,	1),
+(17,	3,	6,	1),
+(18,	3,	6,	1),
+(19,	3,	1,	1),
+(20,	3,	1,	1),
+(21,	1,	3,	4),
+(22,	1,	6,	10),
+(23,	3,	2,	2),
+(24,	1,	4,	10),
+(25,	3,	4,	2),
+(27,	3,	6,	1),
+(28,	3,	6,	2),
+(29,	3,	6,	1);
 
 DROP TABLE IF EXISTS `question`;
 CREATE TABLE `question` (
@@ -595,7 +620,7 @@ CREATE TABLE `question` (
   `good_answer` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_B6F7494EBA934BCD` (`quizz_id`),
-  CONSTRAINT `question_ibfk_2` FOREIGN KEY (`quizz_id`) REFERENCES `quizz` (`id`) ON DELETE CASCADE
+  CONSTRAINT `question_ibfk_4` FOREIGN KEY (`quizz_id`) REFERENCES `quizz` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `question` (`id`, `quizz_id`, `title`, `answer1`, `answer2`, `answer3`, `answer4`, `good_answer`) VALUES
@@ -648,9 +673,9 @@ CREATE TABLE `quote` (
   KEY `IDX_6B71CBF4362B62A0` (`episode_id`),
   KEY `IDX_6B71CBF4EA8E3E4A` (`personage_id`),
   KEY `IDX_6B71CBF4A76ED395` (`user_id`),
-  CONSTRAINT `quote_ibfk_4` FOREIGN KEY (`episode_id`) REFERENCES `episode` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `quote_ibfk_5` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `quote_ibfk_6` FOREIGN KEY (`personage_id`) REFERENCES `personage` (`id`) ON DELETE CASCADE
+  CONSTRAINT `quote_ibfk_7` FOREIGN KEY (`episode_id`) REFERENCES `episode` (`id`),
+  CONSTRAINT `quote_ibfk_8` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `quote_ibfk_9` FOREIGN KEY (`personage_id`) REFERENCES `personage` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `quote` (`id`, `episode_id`, `personage_id`, `user_id`, `text`, `rating`, `validated`) VALUES
@@ -1418,9 +1443,7 @@ INSERT INTO `quote` (`id`, `episode_id`, `personage_id`, `user_id`, `text`, `rat
 (762,	374,	55,	NULL,	'Oh l\'Irlande !',	3.5,	1),
 (763,	65,	29,	NULL,	'\r\nAllez y! Défilez\r\nles petites fourmis. Mettez vous bien en rang.\r\nVenez mesurer votre risible destin à celui des Pendragon.\r\nVenez constater la navrante insignifiance de vos existences.\r\nVous avez pensé que les dieux allaient enfin reconnaitre en vous le souverain que personne n\'avait vu?\r\nVous alliez enfin donner au monde le spectacle de votre avènement.\r\nQuel roi suis-je ? Un roi sévère ? un roi conquérant ?\r\nVous n\'êtes rien. Rien ! Vous retournerez chez vous comme vous en êtes parti… Anonyme !\r\nPaisiblement, mon fils viendra reprendre ce qui est à lui. \r\nEt vous mettrez un genou en terre. Et vous baisserez les yeux.\r\nEt vous jurerez fidélité. Car c\'est tout ce qu\'il vous reste !',	3.5,	1),
 (764,	170,	1,	NULL,	'Ah tiens, demain midi y a des côtes de porc.',	3.5,	1),
-(765,	244,	44,	NULL,	'(À Arthur)\nMoi au moins quand je parlemente, c\'est pas vicelard.',	3,	1),
-(768,	361,	49,	3,	'C\'est bientôt l\'Apothéose',	NULL,	0),
-(770,	2,	11,	3,	'test à modifier bis',	3,	1);
+(765,	244,	44,	NULL,	'(À Arthur)\nMoi au moins quand je parlemente, c\'est pas vicelard.',	3,	1);
 
 DROP TABLE IF EXISTS `rate`;
 CREATE TABLE `rate` (
@@ -1431,8 +1454,8 @@ CREATE TABLE `rate` (
   PRIMARY KEY (`id`),
   KEY `IDX_DFEC3F39DB805178` (`quote_id`),
   KEY `IDX_DFEC3F39A76ED395` (`user_id`),
-  CONSTRAINT `rate_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `rate_ibfk_4` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`id`) ON DELETE CASCADE
+  CONSTRAINT `rate_ibfk_6` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `rate_ibfk_8` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `rate` (`id`, `quote_id`, `user_id`, `rating`) VALUES
@@ -1468,7 +1491,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),
   KEY `IDX_8D93D64986383B10` (`avatar_id`),
-  CONSTRAINT `user_ibfk_2` FOREIGN KEY (`avatar_id`) REFERENCES `avatar` (`id`) ON DELETE CASCADE
+  CONSTRAINT `user_ibfk_3` FOREIGN KEY (`avatar_id`) REFERENCES `avatar` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `user` (`id`, `avatar_id`, `email`, `roles`, `password`) VALUES
@@ -1477,8 +1500,7 @@ INSERT INTO `user` (`id`, `avatar_id`, `email`, `roles`, `password`) VALUES
 (3,	3,	'alexandre@oclock.fr',	'[\"ROLE_MANAGER\"]',	'$2y$13$gbyvnOBRgXAZSveEFHNKt.nHPZOuJOVgacqlZYxaPr/WxQa6uqY3S'),
 (4,	3,	'aurelie@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$HRKAy8LlGDpJeQSG/J4WV.mIdAsPybgdRyTJ14DtbGJ0ikZMZfeJG'),
 (5,	4,	'celine@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$256HlYhvUVLNGJqUyDLPzusE/ARsDVyYT0WzMgiggOCEV8IRd9mqW'),
-(6,	4,	'angele@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$qz8atJxvs/1BjYpZccakD.luSkyN7XQFXz1WsBcuSoRbx4OOigcn6'),
-(9,	1,	'jb@tagada.fr',	'[\"ROLE_MANAGER\"]',	'$2y$13$jzjyzYOcOXgx.0RzwehXXOEScKKc/gY/9P81fepLi8jJunksYAUsS');
+(6,	4,	'angele@oclock.fr',	'[\"ROLE_ADMIN\"]',	'$2y$13$qz8atJxvs/1BjYpZccakD.luSkyN7XQFXz1WsBcuSoRbx4OOigcn6');
 
 DROP TABLE IF EXISTS `user_quote`;
 CREATE TABLE `user_quote` (
@@ -1498,7 +1520,6 @@ INSERT INTO `user_quote` (`user_id`, `quote_id`) VALUES
 (2,	12),
 (2,	19),
 (2,	762),
-(2,	770),
 (3,	1),
 (3,	2),
 (3,	3),
@@ -1516,4 +1537,4 @@ INSERT INTO `user_quote` (`user_id`, `quote_id`) VALUES
 (6,	10),
 (6,	549);
 
--- 2023-04-18 15:28:41
+-- 2023-04-20 14:47:59

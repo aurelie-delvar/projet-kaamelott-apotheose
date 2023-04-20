@@ -6,45 +6,45 @@
 
 <main>
     <div class="main-content">
-    <h1>Liste des personnages</h1>
+        <h1>Liste des personnages</h1>
     </div>
 
-     <div class="content">
-    <a href="{{ path('app_backoffice_personage_add') }}"class="btn btn-primary">Créer un nouveau personnage</a>
+    <div class="content">
+        <a href="{{ path('app_backoffice_personage_add') }}"class="btn btn-primary">Créer un nouveau personnage</a>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Image</th>
-                <th>Description de l'image</th>
-                <th>Description du personnage</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for personage in pagination %}
-            <tr>
-                <td>{{ personage.id }}</td>
-                <td>{{ personage.name }}</td>
-                <td>{{ personage.picture }}</td>
-                <td>{{ personage.descriptionPicture }}</td>
-                <td>{{ personage.description|slice(0, 150) }} [...]</td>
-                <td>
-                    <a href="{{ path('app_backoffice_personage_read', {'id': personage.id}) }}"class="btn btn-success" >voir</a>
-                    <a href="{{ path('app_backoffice_personage_edit', {'id': personage.id}) }}" class="btn btn-warning">modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom du personnage</th>
+                    <th>Image</th>
+                    <th>Description de l'image</th>
+                    <th>Description du personnage</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for personage in pagination %}
+                <tr>
+                    <td>{{ personage.id }}</td>
+                    <td>{{ personage.name }}</td>
+                    <td>{{ personage.picture }}</td>
+                    <td>{{ personage.descriptionPicture }}</td>
+                    <td>{{ personage.description|slice(0, 150) }} [...]</td>
+                    <td>
+                        <a href="{{ path('app_backoffice_personage_read', {'id': personage.id}) }}"class="btn btn-success" >voir</a>
+                        <a href="{{ path('app_backoffice_personage_edit', {'id': personage.id}) }}" class="btn btn-warning">modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Pas de personnage trouvé !</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
      {{ knp_pagination_render(pagination) }}
 </main>
-    
+
 {% endblock %}

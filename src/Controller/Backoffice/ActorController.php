@@ -56,7 +56,7 @@ class ActorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_actor_read", methods={"GET"})
+     * @Route("/{id}", name="app_backoffice_actor_read", methods={"GET"}, requirements={"id"="\d+"})
      */
     public function read(Actor $actor): Response
     {
@@ -66,7 +66,7 @@ class ActorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_backoffice_actor_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="app_backoffice_actor_edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, Actor $actor, ActorRepository $actorRepository): Response
     {
@@ -86,7 +86,7 @@ class ActorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_actor_delete", methods={"POST"})
+     * @Route("/{id}", name="app_backoffice_actor_delete", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function delete(Request $request, Actor $actor, ActorRepository $actorRepository): Response
     {

@@ -1,95 +1,82 @@
 <header>
 
     <div class="logo">
-    <a href="{{ path("app_home_index") }}"><img class="img" src="{{ asset('img/logo.png') }}"></a>
+        <a href="{{ path("app_home_index") }}"><img class="img" src="{{ asset('img/logo.png') }}"></a>
     </div>
 
-<nav class="navbar navbar-expand-xl bg-body-secondary" >
-    <div class="container-fluid">
-        <a class="navbar-brand title" href="{{ path("default") }}"> Kaamel'O'tt </a>
-
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            {% if app.user %}
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                
-                    <img src="{{asset('img/' ~ app.user.avatar.icon)}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                    <span>{{app.user.email}}</span>
-                </a>
-                <ul class="dropdown-menu"> 
-                    <li><a class="dropdown-item" href="{{ path("app_logout") }}">Déconnexion</a></li>
-                </ul>
-            </li>
-            {% endif %}
-        </ul>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_home')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_backoffice_home") }}">Accueil</a>
-            </li>
-
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_personage_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_backoffice_personage_browse") }}">Personnages</a>
-            </li>
+    <nav class="navbar navbar-expand-xl bg-body-secondary" >
+        <div class="container-fluid">
+            <a class="navbar-brand title" href="{{ path("default") }}"> Kaamel'O'tt </a>
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if app.user %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ (app.request.get('_route') starts with 'app_backoffice_quote') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">                    
-                        <span>Citations</span>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    
+                        <img src="{{asset('img/' ~ app.user.avatar.icon)}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                        <span>{{app.user.email}}</span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ path("app_backoffice_quote_browse") }}">Validées</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_backoffice_quotes_to_validate') }}">À valider</a></li>
+                    <ul class="dropdown-menu"> 
+                        <li><a class="dropdown-item" href="{{ path("app_logout") }}">Déconnexion</a></li>
                     </ul>
                 </li>
+                {% endif %}
             </ul>
 
-            {# <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_quote_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_backoffice_quote_browse") }}">Citations</a>
-            </li>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_home')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_backoffice_home") }}">Accueil</a>
+                    </li>
 
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_quotes_to_validate')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_quotes_to_validate') }}">Citations à valider</a>
-            </li>    #}
+                    <li class="nav-item">
+                        <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_personage_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_backoffice_personage_browse") }}">Personnages</a>
+                    </li>
 
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_season_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_season_browse') }}">Saisons</a>
-            </li>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{ (app.request.get('_route') starts with 'app_backoffice_quote') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">                    
+                                <span>Citations</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ path("app_backoffice_quote_browse") }}">Validées</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_backoffice_quotes_to_validate') }}">À valider</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_episode_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_episode_browse') }}">Episodes</a>
-            </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_season_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_season_browse') }}">Saisons</a>
+                    </li>
 
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_quizz_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_quizz_browse')}}">Quizz</a>
-            </li>  
+                    <li class="nav-item">
+                        <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_episode_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_episode_browse') }}">Episodes</a>
+                    </li>
 
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_question_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_question_browse') }}">Questions</a>
-            </li> 
+                    <li class="nav-item">
+                        <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_quizz_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_quizz_browse')}}">Quizz</a>
+                    </li>  
 
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_actors_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_actors_browse') }}">Acteurs</a>
-            </li> 
+                    <li class="nav-item">
+                        <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_question_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_question_browse') }}">Questions</a>
+                    </li> 
 
-            <li class="nav-item">
-            <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_user_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_user_browse') }}">Utilisateurs</a>
-            </li>  
+                    <li class="nav-item">
+                        <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_actors_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_actors_browse') }}">Acteurs</a>
+                    </li> 
 
-                 
-
-        </ul>
-        <form class="d-flex" role="search" method="post" action="{{ path('app_backoffice_search') }}">
-            <input class="form-control me-2" type="search" placeholder="Entrez votre recherche" aria-label="Search" name="searchBack">
-            <button class="btn" type="submit"><img src="{{ asset('img/loupe.png') }}" alt="search-icon" width="24" height="24"></button>
-        </form>
+                    <li class="nav-item">
+                        <a class="nav-link {{ (app.request.get('_route') is same as('app_backoffice_user_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path('app_backoffice_user_browse') }}">Utilisateurs</a>
+                    </li>  
+                </ul>
+                <form class="d-flex" role="search" method="post" action="{{ path('app_backoffice_search') }}">
+                    <input class="form-control me-2" type="search" placeholder="Entrez votre recherche" aria-label="Search" name="searchBack">
+                    <button class="btn" type="submit"><img src="{{ asset('img/loupe.png') }}" alt="search-icon" width="24" height="24"></button>
+                </form>
+            </div>
         </div>
-
-    </div>
-</nav>
-
+    </nav>
 </header>

@@ -3,7 +3,6 @@
 namespace App\Controller\Backoffice;
 
 use App\Entity\Quote;
-use App\Entity\User;
 use App\Form\QuoteType;
 use App\Repository\QuoteRepository;
 use Knp\Component\Pager\PaginatorInterface;

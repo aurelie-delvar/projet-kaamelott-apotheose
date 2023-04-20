@@ -1,4 +1,4 @@
-### Petit tuto sur comment rendre une variable globale avec Twig
+# Petit tuto sur comment rendre une variable globale avec Twig
 
 /!\ Vidéo sur laquelle je m'appuie : https://youtu.be/HkeqxhAcJJY /!\
 

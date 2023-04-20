@@ -22,6 +22,7 @@ let userInput = document.getElementById("userId");
 // var questions = Object;
 var questions = {};
 
+// the getQuestions function is used to retrieve information from the API
 async function getQuestions() {
 
     const req = await fetch(`${urlQuizz}`); 
@@ -32,6 +33,7 @@ async function getQuestions() {
 
 }
 
+// the getQuizz function is used to retrieve information from the API
 async function getQuizz() {
 
     const req = await fetch(`${urlQuizz}`); 
@@ -41,6 +43,7 @@ async function getQuizz() {
 
 }
 
+// The next function allows you to move on to the next question. At the last question answered, the score is displayed with the resultats function
 async function next(){
 	let questions = await this.getQuestions();
 	
@@ -57,6 +60,7 @@ async function next(){
     }
 }
 
+// the resultats function allows the display of the score and the button to start again and to register the score in db
 async function resultats(){
 	let quizzId = await this.getQuizz();
 	let questions = await this.getQuestions();
@@ -94,6 +98,7 @@ async function resultats(){
 	
 }
 
+// the compare function compares the player's answer with the correct answer
 function compare  (a,b){
 	if (b.includes(a)){
 		score +=1;
@@ -101,6 +106,7 @@ function compare  (a,b){
  	next();
 }
 
+// the showQuestion function displays the question
 async function showQuestion(index){
 	
 	current_index = index;
@@ -119,10 +125,10 @@ async function showQuestion(index){
     answers.innerHTML += "<button type='submit' class='answer' value='"+questions[index].answer4+"' onclick=\"compare(\'"+questions[index].answer4+"\',\'"+questions[index].goodAnswer+"\');\" > "+questions[index].answer4+"</button>";
     
 }
- 
+
+// the startAgainQuiz function allows you to restart the quiz
 function startAgainQuiz(){
 	
-	//start.style.visibility = 'visible';
 	resultatContainer.style.visibility = 'hidden';
     resultat.style.visibility = 'hidden';
 	scoreDiv.style.visibility = 'hidden';

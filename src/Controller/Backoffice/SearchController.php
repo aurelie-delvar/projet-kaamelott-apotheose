@@ -12,11 +12,9 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class SearchController extends AbstractController
 {
-   
 
-    // TODO : route search : doit afficher un résultat de recherche.
     /**
-     * résultat de recherche
+     * search result
      *
      * @Route("/backoffice/search",name="app_backoffice_search", methods={"GET", "POST"})
      * 
@@ -46,15 +44,13 @@ class SearchController extends AbstractController
        10
         );
 
-    return $this->render('backoffice/search/index.html.twig', [
-       //'results' => $results
-        'pagination' => $pagination,
-        'search' => $search
-        
-    ]);
+        return $this->render('backoffice/search/index.html.twig', [
+        //'results' => $results
+            'pagination' => $pagination,
+            'search' => $search
 
-        
+        ]);
+   
     }
     
-
 }

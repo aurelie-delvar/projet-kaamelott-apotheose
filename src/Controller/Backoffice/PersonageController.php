@@ -13,12 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Form\FilterFormType;
 
 /**
- * @Route("/backoffice")
+ * @Route("/backoffice/personage")
  */
 class PersonageController extends AbstractController
 {
     /**
-     * @Route("/personages", name="app_backoffice_personage_browse", methods={"GET"})
+     * @Route("/", name="app_backoffice_personage_browse", methods={"GET"})
      */
     public function browse(PersonageRepository $personageRepository, Request $request, PaginatorInterface $paginator): Response
     {
@@ -36,7 +36,7 @@ class PersonageController extends AbstractController
     }
 
     /**
-     * @Route("/personage/add", name="app_backoffice_personage_add", methods={"GET", "POST"})
+     * @Route("/add", name="app_backoffice_personage_add", methods={"GET", "POST"})
      */
     public function add(Request $request, PersonageRepository $personageRepository): Response
     {
@@ -57,27 +57,24 @@ class PersonageController extends AbstractController
     }
 
     /**
-     * @Route("/personage/{id}", name="app_backoffice_personage_read", methods={"GET"}, requirements={"id"="\d+"})
+     * @Route("/{id}", name="app_backoffice_personage_read", methods={"GET"}, requirements={"id"="\d+"})
      * @return Response
      */
     public function read(Personage $personage): Response
     {
 
-       
         return $this->render('backoffice/personage/read.html.twig', [
             'personage' => $personage,
         ]);
     }
 
     /**
-     * @Route("/personage/{id}/edit", name="app_backoffice_personage_edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     * @Route("/{id}/edit", name="app_backoffice_personage_edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function edit(Request $request, Personage $personage, PersonageRepository $personageRepository): Response
     {
-        
         $form = $this->createForm(PersonageType::class, $personage);
         
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -93,7 +90,7 @@ class PersonageController extends AbstractController
     }
 
     /**
-     * @Route("/personage/{id}", name="app_backoffice_personage_delete", methods={"POST"}, requirements={"id"="\d+"})
+     * @Route("/{id}", name="app_backoffice_personage_delete", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function delete(Request $request, Personage $personage, PersonageRepository $personageRepository): Response
     {
