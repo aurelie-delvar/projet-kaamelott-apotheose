@@ -21,6 +21,7 @@ class PlayQuizz
     /**
      * @ORM\ManyToOne(targetEntity=Quizz::class, inversedBy="playQuizz")
      * @Groups({"playQuizz_browse", "playQuizz_read"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $quizz;
 

@@ -32,7 +32,7 @@ class Quizz
     /**
      * @ORM\OneToMany(targetEntity=Question::class, mappedBy="quizz")
      * @Groups({"quizz_read"})
-     * 
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $questions;
 

@@ -575,8 +575,8 @@ CREATE TABLE `play_quizz` (
   PRIMARY KEY (`id`),
   KEY `IDX_8DA87081BA934BCD` (`quizz_id`),
   KEY `IDX_8DA87081A76ED395` (`user_id`),
-  CONSTRAINT `play_quizz_ibfk_5` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `play_quizz_ibfk_6` FOREIGN KEY (`quizz_id`) REFERENCES `quizz` (`id`)
+  CONSTRAINT `play_quizz_ibfk_7` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `play_quizz_ibfk_8` FOREIGN KEY (`quizz_id`) REFERENCES `quizz` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `play_quizz` (`id`, `quizz_id`, `user_id`, `score`) VALUES
@@ -606,7 +606,28 @@ INSERT INTO `play_quizz` (`id`, `quizz_id`, `user_id`, `score`) VALUES
 (25,	3,	4,	2),
 (27,	3,	6,	1),
 (28,	3,	6,	2),
-(29,	3,	6,	1);
+(29,	3,	6,	1),
+(31,	3,	6,	1),
+(32,	3,	6,	3),
+(33,	3,	6,	1),
+(34,	3,	6,	1),
+(35,	3,	6,	1),
+(36,	3,	6,	1),
+(37,	3,	6,	2),
+(38,	3,	6,	1),
+(39,	3,	6,	1),
+(40,	3,	6,	1),
+(41,	3,	6,	2),
+(42,	3,	6,	1),
+(43,	3,	6,	1),
+(44,	3,	6,	1),
+(45,	3,	6,	0),
+(46,	3,	6,	1),
+(47,	1,	6,	9),
+(50,	3,	6,	0),
+(51,	3,	6,	3),
+(52,	3,	6,	1),
+(53,	3,	6,	2);
 
 DROP TABLE IF EXISTS `question`;
 CREATE TABLE `question` (
@@ -645,8 +666,8 @@ INSERT INTO `question` (`id`, `quizz_id`, `title`, `answer1`, `answer2`, `answer
 (19,	2,	'Qui dit : \'Donc là, pour le voyageur isolé y\'a deux solutions : soit il dépose ses armes, ses objets, sa bouffe et ses fringues par terre, et il s\'en va d\'où il est venu à poil dans la neige, soit il décide de se battre... À un contre dix.\'',	'Le maître d armes',	'Venec',	'Léodagan',	'Arthur',	'Venec'),
 (20,	2,	'Qui dit : \'Si j’échoue, je garde la butte aux Cerfs et je fais tomber une pluie de calamités sur le royaume par vengeance ! C’est pas pour rien qu’on m’appelle « le Fourbe ». Si je réussis, je garde la butte aux Cerfs, plus… Le tertre des  mes…\'',	'Elias de Kelliwitc h',	'Merlin',	'Meleagan',	'Le roi Loth',	'Elias de Kelliwitc h'),
 (21,	3,	'Qui dit : \'Tempora mori, tempora mundis recorda. Voilà. Et bien ça, par exemple, ça veut absolument rien dire, mais l’effet reste le même, et pourtant j’ai jamais foutu les pieds dans une salle de classe attention !\'',	'Ketchatar roi d Irlande',	'Hoël roi d Armorique',	'Loth roi d Orcanie',	'Léodagan roi de Carmélide',	'Loth roi d Orcanie'),
-(22,	3,	' Qui dit : \'Ah, le printemps ! La nature se réveille, les oiseaux reviennent, on crame des mecs\'',	'Le roi Loth',	'Arthur',	'Lancelot',	'Léodagan',	'Arthur'),
-(23,	3,	'Selon Perceval, les vieux c’est classe car:',	'On les respecte en tant que tel.',	'La patience est un plat qui se prépare à l avance. ',	'Il dit rien, on ne sait pas ce qu il pense, c est mystérieux.',	'La patience est un plat qui se mange sans sauce.',	'Il dit rien, on ne sait pas ce qu il pense, c est mystérieux.');
+(22,	3,	'Qui dit : \'Ah, le printemps ! La nature se réveille, les oiseaux reviennent, on crame des mecs\'',	'Le roi Loth',	'Arthur',	'Lancelot',	'Léodagan',	'Arthur'),
+(23,	3,	'Selon Perceval, les vieux c’est classe car:',	'On les respecte en tant que tel.',	'La patience est un plat qui se prépare à l avance.',	'Il dit rien, on ne sait pas ce qu il pense, c est mystérieux.',	'La patience est un plat qui se mange sans sauce.',	'Il dit rien, on ne sait pas ce qu il pense, c est mystérieux.');
 
 DROP TABLE IF EXISTS `quizz`;
 CREATE TABLE `quizz` (
@@ -673,8 +694,8 @@ CREATE TABLE `quote` (
   KEY `IDX_6B71CBF4362B62A0` (`episode_id`),
   KEY `IDX_6B71CBF4EA8E3E4A` (`personage_id`),
   KEY `IDX_6B71CBF4A76ED395` (`user_id`),
+  CONSTRAINT `quote_ibfk_10` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `quote_ibfk_7` FOREIGN KEY (`episode_id`) REFERENCES `episode` (`id`),
-  CONSTRAINT `quote_ibfk_8` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `quote_ibfk_9` FOREIGN KEY (`personage_id`) REFERENCES `personage` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1454,8 +1475,8 @@ CREATE TABLE `rate` (
   PRIMARY KEY (`id`),
   KEY `IDX_DFEC3F39DB805178` (`quote_id`),
   KEY `IDX_DFEC3F39A76ED395` (`user_id`),
-  CONSTRAINT `rate_ibfk_6` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `rate_ibfk_8` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`id`) ON DELETE CASCADE
+  CONSTRAINT `rate_ibfk_8` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `rate_ibfk_9` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `rate` (`id`, `quote_id`, `user_id`, `rating`) VALUES
@@ -1537,4 +1558,4 @@ INSERT INTO `user_quote` (`user_id`, `quote_id`) VALUES
 (6,	10),
 (6,	549);
 
--- 2023-04-20 14:47:59
+-- 2023-04-21 10:16:23
