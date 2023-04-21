@@ -1,12 +1,12 @@
 
-{# * pour récuperer la carte quote sur les pages qui en besoin mettre {% include '_card_quote.html.twig' %}  à l'emplacement souhaité #}
+{# This is a partial, you can use it wherever you want with: {% include '_card_quote.html.twig' %} #}
 
 <div class="card mb-3">
     <div class="card-header d-flex justify-content-end">
 
         <div class="d-flex" style="color: orange;">
             {% set rating = quote.rating %}
-                    {# round(0,'floor') give the round number whith zero decimal so it give us the number of the full stars #}
+                    {# round(0,'floor') give the round number whith zero decimal so it give us the number of the full stars. 0 number after the coma #}
                     {% set biStarFill = rating|round(0, 'floor') %}
                     {# if rating is a float between an integer+0.5 and the next integer "biStarHalf" #}
                     {% set biStarHalf = rating - biStarFill >= 0.5 %}
@@ -21,6 +21,8 @@
                         {{ '<i class="bi bi-star"></i>' }}
                     {% endif %}
                 {% endfor %}
+
+            {# renders the number next to the stars, 1 is one number after the coma #}
             <span class="ps-1">{{ quote.rating|round(1, 'floor')  }}</span>
                   
         </div>

@@ -232,21 +232,21 @@ class UserController extends AbstractController
 
         $newRating = new Rate();
 
-        $newRating ->setUser($user);
-        $newRating -> setQuote($quote);
+        // $newRating ->setUser($user);
+        // $newRating -> setQuote($quote);
         $form = $this->createForm(RatingType::class, $newRating);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            
+            // we set the user and the quote to the rating, we persist and flush
             $newRating ->setUser($user);
             $newRating->setQuote($quote); 
             $entityManager->persist($newRating);
             $entityManager->flush();
 
-           
+            // we get the average rating to put it in the quote (stars)
             $averageRatingQuote = $rateRepository -> averageRating($quoteId);
             $quote -> setRating($averageRatingQuote);
             $entityManager->persist($quote);
