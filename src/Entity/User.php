@@ -75,6 +75,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Quote::class, inversedBy="users", fetch="EAGER")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $favoriteQuote;
 

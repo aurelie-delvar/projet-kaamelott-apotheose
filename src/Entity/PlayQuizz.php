@@ -27,6 +27,7 @@ class PlayQuizz
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="playQuizz")
      * @Groups({"playQuizz_browse", "playQuizz_read"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $user;
 

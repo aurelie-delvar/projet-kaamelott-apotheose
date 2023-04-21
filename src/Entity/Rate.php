@@ -25,6 +25,7 @@ class Rate
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="rates")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $user;
 
