@@ -27,28 +27,23 @@ class UserController extends AbstractController
 
                                                         // FAVORITE PARTS //
     /**
-     * @Route("/favoris/{id}", name="app_favorites_user")
+     * @Route("/favoris/{id}", name="app_favorites_quotes_user", requirements={"id" = "\d+"})
      */
     public function index(User $user): Response
-    {
-        // $favoritesQuotesId = $userRepository -> favoritesQuotes($userId);
-        
+    {       
         return $this->render('frontoffice/user/indexFav.html.twig', [
             "user" => $user,
         ]);
     }
 
     /**
-     * @Route("/citations-favorites/ajout/{quoteId}", name="user_add_favorite_quote")
+     * @Route("/citations-favorites/ajout/{quoteId}", name="user_add_favorite_quote", requirements={"id" = "\d+"})
      */
     public function addFavorite(EntityManagerInterface $entityManager, Security $security, int $quoteId, QuoteRepository $quoteRepository): Response
     {
-        
-        // je récupère le User s'il est connecté
         $user = $security->getUser();
-        // je récupère la quote grâce à son id
         $quote = $quoteRepository->find($quoteId);
-        // dd($user);
+    
         if (!$user) {
             throw $this->createNotFoundException('L\'utilisateur doit être connecté pour ajouter une citation en favori.');
         }
@@ -65,14 +60,13 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/citations-favorites/supprimer/{quoteId}", name="user_remove_favorite_quote")
+     * @Route("/citations-favorites/supprimer/{quoteId}", name="user_remove_favorite_quote", requirements={"id" = "\d+"})
      */
     public function removeFavorite(EntityManagerInterface $entityManager, Security $security, int $quoteId, QuoteRepository $quoteRepository): Response
     {
-        
-        // je récupère le User s'il est connecté
+
         $user = $security->getUser();
-        // je récupère la quote grâce à son id
+ 
         $quote = $quoteRepository->find($quoteId);
        
         if (!$user) {
@@ -84,7 +78,6 @@ class UserController extends AbstractController
 
         }
         
-        // $users = $quoteRepository -> find($quote) -> getUsers();
         $user->removeFavoriteQuote($quote);
         $entityManager->flush();
 
@@ -214,14 +207,12 @@ class UserController extends AbstractController
 
                                                         // RATING PARTS //
     /**
-     * @Route("/citation-noter/ajout/{quoteId}", name="user_add_rating_quote")
+     * @Route("/citation-noter/ajout/{quoteId}", name="user_add_rating_quote", requirements={"quoteId" = "\d+"})
      */
     public function addRating(EntityManagerInterface $entityManager, Security $security, Request $request, int $quoteId, QuoteRepository $quoteRepository, RateRepository $rateRepository): Response
     {        
-        // je récupère le User s'il est connecté
         $user = $security->getUser();
         
-        // je récupère la quote grâce à son id
         $quote = $quoteRepository->find($quoteId);
 
         if (!$user) {
@@ -243,22 +234,14 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            //! condition pour noter qu'une seule fois la citation
-            
-            //  DONE: persist + flush
             
             $newRating ->setUser($user);
-            $newRating->setQuote($quote); //on a la note du form
-            // dd($newRating);
+            $newRating->setQuote($quote); 
             $entityManager->persist($newRating);
             $entityManager->flush();
 
-            
-
-            //  DONE: recalcul du rating
            
             $averageRatingQuote = $rateRepository -> averageRating($quoteId);
-          
             $quote -> setRating($averageRatingQuote);
             $entityManager->persist($quote);
             $entityManager->flush();

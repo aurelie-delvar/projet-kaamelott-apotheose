@@ -2,7 +2,6 @@
 
 namespace App\Controller\Frontoffice;
 
-use App\Entity\Quizz;
 use App\Repository\QuizzRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

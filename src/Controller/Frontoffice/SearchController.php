@@ -14,11 +14,10 @@ class SearchController extends AbstractController
 {
    
 
-    // TODO : route search : doit afficher un résultat de recherche.
     /**
-     * résultat de recherche
+     * result of search
      *
-     * @Route("/frontoffice/search",name="app_frontoffice_search", methods={"GET", "POST"})
+     * @Route("/frontoffice/recherche",name="app_frontoffice_search", methods={"GET", "POST"})
      * 
      * @return Response
      */
@@ -33,22 +32,18 @@ class SearchController extends AbstractController
         }
 
         $search = $words ?? $session->get("words"); 
-        
-       //$results= $quoteRepository->querySearchBack($words);
-       // dump($results);
-    
+            
         //Paginate the results of the query
         $pagination = $paginator->paginate(
         // Doctrine Query, not results
         $quoteRepository->querySearch($search),
         // Define the page parameter
-       $request->query->getInt('page', 1),
+        $request->query->getInt('page', 1),
         // Items per page
-       10
+        10
         );
 
     return $this->render('frontoffice/search/index.html.twig', [
-       //'results' => $results
         'pagination' => $pagination,
         'search' => $search
         

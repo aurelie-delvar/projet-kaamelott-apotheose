@@ -25,8 +25,6 @@ class RatingType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
             ])
-            // ->add('quote')
-            // ->add('user')
         ;
     }
 

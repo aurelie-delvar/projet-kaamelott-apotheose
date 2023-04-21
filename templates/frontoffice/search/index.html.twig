@@ -5,43 +5,44 @@
 {% block body %}
 <main>
     <div class="main-content">
-    <h1>Résultats de  " {{ search }} " classés par nom du personnage</h1>
+        <h1>Résultats de  " {{ search }} " classés par nom du personnage</h1>
     </div>
 
-     <div class="container  ">
+    <div class="container  ">
      
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                
-                <th>Nom du personnage</th> 
-                <th>Citation</th>
-                <th>Titre de l'épisode</th>
-                <th>Saison</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-        {% for quote in pagination %}
-            <tr>
-                
-               
-                <td><a href="{{ path('app_frontoffice_personage_read', {'id': quote.idPersonage}) }}" class="searchLinks">{{ quote.name }}</a></td> 
-                 <td>{{quote.text|slice(0, 150) }} [...]</td>
-                <td>{{ quote.titleEpisode }}</td>
-                <td><a href="{{ path('app_frontoffice_season_read', {'id': quote.idSeason}) }}" class="searchLinks">{{ quote.titleSeason }}</a></td> 
-                
-                
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">Pas de résultats.</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    
+                    <th>Nom du personnage</th> 
+                    <th>Citation</th>
+                    <th>Titre de l'épisode</th>
+                    <th>Saison</th>
+                    
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for quote in pagination %}
+                    <tr>
+                        
+                        <td><a href="{{ path('app_frontoffice_personage_read', {'id': quote.idPersonage}) }}" class="searchLinks">{{ quote.name }}</a></td> 
+                        <td>{{quote.text|slice(0, 150) }} [...]</td>
+                        <td>{{ quote.titleEpisode }}</td>
+                        <td><a href="{{ path('app_frontoffice_season_read', {'id': quote.idSeason}) }}" class="searchLinks">{{ quote.titleSeason }}</a></td> 
+                    
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">Pas de résultats.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
     </div>
+
       {{ knp_pagination_render(pagination) }}  
+
 </main>
 {% endblock %}

@@ -6,20 +6,21 @@
 <main  class="p-3">
     <div class="text-center mb-3">
     
-    <h2 class="main__item">Ajouter une note à la citation</h2>
-  
-    <div class="card mt-3 mb-3"> 
-        <div class="card-body text-bg-secondary">
-            {{ form_start(formulaire, {'attr': {'novalidate': 'novalidate'}}) }}
-       
-       
-            {{ form_row(formulaire.rating)}}
-   
-        <button type="submit" class="btn btn-outline-light" id="button_add_review">Ajouter la Note</button>
-            {{ form_end(formulaire) }}
+        <h2 class="main__item">Ajouter une note à la citation</h2>
+    
+        <div class="card mt-3 mb-3"> 
+            <div class="card-body text-bg-secondary">
+                {{ form_start(formulaire, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                {{ form_row(formulaire.rating)}}
+    
+                <button type="submit" class="btn btn-outline-light" id="button_add_review">Ajouter la Note</button>
+
+                {{ form_end(formulaire) }}
+
+            </div>
         </div>
     </div>
-
 </main>
 
 {% endblock %}

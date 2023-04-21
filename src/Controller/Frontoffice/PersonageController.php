@@ -2,18 +2,13 @@
 
 namespace App\Controller\Frontoffice;
 
-use App\Entity\User;
 use App\Entity\Personage;
-use App\Repository\QuoteRepository;
 use App\Repository\PersonageRepository;
-use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class PersonageController extends AbstractController
 {

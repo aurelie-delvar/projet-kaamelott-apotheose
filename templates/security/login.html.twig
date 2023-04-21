@@ -20,19 +20,19 @@
         
                 <div class="card mt-3 mb-3"> 
                     <div class="card-body text-bg-secondary">
-                        <label for="inputEmail">Email</label>
+                        <label class="p-2" for="inputEmail">Email</label>
                         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-                        <label for="inputPassword">Mot de passe</label>
+                        
+                        <label class="p-2" for="inputPassword">Mot de passe</label>
                         <input type="password" name="password" id="inputPassword" class="form-control mb-3" autocomplete="current-password" required>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-                        <input type="hidden" name="_csrf_token"
-                        value="{{ csrf_token('authenticate') }}">
-                    
-                        <button class="btn btn-lg btn-outline-light" type="submit">Valider</button>
+                        <button class="btn btn-outline-light" type="submit">Valider</button>
                     </div>
                 </div>
             {% endif %}
-        </div>    
+        </div>
     </main>
+
 </form>
 {% endblock %}

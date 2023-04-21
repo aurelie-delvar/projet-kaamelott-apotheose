@@ -18,26 +18,19 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="default")
-     * @Route("/home", name="app_home_index")
+     * @Route("/accueil", name="app_home_index")
      */
     public function index(QuoteRepository $quoteRepository): Response
     {
         $randomQuote = $quoteRepository->randomQuote();
 
-        
-        // TODO j'affiche la liste des 10 dernières citations
-        // j'ai besoin d'un repository : QuoteRepository
-        // le findAll() ne me permet pas de trier les résultats
-        // * $allQuotes = $quoteRepository->findAll();
         $last10Quotes = $quoteRepository->findBy(
-            // je n'ai pas de critères, mais je dois fournir un tableau, celui ci sera vide
             ["validated" => 1],
-            ["id" => "DESC"], // tri par id decroissant
-            $limit = 10, //j'en veux 10
-            $offset = 0 // à partir de 0 (1er de la table)
+            ["id" => "DESC"], 
+            $limit = 10, 
+            $offset = 0 
             
         );
-        // dd($last10Quotes);
         
         return $this->render('frontoffice/home/index.html.twig', [
            "randomQuote" => $randomQuote,
@@ -76,9 +69,7 @@ class HomeController extends AbstractController
     {
         $quote = new Quote();
 
-        // $user->getUser();
         $quote->setUser($user->getUser());
-
 
         $form = $this->createForm(AddQuoteType::class, $quote);
         $form->handleRequest($request);

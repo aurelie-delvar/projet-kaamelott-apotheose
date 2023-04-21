@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Quote;
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
@@ -64,33 +63,14 @@ class QuoteRepository extends ServiceEntityRepository
    /**
     * Paginate all the quotes
     */
-   public function paginationQuery()
-   {
+    public function paginationQuery()
+    {
        return $this->createQueryBuilder('q')
            ->orderBy('q.id', 'ASC')
            ->where('q.validated = true')
            ->getQuery()
        ;
-   }
-
-    /**
-     * Query to show one character's quotes
-     */
-    // public function paginateCharacterQuotes($id)
-    // {
-    //     $query = $this->createQueryBuilder('q')
-    //         ->select('q.text, q.rating, p.name, p.id, e.title as episode, s.title as season')
-    //         ->leftJoin('q.personage', 'p')
-    //         ->leftJoin('q.episode', 'e')
-    //         ->leftJoin('e.season', 's')
-    //         // ->leftJoin('q.users', 'u')
-    //         ->where('q.validated = true')
-    //         ->andWhere('p.id  = :id')
-    //         ->setParameter('id', $id)
-    //         ->getQuery();
-
-    //     return $query->execute();
-    // }
+    }
 
     /**
     * Query for the paginator. Quote list of the backoffice.
@@ -115,22 +95,6 @@ class QuoteRepository extends ServiceEntityRepository
             ->where('q.validated = false')
             ->getQuery()
         ;
-    }
-
-    /**
-     * Query to validate a user's quote 
-     */
-    public function setValidationToTrue($id)
-    {
-        $query = $this->createQueryBuilder('App\Entity\Quote', 'q')
-                    ->update('App\Entity\Quote','q')
-                    ->set('q.validated', 1)
-                    ->where('q.id  = :id')
-                    ->setParameter('id', $id)
-                    ->getQuery()
-        ;
-
-        return $result = $query->execute();
     }
 
     /**
@@ -159,14 +123,4 @@ class QuoteRepository extends ServiceEntityRepository
         
     }
  
-
-//    public function findOneBySomeField($value): ?Quote
-//    {
-//        return $this->createQueryBuilder('q')
-//            ->andWhere('q.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

@@ -18,41 +18,32 @@ class PersonageType extends AbstractType
     {
         $builder
 
-            ->add('name', TextType::class,[
-                
-                
+            ->add('name', TextType::class,[                               
                 'label' => 'Nom'])
-       // , EntityType::class,[
-       //     'class' => Personage::class,
-        //    'choice_label' =>'name',
-        //    'label' => 'Nom du personnage'])
 
-            ->add('picture',TextType::class,[
-                
-                
+            ->add('picture',TextType::class,[                
                 'label' => 'Image'])
+
             ->add('descriptionPicture',TextType::class,[
                     'label' => 'Description de l\'image'])
+
             ->add('description',TextareaType::class,[
                 'label' => 'Description du personnage'])
+
             ->add('actor', EntityType::class, [
-                // ! ne pas oublier de dire de quelle entité en parle
+                // ! do not forget to say of which entity we are talking
                 'class' => Actor::class,
                 // ! Object of class App\Entity\Genre could not be converted to string
-                // je dois préciser quelle propriété doit être afficher dans la liste déroulante
+                // I have to specify which property should be displayed in the drop-down list
                 'choice_label' => 'name',
                 'label' => 'Nom de l\'acteur',
                 'expanded' => false,
-                'required' => false
-                
+                'required' => false 
             ])
+
             ->add('credit_order', ChoiceType::class, [
-                
-                
                 'label' => 'Importance du personnage',
-                'choices'  => [
-                    
-                    
+                'choices'  => [     
                     'Personnages principaux' => false,
                     'Personnages secondaire' => true,
                 ]

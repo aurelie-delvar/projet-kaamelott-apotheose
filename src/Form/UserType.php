@@ -51,18 +51,17 @@ class UserType extends AbstractType
                         "attr" => [
                             "placeholder" => "votre mot de passe"
                         ],
-                        "mapped" => false,
-                        
+                        "mapped" => false, 
                     ])
                     ->add('password_confirmed', PasswordType::class, [
                         "attr" => [
                             "placeholder" => "veuillez confirmer le mot de passe"
                         ],
                         "mapped" => false,
-                        
                         ]);  
                 }
             })
+            
             ->add('avatar', EntityType::class, [
                 'class' => Avatar::class,
                 'choice_label' => 'name',
