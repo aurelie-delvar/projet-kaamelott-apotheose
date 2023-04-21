@@ -43,9 +43,9 @@
                     {% endfor %}
                      
                     {% if isFavorite %}
-                       <a href="{{ path('user_remove_favorite_quote', {quoteId: quote.id}) }}"  class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></a>
+                       <a href="{{ path('app_frontoffice_quotes_removeFavorite', {quoteId: quote.id}) }}"  class="bi bi-bookmark-heart-fill fs-1 d-flex justify-content-end"></a>
                     {% else %}
-                       <a href="{{ path('user_add_favorite_quote', {quoteId: quote.id}) }}" class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></a>
+                       <a href="{{ path('app_frontoffice_quotes_addFavorite', {quoteId: quote.id}) }}" class="bi bi-bookmark-heart fs-1 d-flex justify-content-end"></a>
                     {% endif %}
 
                   

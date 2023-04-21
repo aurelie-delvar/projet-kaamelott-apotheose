@@ -27,7 +27,7 @@ class UserController extends AbstractController
 
                                                         // FAVORITE PARTS //
     /**
-     * @Route("/favoris/{id}", name="app_favorites_quotes_user", requirements={"id" = "\d+"})
+     * @Route("/favoris/{id}", name="app_frontoffice_quotes_favorites_user", requirements={"id" = "\d+"})
      */
     public function index(User $user): Response
     {       
@@ -37,7 +37,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/citations-favorites/ajout/{quoteId}", name="user_add_favorite_quote", requirements={"id" = "\d+"})
+     * @Route("/citations-favorites/ajout/{quoteId}", name="app_frontoffice_quotes_addFavorite", requirements={"id" = "\d+"})
      */
     public function addFavorite(EntityManagerInterface $entityManager, Security $security, int $quoteId, QuoteRepository $quoteRepository): Response
     {
@@ -60,7 +60,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/citations-favorites/supprimer/{quoteId}", name="user_remove_favorite_quote", requirements={"id" = "\d+"})
+     * @Route("/citations-favorites/supprimer/{quoteId}", name="app_frontoffice_quotes_removeFavorite", requirements={"id" = "\d+"})
      */
     public function removeFavorite(EntityManagerInterface $entityManager, Security $security, int $quoteId, QuoteRepository $quoteRepository): Response
     {

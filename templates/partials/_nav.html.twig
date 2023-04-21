@@ -53,7 +53,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle 
 
-                                {# {{  (app.request.get('_route') contains 'quotes') ? 'active' : '' }} #}
+                                {{  (app.request.get('_route') starts with ('app_frontoffice_quote')) ? 'active' : '' }}
                                     " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Citations
                                 </a>
@@ -61,15 +61,15 @@
 
                                 
                                     <li class="">
-                                        <a class="dropdown-item {{ (app.request.get('_route') is same as('app_frontoffice_quotes_browse')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_frontoffice_quotes_browse") }}"> Citations </a>
+                                        <a class="dropdown-item " aria-current="page" href="{{ path("app_frontoffice_quotes_browse") }}"> Citations </a>
                                     </li>
 
                                     <li class=" ">
-                                        <a class="dropdown-item {{ (app.request.get('_route') is same as('app_favorites_quotes_user',  {"id" : app.user.id})) ? 'active' : '' }}" aria-current="page" href="{{ path("app_favorites_quotes_user",  {"id" : app.user.id }) }}">Favoris</a>
+                                        <a class="dropdown-item " aria-current="page" href="{{ path("app_frontoffice_quotes_favorites_user",  {"id" : app.user.id }) }}">Favoris</a>
                                     </li>
                                     
                                     <li class=" ">
-                                        <a class="dropdown-item {{ (app.request.get('_route') is same as('app_add_quote')) ? 'active' : '' }}" aria-current="page" href="{{ path("app_add_quote") }}">Proposer une citation</a>
+                                        <a class="dropdown-item " aria-current="page" href="{{ path("app_frontoffice_quote_add") }}">Proposer une citation</a>
                                     </li>                    
 
 
