@@ -62,7 +62,7 @@ class HomeController extends AbstractController
     /**
      * form for the user to ask for adding a quote
      *
-     * @Route("/formulaire-ajout-citation", name="app_add_quote", methods={"GET", "POST"})
+     * @Route("/formulaire-ajout-citation", name="app_frontoffice_quote_add", methods={"GET", "POST"})
      * @IsGranted("ROLE_USER", message="Vous devez être connecté(e) pour accéder à ce formulaire")
      */
     public function formAddQuote(Request $request, QuoteRepository $quoteRepository, Security $user) : Response

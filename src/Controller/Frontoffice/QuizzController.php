@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class QuizzController extends AbstractController
-{ 
+{  
     /**
      * @Route("/quizz/{id}", name="app_frontoffice_quizz_read", methods={"GET"}, requirements={"id"="\d+"})
      * 
@@ -16,6 +16,11 @@ class QuizzController extends AbstractController
     public function read($id, QuizzRepository $quizzRepository): Response
     {
         $quizz = $quizzRepository->find($id);
+
+        if (!$this->isGranted("QUIZZ", $quizz))
+        {
+            return $this->redirectToRoute('app_login');
+        }
         
         return $this->render('frontoffice/quizz/read.html.twig', [
             'quizz' => $quizz,
