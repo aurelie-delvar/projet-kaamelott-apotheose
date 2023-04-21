@@ -16,7 +16,4 @@ class MainController extends AbstractController
         return $this->render('backoffice/main/home.html.twig');
     }
 
-
-
-
 }

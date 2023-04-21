@@ -5,8 +5,8 @@ namespace App\Controller\Frontoffice;
 
 use App\Entity\Rate;
 use App\Entity\User;
-use App\Form\RegistrationFormType;
 use App\Form\RatingType;
+use App\Form\RegistrationFormType;
 use App\Repository\RateRepository;
 use App\Repository\UserRepository;
 use App\Repository\QuoteRepository;
@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
@@ -28,10 +29,15 @@ class UserController extends AbstractController
                                                         // FAVORITE PARTS //
     /**
      * @Route("/favoris/{id}", name="app_favorites_user")
+     * @IsGranted("ROLE_USER")
      */
     public function index(User $user): Response
     {
         // $favoritesQuotesId = $userRepository -> favoritesQuotes($userId);
+
+        if($this->getUser() !== $user) {
+            throw $this->createAccessDeniedException("Vous n'êtes pas autorisé ici.");
+        } 
         
         return $this->render('frontoffice/user/indexFav.html.twig', [
             "user" => $user,

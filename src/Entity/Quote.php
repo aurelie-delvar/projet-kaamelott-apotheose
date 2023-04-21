@@ -48,6 +48,7 @@ class Quote
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="quotes")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $user;
 
