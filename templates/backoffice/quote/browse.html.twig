@@ -9,40 +9,40 @@
         <h1>Liste des citations</h1>
     </div>
 
-     <div class="content">
+    <div class="content">
 
         <a href="{{ path('app_backoffice_quote_add') }}"class="btn btn-primary">Créer une nouvelle citation</a>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Texte</th>
-                <th>Rating</th>
-                <th>Validée</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for quote in validatedTrue %}
-            <tr>
-                <td>{{ quote.id }}</td>
-                <td>{{ quote.text|slice(0, 150) }} [...]</td>
-                <td>{{ quote.rating }}</td>
-                
-                <td>{{ quote.validated ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_backoffice_quote_read', {'id': quote.id}) }}"class="btn btn-success">Voir</a>
-                    <a href="{{ path('app_backoffice_quote_edit', {'id': quote.id}) }}"class="btn btn-warning">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Pas de citation trouvée !</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Texte</th>
+                    <th>Note</th>
+                    <th>Validée</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for quote in validatedTrue %}
+                <tr>
+                    <td>{{ quote.id }}</td>
+                    <td>{{ quote.text|slice(0, 150) }} [...]</td>
+                    <td>{{ quote.rating }}</td>
+                    
+                    <td>{{ quote.validated ? 'Yes' : 'No' }}</td>
+                    <td>
+                        <a href="{{ path('app_backoffice_quote_read', {'id': quote.id}) }}"class="btn btn-success">Voir</a>
+                        <a href="{{ path('app_backoffice_quote_edit', {'id': quote.id}) }}"class="btn btn-warning">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Pas de citation trouvée !</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
     </div>
  {{ knp_pagination_render(validatedTrue) }}

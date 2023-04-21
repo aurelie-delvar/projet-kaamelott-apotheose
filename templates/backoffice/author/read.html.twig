@@ -1,37 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Kaamel'O'tt - Auteur{% endblock %}
+{% block title %}Kaamel'O'tt - Auteurs{% endblock %}
 
 {% block body %}
 <main>
     
     <div class="main-content">
-    <h1>Auteur</h1>
-
+        <h1>Auteur</h1>
     </div>
 
     <div class="content">
-    <a href="{{ path('app_backoffice_author_browse') }}" class="btn btn-primary">retour à la liste</a>
-        <table class="table table-striped">
-            <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ author.id }}</td>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                    <td>{{ author.name }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <a href="{{ path('app_backoffice_author_browse') }}" class="btn btn-primary">retour à la liste</a>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ author.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom de l'auteur</th>
+                        <td>{{ author.name }}</td>
+                    </tr>
+                </tbody>
+            </table>
 
-    
+        <a href="{{ path('app_backoffice_author_edit', {'id': author.id}) }}" class="btn btn-warning">Modifier</a>
 
-    <a href="{{ path('app_backoffice_author_edit', {'id': author.id}) }}" class="btn btn-warning">Modifier</a>
-
-    {% if is_granted("ROLE_ADMIN") %}
-        {{ include('backoffice/author/_delete_form.html.twig') }}
-    {% endif %}
+        {% if is_granted("ROLE_ADMIN") %}
+            {{ include('backoffice/author/_delete_form.html.twig') }}
+        {% endif %}
 
     </div>
 </main> 

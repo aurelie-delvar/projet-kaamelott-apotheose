@@ -1,24 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Kaamel'O'tt - Avatar{% endblock %}
+{% block title %}Kaamel'O'tt - Avatars{% endblock %}
 
 {% block body %}
 <main>
-
     <div class="main-content">
-    <h1>Modifier un Avatar</h1>
+        <h1>Modifier un Avatar</h1>
     </div>
-
     <div class="content">
+        <a href="{{ path('app_backoffice_avatar_browse') }}" class="btn btn-primary">retour à la liste</a>
 
-    <a href="{{ path('app_backoffice_avatar_browse') }}" class="btn btn-primary">retour à la liste</a>
-
-    {{ include('backoffice/avatar/_form.html.twig', {'button_label': 'Valider les modifications'}) }}
-
-    
-    
-
+        {{ include('backoffice/avatar/_form.html.twig', {'button_label': 'Valider les modifications'}) }}
     </div>
 </main>  
-    
 {% endblock %}

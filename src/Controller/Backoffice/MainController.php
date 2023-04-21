@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/backoffice/", name="app_backoffice_home")
+     * @Route("/backoffice/", name="app_backoffice_home", methods={"GET"})
      */
     public function home(): Response
     {

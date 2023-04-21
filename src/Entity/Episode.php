@@ -40,6 +40,7 @@ class Episode
 
     /**
      * @ORM\ManyToOne(targetEntity=Season::class, inversedBy="episodes")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $season;
 

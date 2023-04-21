@@ -1,6 +1,7 @@
 # pagination
 
 installer le bundle pagination :
+
 ```bash
 composer require knplabs/knp-paginator-bundle
 ```
@@ -29,7 +30,7 @@ use Knp\Component\Pager\PaginatorInterface;
     }
 ```
 
-dans notre repository 
+dans notre repository
 
 ```php
 public function paginationQuery()
@@ -70,6 +71,7 @@ pour afficher les boutons :
 la pagination est fonctionnelle mais moche !
 
 créer un fichier paginator.yaml et mettre dedans
+
 ```md
 knp_paginator:
     page_range: 2
@@ -78,10 +80,10 @@ knp_paginator:
 ```
 
 attention penser à vider le cache pour que cela s'affiche
+
 ```bash
 bin/console cache:clear
 ```
-
 
 https://www.youtube.com/watch?v=iEatWLAShVA&ab_channel=izicode
 https://www.youtube.com/watch?v=2EMU9TYzvB0&ab_channel=Pentiminax vers la min 12

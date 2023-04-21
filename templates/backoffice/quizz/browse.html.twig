@@ -9,37 +9,34 @@
     </div>
 
     <div class="content">
+        <a href="{{ path('app_backoffice_quizz_add') }}" class="btn btn-primary">Créer un nouveau quizz</a>
 
-    <a href="{{ path('app_backoffice_quizz_add') }}" class="btn btn-primary">Créer un nouveau quizz</a>
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for quiz in quizz %}
-            <tr>
-                <td>{{ quiz.id }}</td>
-                <td>{{ quiz.title }}</td>
-                <td>
-                    <a href="{{ path('app_backoffice_quizz_read', {'id': quiz.id}) }}" class="btn btn-success">Voir</a>
-                    <a href="{{ path('app_backoffice_quizz_edit', {'id': quiz.id}) }}" class="btn btn-warning">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">Pas de quizz trouvé !</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Titre du quizz</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for quiz in quizz %}
+                    <tr>
+                        <td>{{ quiz.id }}</td>
+                        <td>{{ quiz.title }}</td>
+                        <td>
+                            <a href="{{ path('app_backoffice_quizz_read', {'id': quiz.id}) }}" class="btn btn-success">Voir</a>
+                            <a href="{{ path('app_backoffice_quizz_edit', {'id': quiz.id}) }}" class="btn btn-warning">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">Pas de quizz trouvé !</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-
 </main>
 
 {% endblock %}

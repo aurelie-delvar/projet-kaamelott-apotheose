@@ -21,6 +21,7 @@ class EpisodeType extends AbstractType
             ])
            
             ->add('number')
+            
             ->add('author', EntityType::class, [
                 'class' => Author::class,
                 'choice_label' => 'name',

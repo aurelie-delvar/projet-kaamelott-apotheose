@@ -26,7 +26,6 @@ class QuoteType extends AbstractType
             ->add('rating',ChoiceType::class, [
                 'label' => 'Rating',
                 'choices'  => [
-                    
                     '0' => 0,
                     '1' => 1,
                     '2' => 2,
@@ -34,12 +33,10 @@ class QuoteType extends AbstractType
                     '4' => 4,
                     '5' => 5,
                     ]
-
             ])
             ->add('validated', ChoiceType::class, [
                 'label' => 'Validée?',
                 'choices'  => [
-                    
                     'Non' => false,
                     'Oui' => true,
                     ]

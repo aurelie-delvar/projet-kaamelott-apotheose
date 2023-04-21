@@ -8,30 +8,37 @@
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 m-3">
 
-    {# now our array is pagination (from the controller) #}
-    {% for character in pagination %}
-        <div class="col mb-3">
-            <a href="{{ path('app_frontoffice_personage_read', {"id" : character.id }) }}" class="nav-link">
-            <div class="card">
-            {% if character.picture %}
-                <img src="{{ asset('img/personage/' ~ character.picture) }}" class="card-img-top" alt="{{ character.name }}" title="Crédits : {{ character.descriptionPicture }}">
-            {% else %}
-            <div class="card-img-top text-center">
-                <img src="{{ asset('img/icone.png')}}" alt="- pas de photo de disponible pour le moment -" class="icone">
-                <br>- pas de photo de disponible pour le moment -
+        {# now our array is pagination (from the controller) #}
+        {% for character in pagination %}
+
+            <div class="col mb-3">
+                <a href="{{ path('app_frontoffice_personage_read', {"id" : character.id }) }}" class="nav-link">
+                    <div class="card">
+                        {% if character.picture %}
+                               
+                            <img src="{{ asset('img/personage/' ~ character.picture) }}" class="card-img-top" alt="{{ character.name }}" title="Crédits : {{ character.descriptionPicture }}">
+                        {% else %}
+                            <div class="card-img-top text-center">
+                                <div class="m-5">
+                                    <img src="{{ asset('img/icone.png')}}" alt="- pas de photo de disponible pour le moment -" class="icone">
+                                </div>
+                                <div class="m-5">
+                                    <p>- photo non disponible pour le moment -</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h6 class="card-title">{{ character.name }}</h6>
+                        </div>
+                    </div>
+                </a>
             </div>
-            {% endif %}
-                <div class="card-body">
-                    <h6 class="card-title">{{ character.name }}</h6>
-                </div>
-            </div>
-            </a>
-        </div>
-    {% endfor %}
+            
+        {% endfor %}
 
     </div>
 
-    {{ knp_pagination_render(pagination) }}
+        {{ knp_pagination_render(pagination) }}
 
 </main>
 

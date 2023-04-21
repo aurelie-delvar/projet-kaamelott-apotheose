@@ -137,3 +137,41 @@ Pour corriger cette erreur, j'ai ajouté cette condition.
         }
 
 ```
+
+## Executing script cache:clear [KO]
+
+avec un git pull en déploiement, on ne récupérait pas toutes les modifications, en faisant un ```composer install``` on avait l'erreur ci dessous qui apparaissait :
+
+```bash
+
+Executing script cache:clear [KO]
+ [KO]
+Script cache:clear returned with error code 1
+!!  [critical] Error thrown while running command "--ansi cache:clear". Message: "Unable to write in the "/var/www/html/projet-13-kaamelott/var/cache/prod" directory."
+!!
+!!
+!!    Unable to write in the "/var/www/html/projet-13-kaamelott/var/cache/prod" d
+!!    irectory.
+!!
+!!
+!!  cache:clear [--no-warmup] [--no-optional-warmers]
+!!
+!!
+Script @auto-scripts was called via post-install-cmd
+```
+
+merci à Baptiste et en demandant à chat GPT on a tenté la commande : pour modifier les droits en écriture
+
+```bash
+sudo chmod -R 777 /var/www/html/projet-13-kaamelott/var/cache/
+```
+
+```bash
+composer install
+```
+
+```bash
+git pull
+```
+
+et tout est bien récupéré

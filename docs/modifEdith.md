@@ -2,7 +2,7 @@
 
 ## pour Quote
 
-### pour le rating : modif à faire sur la BDD et l'entité quote pour le rating il faut passer en float :
+### pour le rating : modif à faire sur la BDD et l'entité quote pour le rating il faut passer en float:
 
 ```php
     /**
@@ -27,7 +27,7 @@
 
 ### pour éviter les répétitions : création d'un template _card_quote.html.twig
 
-pour l'utiliser ou l'on veut remplacer la carte citation par : {% include '_card_quote.html.twig' %} 
+pour l'utiliser ou l'on veut remplacer la carte citation par : {% include '_card_quote.html.twig' %}
 
 Attention il faut absolument une variable quote, peut etre définit juste avant : par exmple ici pour la citation random
 
@@ -53,6 +53,3 @@ livre 4 : "L’irréparable s’est produit : Lancelot est entré en rébellion.
 livre 5 : "La faute est réparée, Arthur s’est séparé de dame Mevanwi et a libéré Guenièvre de l’emprise de Lancelot, refaisant d’elle sa reine. Mais la situation ne peut plus guère s’améliorer. Lancelot a complètement disparu, et si certains le disaient fou et prétendent que la fuite de son amante l’a poussé à mettre fin à ses jours, Arthur est durement marqué par la disparition de l’homme qui a autrefois été son plus fidèle allié et ami. Lorsque sa mère et ses beaux-parents réclament du roi qu’il replante Excalibur dans le rocher pour rappeler au peuple qu’il est l’élu, Arthur s’exécute à contre-cœur avant de réaliser qu’une occasion s’offre à lui de changer le cours déplorable qu’a pris son existence."
 
 livre 6 : "Quinze ans avant les événements narrés dans la série Kaamelott. Arthur n’est encore qu’un simple soldat de la milice urbaine romaine ; plutôt solitaire, sentimental, guère ambitieux et sans grand avenir, il n’attend pas grand-chose de sa vie au sein d’un empire sur le déclin, mais les dieux et le Sénat en ont décidé autrement : le milicien anonyme va s’élever, jusqu’à devenir une des figures légendaires les plus célèbres de l’histoire. Le dernier épisode, Dies Iræ, reprend le cours de l'histoire là où elle s'était arrêtée à la fin du Livre V."
-
-
-

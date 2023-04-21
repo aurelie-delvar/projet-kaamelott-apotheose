@@ -5,13 +5,13 @@
 {% block body %}
 
 <main>
-    <div class="main-content">
+     <div class="main-content">
          <h1>Créer un nouveau personnage</h1>
-    </div>
+     </div>
      <div class="content">
-    <a href="{{ path('app_backoffice_personage_browse') }}" class="btn btn-primary">Retour à la liste</a>
+          <a href="{{ path('app_backoffice_personage_browse') }}" class="btn btn-primary">Retour à la liste</a>
 
-    {{ include('backoffice/personage/_form.html.twig') }}
+          {{ include('backoffice/personage/_form.html.twig') }}
      </div>
 </main>
     

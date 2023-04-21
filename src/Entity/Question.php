@@ -36,7 +36,7 @@ class Question
 
     /**
      * @ORM\ManyToOne(targetEntity=Quizz::class, inversedBy="questions")
-     * 
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $quizz;
 

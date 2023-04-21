@@ -6,34 +6,33 @@
 <main>
     
     <div class="main-content">
-    <h1>Episode</h1>
+        <h1>Episode</h1>
     </div>
 
     <div class="content">
         <a href="{{ path('app_backoffice_episode_browse') }}" class="btn btn-primary">Retour à la liste</a>
         <table class="table table-striped">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ episode.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ episode.title }}</td>
-            </tr>
-            <tr>
-                <th>Number</th>
-                <td>{{ episode.number }}</td>
-            </tr>
-        </tbody>
-    </table>
-   
- 
-    <a href="{{ path('app_backoffice_episode_edit', {'id': episode.id}) }}" class="btn btn-warning">Modifier</a>
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ episode.id }}</td>
+                </tr>
+                <tr>
+                    <th>Titre de l'épisode</th>
+                    <td>{{ episode.title }}</td>
+                </tr>
+                <tr>
+                    <th>Numéro de l'épisode</th>
+                    <td>{{ episode.number }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    {% if is_granted("ROLE_ADMIN") %}
-        {{ include('backoffice/episode/_delete_form.html.twig') }}
-     {% endif %}
+        <a href="{{ path('app_backoffice_episode_edit', {'id': episode.id}) }}" class="btn btn-warning">Modifier</a>
+
+        {% if is_granted("ROLE_ADMIN") %}
+            {{ include('backoffice/episode/_delete_form.html.twig') }}
+        {% endif %}
 
     </div>
 </main>    

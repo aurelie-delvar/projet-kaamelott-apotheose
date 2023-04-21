@@ -5,26 +5,33 @@
 {% block body %}
 
 <main  class="p-3">
-    <div class="text-center mb-3">
+    <div class="text-center m-3">
 
         <h2 class="main__item">Bonjour {{ user.email }} </h2>
+
         <div class="card mt-3 mb-3"> 
             <div class="card-body text-bg-secondary">
-                {# Résulats du dernier quizz #}
-                <div>
-                    {% if scoreArray is not empty %}
-                    {% for score in scoreArray %}
-                    <p>Votre dernier score pour le quizz {{ score.quizz_id }} est : {{ score.score }}</p>
-                    {% endfor %}
-                    {% else %}
-                    <p>Vous n'avez pas encore joué à nos quizz.</p>
-                    {% endif %}   
+                {# Results lastest quizz #}
+                
+                <div class="card border-light text-bg-secondary m-5-lg p-2">
+                    <h3 class="main__item">score</h3>
+                        {% if scoreArray is not empty %}
+                            {% for score in scoreArray %}
+                                <p>Votre dernier score pour le quizz {{ score.quizz_id }} est : {{ score.score }}</p>
+                            {% endfor %}
+                        {% else %}
+                            <p>Vous n'avez pas encore joué à nos quizz.</p>
+                        {% endif %}   
                 </div>
-                <div class="d-flex justify-content-around">
-                    <a class="btn btn-outline-light" href="{{ path("user_edit_profile", {"id" : user.id}) }}">Modifier</a>
+                <div class="border-light text-bg-secondary m-5-lg p-2">
+                {# <h3 class="main__item">profil</h3> #}
+                    <div class="d-flex justify-content-around">
 
-                    {{ include('frontoffice/user/_delete_form.html.twig') }}
-                </div>    
+                        <a class="btn btn-outline-light m-1" href="{{ path("user_edit_profile", {"id" : user.id}) }}">Modifier le profil</a>
+
+                        {{ include('frontoffice/user/_delete_form.html.twig') }}
+                    </div>   
+                {# </div>  #}
             </div>
         </div>
     </div>

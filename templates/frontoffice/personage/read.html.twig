@@ -13,23 +13,23 @@
         <div class="col-lg-4">
 
             <div class="text-center mb-lg-3 main__item--img">
-            {% if character.picture %}
-                <img src="{{ asset('img/personage/' ~ character.picture ) }}" alt="{{ character.name }}" class="img-fluid" title="Crédits : {{ character.descriptionPicture }}">
-            {% else %}
-                <img src="{{ asset('img/icone.png')}}" alt="- pas de photo de disponible pour le moment -" class="img-fluid">
-                <br>- pas de photo de disponible pour le moment -
-            {% endif %}
+                {% if character.picture %}
+                    <img src="{{ asset('img/personage/' ~ character.picture ) }}" alt="{{ character.name }}" class="img-fluid" title="Crédits : {{ character.descriptionPicture }}">
+                {% else %}
+                    <img src="{{ asset('img/icone.png')}}" alt="- pas de photo de disponible pour le moment -" class="img-fluid">
+                    <br>- pas de photo de disponible pour le moment -
+                {% endif %}
             </div>
 
             <h6 class="main__item">Est joué par: {{ character.actor.name }}</h6>
 
             <div class="text-center">
-            {% if character.actor.picture %}
-                <img src="{{ asset('img/actor/' ~ character.actor.picture ) }}" alt="{{ character.actor.name }}" class="img-fluid" title="Crédits : {{ character.descriptionPicture }}">
-            {% else %}
-                <img src="{{ asset('img/icone.png')}}" alt="- pas de photo de disponible pour le moment -" class="img-fluid">
-                <br>- pas de photo de disponible pour le moment -
-            {% endif %}
+                {% if character.actor.picture %}
+                    <img src="{{ asset('img/actor/' ~ character.actor.picture ) }}" alt="{{ character.actor.name }}" class="img-fluid" title="Crédits : {{ character.descriptionPicture }}">
+                {% else %}
+                    <img src="{{ asset('img/icone.png')}}" alt="- pas de photo de disponible pour le moment -" class="img-fluid">
+                    <br>- pas de photo de disponible pour le moment -
+                {% endif %}
             </div>
             
 
@@ -41,12 +41,11 @@
 
                 <p class="main__item main__item--text mb-lg-3">{{ character.description }}</p>
 
-
                 <h6 class="main__item">Ses citations :</h6>
 
                 {% for quote in pagination %}
                 
-                {% include 'partials/_card_quote.html.twig' %}
+                    {% include 'partials/_card_quote.html.twig' %}
 
                 {% endfor %}
 

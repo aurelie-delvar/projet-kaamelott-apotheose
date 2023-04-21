@@ -5,7 +5,6 @@
 {% block body %}
 
 <main>
-    
     <div class="main-content">
         <h1>Liste des Saisons</h1>
     </div>
@@ -17,7 +16,7 @@
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Titre</th>
+                    <th scope="col">Titre de la saison</th>
                     <th scope="col">actions</th>
                 </tr>
             </thead>
@@ -34,7 +33,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="4">no records found</td>
+                    <td colspan="4">Pas de saison trouvé !</td>
                 </tr>
             {% endfor %}
             </tbody>

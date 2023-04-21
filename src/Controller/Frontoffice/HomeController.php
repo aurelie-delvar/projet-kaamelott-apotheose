@@ -18,26 +18,19 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="default")
-     * @Route("/home", name="app_home_index")
+     * @Route("/accueil", name="app_home_index")
      */
     public function index(QuoteRepository $quoteRepository): Response
     {
         $randomQuote = $quoteRepository->randomQuote();
 
-        
-        // TODO j'affiche la liste des 10 dernières citations
-        // j'ai besoin d'un repository : QuoteRepository
-        // le findAll() ne me permet pas de trier les résultats
-        // * $allQuotes = $quoteRepository->findAll();
         $last10Quotes = $quoteRepository->findBy(
-            // je n'ai pas de critères, mais je dois fournir un tableau, celui ci sera vide
             ["validated" => 1],
-            ["id" => "DESC"], // tri par id decroissant
-            $limit = 10, //j'en veux 10
-            $offset = 0 // à partir de 0 (1er de la table)
+            ["id" => "DESC"], 
+            $limit = 10, 
+            $offset = 0 
             
         );
-        // dd($last10Quotes);
         
         return $this->render('frontoffice/home/index.html.twig', [
            "randomQuote" => $randomQuote,
@@ -69,16 +62,14 @@ class HomeController extends AbstractController
     /**
      * form for the user to ask for adding a quote
      *
-     * @Route("/formulaire-ajout-citation", name="app_add_quote", methods={"GET", "POST"})
+     * @Route("/formulaire-ajout-citation", name="app_frontoffice_quote_add", methods={"GET", "POST"})
      * @IsGranted("ROLE_USER", message="Vous devez être connecté(e) pour accéder à ce formulaire")
      */
     public function formAddQuote(Request $request, QuoteRepository $quoteRepository, Security $user) : Response
     {
         $quote = new Quote();
 
-        // $user->getUser();
         $quote->setUser($user->getUser());
-
 
         $form = $this->createForm(AddQuoteType::class, $quote);
         $form->handleRequest($request);
