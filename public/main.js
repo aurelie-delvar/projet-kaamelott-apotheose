@@ -49,7 +49,7 @@ async function next(){
 	
     if (current_index+1 == questions.length){
 		
-        if(score <=1){
+        if(score <0){
             score++; 	
         }
 		resultats();
