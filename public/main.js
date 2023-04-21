@@ -49,9 +49,6 @@ async function next(){
 	
     if (current_index+1 == questions.length){
 		
-        if(score <=1){
-            score++; 	
-        }
 		resultats();
         
     }else{
