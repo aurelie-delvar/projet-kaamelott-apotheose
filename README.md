@@ -9,19 +9,19 @@ Bref, c'est une bonne dose de bonne humeur 😄
 
 Le front-office est accessible aux visiteurs et contient des informations sur la série, les personnages, les citations et les saisons/épisodes.
 
-Pour accèder à d'autres fonctionnalités, le visiteur doit se créer un compte ou se connecter. Une fois connecté, il pourra jouer à un quizz pour tester leurs connaissances sur la série, proposer une citation, mettre des citations en favoris et noter les citations.
+Pour accèder à d'autres fonctionnalités, le visiteur doit se créer un compte ou se connecter. Une fois connecté, il pourra jouer à un quizz pour tester ses connaissances sur la série, proposer une citation, mettre des citations en favoris et noter les citations.
 
 ### Partie Back
 
 Le back-office est accessible uniquement aux managers et administrateurs et sert à gérer le site et ses contenus.
 
-Les managers et les administrateurs peuvent consulter les listes de personnages, d'épisodes, d'acteurs, de citations, etc., voir les détails d'un item en particulier, l'éditer, en ajouter un nouveau ou le supprimer (uniquement les administrateur).
+Les managers et les administrateurs peuvent consulter les listes de personnages, d'épisodes, d'acteurs, de citations, etc., voir les détails d'un item en particulier, l'éditer, en ajouter un nouveau ou le supprimer (uniquement les administrateurs).
 
 ### Rôles
 
 - visiteur = utilisateur non connecté
 - USER = utilisateur connecté ayant accès uniquement à la partie Front
-- MANAGER = utilisateur connecté ayant accès à tout le Front et au Back sauf pour les suppression
+- MANAGER = utilisateur connecté ayant accès à tout le Front et au Back sauf pour les suppressions
 - ADMIN = utilisateur connecté ayant accès à tout le Front et le Back
 
 ## Technologies utilisées
@@ -35,7 +35,7 @@ Le site est développé en utilisant les technologies web suivantes :
 
 ## Déploiement
 
-Le site sera déployé uniquement pour présenter notre projet lors de l'apothéose et pour le passage du Titre Pro.
+Le site sera déployé uniquement pour présenter notre projet lors de l'apothéose et pour le passage du Titre Professionnel.
 
 N'ayant pas obtenu les droits de diffusion des images, nous avons pris la décision de ne pas déployer notre site au public.
 
