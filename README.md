@@ -39,6 +39,8 @@ Le site sera déployé uniquement pour présenter notre projet lors de l'apothé
 
 N'ayant pas obtenu les droits de diffusion des images, nous avons pris la décision de ne pas déployer notre site au public.
 
+Cependant, voici une vidéo montrant les fonctionnalités de ce projet : https://youtu.be/edEn6euaHAk
+
 ## Installation
 
 - Cloner le repo GitHub : `git@github.com:O-clock-Nazca/projet-13-kaamelott.git`
