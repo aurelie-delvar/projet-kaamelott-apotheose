@@ -34,18 +34,26 @@ class UserType extends AbstractType
                     ])
                 ]
             ])
+            // before datas of the form been defined
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event){
+
+                // the form under construction
                 $formulaire = $event->getForm();
+                // datas of the form
                 $data = $event->getData();
 
+                // for the modification
                 if ($data->getId() !== null)
                 {
                     $formulaire->add('password', PasswordType::class, [
                         "attr" => [
                             "placeholder" => "laisse vide si inchangé"
                         ],
+                        // this password value will not automatically be associated with the user (we can hash it first)
                         "mapped" => false
                     ]);
+                    
+                // for the creation of an user
                 } else {
                     $formulaire->add('password', PasswordType::class, [
                         "attr" => [

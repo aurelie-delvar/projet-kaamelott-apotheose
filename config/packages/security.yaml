@@ -36,10 +36,10 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/backoffice/user/add, roles: ROLE_ADMIN }
-        - { path: ^/backoffice/user/\d+/edit, roles: ROLE_ADMIN, methods: [POST,GET]  }
+        - { path: ^/backoffice/user/\d+/edit, roles: ROLE_ADMIN, methods: [POST,GET] }
+        - { path: ^\/backoffice\/.+\/\d+\/edit, roles: [ROLE_MANAGER], methods: [POST] }
         - { path: ^\/backoffice\/.+\/\d+, roles: ROLE_ADMIN, methods: [POST] }
         - { path: ^/backoffice, roles: ROLE_MANAGER }
-        # TODO: routes en frontoffice pour anonyme/user
 
         # - { path: ^/backoffice/.+/new, roles: ROLE_ADMIN }
         # - { path: ^/backoffice/.+/, roles: ROLE_MANAGER, methods: [GET] }

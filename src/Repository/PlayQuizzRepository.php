@@ -41,18 +41,20 @@ class PlayQuizzRepository extends ServiceEntityRepository
 
     public function displayScore($id)
     {
-        
+        // MAX(id) is the biggest id
+        // inner join between play_quizz & last_play
         $sql= "SELECT pq.*
         FROM play_quizz pq
         JOIN (
-            SELECT quizz_id, MAX(id) AS last_play_id
+            SELECT quizz_id, MAX(id) AS last_play_id 
             FROM play_quizz
-            WHERE user_id = $id
+            WHERE user_id = :id
             GROUP BY quizz_id
         ) last_play ON pq.quizz_id = last_play.quizz_id AND pq.id = last_play.last_play_id";
         
         $doctrine = $this->getEntityManager()->getConnection();
         $statement = $doctrine->prepare($sql);
+        $statement->bindValue(":id", $id);
         $result = $statement->executeQuery();
         $scoreArray = $result->fetchAllAssociative();
         return $scoreArray;

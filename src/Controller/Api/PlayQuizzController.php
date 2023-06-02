@@ -17,6 +17,7 @@ class PlayQuizzController extends AbstractController
 {
     /**
      * @Route("/api/play/quizz", name="app_api_play_quizz_browse", methods={"GET"})
+     * Find scores of all the users from different quizz
      */
     public function browse(PlayQuizzRepository $playQuizzRepository): JsonResponse
     {
@@ -37,8 +38,11 @@ class PlayQuizzController extends AbstractController
 
     /**
      * @Route("/api/play/quizz/{id}", name="app_api_play_quizz_read", requirements={"id"="\d+"}, methods={"GET"})
+     * Find the scores & users for 1 particular quizz
      */
     public function read(PlayQuizz $playQuizz = null){
+
+        // if the quizz hasn't been played
         if($playQuizz === null){
             return $this->json(
                 [
@@ -68,7 +72,7 @@ class PlayQuizzController extends AbstractController
 
     public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, PlayQuizzRepository $playQuizzRepository, ValidatorInterface $validator ): JsonResponse
     {
-                
+        // take the content sent by the front     
         $jsonContent = $request->getContent();
         
         try {

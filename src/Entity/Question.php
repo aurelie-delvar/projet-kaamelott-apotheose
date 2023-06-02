@@ -27,7 +27,7 @@ class Question
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 5,
-     *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
+     *      minMessage = "Le titre de la question doit comporter au moins {{ limit }} caractères"
      * )
      * 
      * @Groups({"quizz_read"})
@@ -45,7 +45,7 @@ class Question
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 5,
-     *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
+     *      minMessage = "Le titre de la réponse doit comporter au moins {{ limit }} caractères"
      * )
      * 
      * @Groups({"quizz_read"})
@@ -57,7 +57,7 @@ class Question
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 5,
-     *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
+     *      minMessage = "Le titre de la réponse doit comporter au moins {{ limit }} caractères"
      * )
      * 
      * @Groups({"quizz_read"})
@@ -69,7 +69,7 @@ class Question
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 5,
-     *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
+     *      minMessage = "Le titre de la réponse doit comporter au moins {{ limit }} caractères"
      * )
      * 
      * @Groups({"quizz_read"})
@@ -81,7 +81,7 @@ class Question
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 5,
-     *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
+     *      minMessage = "Le titre de la réponse doit comporter au moins {{ limit }} caractères"
      * )
      * 
      * @Groups({"quizz_read"})
@@ -93,7 +93,7 @@ class Question
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 5,
-     *      minMessage = "Le titre de la saison doit comporter au moins {{ limit }} caractères"
+     *      minMessage = "Le titre de la réponse doit comporter au moins {{ limit }} caractères"
      * )
      * 
      * @Groups({"quizz_read"})

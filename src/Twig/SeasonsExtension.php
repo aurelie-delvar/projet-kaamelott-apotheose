@@ -23,7 +23,7 @@ class SeasonsExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('seasonsList', [$this, 'getSeasons']), // "seasonsList" is the name giver to the function, it will be used in the yaml
+            new TwigFunction('seasonsList', [$this, 'getSeasons']), // "seasonsList" is the name given to the function, it will be used in the yaml
         ];
     }
 

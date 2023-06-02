@@ -23,7 +23,7 @@ class QuoteController extends AbstractController
     {
 
         $paginationTrue = $paginator->paginate(
-            $quoteRepository->paginationQueryBackTrue(), // here is our query from the repository
+            $quoteRepository->paginationQuery(), // here is our query from the repository
             $request->query->get('page', 1), // 1 is the page by default
             10, // the limit of results by page
         );
@@ -58,24 +58,25 @@ class QuoteController extends AbstractController
      */
     public function validate(QuoteRepository $quoteRepository, $id): Response
     {
-        $quote = $quoteRepository->setValidationToTrue($id);
+        $quoteRepository->setValidationToTrue($id);
 
         return $this->redirectToRoute('app_backoffice_quote_browse');
     }
 
-    /**
-     * Route to reject a user's quote
-     * 
-     * @Route("/quote/{id}/reject", name="app_backoffice_quote_reject", requirements={"id" = "\d+"})
-     */
-    public function reject(Quote $quote, Request $request, QuoteRepository $quoteRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$quote->getId(), $request->request->get('_token'))) {
-            $quoteRepository->remove($quote, true);
-        }
+    // it's the same route than the one already existing for deleting
+    // /**
+    //  * Route to reject a user's quote
+    //  * 
+    //  * @Route("/quote/{id}/reject", name="app_backoffice_quote_reject", requirements={"id" = "\d+"})
+    //  */
+    // public function reject(Quote $quote, Request $request, QuoteRepository $quoteRepository): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete'.$quote->getId(), $request->request->get('_token'))) {
+    //         $quoteRepository->remove($quote, true);
+    //     }
 
-        return $this->redirectToRoute('app_backoffice_quote_browse', [], Response::HTTP_SEE_OTHER);
-    }
+    //     return $this->redirectToRoute('app_backoffice_quote_browse', [], Response::HTTP_SEE_OTHER);
+    // }
 
     /**
      * @Route("/add", name="app_backoffice_quote_add", methods={"GET", "POST"})

@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
    
-
     /**
      * result of search
      *
@@ -23,15 +22,15 @@ class SearchController extends AbstractController
      */
     public function search( Request $request, QuoteRepository $quoteRepository, PaginatorInterface $paginator, SessionInterface $session): Response
     {
-        $words = $request->request->get("searchFront");
+        $words = $request->query->get("searchFront");
        
         // $session = $this->get("session"); => deprecated, use sessionInterface instead
 
-        if($words != null) {
-            $session->set("words", $words);
-        }
+        // if($words != null) {
+        //     $session->set("words", $words);
+        // }
 
-        $search = $words ?? $session->get("words"); 
+        $search = $words; 
             
         //Paginate the results of the query
         $pagination = $paginator->paginate(
@@ -43,12 +42,11 @@ class SearchController extends AbstractController
         10
         );
 
-    return $this->render('frontoffice/search/index.html.twig', [
-        'pagination' => $pagination,
-        'search' => $search
-        
-    ]);
-
+        return $this->render('frontoffice/search/index.html.twig', [
+            'pagination' => $pagination,
+            'search' => $search
+            
+        ]);
         
     }
     

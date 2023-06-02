@@ -28,6 +28,7 @@ composer require --dev orm-fixtures
 
 composer require symfony/form
 composer require symfony/validator
+<!-- Facilite l'utilisation de Doctrine pour la gestion des bdd -->
 composer require symfony/doctrine-bridge
 
 ## make:crud

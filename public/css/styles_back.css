@@ -11,7 +11,7 @@ body {
 .container {
     /* ? j'ai rajouté le margin top pour avoir le même retrait en haut que l'on a en bas car pas réussi à virer le bas */
     margin-top: 20px;
-     padding:  0;
+    padding:  0;
     background-color: rgba(240, 248, 255, 0.5);
 }
 
@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6, .title {
 
 
 .main-bo {
-    padding: 2rem 10rem 2rem 10rem;
+    padding: 2rem 10rem;
     display:flex;
     justify-content: space-around;
     

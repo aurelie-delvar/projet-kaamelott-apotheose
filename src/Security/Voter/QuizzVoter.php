@@ -17,7 +17,10 @@ class QuizzVoter extends Voter
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
+        // retreive the user, authentified or not
         $user = $token->getUser();
+
+        // checks if he's authentified (if yes, he's an instance of UserInterface)
         // if the user is anonymous, do not grant access
         if (!$user instanceof UserInterface) {
             return false;

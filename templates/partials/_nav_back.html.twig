@@ -4,6 +4,7 @@
         <a href="{{ path("app_home_index") }}"><img class="img" src="{{ asset('img/logo.png') }}"></a>
     </div>
 
+    {% if is_granted("ROLE_MANAGER") %}
     <nav class="navbar navbar-expand-xl bg-body-secondary" >
         <div class="container-fluid">
             <a class="navbar-brand title" href="{{ path("default") }}"> Kaamel'O'tt </a>
@@ -79,4 +80,6 @@
             </div>
         </div>
     </nav>
+    {% endif %}
+
 </header>

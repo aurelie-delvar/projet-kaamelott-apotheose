@@ -30,6 +30,7 @@ class SearchController extends AbstractController
             $session->set("words", $words);
         }
 
+        // search take the value of $words or, if it is null, take the one in session (because $words lose itself from page 2)
         $search = $words ?? $session->get("words"); 
         
        //$results= $quoteRepository->querySearchBack($words);
