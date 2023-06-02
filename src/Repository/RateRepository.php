@@ -47,10 +47,11 @@ class RateRepository extends ServiceEntityRepository
         // version SQL
         $sql = "SELECT AVG(rating) as newrate
         FROM rate
-        WHERE quote_id = ". $quoteId;
+        WHERE quote_id = :quoteId";
         
         $doctrine = $this->getEntityManager()->getConnection();
         $statement = $doctrine->prepare($sql);
+        $statement->bindValue('quoteId', $quoteId);
         $result = $statement->executeQuery();
         $avgRate = $result->fetchOne();
 

@@ -14,8 +14,7 @@
             <div class="col mb-3">
                 <a href="{{ path('app_frontoffice_personage_read', {"id" : character.id }) }}" class="nav-link">
                     <div class="card">
-                        {% if character.picture %}
-                               
+                        {% if character.picture %}   
                             <img src="{{ asset('img/personage/' ~ character.picture) }}" class="card-img-top" alt="{{ character.name }}" title="Crédits : {{ character.descriptionPicture }}">
                         {% else %}
                             <div class="card-img-top text-center">

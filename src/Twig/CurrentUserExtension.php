@@ -11,13 +11,11 @@ use Symfony\Component\Security\Core\Security;
 class CurrentUserExtension extends AbstractExtension
 {
     
-    // private $entityManager;
     private $security;
 
-    public function __construct(EntityManagerInterface $entityManager, Security $security)
+    public function __construct(Security $security)
     {
-        // $this -> entityManager = $entityManager;
-        $this -> security = $security;
+        $this->security = $security;
 
     }
 
@@ -31,7 +29,7 @@ class CurrentUserExtension extends AbstractExtension
 
     public function getUser()
     {
-        return $this -> security ->getUser();
+        return $this->security->getUser();
 
     }
 }

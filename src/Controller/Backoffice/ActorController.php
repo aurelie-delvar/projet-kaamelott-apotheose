@@ -24,7 +24,7 @@ class ActorController extends AbstractController
 
         $pagination = $paginator->paginate(
             $actorRepository->paginationQueryBack(), // here is our query from the repository
-            $request->query->get('page', 1), // 1 is the page by default
+            $request->query->get('page', 1), // we take the page in the url, 1 is the page by default
             10, // the limit of results by page
         );
 

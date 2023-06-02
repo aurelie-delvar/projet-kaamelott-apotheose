@@ -22,7 +22,7 @@ class QuizzsExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('quizzsList', [$this, 'getQuizzs']), // "quizzsList" is the name giver to the function, it will be used in the yaml
+            new TwigFunction('quizzsList', [$this, 'getQuizzs']), // "quizzsList" is the name given to the function, it will be used in the yaml
         ];
     }
 

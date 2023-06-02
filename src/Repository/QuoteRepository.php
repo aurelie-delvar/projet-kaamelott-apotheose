@@ -42,7 +42,7 @@ class QuoteRepository extends ServiceEntityRepository
     public function randomQuote(): array
     {
         // version SQL
-        $sql = "SELECT quote.id, quote.text, quote.rating, personage.name , episode.title AS episode, season.title AS season
+        $sql = "SELECT quote.id, quote.text, quote.rating, personage.name, episode.title AS episode, season.title AS season
         FROM quote
         JOIN personage ON quote.personage_id = personage.id
         JOIN episode ON quote.episode_id = episode.id
@@ -97,6 +97,23 @@ class QuoteRepository extends ServiceEntityRepository
         ;
     }
 
+    
+    /**
+     * Query to validate a user's quote 
+     */
+    public function setValidationToTrue($id)
+    {
+        $query = $this->createQueryBuilder('App\Entity\Quote', 'q')
+                    ->update('App\Entity\Quote','q')
+                    ->set('q.validated', 1)
+                    ->where('q.id  = :id')
+                    ->setParameter('id', $id)
+                    ->getQuery()
+        ;
+
+        return $result = $query->execute();
+    }
+
     /**
     * Query for the paginator. Search results of the backoffice.
     */
@@ -109,6 +126,7 @@ class QuoteRepository extends ServiceEntityRepository
             ->leftJoin('q.personage', 'p')
             ->leftJoin('q.episode', 'e')
             ->leftJoin('e.season', 's')
+            // expr is a doctrine function which allow to create request expressions, and orX is one of its method, corresponding to an "OR"
             ->where(
                 $queryBuilder->expr()->orX(
                     $queryBuilder->expr()->like('q.text', ':words'),

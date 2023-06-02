@@ -58,21 +58,18 @@
                                 Citations
                                 </a>
                                 <ul class="dropdown-menu">
-
                                 
-                                    <li class="">
+                                    <li>
                                         <a class="dropdown-item " aria-current="page" href="{{ path("app_frontoffice_quotes_browse") }}"> Citations </a>
                                     </li>
 
-                                    <li class=" ">
+                                    <li>
                                         <a class="dropdown-item " aria-current="page" href="{{ path("app_frontoffice_quotes_favorites_user",  {"id" : app.user.id }) }}">Favoris</a>
                                     </li>
                                     
-                                    <li class=" ">
+                                    <li>
                                         <a class="dropdown-item " aria-current="page" href="{{ path("app_frontoffice_quote_add") }}">Proposer une citation</a>
                                     </li>                    
-
-
 
                                 </ul>
                             </li>
@@ -121,10 +118,11 @@
 
             </ul>
 
-            <form class="d-flex" role="search" method="post" action="{{ path('app_frontoffice_search') }}">
-                <input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Search" name="searchFront">
+            <form class="d-flex" role="search" method="get" action="{{ path('app_frontoffice_search') }}">
 
+                <input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Search" name="searchFront">
                 <button class="btn" type="submit"><img src="{{ asset('img/loupe.png') }}" alt="search-icon" width="24" height="24"></button>
+                
             </form>
         </div>
 

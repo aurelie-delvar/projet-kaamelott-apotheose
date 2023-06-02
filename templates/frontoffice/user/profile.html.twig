@@ -16,8 +16,8 @@
 
         <div class="card mt-3 mb-3"> 
             <div class="card-body text-bg-secondary">
+
                 {# Results lastest quizz #}
-                
                 <div class="card border-light text-bg-secondary m-5-lg p-2">
                     <h3 class="main__item">score</h3>
                         {% if scoreArray is not empty %}
@@ -29,14 +29,13 @@
                         {% endif %}   
                 </div>
                 <div class="border-light text-bg-secondary m-5-lg p-2">
-                {# <h3 class="main__item">profil</h3> #}
+
                     <div class="d-flex justify-content-around">
 
                         <a class="btn btn-outline-light m-1" href="{{ path("user_edit_profile", {"id" : user.id}) }}">Modifier le profil</a>
 
                         {{ include('frontoffice/user/_delete_form.html.twig') }}
                     </div>   
-                {# </div>  #}
             </div>
         </div>
     </div>

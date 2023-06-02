@@ -13,8 +13,10 @@ class QuizzController extends AbstractController
 {
     /**
      * @Route("/api/quizz/{id}", name="app_api_quizz_read", requirements={"id"="\d+"}, methods={"GET"})
+     * Find the entire quizz
      */
     public function read(Quizz $quizz = null){
+
         if($quizz === null){
             return $this->json(
                 [

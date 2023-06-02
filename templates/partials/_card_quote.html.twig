@@ -1,4 +1,3 @@
-
 {# This is a partial, you can use it wherever you want with: {% include '_card_quote.html.twig' %} #}
 
 <div class="card mb-3">
@@ -36,9 +35,11 @@
                 
                 {# We check if the user is connected, because if not, he can't put quotes in favorite #}
                 {% if is_granted("ROLE_USER") %}
-
+                                {# By default, the quote is not favorite #}
                                 {% set isFavorite = false %}
+                    {# We loop on all the users who like the quote #}
                     {% for userFav in quote.users %}
+                            {# if the user currently connected correspond to a user who likes the quote, we set the favorite to true #}
                             {% if currentUser.getUser == userFav %}
                                 {% set isFavorite = true %}
                             {% endif %}
@@ -59,7 +60,10 @@
                 {% if is_granted("ROLE_USER") %} 
                     {% set isRating = false %}
 
+                    {# We loop on all the ratings of the quote #}
                     {% for key, userRate in quote.rates %}
+
+                        {# if the user conntected now is the same as one of the raters of the quote, we set to true #}
                         {% if currentUser.getUser == userRate.user %}
                             {% set isRating = true %}
                         {% endif %}

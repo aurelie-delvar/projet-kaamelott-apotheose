@@ -87,7 +87,6 @@ class UserController extends AbstractController
         $user->removeFavoriteQuote($quote);
         $entityManager->flush();
 
-        
 
         return $this->redirect($_SERVER['HTTP_REFERER']);
     }
@@ -124,6 +123,7 @@ class UserController extends AbstractController
                 $entityManager->persist($user);
                 $entityManager->flush();
 
+                // request can be used to retreive infos like ip adress, token, password...
                 return $userAuthenticator->authenticateUser(
                     $user,
                     $authenticator,
@@ -247,8 +247,8 @@ class UserController extends AbstractController
             $entityManager->flush();
 
             // we get the average rating to put it in the quote (stars)
-            $averageRatingQuote = $rateRepository -> averageRating($quoteId);
-            $quote -> setRating($averageRatingQuote);
+            $averageRatingQuote = $rateRepository->averageRating($quoteId);
+            $quote->setRating($averageRatingQuote);
             $entityManager->persist($quote);
             $entityManager->flush();
             
